@@ -1,4 +1,4 @@
-import '../styles/themes.css'
+import '../styles/App.scss'
 import { React, useContext } from 'react';
 import { AuthContext } from './helpers/Context';
 import {  Route, Link, Routes } from 'react-router-dom';
@@ -21,8 +21,7 @@ export function SideBar() {
             </Link>
             <Link to='/concierge'>
                 <button className='menu-button'>Concierge</button>
-            </Link>
-            
+            </Link>            
         </div>
     )
 }

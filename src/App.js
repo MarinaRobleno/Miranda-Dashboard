@@ -1,5 +1,5 @@
-import './App.css';
-import './styles/themes.css'
+import './styles/App.scss'
+import { Themes } from './styles/Themes';
 import React, { useState, useEffect, useContext, createContext } from 'react';
 import {  Route, Link, Routes } from 'react-router-dom';
 import { Login } from './components/pages/Login.jsx'
@@ -18,49 +18,63 @@ function App() {
 
   return (
     <>
-    
       <header>
         <div className='header'>
           <h3 className='app-title'>MIRANDA DASHBOARD</h3>
         </div>
       </header>
-      {loggedIn ? <SideBar className='side-bar' /> : null}
-      
-      <AuthContext.Provider value={{loggedIn, setLoggedIn}}>
-        <Routes>
-          <Route path='/login' element={<Login />}/>        
-          <Route 
-            path='/' 
-            element={
-              <PrivateRoute>
-                <Dashboard />
-              </PrivateRoute>}/>
-          <Route path='/room/:id/edit' element={
-            <PrivateRoute>
-              <Room />
-            </PrivateRoute>}/>
-          <Route path='/room/:id' element={
-              <PrivateRoute>
-                <Room />
-              </PrivateRoute>}/>       
-          <Route path='/room' element={
-              <PrivateRoute>
-                <Room />
-              </PrivateRoute>}/>        
-          <Route path='/bookings' element={
-              <PrivateRoute>
-                <Bookings />
-              </PrivateRoute>}/>
-          <Route path='/contact' element={
-              <PrivateRoute>
-                <Contact />
-              </PrivateRoute>}/>
-          <Route path='/concierge' element={
-              <PrivateRoute>
-                <Concierge />
-              </PrivateRoute>}/>      
-        </Routes>
-      </AuthContext.Provider>
+      <div className='whole-content'>
+        <div className='side-bar'>
+          {loggedIn ? <SideBar /> : null}
+          {loggedIn ? 
+            <button className='log-out' onClick={() => setLoggedIn(false)}>Log Out</button> : null}
+        </div>
+        <div className='content'>
+          <AuthContext.Provider value={{loggedIn, setLoggedIn}}>
+            <Routes>
+              <Route path='/login' element={<Login />}/>        
+              <Route 
+                path='/' 
+                element={
+                  <PrivateRoute>
+                    <Dashboard />
+                  </PrivateRoute>}/>
+              <Route path='/room/:id/edit' element={
+                <PrivateRoute>
+                  <Room />
+                </PrivateRoute>}/>
+              <Route path='/room/:id' element={
+                  <PrivateRoute>
+                    <Room />
+                  </PrivateRoute>}/>       
+              <Route path='/room' element={
+                  <PrivateRoute>
+                    <Room />
+                  </PrivateRoute>}/>        
+              <Route path='/bookings' element={
+                  <PrivateRoute>
+                    <Bookings />
+                  </PrivateRoute>}/>
+              <Route path='/contact/:id/edit' element={
+                  <PrivateRoute>
+                    <Contact />
+                  </PrivateRoute>}/>
+              <Route path='/contact/:id/edit' element={
+                  <PrivateRoute>
+                    <Contact />
+                  </PrivateRoute>}/>
+              <Route path='/contact' element={
+                  <PrivateRoute>
+                    <Contact />
+                  </PrivateRoute>}/>
+              <Route path='/concierge' element={
+                  <PrivateRoute>
+                    <Concierge />
+                  </PrivateRoute>}/>      
+            </Routes>
+          </AuthContext.Provider>
+        </div>
+      </div>
     </>
   );
 }
