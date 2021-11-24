@@ -21,7 +21,7 @@ export function SideBar() {
                 <MenuButtons className='menu-button'>Contact</MenuButtons>
             </Link>
             <Link to='/concierge'>
-                <MenuButtons className='menu-button'>Concierge</MenuButtons>
+                <MenuButtons className='menu-button'>Users</MenuButtons>
             </Link>            
         </div>
     )

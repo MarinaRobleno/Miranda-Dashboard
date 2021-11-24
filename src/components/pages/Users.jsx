@@ -1,9 +1,9 @@
 import React from 'react'
+import { UsersList } from '../UsersList'
+
 
 export function Concierge() {
     return (
-        <div>
-            This is the concierge
-        </div>
+        <UsersList />
     )
 }
