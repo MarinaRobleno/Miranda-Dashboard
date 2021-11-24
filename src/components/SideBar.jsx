@@ -2,7 +2,7 @@ import '../styles/App.scss'
 import { MenuButtons } from '../styles/Themes';
 import { React, useContext } from 'react';
 import { AuthContext } from './helpers/Context';
-import {  Route, Link, Routes } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export function SideBar() {
     const auth = useContext(AuthContext)

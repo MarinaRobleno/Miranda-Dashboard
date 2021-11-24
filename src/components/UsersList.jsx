@@ -3,16 +3,21 @@ import users from '../data/users'
 
 export function UsersList() {
     return (
-    <div class='data-table'>
-            <ul class='header-table'>
-                <li class='header-table-sector'>Id</li>
-                <li class='header-table-sector'>Name</li>
-                <li class='header-table-sector'>Mail</li>
-                <li class='header-table-sector'>Hash</li>
-            </ul>
+    <table class='data-table'>
+            <tr class='header-table'>
+                <th class='header-table-sector'>Id</th>
+                <th class='header-table-sector'>Name</th>
+                <th class='header-table-sector'>Mail</th>
+                <th class='header-table-sector'>Hash</th>
+            </tr>
             {users.map(user => (
-                <div class='data-card'>{Object.values(user)}</div>
+                <tr className='data-card'>
+                    <td className='data-element'>{user.id}</td>
+                    <td className='data-element'>{user.name}</td>
+                    <td className='data-element'>{user.mail}</td>
+                    <td className='data-element'>{user.hash}</td>
+                </tr>
             ))}
-    </div>
+    </table>
     )
 }

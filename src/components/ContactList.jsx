@@ -3,18 +3,25 @@ import contact from '../data/contact'
 
 export function ContactList() {
     return (
-        <div class='data-table'>
-            <ul class='header-table'>
-                <li class='header-table-sector'>Id</li>
-                <li class='header-table-sector'>Date</li>
-                <li class='header-table-sector'>Customer</li>
-                <li class='header-table-sector'>Mail</li>
-                <li class='header-table-sector'>Phone</li>
-                <li class='header-table-sector'>Comment</li>
-            </ul>
+        <table className='data-table'>
+            <tr className='header-table'>
+                <th className='header-table-sector'>Id</th>
+                <th className='header-table-sector'>Date</th>
+                <th className='header-table-sector'>Customer</th>
+                <th className='header-table-sector'>Mail</th>
+                <th className='header-table-sector'>Phone</th>
+                <th className='header-table-sector'>Comment</th>
+            </tr>
             {contact.map(contact => (
-                <div class='data-card'>{Object.values(contact)}</div>
+                <tr className='data-card'>
+                    <td className='data-element'>{contact.id}</td>
+                    <td className='data-element'>{contact.date}</td>
+                    <td className='data-element'>{contact.customer}</td>
+                    <td className='data-element'>{contact.mail}</td>
+                    <td className='data-element'>{contact.phone}</td>
+                    <td className='data-element'>{contact.comment}</td>
+                </tr>
             ))}
-        </div>
+        </table>
     )
 }

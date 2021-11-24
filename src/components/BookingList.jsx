@@ -3,19 +3,27 @@ import booking from '../data/booking'
 
 export function BookingList() {
     return (
-        <div class='data-table'>
-            <ul class='header-table'>
-                <li class='header-table-sector'>Id</li>
-                <li class='header-table-sector'>Guest</li>
-                <li class='header-table-sector'>Order date</li>
-                <li class='header-table-sector'>Check in</li>
-                <li class='header-table-sector'>Check out</li>
-                <li class='header-table-sector'>Special Request</li>
-                <li class='header-table-sector'>Room Type</li>
-            </ul>
+        <table class='data-table'>
+            <tr class='header-table'>
+                <th class='header-table-sector'>Id</th>
+                <th class='header-table-sector'>Guest</th>
+                <th class='header-table-sector'>Order date</th>
+                <th class='header-table-sector'>Check in</th>
+                <th class='header-table-sector'>Check out</th>
+                <th class='header-table-sector'>Special Request</th>
+                <th class='header-table-sector'>Room Type</th>
+            </tr>
             {booking.map(book => (
-                <div class='data-card'>{Object.values(book)}</div>
+                <tr className='data-card'>
+                    <td className='data-element'>{book.id}</td>
+                    <td className='data-element'>{book.guest}</td>
+                    <td className='data-element'>{book.orderDate}</td>
+                    <td className='data-element'>{book.checkIn}</td>
+                    <td className='data-element'>{book.checkOut}</td>
+                    <td className='data-element'>{book.special}</td>
+                    <td className='data-element'>{book.roomType}</td>
+                </tr>
             ))}
-        </div>
+        </table>
     )
 }

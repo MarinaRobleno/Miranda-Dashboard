@@ -12,6 +12,9 @@ body {
     width: 100%;
     margin: 0 auto;
 }
+table{
+    border: 1px solid black;
+}
 
 .header{
     display: flex;
@@ -47,21 +50,4 @@ body {
     align-items: center;
 }
 
-.data-table{
-    display: flex;
-    flex-direction: column;
-    .header-table{
-        list-style: none;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        .header-table-sector{
-            padding: 10px;
-        }
-    }
-    .data-card{
-        display: flex;
-        justify-content: space-around;
-        padding: 10px;
-    }
-}
+

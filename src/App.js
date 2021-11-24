@@ -1,7 +1,7 @@
 import './styles/App.scss'
 import { MenuButtons } from './styles/Themes';
-import React, { useState, useEffect, useContext, createContext } from 'react';
-import {  Route, Link, Routes } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import {  Route, Routes } from 'react-router-dom';
 import { Login } from './components/pages/Login.jsx'
 import { Dashboard } from './components/pages/Dashboard.jsx';
 import { Room } from './components/pages/Room.jsx';
@@ -61,6 +61,14 @@ function App() {
               <Route path='/room' element={
                   <PrivateRoute>
                     <Room />
+                  </PrivateRoute>}/>
+              <Route path='/bookings/:id/edit' element={
+                  <PrivateRoute>
+                    <Bookings />
+                  </PrivateRoute>}/>
+              <Route path='/bookings/:id' element={
+                  <PrivateRoute>
+                    <Bookings />
                   </PrivateRoute>}/>        
               <Route path='/bookings' element={
                   <PrivateRoute>
