@@ -5,6 +5,7 @@ html, *{
 
 html{
     background: #FFFFFF 0% 0% no-repeat padding-box;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
@@ -25,8 +26,7 @@ header{
     .side-bar{
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: space-around;
+        justify-content: flex-start;
         max-width: 345px;
         height: 1188px;
         width: 100%;
@@ -43,5 +43,23 @@ header{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: spa;
+}
+
+.data-table{
+    display: flex;
+    flex-direction: column;
+    .header-table{
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        .header-table-sector{
+            padding: 10px;
+        }
+    }
+    .data-card{
+        display: flex;
+        justify-content: space-around;
+        padding: 10px;
+    }
 }

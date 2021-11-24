@@ -1,0 +1,10 @@
+export default [{"id":1,"roomName":"Jishu","price":"$7386.29"},
+{"id":2,"roomName":"Rano","price":"$7529.48"},
+{"id":3,"roomName":"Nishinoomote","price":"$1557.56"},
+{"id":4,"roomName":"La Jutosa","price":"$9965.15"},
+{"id":5,"roomName":"Zhourui","price":"$1242.79"},
+{"id":6,"roomName":"Vidče","price":"$1185.25"},
+{"id":7,"roomName":"Chernyanka","price":"$6621.12"},
+{"id":8,"roomName":"Nueve de Julio","price":"$6413.06"},
+{"id":9,"roomName":"Ngrambitan","price":"$9379.87"},
+{"id":10,"roomName":"Sirib","price":"$7121.95"}]

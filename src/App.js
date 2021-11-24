@@ -1,5 +1,5 @@
 import './styles/App.scss'
-import { Themes } from './styles/Themes';
+import { MenuButtons } from './styles/Themes';
 import React, { useState, useEffect, useContext, createContext } from 'react';
 import {  Route, Link, Routes } from 'react-router-dom';
 import { Login } from './components/pages/Login.jsx'
@@ -12,9 +12,20 @@ import { PrivateRoute } from './components/helpers/PrivateRoute.js';
 import { AuthContext } from './components/helpers/Context';
 import { SideBar } from './components/SideBar';
 
+const SAVE_STATE = '1';
+const SAVE_KEY = 'auth';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+
+  const [loggedIn, setLoggedIn] = useState(localStorage.getItem(SAVE_KEY) === SAVE_STATE);
+
+  useEffect(() => {
+    if (loggedIn) {
+      localStorage.setItem(SAVE_KEY, SAVE_STATE);
+    }else{
+      localStorage.removeItem(SAVE_KEY);
+    }
+  }, [loggedIn])
 
   return (
     <>
@@ -27,7 +38,7 @@ function App() {
         <div className='side-bar'>
           {loggedIn ? <SideBar /> : null}
           {loggedIn ? 
-            <button className='log-out' onClick={() => setLoggedIn(false)}>Log Out</button> : null}
+            <MenuButtons className='log-out' onClick={() => setLoggedIn(false)}>Log Out</MenuButtons> : null}
         </div>
         <div className='content'>
           <AuthContext.Provider value={{loggedIn, setLoggedIn}}>

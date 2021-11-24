@@ -1,4 +1,5 @@
 import '../styles/App.scss'
+import { MenuButtons } from '../styles/Themes';
 import { React, useContext } from 'react';
 import { AuthContext } from './helpers/Context';
 import {  Route, Link, Routes } from 'react-router-dom';
@@ -8,19 +9,19 @@ export function SideBar() {
     return (
         <div className='menu-line-button'>
            <Link to='/'>
-              <button className='menu-button'>Dashboard</button>
+              <MenuButtons className='menu-button'>Dashboard</MenuButtons>
             </Link>
             <Link to='/room'>
-                <button className='menu-button'>Room</button>
+                <MenuButtons className='menu-button'>Room</MenuButtons>
             </Link>
             <Link to='/bookings'>
-                <button className='menu-button'>Bookings</button>
+                <MenuButtons className='menu-button'>Bookings</MenuButtons>
             </Link>
             <Link to='/contact'>
-                <button className='menu-button'>Contact</button>
+                <MenuButtons className='menu-button'>Contact</MenuButtons>
             </Link>
             <Link to='/concierge'>
-                <button className='menu-button'>Concierge</button>
+                <MenuButtons className='menu-button'>Concierge</MenuButtons>
             </Link>            
         </div>
     )
