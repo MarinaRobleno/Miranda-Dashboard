@@ -1,23 +1,34 @@
 import styled from 'styled-components';
-import './colors.scss';
 
-export const MenuButtons = styled.button`
-    width: 345px;
-    height: 67px;
-    text-align: center;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    border: none;
-    font: normal normal normal 18px/27px Poppins;
-    letter-spacing: 0px;
-    color: #799283;
-    cursor: pointer;
-`
-
-export const SmallPanel = styled.div`
-    display: flex;
-    align-items: center;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    box-shadow: 0px 4px 4px #00000005;
-    border-radius: 12px;
-`
-
+export const mainTheme = {
+    colors: {
+        main_white: '#FFFFFF',
+        main_grey: '#F8F8F8',
+        bar_white: '#FFFFFF33',
+        search_bar_white: '#FCFCFC',
+        contact_us_white: '#EBF1EF',
+        border_grey_light: '#EBEBEB',
+        border_grey_light_2: '#00000014',
+        border_grey_light_3: '#DCDCDC',
+        border_grey_light_4: '#00000012',
+        border_grey_light_5: '#D4D4D4',
+        border_grey_dark: '#4E4E4E',
+        border_grey_medium: '#C5C5C5',
+        border_grey_medium_2: '#A1A1A1',
+        letter_black: '#262626',
+        icon_black: '#212121',
+        green_light: '#799283',
+        green_medium: '#5AD07A',
+        green_dark: '#135846',
+        red: '#E23428',
+        letter_grey_dark: '#393939',
+        letter_grey_medium: '#6E6E6E',
+        letter_grey_medium_2: '#787878',
+        letter_grey_medium_3: '#B2B2B2',
+        yellow_1: '#FF9C3A',
+        yellow_2: '#FB9F44',
+        flesh: '#FFEDEC',
+        black: '#000000',
+        brownish_grey: '#5D5449',
+    },
+}
