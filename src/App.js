@@ -21,6 +21,7 @@ const SAVE_KEY = "auth";
 const WholeContent = styled.div`
   display: flex;
   min-width: 100%;
+  min-height: 100%;
 `;
 
 const RightContent = styled.div`
@@ -32,12 +33,15 @@ const RightContent = styled.div`
 const Content = styled.div`
   display: flex;
   justify-content: center;
-  height: 100%;
+  margin-top: 120px;
+  min-height: 100%;
+  padding: 50px;
   background-color: ${(props) => props.theme.colors.main_grey};
 `;
 
 const StyledHeader = styled.header`
   display: flex;
+  position: fixed;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -49,10 +53,10 @@ const StyledHeader = styled.header`
 `;
 
 const SideBarContainer = styled.div`
-  height: 1188px;
+  min-height: 100%;
+  min-width: 345px;
   box-shadow: 13px 3px 40px #00000005;
 `;
-
 
 const StyledHamburger = styled(HiOutlineMenuAlt2)`
   font-size: 26px;
@@ -89,11 +93,11 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(
     localStorage.getItem(SAVE_KEY) === SAVE_STATE
   );
-  const[isSidebar, setIsSidebar] = useState(null)
+  const [isSidebar, setIsSidebar] = useState(null);
 
   const handleCloseSidebar = () => {
-    return isSidebar ? setIsSidebar(false) : setIsSidebar(true); 
-  }
+    return isSidebar ? setIsSidebar(false) : setIsSidebar(true);
+  };
 
   useEffect(() => {
     if (loggedIn) {
@@ -107,20 +111,24 @@ function App() {
   return (
     <>
       <WholeContent>
-
-        <SideBarContainer>{loggedIn && isSidebar ? <SideBar /> : null}</SideBarContainer>
+{loggedIn && isSidebar ?
+        <SideBarContainer>
+            <SideBar /> 
+        </SideBarContainer>
+: null}
         <RightContent>
           <header>
-            <StyledHeader>
-              <StyledHamburger onClick={handleCloseSidebar} />
-              <div>
-                <StyledEnvelope />
-                <StyledBell />
-                {loggedIn ? (
+            {loggedIn ? (
+              <StyledHeader>
+                <StyledHamburger onClick={handleCloseSidebar} />
+                <div style={{paddingRight: '345px'}}>
+                  <StyledEnvelope />
+                  <StyledBell />
+
                   <StyledLogout onClick={() => setLoggedIn(false)} />
-                ) : null}
-              </div>
-            </StyledHeader>
+                </div>
+              </StyledHeader>
+            ) : null}
           </header>
           <Content>
             <AuthContext.Provider value={{ loggedIn, setLoggedIn }}>

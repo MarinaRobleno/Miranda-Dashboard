@@ -8,12 +8,18 @@ import { BiKey } from "react-icons/bi";
 import { BsCalendarCheck } from "react-icons/bs";
 import { FiUser } from "react-icons/fi";
 import { IoMdContacts } from "react-icons/io";
+import { Button } from './Button';
+
+const StyledSideBarContent = styled.div`
+
+`
 
 const MenuButtonLine = styled.div`
   display: flex;
+  position: fixed;
   width: 100%;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   text-align: center;
 `;
@@ -22,9 +28,10 @@ const MenuButtons = styled.div`
   display: flex;
   height: 67px;
   width: 345px;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   text-align: center;
+  padding-left: 56px;
   background: #ffffff 0% 0% no-repeat padding-box;
   border: none;
   font: normal normal normal 18px/27px Poppins;
@@ -49,12 +56,17 @@ const LogoContainer = styled.div`
   font-size: 24px;
 `;
 
-const StyledAdminDashboard = styled.div`
-  text-align: left;
-  font: normal normal 600 16px/25px Poppins;
-  letter-spacing: 0px;
-  color: ${(props) => props.theme.colors.icon_black};
-`;
+const ContactUsCard = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+  width: 233px;
+  height: 221px;
+  margin: 0 56px 62px;
+  box-shadow: 0px 20px 30px #00000014;
+  border-radius: 18px;
+`
 
 const StyledCopyrightContainer = styled.div`
   height: 135px;
@@ -64,9 +76,19 @@ const StyledCopyrightContainer = styled.div`
   text-align: left;
 `;
 
+const StyledAdminDashboard = styled.div`
+  text-align: left;
+  font: normal normal 600 16px/25px Poppins;
+  letter-spacing: 0px;
+  color: ${(props) => props.theme.colors.icon_black};
+  margin-left: 56px;
+`;
+
+
 const StyledCopyright = styled.div`
   color: ${(props) => props.theme.colors.green_light};
   font: normal normal 300 14px/21px Poppins;
+  margin-left: 56px;
 `;
 
 export function SideBar() {
@@ -76,7 +98,7 @@ export function SideBar() {
   let path = location.pathname;
 
   return (
-    <>
+    <StyledSideBarContent>
       <LogoContainer>travl</LogoContainer>
       <MenuButtonLine>
         <StyledLink to="/">
@@ -89,12 +111,12 @@ export function SideBar() {
                 fontWeight: '600'
               }}
             >
-              <RiDashboardLine />
+              <RiDashboardLine style={{marginRight: '27px'}} />
               <div>Dashboard</div>
             </MenuButtons>
           ) : (
-            <MenuButtons>
-              <RiDashboardLine />
+            <MenuButtons >
+              <RiDashboardLine style={{marginRight: '27px'}}/>
               <div>Dashboard</div>
             </MenuButtons>
           )}
@@ -109,12 +131,12 @@ export function SideBar() {
                 fontWeight: '600'
               }}
             >
-              <BiKey />
+              <BiKey style={{marginRight: '27px'}} />
               <div>Room</div>
             </MenuButtons>
           ) : (
             <MenuButtons>
-              <BiKey />
+              <BiKey style={{marginRight: '27px'}} />
               <div>Room</div>
             </MenuButtons>
           )}
@@ -129,12 +151,12 @@ export function SideBar() {
                 fontWeight: '600'
               }}
             >
-              <BsCalendarCheck />
+              <BsCalendarCheck style={{marginRight: '27px'}} />
               <div>Bookings</div>
             </MenuButtons>
           ) : (
             <MenuButtons>
-              <BsCalendarCheck />
+              <BsCalendarCheck style={{marginRight: '27px'}} />
               <div>Bookings</div>
             </MenuButtons>
           )}
@@ -149,12 +171,12 @@ export function SideBar() {
                 fontWeight: '600'
               }}
             >
-              <IoMdContacts />
+              <IoMdContacts style={{marginRight: '27px'}} />
               <div>Contact</div>
             </MenuButtons>
           ) : (
             <MenuButtons>
-              <IoMdContacts />
+              <IoMdContacts style={{marginRight: '27px'}} />
               <div>Contact</div>
             </MenuButtons>
           )}
@@ -169,16 +191,22 @@ export function SideBar() {
                 fontWeight: '600'
               }}
             >
-              <FiUser />
+              <FiUser style={{marginRight: '27px'}} />
               <div>Users</div>
             </MenuButtons>
           ) : (
             <MenuButtons>
-              <FiUser />
+              <FiUser style={{marginRight: '27px'}} />
               <div>Users</div>
             </MenuButtons>
           )}
         </StyledLink>
+        <ContactUsCard>
+            <div style={{background: '#C5C5C5 0% 0% no-repeat padding-box', borderRadius: '8px', width: '70px', height: '70px', color: '#C5C5C5', marginBottom: '15px;'}}></div>
+            <div style={{color: '#393939', font: 'normal normal medium 16px/25px Poppins', marginBottom: '9px'}}>Marina Robleño</div>
+            <div style={{color: '#B2B2B2', font: 'normal normal 300 12px/18px Poppins', marginBottom: '16px'}}>marinarobleno@mail.com</div>
+            <Button weight='600' background='#EBF1EF' color='#135846' name='Contact Us'></Button>
+        </ContactUsCard>
         <StyledCopyrightContainer>
           <StyledAdminDashboard>
             Travl Hotel Admin Dashboard
@@ -189,6 +217,6 @@ export function SideBar() {
           </StyledCopyrightContainer>
         </StyledCopyrightContainer>
       </MenuButtonLine>
-    </>
+    </StyledSideBarContent>
   );
 }

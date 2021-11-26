@@ -1,27 +1,35 @@
 import React from 'react'
 import contact from '../data/contact'
+import styled from 'styled-components'
+import { StyledData, StyledDataElement, StyledHeader, StyledTable } from './BookingList'
+import { Button } from './Button'
 
 export function ContactList() {
     return (
-        <table className='data-table'>
-            <tr className='header-table'>
+        <StyledTable>
+            <StyledHeader>
                 <th className='header-table-sector'>Id</th>
                 <th className='header-table-sector'>Date</th>
                 <th className='header-table-sector'>Customer</th>
                 <th className='header-table-sector'>Mail</th>
                 <th className='header-table-sector'>Phone</th>
                 <th className='header-table-sector'>Comment</th>
-            </tr>
+                <th className='header-table-sector'>Action</th>
+            </StyledHeader>
             {contact.map(contact => (
-                <tr className='data-card'>
+                <StyledData>
                     <td className='data-element'>{contact.id}</td>
                     <td className='data-element'>{contact.date}</td>
                     <td className='data-element'>{contact.customer}</td>
                     <td className='data-element'>{contact.mail}</td>
                     <td className='data-element'>{contact.phone}</td>
-                    <td className='data-element'>{contact.comment}</td>
-                </tr>
+                    <td className='data-element'>{contact.comment}</td>                    
+                    <StyledDataElement>
+                        <Button color='#5AD07A' background='none' name='Publish'/>
+                        <Button color='#E23428' background='none' name='Archive'/>
+                    </StyledDataElement>                    
+                </StyledData>
             ))}
-        </table>
+        </StyledTable>
     )
 }

@@ -1,43 +1,131 @@
-import '../../styles/App.scss'
-import React from 'react'
-import { useContext, createContext } from 'react';
-import { AuthContext } from '../helpers/Context'
-import styled from 'styled-components';
+import "../../styles/App.scss";
+import React from "react";
+import { useContext, createContext } from "react";
+import { AuthContext } from "../helpers/Context";
+import styled from "styled-components";
+import { BiBed, BiLogIn, BiLogOut } from "react-icons/bi";
+import { BsCalendarCheck } from "react-icons/bs";
 
 const StyledGrid = styled.div`
-    display: grid;
-    height: 1592px;
-    width: 100%;
-    grid-template-columns: auto auto auto auto;
-    grid-gap: 10px;
-    padding: 50px;
-`
+width: 100%;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-template-rows: auto auto auto auto auto auto;
+  grid-gap: 50px;
+`;
 
 const StyledKpi = styled.div`
-background-color: ${(props) => props.theme.colors.main_white};
-box-shadow: 0px 4px 4px #00000005;
-border-radius: 12px;
-width: 340px;
-height: 125px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  min-width: 340px;
+  min-height: 125px;
+  background-color: ${(props) => props.theme.colors.main_white};
+  box-shadow: 0px 4px 4px #00000005;
+  border-radius: 12px;
 
-`
+`;
 
+const StyledKpiData = styled.div``;
+
+const StyledIconBackground = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 65px;
+  height: 65px;
+  padding: 8px;
+  margin: 0 22px 0 30px;
+  background-color: ${(props) => props.theme.colors.flesh};
+  border-radius: 8px;
+`;
+
+const StyledBigPanel = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: left;
+  min-height: 954px;
+  background-color: ${(props) => props.theme.colors.main_white};
+  box-shadow: 0px 4px 4px #00000005;
+  border-radius: 12px;
+`;
 
 export function Dashboard() {
-    return (
-        <StyledGrid>
-            <StyledKpi>
-                KPI1
-            </StyledKpi>
-            <StyledKpi>
-                KPI2
-            </StyledKpi>
-            <StyledKpi>
-                KPI3
-            </StyledKpi>
-            <StyledKpi>
-                KPI4
-            </StyledKpi>
-        </StyledGrid>
-    )
+  return (
+    <StyledGrid style={{gridColumnStart: '1', gridColumnEnd: '2'}}>
+      <StyledKpi>
+        <StyledIconBackground>
+          <BiBed style={{ fontSize: "30px", color: "#E23428" }} />
+        </StyledIconBackground>
+        <StyledKpiData>
+          <div style={{ font: "normal normal 600 30px/46px Poppins" }}>
+            8,461
+          </div>
+          <div
+            style={{
+              font: "normal normal 300 14px/21px Poppins",
+              letterSpacing: "0px",
+              color: "#787878",
+            }}
+          >
+            New Booking
+          </div>
+        </StyledKpiData>
+      </StyledKpi>
+      <StyledKpi style={{gridColumnStart: '2', gridColumnEnd: '3'}}>
+        <StyledIconBackground>
+          <BsCalendarCheck style={{ fontSize: "30px", color: "#E23428" }} />
+        </StyledIconBackground>
+        <StyledKpiData>
+          <div style={{ font: "normal normal 600 30px/46px Poppins" }}>963</div>
+          <div
+            style={{
+              font: "normal normal 300 14px/21px Poppins",
+              letterSpacing: "0px",
+              color: "#787878",
+            }}
+          >
+            Scheduled Room
+          </div>
+        </StyledKpiData>
+      </StyledKpi>
+      <StyledKpi style={{gridColumnStart: '3', gridColumnEnd: '4'}}>
+        <StyledIconBackground>
+          <BiLogIn style={{ fontSize: "35px", color: "#E23428" }} />
+        </StyledIconBackground>
+        <StyledKpiData>
+          <div style={{ font: "normal normal 600 30px/46px Poppins" }}>753</div>
+          <div
+            style={{
+              font: "normal normal 300 14px/21px Poppins",
+              letterSpacing: "0px",
+              color: "#787878",
+            }}
+          >
+            Check In
+          </div>
+        </StyledKpiData>
+      </StyledKpi>
+      <StyledKpi style={{gridColumnStart: '4', gridColumnEnd: '5'}}>
+        <StyledIconBackground>
+          <BiLogOut style={{ fontSize: "30px", color: "#E23428" }} />
+        </StyledIconBackground>
+        <StyledKpiData>
+          <div style={{ font: "normal normal 600 30px/46px Poppins" }}>516</div>
+          <div
+            style={{
+              font: "normal normal 300 14px/21px Poppins",
+              letterSpacing: "0px",
+              color: "#787878",
+            }}
+          >
+            Check Out
+          </div>
+        </StyledKpiData>
+      </StyledKpi>
+      <StyledBigPanel style={{gridColumnStart: '1',gridColumnEnd: '3', gridRowStart: '2', gridRowEnd: '5'}}>Recent Booking Schedule</StyledBigPanel>
+      <StyledBigPanel style={{gridColumnStart: '3',gridColumnEnd: '5', gridRowStart: '2', gridRowEnd: '5'}}>Reservation Stats</StyledBigPanel>
+      <StyledBigPanel style={{minHeight: '433px', gridColumnStart: '1',gridColumnEnd: '5', gridRowStart: '5', gridRowEnd: '7'}}>Latest Review by Customers</StyledBigPanel>
+    </StyledGrid>
+  );
 }
