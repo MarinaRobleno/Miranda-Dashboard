@@ -8,20 +8,24 @@ import { BiKey } from "react-icons/bi";
 import { BsCalendarCheck } from "react-icons/bs";
 import { FiUser } from "react-icons/fi";
 import { IoMdContacts } from "react-icons/io";
-import { Button } from './Button';
+import { Button } from "./Button";
+import { FaHotel } from "react-icons/fa";
+import { GiStarsStack } from "react-icons/gi";
 
 const StyledSideBarContent = styled.div`
-
-`
+background-color: ${(props) => props.theme.colors.main_white};
+`;
 
 const MenuButtonLine = styled.div`
   display: flex;
   position: fixed;
-  width: 100%;
+  width: 345px;
+  height: 100%;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
   text-align: center;
+  background-color: ${(props) => props.theme.colors.main_white};
 `;
 
 const MenuButtons = styled.div`
@@ -48,25 +52,38 @@ const LogoContainer = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
-  justify-content: center;
   text-align: center;
-  margin: 40px auto 85px;
+  margin: 50px 56px 85px;
   color: ${(props) => props.theme.colors.icon_black};
-  font-weight: 700;
+  font-weight: 800;
   font-size: 24px;
 `;
 
+const StyledLogoPack = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 30px;
+  margin-bottom: 2px;
+  color: ${(props) => props.theme.colors.red};
+`;
+
+const StyledLogoHotel = styled(FaHotel)`
+  font-size: 40px;
+  color: ${(props) => props.theme.colors.green_dark};
+`;
+
 const ContactUsCard = styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 233px;
   height: 221px;
   margin: 0 56px 62px;
   box-shadow: 0px 20px 30px #00000014;
   border-radius: 18px;
-`
+`;
 
 const StyledCopyrightContainer = styled.div`
   height: 135px;
@@ -84,7 +101,6 @@ const StyledAdminDashboard = styled.div`
   margin-left: 56px;
 `;
 
-
 const StyledCopyright = styled.div`
   color: ${(props) => props.theme.colors.green_light};
   font: normal normal 300 14px/21px Poppins;
@@ -99,7 +115,32 @@ export function SideBar() {
 
   return (
     <StyledSideBarContent>
-      <LogoContainer>travl</LogoContainer>
+      <LogoContainer>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "flex-end",
+            position: "fixed",
+            textAlign: "left",
+          }}
+        >
+          <StyledLogoPack>
+            <GiStarsStack />
+            <StyledLogoHotel />
+          </StyledLogoPack>
+          <div>
+            <div>travl</div>
+            <div
+              style={{
+                font: "normal normal 300 12px/18px Poppins",
+                color: "#5D5449",
+              }}
+            >
+              Hotel Admin Dashboard
+            </div>
+          </div>
+        </div>
+      </LogoContainer>
       <MenuButtonLine>
         <StyledLink to="/">
           {path == "/" ? (
@@ -108,15 +149,15 @@ export function SideBar() {
                 color: "#E23428",
                 borderRadius: "0 6px 6px 0",
                 borderLeft: "solid #E23428",
-                fontWeight: '600'
+                fontWeight: "600",
               }}
             >
-              <RiDashboardLine style={{marginRight: '27px'}} />
+              <RiDashboardLine style={{ marginRight: "27px", fontSize: '24px' }} />
               <div>Dashboard</div>
             </MenuButtons>
           ) : (
-            <MenuButtons >
-              <RiDashboardLine style={{marginRight: '27px'}}/>
+            <MenuButtons>
+              <RiDashboardLine style={{ marginRight: "27px", fontSize: '24px' }} />
               <div>Dashboard</div>
             </MenuButtons>
           )}
@@ -128,15 +169,15 @@ export function SideBar() {
                 color: "#E23428",
                 borderRadius: "0 6px 6px 0",
                 borderLeft: "solid #E23428",
-                fontWeight: '600'
+                fontWeight: "600",
               }}
             >
-              <BiKey style={{marginRight: '27px'}} />
+              <BiKey style={{ marginRight: "27px", fontSize: '24px' }} />
               <div>Room</div>
             </MenuButtons>
           ) : (
             <MenuButtons>
-              <BiKey style={{marginRight: '27px'}} />
+              <BiKey style={{ marginRight: "27px", fontSize: '24px' }} />
               <div>Room</div>
             </MenuButtons>
           )}
@@ -148,15 +189,15 @@ export function SideBar() {
                 color: "#E23428",
                 borderRadius: "0 6px 6px 0",
                 borderLeft: "solid #E23428",
-                fontWeight: '600'
+                fontWeight: "600",
               }}
             >
-              <BsCalendarCheck style={{marginRight: '27px'}} />
+              <BsCalendarCheck style={{ marginRight: "27px", fontSize: '24px' }} />
               <div>Bookings</div>
             </MenuButtons>
           ) : (
             <MenuButtons>
-              <BsCalendarCheck style={{marginRight: '27px'}} />
+              <BsCalendarCheck style={{ marginRight: "27px", fontSize: '24px' }} />
               <div>Bookings</div>
             </MenuButtons>
           )}
@@ -168,15 +209,15 @@ export function SideBar() {
                 color: "#E23428",
                 borderRadius: "0 6px 6px 0",
                 borderLeft: "solid #E23428",
-                fontWeight: '600'
+                fontWeight: "600",
               }}
             >
-              <IoMdContacts style={{marginRight: '27px'}} />
+              <IoMdContacts style={{ marginRight: "27px", fontSize: '24px' }} />
               <div>Contact</div>
             </MenuButtons>
           ) : (
             <MenuButtons>
-              <IoMdContacts style={{marginRight: '27px'}} />
+              <IoMdContacts style={{ marginRight: "27px", fontSize: '24px' }} />
               <div>Contact</div>
             </MenuButtons>
           )}
@@ -188,24 +229,54 @@ export function SideBar() {
                 color: "#E23428",
                 borderRadius: "0 6px 6px 0",
                 borderLeft: "solid #E23428",
-                fontWeight: '600'
+                fontWeight: "600",
               }}
             >
-              <FiUser style={{marginRight: '27px'}} />
+              <FiUser style={{ marginRight: "27px", fontSize: '24px' }} />
               <div>Users</div>
             </MenuButtons>
           ) : (
             <MenuButtons>
-              <FiUser style={{marginRight: '27px'}} />
+              <FiUser style={{ marginRight: "27px", fontSize: '24px' }} />
               <div>Users</div>
             </MenuButtons>
           )}
         </StyledLink>
         <ContactUsCard>
-            <div style={{background: '#C5C5C5 0% 0% no-repeat padding-box', borderRadius: '8px', width: '70px', height: '70px', color: '#C5C5C5', marginBottom: '15px;'}}></div>
-            <div style={{color: '#393939', font: 'normal normal medium 16px/25px Poppins', marginBottom: '9px'}}>Marina Robleño</div>
-            <div style={{color: '#B2B2B2', font: 'normal normal 300 12px/18px Poppins', marginBottom: '16px'}}>marinarobleno@mail.com</div>
-            <Button weight='600' background='#EBF1EF' color='#135846' name='Contact Us'></Button>
+          <div
+            style={{
+              background: "#C5C5C5 0% 0% no-repeat padding-box",
+              borderRadius: "8px",
+              width: "70px",
+              height: "70px",
+              color: "#C5C5C5",
+              marginBottom: "15px;",
+            }}
+          ></div>
+          <div
+            style={{
+              color: "#393939",
+              font: "normal normal medium 16px/25px Poppins",
+              marginBottom: "9px",
+            }}
+          >
+            Marina Robleño
+          </div>
+          <div
+            style={{
+              color: "#B2B2B2",
+              font: "normal normal 300 12px/18px Poppins",
+              marginBottom: "16px",
+            }}
+          >
+            marinarobleno@mail.com
+          </div>
+          <Button
+            weight="600"
+            background="#EBF1EF"
+            color="#135846"
+            name="Contact Us"
+          ></Button>
         </ContactUsCard>
         <StyledCopyrightContainer>
           <StyledAdminDashboard>
