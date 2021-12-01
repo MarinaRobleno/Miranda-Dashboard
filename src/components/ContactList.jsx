@@ -25,7 +25,7 @@ export function ContactList() {
                     <td className='data-element'>{contact.phone}</td>
                     <td className='data-element'>{contact.comment}</td>                    
                     <StyledDataElement>
-                        <Button archive background='none'>Archive</Button>
+                        <Button archive>Archive</Button>
                     </StyledDataElement>                    
                 </StyledData>
             ))}

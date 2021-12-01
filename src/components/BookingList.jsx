@@ -46,10 +46,10 @@ export function BookingList() {
           <td className="data-element">{book.orderDate}</td>
           <td className="data-element">{book.checkIn}</td>
           <td className="data-element">{book.checkOut}</td>
-          <Button notes background="#EEF9F2">View Notes</Button>
+          <Button notes>View Notes</Button>
           <td className="data-element">{book.roomType}</td>
           <td className="data-element">
-            <Button checkIn notes name="Check In">Check In</Button>
+            <Button checkIn name="Check In">Check In</Button>
           </td>
           <td className="data-element">
             <FiMoreVertical style={{ cursor: "pointer" }} />
