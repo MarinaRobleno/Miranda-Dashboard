@@ -2,7 +2,7 @@ import React from 'react'
 import contact from '../data/contact'
 import styled from 'styled-components'
 import { StyledData, StyledDataElement, StyledHeader, StyledTable } from './BookingList'
-import { Button } from './Button'
+import Button from './Button'
 
 export function ContactList() {
     return (
@@ -25,8 +25,7 @@ export function ContactList() {
                     <td className='data-element'>{contact.phone}</td>
                     <td className='data-element'>{contact.comment}</td>                    
                     <StyledDataElement>
-                        <Button color='#5AD07A' background='none' name='Publish'/>
-                        <Button color='#E23428' background='none' name='Archive'/>
+                        <Button archive background='none'>Archive</Button>
                     </StyledDataElement>                    
                 </StyledData>
             ))}

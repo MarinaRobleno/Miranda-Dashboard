@@ -1,6 +1,6 @@
 import React from "react";
 import booking from "../data/booking";
-import { Button } from "./Button";
+import Button from "./Button";
 import { FiMoreVertical } from "react-icons/fi";
 import styled from "styled-components";
 
@@ -46,10 +46,10 @@ export function BookingList() {
           <td className="data-element">{book.orderDate}</td>
           <td className="data-element">{book.checkIn}</td>
           <td className="data-element">{book.checkOut}</td>
-          <Button background="#EEF9F2" color='#212121' name="View Notes" />
+          <Button notes background="#EEF9F2">View Notes</Button>
           <td className="data-element">{book.roomType}</td>
           <td className="data-element">
-            <Button background="#5AD07A" color='#FFFFFF' name="Booked" />
+            <Button checkIn color='#FFFFFF' name="Check In">Check In</Button>
           </td>
           <td className="data-element">
             <FiMoreVertical style={{ cursor: "pointer" }} />

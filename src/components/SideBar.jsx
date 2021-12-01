@@ -8,7 +8,7 @@ import { BiKey } from "react-icons/bi";
 import { BsCalendarCheck } from "react-icons/bs";
 import { FiUser } from "react-icons/fi";
 import { IoMdContacts } from "react-icons/io";
-import { Button } from "./Button";
+import Button from "./Button";
 import { FaHotel } from "react-icons/fa";
 import { GiStarsStack } from "react-icons/gi";
 
