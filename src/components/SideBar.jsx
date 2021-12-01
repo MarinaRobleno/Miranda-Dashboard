@@ -13,7 +13,7 @@ import { FaHotel } from "react-icons/fa";
 import { GiStarsStack } from "react-icons/gi";
 
 const StyledSideBarContent = styled.div`
-background-color: ${(props) => props.theme.colors.main_white};
+  background-color: ${(props) => props.theme.colors.main_white};
 `;
 
 const MenuButtonLine = styled.div`
@@ -152,12 +152,16 @@ export function SideBar() {
                 fontWeight: "600",
               }}
             >
-              <RiDashboardLine style={{ marginRight: "27px", fontSize: '24px' }} />
+              <RiDashboardLine
+                style={{ marginRight: "27px", fontSize: "24px" }}
+              />
               <div>Dashboard</div>
             </MenuButtons>
           ) : (
             <MenuButtons>
-              <RiDashboardLine style={{ marginRight: "27px", fontSize: '24px' }} />
+              <RiDashboardLine
+                style={{ marginRight: "27px", fontSize: "24px" }}
+              />
               <div>Dashboard</div>
             </MenuButtons>
           )}
@@ -172,12 +176,12 @@ export function SideBar() {
                 fontWeight: "600",
               }}
             >
-              <BiKey style={{ marginRight: "27px", fontSize: '24px' }} />
+              <BiKey style={{ marginRight: "27px", fontSize: "24px" }} />
               <div>Room</div>
             </MenuButtons>
           ) : (
             <MenuButtons>
-              <BiKey style={{ marginRight: "27px", fontSize: '24px' }} />
+              <BiKey style={{ marginRight: "27px", fontSize: "24px" }} />
               <div>Room</div>
             </MenuButtons>
           )}
@@ -192,12 +196,16 @@ export function SideBar() {
                 fontWeight: "600",
               }}
             >
-              <BsCalendarCheck style={{ marginRight: "27px", fontSize: '24px' }} />
+              <BsCalendarCheck
+                style={{ marginRight: "27px", fontSize: "24px" }}
+              />
               <div>Bookings</div>
             </MenuButtons>
           ) : (
             <MenuButtons>
-              <BsCalendarCheck style={{ marginRight: "27px", fontSize: '24px' }} />
+              <BsCalendarCheck
+                style={{ marginRight: "27px", fontSize: "24px" }}
+              />
               <div>Bookings</div>
             </MenuButtons>
           )}
@@ -212,12 +220,12 @@ export function SideBar() {
                 fontWeight: "600",
               }}
             >
-              <IoMdContacts style={{ marginRight: "27px", fontSize: '24px' }} />
+              <IoMdContacts style={{ marginRight: "27px", fontSize: "24px" }} />
               <div>Contact</div>
             </MenuButtons>
           ) : (
             <MenuButtons>
-              <IoMdContacts style={{ marginRight: "27px", fontSize: '24px' }} />
+              <IoMdContacts style={{ marginRight: "27px", fontSize: "24px" }} />
               <div>Contact</div>
             </MenuButtons>
           )}
@@ -232,12 +240,12 @@ export function SideBar() {
                 fontWeight: "600",
               }}
             >
-              <FiUser style={{ marginRight: "27px", fontSize: '24px' }} />
+              <FiUser style={{ marginRight: "27px", fontSize: "24px" }} />
               <div>Users</div>
             </MenuButtons>
           ) : (
             <MenuButtons>
-              <FiUser style={{ marginRight: "27px", fontSize: '24px' }} />
+              <FiUser style={{ marginRight: "27px", fontSize: "24px" }} />
               <div>Users</div>
             </MenuButtons>
           )}
@@ -271,12 +279,9 @@ export function SideBar() {
           >
             marinarobleno@mail.com
           </div>
-          <Button
-            weight="600"
-            background="#EBF1EF"
-            color="#135846"
-            name="Contact Us"
-          ></Button>
+          <Button contact weight="600">
+            Contact Us
+          </Button>
         </ContactUsCard>
         <StyledCopyrightContainer>
           <StyledAdminDashboard>
