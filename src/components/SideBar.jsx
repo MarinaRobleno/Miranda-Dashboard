@@ -56,7 +56,7 @@ const LogoContainer = styled.div`
   margin: 50px 56px 85px;
   color: ${(props) => props.theme.colors.icon_black};
   font-weight: 800;
-  font-size: 24px;
+  font-size: 30px;
 `;
 
 const StyledLogoPack = styled.div`
