@@ -157,7 +157,7 @@ function App() {
                   <StyledSearchBar />
                   <StyledSearchIcon />
                 </StyledSearchContainer>
-                <div style={{ paddingRight: "345px" }}>
+                <div style={isSidebar ? { paddingRight: "345px" } : {paddingRight: '0'}}>
                   <StyledEnvelope />
                   <StyledBell />
                   <StyledLogout onClick={() => setLoggedIn(false)} />
