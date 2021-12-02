@@ -58,6 +58,7 @@ const SideBarContainer = styled.div`
   min-height: 100%;
   min-width: 345px;
   box-shadow: 13px 3px 40px #00000005;
+  background-color: ${(props) => props.theme.colors.main_white};
 `;
 
 const StyledHamburger = styled(HiOutlineMenuAlt2)`

@@ -97,9 +97,9 @@ export function Login() {
             <div>Log In</div>
             <LoginForm onSubmit={handleLoginSubmit}>
                 <label className='input-label'>User</label>
-                <LoginInput type='text' onChange={handleUser}/>
+                <LoginInput type='text' className='user-input' onChange={handleUser}/>
                 <label className='input-label'>Password</label>
-                <LoginInput type='password' onChange={handlePassword}/>
+                <LoginInput type='password' className='password-input' onChange={handlePassword}/>
                 <LoginSubmit type='submit' value='Continue' />
             </LoginForm>
             

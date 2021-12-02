@@ -55,6 +55,7 @@ const LogoContainer = styled.div`
   text-align: center;
   margin: 50px 56px 85px;
   color: ${(props) => props.theme.colors.icon_black};
+  background-color: ${(props) => props.theme.colors.main_white};
   font-weight: 800;
   font-size: 30px;
 `;
