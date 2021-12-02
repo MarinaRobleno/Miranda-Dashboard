@@ -4,12 +4,9 @@ import update from "immutability-helper";
 import { getRooms } from "../utils/getData";
 import roomData from "../data/rooms";
 import {
-  StyledData,
-  StyledDataElement,
   StyledHeader,
   StyledTable,
 } from "./BookingList";
-import styled from "styled-components";
 
 export const RoomList = () => {
   {

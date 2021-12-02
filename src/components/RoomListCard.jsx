@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import { ItemTypes } from "./helpers/ItemTypes";
-import { StyledData, StyledDataElement } from "./BookingList";
+import { StyledData } from "./BookingList";
 import Button from "./Button";
 
 export const RoomListCard = ({

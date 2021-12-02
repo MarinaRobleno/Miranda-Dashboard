@@ -11,10 +11,11 @@ export const StyledTable = styled.table`
   border-radius: 20px;
   padding: 20px;
   background-color: ${(props) => props.theme.colors.main_white};
+  color: ${(props) => props.theme.colors.letter_grey_dark};
 `;
 
 export const StyledHeader = styled.tr`
-  color: ${(props) => props.theme.colors.letter_grey_dark};
+  
   font: normal normal 600 16px/25px Poppins;
 `;
 
@@ -44,13 +45,13 @@ export function BookingList() {
       {booking.map((book) => (
         <StyledData>
           <td className="data-element">
-            {book.guest}
+            <div>{book.guest}</div>
             {book.id}
           </td>
           <td className="data-element">{book.orderDate}</td>
           <td className="data-element">{book.checkIn}</td>
           <td className="data-element">{book.checkOut}</td>
-          <td className='data-element'>
+          <td className="data-element">
             <Button notes>View Notes</Button>
           </td>
           <td className="data-element">{book.roomType}</td>

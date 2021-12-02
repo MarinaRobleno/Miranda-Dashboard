@@ -11,6 +11,9 @@ export default styled.button`
     font: normal normal normal 14px/21px Poppins;
     font-weight: ${props => props.weight};
     cursor: pointer;
+    &:hover{
+
+    }
 `
 
 

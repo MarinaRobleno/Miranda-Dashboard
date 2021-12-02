@@ -1,5 +1,3 @@
-import styled from 'styled-components';
-
 export const mainTheme = {
     colors: {
         main_white: '#FFFFFF',
