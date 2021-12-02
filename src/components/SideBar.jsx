@@ -13,6 +13,7 @@ import { FaHotel } from "react-icons/fa";
 import { GiStarsStack } from "react-icons/gi";
 
 const StyledSideBarContent = styled.div`
+width: 345px;
   background-color: ${(props) => props.theme.colors.main_white};
 `;
 
@@ -31,7 +32,7 @@ const MenuButtonLine = styled.div`
 const MenuButtons = styled.div`
   display: flex;
   height: 67px;
-  width: 345px;
+  width: 343px;
   justify-content: flex-start;
   align-items: center;
   text-align: center;
@@ -50,7 +51,7 @@ const StyledLink = styled(Link)`
 
 const LogoContainer = styled.div`
   display: flex;
-  width: 100%;
+  min-width: 345px;
   align-items: center;
   text-align: center;
   margin: 50px 56px 85px;
@@ -67,11 +68,13 @@ const StyledLogoPack = styled.div`
   margin-right: 30px;
   margin-bottom: 2px;
   color: ${(props) => props.theme.colors.red};
+  background-color: ${(props) => props.theme.colors.main_white};
 `;
 
 const StyledLogoHotel = styled(FaHotel)`
   font-size: 40px;
   color: ${(props) => props.theme.colors.green_dark};
+  background-color: ${(props) => props.theme.colors.main_white};
 `;
 
 const ContactUsCard = styled.div`
@@ -92,6 +95,7 @@ const StyledCopyrightContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   text-align: left;
+  margin: 0 auto;
 `;
 
 const StyledAdminDashboard = styled.div`
@@ -99,13 +103,12 @@ const StyledAdminDashboard = styled.div`
   font: normal normal 600 16px/25px Poppins;
   letter-spacing: 0px;
   color: ${(props) => props.theme.colors.icon_black};
-  margin-left: 56px;
 `;
 
 const StyledCopyright = styled.div`
   color: ${(props) => props.theme.colors.green_light};
   font: normal normal 300 14px/21px Poppins;
-  margin-left: 56px;
+  text-align: left;
 `;
 
 export function SideBar() {
@@ -116,13 +119,16 @@ export function SideBar() {
 
   return (
     <StyledSideBarContent>
-      <LogoContainer>
+      
+      <MenuButtonLine>
+        <LogoContainer>
         <div
           style={{
             display: "flex",
             alignItems: "flex-end",
             position: "fixed",
             textAlign: "left",
+            backgroundColor: "#FFFFFF"
           }}
         >
           <StyledLogoPack>
@@ -142,7 +148,6 @@ export function SideBar() {
           </div>
         </div>
       </LogoContainer>
-      <MenuButtonLine>
         <StyledLink to="/">
           {path == "/" ? (
             <MenuButtons

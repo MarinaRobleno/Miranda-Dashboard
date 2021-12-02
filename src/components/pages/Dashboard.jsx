@@ -7,7 +7,7 @@ import { BiBed, BiLogIn, BiLogOut } from "react-icons/bi";
 import { BsCalendarCheck } from "react-icons/bs";
 
 const StyledGrid = styled.div`
-width: 100%;
+  width: 100%;
   display: grid;
   grid-template-columns: auto auto auto auto;
   grid-template-rows: auto auto auto auto auto auto;
@@ -23,7 +23,6 @@ const StyledKpi = styled.div`
   background-color: ${(props) => props.theme.colors.main_white};
   box-shadow: 0px 4px 4px #00000005;
   border-radius: 12px;
-
 `;
 
 const StyledKpiData = styled.div``;
@@ -52,7 +51,7 @@ const StyledBigPanel = styled.div`
 
 export function Dashboard() {
   return (
-    <StyledGrid style={{gridColumnStart: '1', gridColumnEnd: '2'}}>
+    <StyledGrid style={{ gridColumnStart: "1", gridColumnEnd: "2" }}>
       <StyledKpi>
         <StyledIconBackground>
           <BiBed style={{ fontSize: "30px", color: "#E23428" }} />
@@ -72,7 +71,7 @@ export function Dashboard() {
           </div>
         </StyledKpiData>
       </StyledKpi>
-      <StyledKpi style={{gridColumnStart: '2', gridColumnEnd: '3'}}>
+      <StyledKpi style={{ gridColumnStart: "2", gridColumnEnd: "3" }}>
         <StyledIconBackground>
           <BsCalendarCheck style={{ fontSize: "30px", color: "#E23428" }} />
         </StyledIconBackground>
@@ -89,7 +88,7 @@ export function Dashboard() {
           </div>
         </StyledKpiData>
       </StyledKpi>
-      <StyledKpi style={{gridColumnStart: '3', gridColumnEnd: '4'}}>
+      <StyledKpi style={{ gridColumnStart: "3", gridColumnEnd: "4" }}>
         <StyledIconBackground>
           <BiLogIn style={{ fontSize: "35px", color: "#E23428" }} />
         </StyledIconBackground>
@@ -106,7 +105,7 @@ export function Dashboard() {
           </div>
         </StyledKpiData>
       </StyledKpi>
-      <StyledKpi style={{gridColumnStart: '4', gridColumnEnd: '5'}}>
+      <StyledKpi style={{ gridColumnStart: "4", gridColumnEnd: "5" }}>
         <StyledIconBackground>
           <BiLogOut style={{ fontSize: "30px", color: "#E23428" }} />
         </StyledIconBackground>
@@ -123,9 +122,37 @@ export function Dashboard() {
           </div>
         </StyledKpiData>
       </StyledKpi>
-      <StyledBigPanel style={{gridColumnStart: '1',gridColumnEnd: '3', gridRowStart: '2', gridRowEnd: '5'}}>Recent Booking Schedule</StyledBigPanel>
-      <StyledBigPanel style={{gridColumnStart: '3',gridColumnEnd: '5', gridRowStart: '2', gridRowEnd: '5'}}>Reservation Stats</StyledBigPanel>
-      <StyledBigPanel style={{minHeight: '433px', gridColumnStart: '1',gridColumnEnd: '5', gridRowStart: '5', gridRowEnd: '7'}}>Latest Review by Customers</StyledBigPanel>
+      <StyledBigPanel
+        style={{
+          gridColumnStart: "1",
+          gridColumnEnd: "3",
+          gridRowStart: "2",
+          gridRowEnd: "5",
+        }}
+      >
+        Recent Booking Schedule
+      </StyledBigPanel>
+      <StyledBigPanel
+        style={{
+          gridColumnStart: "3",
+          gridColumnEnd: "5",
+          gridRowStart: "2",
+          gridRowEnd: "5",
+        }}
+      >
+        Reservation Stats
+      </StyledBigPanel>
+      <StyledBigPanel
+        style={{
+          minHeight: "433px",
+          gridColumnStart: "1",
+          gridColumnEnd: "5",
+          gridRowStart: "5",
+          gridRowEnd: "7",
+        }}
+      >
+        Latest Review by Customers
+      </StyledBigPanel>
     </StyledGrid>
   );
 }
