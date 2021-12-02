@@ -44,6 +44,7 @@ const Content = styled.div`
 const StyledHeader = styled.header`
   display: flex;
   position: fixed;
+  z-index: 2;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
