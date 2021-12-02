@@ -13,7 +13,7 @@ import { FaHotel } from "react-icons/fa";
 import { GiStarsStack } from "react-icons/gi";
 
 const StyledSideBarContent = styled.div`
-width: 345px;
+  width: 345px;
   background-color: ${(props) => props.theme.colors.main_white};
 `;
 
@@ -85,6 +85,7 @@ const ContactUsCard = styled.div`
   width: 233px;
   height: 221px;
   margin: 0 56px 62px;
+  padding: 24px 0;
   box-shadow: 0px 20px 30px #00000014;
   border-radius: 18px;
 `;
@@ -119,35 +120,34 @@ export function SideBar() {
 
   return (
     <StyledSideBarContent>
-      
       <MenuButtonLine>
         <LogoContainer>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "flex-end",
-            position: "fixed",
-            textAlign: "left",
-            backgroundColor: "#FFFFFF"
-          }}
-        >
-          <StyledLogoPack>
-            <GiStarsStack />
-            <StyledLogoHotel />
-          </StyledLogoPack>
-          <div>
-            <div>travl</div>
-            <div
-              style={{
-                font: "normal normal 300 12px/18px Poppins",
-                color: "#5D5449",
-              }}
-            >
-              Hotel Admin Dashboard
+          <div
+            style={{
+              display: "flex",
+              alignItems: "flex-end",
+              position: "fixed",
+              textAlign: "left",
+              backgroundColor: "#FFFFFF",
+            }}
+          >
+            <StyledLogoPack>
+              <GiStarsStack />
+              <StyledLogoHotel />
+            </StyledLogoPack>
+            <div>
+              <div>travl</div>
+              <div
+                style={{
+                  font: "normal normal 300 12px/18px Poppins",
+                  color: "#5D5449",
+                }}
+              >
+                Hotel Admin Dashboard
+              </div>
             </div>
           </div>
-        </div>
-      </LogoContainer>
+        </LogoContainer>
         <StyledLink to="/">
           {path == "/" ? (
             <MenuButtons
@@ -286,7 +286,7 @@ export function SideBar() {
             marinarobleno@mail.com
           </div>
           <Button contact weight="600">
-            Contact Us
+            Edit
           </Button>
         </ContactUsCard>
         <StyledCopyrightContainer>

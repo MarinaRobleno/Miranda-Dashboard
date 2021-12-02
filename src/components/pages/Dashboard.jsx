@@ -37,6 +37,12 @@ const StyledIconBackground = styled.div`
   margin: 0 22px 0 30px;
   background-color: ${(props) => props.theme.colors.flesh};
   border-radius: 8px;
+  color: ${(props) => props.theme.colors.red};
+  font-size: 30px;
+  &:hover {
+    background-color: ${(props) => props.theme.colors.red};
+    color: ${(props) => props.theme.colors.flesh};
+  }
 `;
 
 const StyledBigPanel = styled.div`
@@ -54,7 +60,7 @@ export function Dashboard() {
     <StyledGrid style={{ gridColumnStart: "1", gridColumnEnd: "2" }}>
       <StyledKpi>
         <StyledIconBackground>
-          <BiBed style={{ fontSize: "30px", color: "#E23428" }} />
+          <BiBed />
         </StyledIconBackground>
         <StyledKpiData>
           <div style={{ font: "normal normal 600 30px/46px Poppins" }}>
@@ -73,7 +79,7 @@ export function Dashboard() {
       </StyledKpi>
       <StyledKpi style={{ gridColumnStart: "2", gridColumnEnd: "3" }}>
         <StyledIconBackground>
-          <BsCalendarCheck style={{ fontSize: "30px", color: "#E23428" }} />
+          <BsCalendarCheck />
         </StyledIconBackground>
         <StyledKpiData>
           <div style={{ font: "normal normal 600 30px/46px Poppins" }}>963</div>
@@ -90,7 +96,7 @@ export function Dashboard() {
       </StyledKpi>
       <StyledKpi style={{ gridColumnStart: "3", gridColumnEnd: "4" }}>
         <StyledIconBackground>
-          <BiLogIn style={{ fontSize: "35px", color: "#E23428" }} />
+          <BiLogIn />
         </StyledIconBackground>
         <StyledKpiData>
           <div style={{ font: "normal normal 600 30px/46px Poppins" }}>753</div>
@@ -107,7 +113,7 @@ export function Dashboard() {
       </StyledKpi>
       <StyledKpi style={{ gridColumnStart: "4", gridColumnEnd: "5" }}>
         <StyledIconBackground>
-          <BiLogOut style={{ fontSize: "30px", color: "#E23428" }} />
+          <BiLogOut />
         </StyledIconBackground>
         <StyledKpiData>
           <div style={{ font: "normal normal 600 30px/46px Poppins" }}>516</div>
