@@ -24,9 +24,9 @@ export function ContactList() {
                     <td className='data-element'>{contact.mail}</td>
                     <td className='data-element'>{contact.phone}</td>
                     <td className='data-element'>{contact.comment}</td>                    
-                    <StyledDataElement>
+                    <td className='data-element'>
                         <Button archive>Archive</Button>
-                    </StyledDataElement>                    
+                    </td>
                 </StyledData>
             ))}
         </StyledTable>

@@ -6,7 +6,7 @@ export default styled.button`
     border: none;
     border-radius: 12px;
     width: 120px;
-    height: 48px;
+    height: 45px;
     color: ${props => props.archive ? '#E23428' : props.notes ? '#212121' : props.contact ? '#135846' : '#FFFFFF'};
     font: normal normal normal 14px/21px Poppins;
     font-weight: ${props => props.weight};
