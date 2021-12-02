@@ -5,6 +5,7 @@ import { AuthContext } from "../helpers/Context";
 import styled from "styled-components";
 import { BiBed, BiLogIn, BiLogOut } from "react-icons/bi";
 import { BsCalendarCheck } from "react-icons/bs";
+import { Calendar } from "../Calendar";
 
 const StyledGrid = styled.div`
   width: 100%;
@@ -46,13 +47,11 @@ const StyledIconBackground = styled.div`
 `;
 
 const StyledBigPanel = styled.div`
-  display: flex;
-  align-items: flex-start;
-  justify-content: left;
   min-height: 954px;
   background-color: ${(props) => props.theme.colors.main_white};
   box-shadow: 0px 4px 4px #00000005;
   border-radius: 12px;
+  padding: 30px;
 `;
 
 export function Dashboard() {
@@ -136,7 +135,7 @@ export function Dashboard() {
           gridRowEnd: "5",
         }}
       >
-        Recent Booking Schedule
+        <Calendar />
       </StyledBigPanel>
       <StyledBigPanel
         style={{
