@@ -1,8 +1,9 @@
 import React from "react";
-import booking from "../data/booking";
 import Button from "./Button";
 import { AiOutlineDelete } from "react-icons/ai";
 import styled from "styled-components";
+import { remove, selectBookings } from "../features/slices/bookingsSlice";
+import { useSelector, useDispatch } from 'react-redux';
 
 export const StyledTable = styled.table`
   text-align: left;
@@ -26,6 +27,15 @@ export const StyledData = styled.tr`
 `;
 
 export function BookingList() {
+  const myBooking = useSelector(selectBookings)
+  const dispatch = useDispatch();
+
+  const removeBooking = (book) => {
+    dispatch(remove(book));
+    
+}
+
+
   return (
     <StyledTable>
       <StyledHeader>
@@ -37,7 +47,7 @@ export function BookingList() {
         <th class="header-table-sector">Room Type</th>
         <th class="header-table-sector">Status</th>
       </StyledHeader>
-      {booking.map((book) => (
+      {myBooking.map((book) => (
         <StyledData>
           <td className="data-element">
             <div>{book.guest}</div>
@@ -51,12 +61,12 @@ export function BookingList() {
           </td>
           <td className="data-element">{book.roomType}</td>
           <td className="data-element">
-            <Button checkIn name="Check In">
+            <Button checkIn name="Check In" >
               Check In
             </Button>
           </td>
           <td className="data-element">
-            <AiOutlineDelete style={{ cursor: "pointer" }} />
+            <AiOutlineDelete onClick={() => removeBooking(book)} style={{ cursor: "pointer" }}  />
           </td>
         </StyledData>
       ))}
