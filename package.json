@@ -5,6 +5,7 @@
   "dependencies": {
     "@fullcalendar/daygrid": "^5.10.1",
     "@fullcalendar/react": "^5.10.1",
+    "@reduxjs/toolkit": "^1.6.2",
     "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/user-event": "^12.8.3",
     "immutability-helper": "^3.1.1",

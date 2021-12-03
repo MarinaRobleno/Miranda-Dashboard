@@ -156,7 +156,7 @@ export function Dashboard() {
           gridRowEnd: "5",
         }}
       >
-        Latest Review by Customers
+        Booking data
       </StyledBigPanel>
       <StyledBigPanel
         style={{

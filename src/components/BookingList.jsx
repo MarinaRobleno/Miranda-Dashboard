@@ -1,7 +1,7 @@
 import React from "react";
 import booking from "../data/booking";
 import Button from "./Button";
-import { FiMoreVertical } from "react-icons/fi";
+import { AiOutlineDelete } from "react-icons/ai";
 import styled from "styled-components";
 
 export const StyledTable = styled.table`
@@ -23,11 +23,6 @@ export const StyledData = styled.tr`
   &:hover {
     box-shadow: 0px 4px 30px #0000001a;
   }
-`;
-
-export const StyledDataElement = styled.td`
-  display: flex;
-  flex-direction: row;
 `;
 
 export function BookingList() {
@@ -61,7 +56,7 @@ export function BookingList() {
             </Button>
           </td>
           <td className="data-element">
-            <FiMoreVertical style={{ cursor: "pointer" }} />
+            <AiOutlineDelete style={{ cursor: "pointer" }} />
           </td>
         </StyledData>
       ))}
