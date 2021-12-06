@@ -5,7 +5,10 @@ export const roomsSlice = createSlice({
   name: "rooms",
   initialState: rooms,
   reducers: {
-    add: (state, action) => {},
+    add: (state, action) => {
+      state = [...state, action.payload];
+      return state;
+    },
     orderBy: (state, action) => {
       if (action.payload === "higher") {
         state = state.sort((a, b) => {

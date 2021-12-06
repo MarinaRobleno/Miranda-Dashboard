@@ -46,7 +46,7 @@ const StyledIconBackground = styled.div`
   }
 `;
 
-const StyledBigPanel = styled.div`
+export const StyledBigPanel = styled.div`
   min-height: 513px;
   background-color: ${(props) => props.theme.colors.main_white};
   box-shadow: 0px 4px 4px #00000005;
