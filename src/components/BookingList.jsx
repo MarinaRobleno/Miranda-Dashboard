@@ -29,16 +29,28 @@ export const StyledMenuItem = styled.div`
 `;
 
 export const StyledFilterBar = styled.input`
-width: 351px;
+  width: 351px;
+  height: 57px;
+  border: none;
+  padding: 15px;
+  font: normal normal 300 14px/21px Poppins;
+  background-color: ${(props) => props.theme.colors.search_bar_white};
+  &:focus {
+    outline: none;
+  }
+`;
+
+export const StyledCalendarBar = styled.input`
+width: 200px;
 height: 57px;
 border: none;
 padding: 15px;
 font: normal normal 300 14px/21px Poppins;
-  background-color: ${(props) => props.theme.colors.search_bar_white};
-  &:focus{
-    outline: none;
-  }
-`
+background-color: ${(props) => props.theme.colors.search_bar_white};
+&:focus {
+  outline: none;
+}
+`;
 
 export const StyledSelect = styled.select`
   width: 129px;
@@ -82,7 +94,7 @@ export function BookingList() {
   const [select, setSelect] = useState("");
   const [dateRange, setDateRange] = useState({ start: "", end: "" });
   const [selectedFilter, setSelectedFilter] = useState("");
-  const [filteredTerm, setFilteredTerm] = useState('');
+  const [filteredTerm, setFilteredTerm] = useState("");
 
   const removeBooking = (book) => {
     dispatch(remove(book));
@@ -96,7 +108,7 @@ export function BookingList() {
 
   const handleSearchGuest = (e) => {
     setFilteredTerm(e.target.value);
-  }
+  };
 
   const handleNewOldSelect = (e) => {
     e.preventDefault();
@@ -117,6 +129,12 @@ export function BookingList() {
     setDateRange((prev) => ({ ...prev, end: newEndDate }));
   };
 
+  const handleOrderBySth = (e) => {
+    e.preventDefault();
+    const newOrderBy = e.target.id;
+    dispatch(orderBy(newOrderBy))
+  }
+
   return (
     <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
       <StyledFilterHeader>
@@ -134,11 +152,14 @@ export function BookingList() {
             In Progress
           </StyledMenuItem>
         </StyledFilterMenu>
-        <StyledFilterBar placeholder='Search guest' onChange={handleSearchGuest}/>
+        <StyledFilterBar
+          placeholder="Search guest"
+          onChange={handleSearchGuest}
+        />
         <div>
           <div style={{ display: "inline", width: "100%" }}>
-            <input type="date" onChange={handleStartDate} />
-            <input type="date" onChange={handleEndDate} />
+            <StyledCalendarBar type="date" onChange={handleStartDate} />
+            <StyledCalendarBar type="date" onChange={handleEndDate} />
           </div>
           <StyledSelect value={select} onChange={handleNewOldSelect}>
             <option selected>Order By...</option>
@@ -149,13 +170,13 @@ export function BookingList() {
       </StyledFilterHeader>
       <StyledTable>
         <StyledHeader>
-          <th class="header-table-sector">Guest</th>
-          <th class="header-table-sector">Order date</th>
-          <th class="header-table-sector">Check in</th>
-          <th class="header-table-sector">Check out</th>
-          <th class="header-table-sector">Special Request</th>
-          <th class="header-table-sector">Room Type</th>
-          <th class="header-table-sector">Status</th>
+          <th style={{cursor: 'pointer'}} id='guest' onClick={handleOrderBySth}>Guest</th>
+          <th style={{cursor: 'pointer'}} id='orderDate' onClick={handleOrderBySth}>Order date</th>
+          <th style={{cursor: 'pointer'}} id='checkIn' onClick={handleOrderBySth}>Check in</th>
+          <th style={{cursor: 'pointer'}} id='checkOut' onClick={handleOrderBySth}>Check out</th>
+          <th>Special Request</th>
+          <th>Room Type</th>
+          <th>Status</th>
         </StyledHeader>
         {myBooking
           .filter((book) => {
@@ -171,21 +192,25 @@ export function BookingList() {
           .filter((book) => {
             if (selectedFilter === "all" || selectedFilter === "") {
               return book;
-            } else if (selectedFilter === "in") {
+            } /*else if (selectedFilter === "in") {
               return book.hasOwnProperty("checkIn");
             } else if (selectedFilter === "out") {
               return book.hasOwnProperty("checkOut");
             } else if (selectedFilter === "progress") {
               return book.hasOwnProperty("inProgress");
-            }
+            }*/
           })
           .filter((book) => {
-            if (filteredTerm == ''){
-                return book;
-            }else if (String(book.guest).toLowerCase().includes(filteredTerm.toLowerCase())){
-                return book;
+            if (filteredTerm == "") {
+              return book;
+            } else if (
+              String(book.guest)
+                .toLowerCase()
+                .includes(filteredTerm.toLowerCase())
+            ) {
+              return book;
             }
-        })
+          })
           .map((book) => (
             <StyledData>
               <td className="data-element">
