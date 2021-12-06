@@ -10,7 +10,7 @@ export const bookingsSlice = createSlice({
             return state;
         },
         orderBy: (state, action) => {
-            if (action.payload){
+            if (action.payload === 'newest' || action.payload === 'oldest'){
                 action.payload === 'newest' ?
                 state = state.sort((a,b) => {
                         if (a.orderDate > b.orderDate){

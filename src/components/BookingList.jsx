@@ -2,13 +2,18 @@ import React from "react";
 import Button from "./Button";
 import { AiOutlineDelete } from "react-icons/ai";
 import styled from "styled-components";
-import { remove, orderBy, selectBookings } from "../features/slices/bookingsSlice";
+import {
+  remove,
+  orderBy,
+  selectBookings,
+} from "../features/slices/bookingsSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 
 export const StyledFilterHeader = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 35px;
 `;
 
@@ -23,12 +28,25 @@ export const StyledMenuItem = styled.div`
   cursor: pointer;
 `;
 
-export const StyledSelect = styled.select``;
+export const StyledSelect = styled.select`
+  width: 129px;
+  height: 49px;
+  border: 1px solid #135846;
+  border-radius: 12px;
+  text-align: center;
+  
+`;
+
+export const StyledSelectOption = styled.option`
+font: normal normal medium 16px/25px Poppins;
+  letter-spacing: 0px;
+  color: ${(props) => props.theme.colors.green_dark};
+`
+
 
 export const StyledTable = styled.table`
   text-align: left;
   min-width: 100%;
-  min-height: 700px;
   border-radius: 20px;
   padding: 20px;
   background-color: ${(props) => props.theme.colors.main_white};
@@ -48,12 +66,20 @@ export const StyledData = styled.tr`
 export function BookingList() {
   const myBooking = useSelector(selectBookings);
   const dispatch = useDispatch();
+  
+  const [select, setSelect] = useState("");
+  const [dateRange, setDateRange] = useState({start: '', end: ''})
+  const [selectedFilter, setSelectedFilter] = useState('');
 
   const removeBooking = (book) => {
     dispatch(remove(book));
   };
 
-  const [select, setSelect] = useState("");
+  const handleFilterItem = (e) => {
+    e.preventDefault();
+    const newFilter = e.target.id;
+    setSelectedFilter(newFilter); 
+}
 
   const handleNewOldSelect = (e) => {
     e.preventDefault();
@@ -62,22 +88,35 @@ export function BookingList() {
     dispatch(orderBy(newSelect));
   };
 
+  const handleStartDate = (e) => {
+    e.preventDefault();
+    const newStartDate = e.target.value;
+    setDateRange(prev => ({...prev, start: newStartDate}));
+  }
+
+  const handleEndDate = (e) => {
+    e.preventDefault();
+    const newEndDate = e.target.value;
+    setDateRange(prev => ({...prev, end: newEndDate}))
+  }
+
   return (
     <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
       <StyledFilterHeader>
         <StyledFilterMenu>
-          <StyledMenuItem>All Bookings</StyledMenuItem>
-          <StyledMenuItem>Checking In</StyledMenuItem>
-          <StyledMenuItem>Checking Out</StyledMenuItem>
-          <StyledMenuItem>In Progress</StyledMenuItem>
+          <StyledMenuItem id='all' onClick={handleFilterItem}>All Bookings</StyledMenuItem>
+          <StyledMenuItem id='in' onClick={handleFilterItem}>Checking In</StyledMenuItem>
+          <StyledMenuItem id='out' onClick={handleFilterItem}>Checking Out</StyledMenuItem>
+          <StyledMenuItem id='progress' onClick={handleFilterItem}>In Progress</StyledMenuItem>
         </StyledFilterMenu>
         <div>
-          <StyledSelect>Date</StyledSelect>
+          <div style={{ display: 'inline', width: '100%' }}>
+            <input type="date" onChange={handleStartDate}/>
+            <input type="date" onChange={handleEndDate}/>
+          </div>
           <StyledSelect value={select} onChange={handleNewOldSelect}>
             <option selected>Order By...</option>
-            <option value={"newest"}>
-              Newest
-            </option>
+            <option value={"newest"}>Newest</option>
             <option value={"oldest"}>Oldest</option>
           </StyledSelect>
         </div>
@@ -92,7 +131,26 @@ export function BookingList() {
           <th class="header-table-sector">Room Type</th>
           <th class="header-table-sector">Status</th>
         </StyledHeader>
-        {myBooking.map((book) => (
+        {myBooking
+          .filter((book) => {
+            if (dateRange.start === '' && dateRange.end === ''){
+              return book;
+            }else if (book.checkIn >= dateRange.start && book.checkOut < dateRange.end){
+              return book;
+            }               
+          })
+          .filter((book) => {
+            if (selectedFilter === 'all' || selectedFilter === ''){
+              return book
+            }else if (selectedFilter === 'in'){
+              return book.hasOwnProperty('checkIn')
+            }else if (selectedFilter === 'out'){
+              return book.hasOwnProperty('checkOut')
+            }else if (selectedFilter === 'progress'){
+              return book.hasOwnProperty('inProgress')
+            }
+          })
+          .map((book) => (
           <StyledData>
             <td className="data-element">
               <div>{book.guest}</div>
