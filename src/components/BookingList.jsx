@@ -24,6 +24,8 @@ export const StyledFilterMenu = styled.div`
 
 export const StyledMenuItem = styled.div`
   padding: 13px 26px;
+  font-weight: 500;
+  color: ${(props) => props.theme.colors.letter_grey_medium};
   border-bottom: 1px solid ${(props) => props.theme.colors.border_grey_light_5};
   cursor: pointer;
 `;
