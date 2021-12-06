@@ -1,15 +1,31 @@
 import { useState, useCallback, useEffect } from "react";
 import { RoomListCard } from "./RoomListCard";
 import update from "immutability-helper";
-import { StyledHeader, StyledTable } from "./BookingList";
+import {
+  StyledFilterHeader,
+  StyledFilterMenu,
+  StyledHeader,
+  StyledMenuItem,
+  StyledSelect,
+  StyledTable,
+} from "./BookingList";
 import { add, orderBy, selectRooms } from "../features/slices/roomsSlice";
 import { useSelector, useDispatch } from "react-redux";
+import Button from "./Button";
 
 export const RoomList = () => {
   const myRooms = useSelector(selectRooms);
   const dispatch = useDispatch();
 
   const [cards, setCards] = useState(myRooms);
+  const [select, setSelect] = useState("");
+
+  const handleSelect = (e) => {
+    e.preventDefault();
+    const newSelect = e.target.value;
+    setSelect(newSelect);
+    dispatch(orderBy(newSelect));
+  };
 
   const moveCard = useCallback(
     (dragIndex, hoverIndex) => {
@@ -43,6 +59,25 @@ export const RoomList = () => {
   };
   return (
     <>
+      <StyledFilterHeader>
+        <StyledFilterMenu>
+          <StyledMenuItem>All Rooms</StyledMenuItem>
+          <StyledMenuItem>Available Rooms</StyledMenuItem>
+          <StyledMenuItem>Booked Rooms</StyledMenuItem>
+        </StyledFilterMenu>
+        <div>
+          <Button style={{ width: "200px", backgroundColor: "#135846" }}>
+            + New Room
+          </Button>
+          <StyledSelect value={select} onChange={handleSelect}>
+            <option selected>
+              Order By Price...
+            </option>
+            <option value={"higher"}>Higher</option>
+            <option value={"lower"}>Lower</option>
+          </StyledSelect>
+        </div>
+      </StyledFilterHeader>
       <StyledTable>
         <StyledHeader>
           <th className="header-table-sector">Room Number</th>

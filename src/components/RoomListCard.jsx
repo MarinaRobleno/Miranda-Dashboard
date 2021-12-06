@@ -88,8 +88,8 @@ export const RoomListCard = ({
       </td>
       <td>{room_type}</td>
       <td>{amenities}</td>
-      <td>{price}</td>
-      <td>{offer_price}</td>
+      <td>${price}</td>
+      <td>${offer_price}</td>
       <td>
         <Button checkIn>Available</Button>
       </td>
