@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "./Button";
 import { AiOutlineDelete } from "react-icons/ai";
+import { BiSearchAlt2  } from 'react-icons/bi';
 import styled from "styled-components";
 import {
   remove,
@@ -29,17 +30,33 @@ export const StyledMenuItem = styled.div`
   border-bottom: 1px solid ${(props) => props.theme.colors.border_grey_light_5};
   cursor: pointer;
 `;
-
-export const StyledFilterBar = styled.input`
+const StyledSearchContainer = styled.form`
+  display: flex;
+  align-items: center;
   width: 351px;
   height: 57px;
-  border: none;
-  padding: 15px;
-  font: normal normal 300 14px/21px Poppins;
   background-color: ${(props) => props.theme.colors.search_bar_white};
+  border: none;
+  border-radius: 12px;
+`
+
+const StyledSearchBar = styled.input`
+  width: 100%;
+  height: 100%;
+  margin-left: 29px;
+  font: normal normal 500 16px/21px Poppins;
+  color: ${(props) => props.theme.colors.letter_grey_medium};
+  background-color: ${(props) => props.theme.colors.search_bar_white};
+  border: none;
   &:focus {
     outline: none;
-  }
+}
+`;
+
+const StyledSearchIcon = styled(BiSearchAlt2)`
+ font-size: 35px;
+ color: ${(props) => props.theme.colors.letter_grey_medium};
+ margin-right: 29px;
 `;
 
 export const StyledCalendarBar = styled.input`
@@ -59,12 +76,16 @@ export const StyledSelect = styled.select`
   height: 49px;
   border: 1px solid #135846;
   border-radius: 12px;
-  text-align: center;
   margin-left: 20px;
+  padding: 13px;
+  font: normal normal 600 14px/21px Poppins;
+  color: ${(props) => props.theme.colors.green_dark};
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const StyledSelectOption = styled.option`
-  font: normal normal 600 16px/25px Poppins;
   background-color: none;
   letter-spacing: 0px;
   color: ${(props) => props.theme.colors.green_dark};
@@ -162,10 +183,14 @@ export function BookingList() {
             In Progress
           </StyledMenuItem>
         </StyledFilterMenu>
-        <StyledFilterBar
+        
+        <StyledSearchContainer>
+        <StyledSearchBar
           placeholder="Search guest"
           onChange={handleSearchGuest}
         />
+          <StyledSearchIcon />
+        </StyledSearchContainer>
         <div>
           <div style={{ display: "inline", width: "100%" }}>
             <StyledCalendarBar type="date" onChange={handleStartDate} />
@@ -214,10 +239,10 @@ export function BookingList() {
         </StyledHeader>
         {myBooking
           .filter((book) => {
-            let convertedCheckIn = convertDateFormat(book.checkIn)
-            let convertedCheckOut = convertDateFormat(book.checkOut)
-            console.log(convertedCheckIn)
-            console.log(convertedCheckOut)
+            let convertedCheckIn = convertDateFormat(book.checkIn);
+            let convertedCheckOut = convertDateFormat(book.checkOut);
+            console.log(convertedCheckIn);
+            console.log(convertedCheckOut);
             if (dateRange.start === "" || dateRange.end === "") {
               return book;
             }

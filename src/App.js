@@ -13,7 +13,7 @@ import styled from "styled-components";
 import { SideBar } from "./components/SideBar";
 import { FiLogOut } from "react-icons/fi";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
-import { BiBell, BiEnvelope, BiSearchAlt2 } from "react-icons/bi";
+import { BiBell, BiEnvelope } from "react-icons/bi";
 
 const SAVE_STATE = "1";
 const SAVE_KEY = "auth";
@@ -66,35 +66,6 @@ const StyledHamburger = styled(HiOutlineMenuAlt2)`
   font-size: 26px;
   cursor: pointer;
   color: ${(props) => props.theme.colors.black};
-`;
-
-const StyledSearchContainer = styled.form`
-  display: flex;
-  align-items: center;
-  width: 351px;
-  height: 57px;
-  background-color: ${(props) => props.theme.colors.search_bar_white};
-  border: none;
-  border-radius: 12px;
-`
-
-const StyledSearchBar = styled.input`
-  width: 100%;
-  height: 100%;
-  margin-left: 29px;
-  font: normal normal 300 14px/21px Poppins;
-  color: ${(props) => props.theme.colors.letter_grey_medium};
-  background-color: ${(props) => props.theme.colors.search_bar_white};
-  border: none;
-  &:focus {
-    outline: none;
-}
-`;
-
-const StyledSearchIcon = styled(BiSearchAlt2)`
- font-size: 35px;
- color: ${(props) => props.theme.colors.letter_grey_medium};
- margin-right: 29px;
 `;
 
 const StyledLogout = styled(FiLogOut)`
@@ -154,10 +125,6 @@ function App() {
             <header>
               <StyledHeader>
                 <StyledHamburger onClick={handleCloseSidebar} />
-                <StyledSearchContainer>
-                  <StyledSearchBar />
-                  <StyledSearchIcon />
-                </StyledSearchContainer>
                 <div style={isSidebar ? { paddingRight: "345px" } : {paddingRight: '0'}}>
                   <StyledEnvelope />
                   <StyledBell />
