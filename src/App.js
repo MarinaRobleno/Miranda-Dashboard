@@ -6,7 +6,8 @@ import { Dashboard } from "./components/pages/Dashboard.jsx";
 import { Room } from "./components/pages/Room.jsx";
 import { Bookings } from "./components/pages/Bookings.jsx";
 import { Contact } from "./components/pages/Contact.jsx";
-import { Concierge } from "./components/pages/Users.jsx";
+import { Users } from "./components/pages/Users.jsx";
+import { NewRoom } from './components/NewRoom.jsx';
 import { PrivateRoute } from "./components/helpers/PrivateRoute.js";
 import { AuthContext } from "./components/helpers/Context";
 import styled from "styled-components";
@@ -146,10 +147,10 @@ function App() {
                   }
                 />
                 <Route
-                  path="/room/:id/edit"
+                  path="/new-room"
                   element={
                     <PrivateRoute>
-                      <Room />
+                      <NewRoom />
                     </PrivateRoute>
                   }
                 />
@@ -221,7 +222,7 @@ function App() {
                   path="/users"
                   element={
                     <PrivateRoute>
-                      <Concierge />
+                      <Users />
                     </PrivateRoute>
                   }
                 />

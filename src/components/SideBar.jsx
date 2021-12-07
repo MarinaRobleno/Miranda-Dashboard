@@ -45,7 +45,7 @@ const MenuButtons = styled.div`
   cursor: pointer;
 `;
 
-const StyledLink = styled(Link)`
+export const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 

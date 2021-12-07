@@ -72,7 +72,7 @@ export const StyledCalendarBar = styled.input`
 `;
 
 export const StyledSelect = styled.select`
-  width: 129px;
+  min-width: 129px;
   height: 49px;
   border: 1px solid #135846;
   border-radius: 12px;
