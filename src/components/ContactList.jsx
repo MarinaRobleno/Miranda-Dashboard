@@ -1,6 +1,4 @@
 import React from "react";
-import contact from "../data/contact";
-import styled from "styled-components";
 import {
   StyledData,
   StyledFilterMenu,
