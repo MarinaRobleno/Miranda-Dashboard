@@ -1,11 +1,12 @@
 import "../../styles/App.scss";
 import React from "react";
-import { useContext, createContext } from "react";
-import { AuthContext } from "../helpers/Context";
+import { selectContact } from "../../features/slices/contactSlice";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { BiBed, BiLogIn, BiLogOut } from "react-icons/bi";
 import { BsCalendarCheck } from "react-icons/bs";
 import { Calendar } from "../Calendar";
+import { TiDeleteOutline } from "react-icons/ti";
 
 const StyledGrid = styled.div`
   width: 100%;
@@ -46,6 +47,13 @@ const StyledIconBackground = styled.div`
   }
 `;
 
+export const StyledBigPanelHeader = styled.div`
+  margin: 25px 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: ${(props) => props.theme.colors.letter_grey_dark};
+`;
+
 export const StyledBigPanel = styled.div`
   min-height: 513px;
   background-color: ${(props) => props.theme.colors.main_white};
@@ -54,7 +62,32 @@ export const StyledBigPanel = styled.div`
   padding: 30px;
 `;
 
+export const StyledReviewPanel = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 16px;
+  min-width: 431px;
+  height: 275px;
+  margin: auto 0;
+  margin-right: 40px;
+  padding: 30px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border: 1px solid ${(props) => props.theme.colors.border_grey_light};
+  border-radius: 20px;
+  &:hover {
+    box-shadow: 0px 16px 30px #00000014;
+  }
+`;
+
+export const StyledDeleteReview = styled(TiDeleteOutline)`
+font-size: 28px;
+color: ${(props) => props.theme.colors.red};
+cursor: pointer;
+`
+
 export function Dashboard() {
+  const myContact = useSelector(selectContact);
   return (
     <StyledGrid style={{ gridColumnStart: "1", gridColumnEnd: "2" }}>
       <StyledKpi>
@@ -145,7 +178,7 @@ export function Dashboard() {
           gridRowEnd: "4",
         }}
       >
-        Reservation Stats
+        <StyledBigPanelHeader>Reservation Stats</StyledBigPanelHeader>
       </StyledBigPanel>
       <StyledBigPanel
         style={{
@@ -156,18 +189,40 @@ export function Dashboard() {
           gridRowEnd: "5",
         }}
       >
-        Booking data
-      </StyledBigPanel>
-      <StyledBigPanel
-        style={{
-          minHeight: "433px",
-          gridColumnStart: "1",
-          gridColumnEnd: "5",
-          gridRowStart: "5",
-          gridRowEnd: "7",
-        }}
-      >
-        Latest Review by Customers
+        <StyledBigPanelHeader>Latest Review by Customers</StyledBigPanelHeader>
+        <div style={{display: 'flex'}}>
+        {myContact.map((contact) => (
+          <StyledReviewPanel>
+            <div style={{ color: "#4E4E4E", lineHeight: "28px" }}>
+              {contact.comment}
+            </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-end",
+              }}
+            >
+              <img
+                style={{
+                  backgroundColor: "grey",
+                  width: "56px",
+                  height: "56px",
+                }}
+              />
+              <div>
+                <div style={{ color: "#262626", fontWeight: "600" }}>
+                  {contact.customer}
+                </div>
+                <div style={{ color: "#799283", fontSize: "14px" }}>
+                  {contact.date}
+                </div>
+              </div>
+              <StyledDeleteReview />
+            </div>
+          </StyledReviewPanel>
+        ))}
+        </div>
       </StyledBigPanel>
     </StyledGrid>
   );
