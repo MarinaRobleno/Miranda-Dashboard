@@ -147,7 +147,7 @@ function App() {
                   }
                 />
                 <Route
-                  path="/new-room"
+                  path="room/new-room"
                   element={
                     <PrivateRoute>
                       <NewRoom />

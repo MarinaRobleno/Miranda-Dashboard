@@ -68,7 +68,7 @@ export const RoomList = () => {
           <StyledMenuItem>Booked Rooms</StyledMenuItem>
         </StyledFilterMenu>
         <div>
-          <StyledLink to="/new-room">
+          <StyledLink to="./new-room">
             <Button
               style={{ width: "200px", backgroundColor: "#135846" }}
             >

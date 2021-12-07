@@ -13,20 +13,20 @@ export const roomsSlice = createSlice({
       if (action.payload === "higher") {
         state = state.sort((a, b) => {
           if (a.price > b.price) {
-            return 1;
+            return -1;
           }
           if (a.price < b.price) {
-            return -1;
+            return 1;
           }
           return 0;
         });
       } else if (action.payload === "lower") {
         state = state.sort((a, b) => {
           if (a.price > b.price) {
-            return -1;
+            return 1;
           }
           if (a.price < b.price) {
-            return 1;
+            return -1;
           }
           return 0;
         });

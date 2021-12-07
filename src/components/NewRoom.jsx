@@ -1,11 +1,11 @@
-import { preventContextMenu } from "@fullcalendar/common";
 import React from "react";
-import { useState, useCallback, useEffect } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { add, selectRooms } from "../features/slices/roomsSlice";
 import styled from "styled-components";
-import { StyledHeader } from "./BookingList";
 import { StyledBigPanel, StyledBigPanelHeader } from "./pages/Dashboard";
+import { StyledLink } from "./SideBar";
+import Button from "./Button";
 
 const StyledNewRoomPanel = styled(StyledBigPanel)`
   display: flex;
@@ -59,8 +59,7 @@ const StyledNewRoomSubmit = styled(StyledNewRoomInput)`
 `;
 
 export function NewRoom() {
-    const myRooms = useSelector(selectRooms);
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const [newRoom, setNewRoom] = useState({
     photo: "",
@@ -74,10 +73,12 @@ export function NewRoom() {
     related_rooms: "",
   });
 
- const handleNewRoomSubmit = (e) => {
+  const handleNewRoomSubmit = (e) => {
     e.preventDefault();
     dispatch(add(newRoom));
- }
+    const form = document.getElementById("newRoomForm");
+    form.reset();
+  };
 
   return (
     <div style={{ width: "100%" }}>
@@ -85,14 +86,22 @@ export function NewRoom() {
         <StyledBigPanelHeader style={{ textAlign: "center" }}>
           Add a New Room
         </StyledBigPanelHeader>
-        <form style={{ display: "flex", flexDirection: "column" }} onSubmit={handleNewRoomSubmit}>
+        <form
+          id="newRoomForm"
+          style={{ display: "flex", flexDirection: "column" }}
+          onSubmit={handleNewRoomSubmit}
+        >
           <label>Photos</label>
           <StyledNewRoomInput
             type="text"
             onChange={(e) => setNewRoom({ ...newRoom, photo: e.target.value })}
           />
           <label>Room Type</label>
-          <StyledNewRoomSelect onChange={e => setNewRoom({...newRoom, room_type: e.target.value})}>
+          <StyledNewRoomSelect
+            onChange={(e) =>
+              setNewRoom({ ...newRoom, room_type: e.target.value })
+            }
+          >
             <option selected>--Select type--</option>
             <option>Single Bed</option>
             <option>Double Bed</option>
@@ -100,11 +109,24 @@ export function NewRoom() {
             <option>Suite</option>
           </StyledNewRoomSelect>
           <label>Room Number</label>
-          <StyledNewRoomInput type="number" onChange={e => setNewRoom({...newRoom, roomNumber: e.target.value})} />
+          <StyledNewRoomInput
+            type="number"
+            onChange={(e) =>
+              setNewRoom({ ...newRoom, roomNumber: e.target.value })
+            }
+          />
           <label>Room ID</label>
-          <StyledNewRoomInput type="text" onChange={e => setNewRoom({...newRoom, id: e.target.value})} />
+          <StyledNewRoomInput
+            type="text"
+            onChange={(e) => setNewRoom({ ...newRoom, id: e.target.value })}
+          />
           <label>Description</label>
-          <StyledNewRoomInput type="text" onChange={e => setNewRoom({...newRoom, amenities: e.target.value})} />
+          <StyledNewRoomInput
+            type="text"
+            onChange={(e) =>
+              setNewRoom({ ...newRoom, amenities: e.target.value })
+            }
+          />
           <label>Offer</label>
           <StyledNewRoomSelect>
             <option selected>--Select option--</option>
@@ -112,14 +134,37 @@ export function NewRoom() {
             <option>NO</option>
           </StyledNewRoomSelect>
           <label>Price</label>
-          <StyledNewRoomInput type="number" onChange={e => setNewRoom({...newRoom, price: e.target.value})}/>
+          <StyledNewRoomInput
+            type="number"
+            onChange={(e) => setNewRoom({ ...newRoom, price: e.target.value })}
+          />
           <label>Offer Price</label>
-          <StyledNewRoomInput type="number" onChange={e => setNewRoom({...newRoom, offer_price: e.target.value})}/>
+          <StyledNewRoomInput
+            type="number"
+            onChange={(e) =>
+              setNewRoom({ ...newRoom, offer_price: e.target.value })
+            }
+          />
           <label>Cancellation</label>
-          <StyledNewRoomInput type="text" onChange={e => setNewRoom({...newRoom, cancellation: e.target.value})} />
+          <StyledNewRoomInput
+            type="text"
+            onChange={(e) =>
+              setNewRoom({ ...newRoom, cancellation: e.target.value })
+            }
+          />
           <label>Related Rooms</label>
-          <StyledNewRoomInput type="text" onChange={e => setNewRoom({...newRoom, related_rooms: e.target.value})} />
-          <StyledNewRoomSubmit type="submit" value="Add Room" />
+          <StyledNewRoomInput
+            type="text"
+            onChange={(e) =>
+              setNewRoom({ ...newRoom, related_rooms: e.target.value })
+            }
+          />
+          <div style={{display: 'flex', alignItems: 'center', justifyContent:'space-around'}}>
+            <StyledNewRoomSubmit type="submit" value="Add Room" />
+            <StyledLink to='/room'>
+                <Button style={{backgroundColor: '#135846'}}>Back to Rooms</Button>
+            </StyledLink>
+          </div>
         </form>
       </StyledNewRoomPanel>
     </div>
