@@ -182,12 +182,23 @@ export function Dashboard() {
       </StyledBigPanel>
       <StyledBigPanel
         style={{
-          width: "auto",
           minHeight: "433px",
           gridColumnStart: "1",
           gridColumnEnd: "5",
           gridRowStart: "4",
           gridRowEnd: "5",
+        }}
+      >
+        <StyledBigPanelHeader>Booking data</StyledBigPanelHeader>
+      </StyledBigPanel>
+      <StyledBigPanel
+        style={{
+          width: "auto",
+          minHeight: "433px",
+          gridColumnStart: "1",
+          gridColumnEnd: "5",
+          gridRowStart: "5",
+          gridRowEnd: "7",
           overflowY: "hidden",
           overflowX: "auto",
         }}

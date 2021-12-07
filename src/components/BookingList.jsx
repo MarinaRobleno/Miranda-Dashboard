@@ -43,15 +43,15 @@ export const StyledFilterBar = styled.input`
 `;
 
 export const StyledCalendarBar = styled.input`
-width: 200px;
-height: 57px;
-border: none;
-padding: 15px;
-font: normal normal 300 14px/21px Poppins;
-background-color: ${(props) => props.theme.colors.search_bar_white};
-&:focus {
-  outline: none;
-}
+  width: 200px;
+  height: 57px;
+  border: none;
+  padding: 15px;
+  font: normal normal 300 14px/21px Poppins;
+  background-color: ${(props) => props.theme.colors.search_bar_white};
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const StyledSelect = styled.select`
@@ -119,23 +119,31 @@ export function BookingList() {
     dispatch(orderBy(newSelect));
   };
 
+  function convertDateFormat(string) {
+    var info = string.split("-");
+    return info[2] + "-" + info[0] + "-" + info[1];
+  }
+
   const handleStartDate = (e) => {
     e.preventDefault();
     const newStartDate = e.target.value;
+    console.log(newStartDate);
     setDateRange((prev) => ({ ...prev, start: newStartDate }));
   };
 
   const handleEndDate = (e) => {
     e.preventDefault();
     const newEndDate = e.target.value;
+    console.log(newEndDate);
     setDateRange((prev) => ({ ...prev, end: newEndDate }));
+    console.log(dateRange);
   };
 
   const handleOrderBySth = (e) => {
     e.preventDefault();
     const newOrderBy = e.target.id;
-    dispatch(orderBy(newOrderBy))
-  }
+    dispatch(orderBy(newOrderBy));
+  };
 
   return (
     <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
@@ -172,21 +180,52 @@ export function BookingList() {
       </StyledFilterHeader>
       <StyledTable>
         <StyledHeader>
-          <th style={{cursor: 'pointer'}} id='guest' onClick={handleOrderBySth}>Guest</th>
-          <th style={{cursor: 'pointer'}} id='orderDate' onClick={handleOrderBySth}>Order date</th>
-          <th style={{cursor: 'pointer'}} id='checkIn' onClick={handleOrderBySth}>Check in</th>
-          <th style={{cursor: 'pointer'}} id='checkOut' onClick={handleOrderBySth}>Check out</th>
+          <th
+            style={{ cursor: "pointer" }}
+            id="guest"
+            onClick={handleOrderBySth}
+          >
+            Guest
+          </th>
+          <th
+            style={{ cursor: "pointer" }}
+            id="orderDate"
+            onClick={handleOrderBySth}
+          >
+            Order date
+          </th>
+          <th
+            style={{ cursor: "pointer" }}
+            id="checkIn"
+            onClick={handleOrderBySth}
+          >
+            Check in
+          </th>
+          <th
+            style={{ cursor: "pointer" }}
+            id="checkOut"
+            onClick={handleOrderBySth}
+          >
+            Check out
+          </th>
           <th>Special Request</th>
           <th>Room Type</th>
           <th>Status</th>
         </StyledHeader>
         {myBooking
           .filter((book) => {
-            if (dateRange.start === "" && dateRange.end === "") {
+            let convertedCheckIn = convertDateFormat(book.checkIn)
+            let convertedCheckOut = convertDateFormat(book.checkOut)
+            console.log(convertedCheckIn)
+            console.log(convertedCheckOut)
+            if (dateRange.start === "" || dateRange.end === "") {
               return book;
-            } else if (
-              book.checkIn >= dateRange.start &&
-              book.checkOut < dateRange.end
+            }
+            if (
+              (convertedCheckIn >= dateRange.start &&
+                convertedCheckIn <= dateRange.end) ||
+              (dateRange.start >= convertedCheckIn &&
+                dateRange.start <= convertedCheckOut)
             ) {
               return book;
             }

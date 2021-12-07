@@ -16,7 +16,7 @@ export function Contact() {
     <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
       <StyledBigPanel
         style={{
-          width: '1570px',
+          width: '100%',
           minHeight: "433px",
           marginBottom: "40px",
           overflowY: "hidden",
