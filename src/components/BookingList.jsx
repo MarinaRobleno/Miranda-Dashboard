@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "./Button";
 import { AiOutlineDelete } from "react-icons/ai";
-import { BiSearchAlt2  } from 'react-icons/bi';
+import { BiSearchAlt2, BiSidebar } from "react-icons/bi";
 import styled from "styled-components";
 import {
   remove,
@@ -10,6 +10,7 @@ import {
 } from "../features/slices/bookingsSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
+import { StyledLink } from "./SideBar";
 
 export const StyledFilterHeader = styled.div`
   display: flex;
@@ -38,7 +39,7 @@ const StyledSearchContainer = styled.form`
   background-color: ${(props) => props.theme.colors.search_bar_white};
   border: none;
   border-radius: 12px;
-`
+`;
 
 const StyledSearchBar = styled.input`
   width: 100%;
@@ -50,13 +51,13 @@ const StyledSearchBar = styled.input`
   border: none;
   &:focus {
     outline: none;
-}
+  }
 `;
 
 const StyledSearchIcon = styled(BiSearchAlt2)`
- font-size: 35px;
- color: ${(props) => props.theme.colors.letter_grey_medium};
- margin-right: 29px;
+  font-size: 35px;
+  color: ${(props) => props.theme.colors.letter_grey_medium};
+  margin-right: 29px;
 `;
 
 export const StyledCalendarBar = styled.input`
@@ -108,6 +109,16 @@ export const StyledData = styled.tr`
   &:hover {
     box-shadow: 0px 4px 30px #0000001a;
   }
+`;
+
+export const StyledDetailIcon = styled(BiSidebar)`
+  font-size: 20px;
+  cursor: pointer;
+`;
+
+export const StyledBinIcon = styled(AiOutlineDelete)`
+  font-size: 20px;
+  cursor: pointer;
 `;
 
 export function BookingList() {
@@ -183,12 +194,12 @@ export function BookingList() {
             In Progress
           </StyledMenuItem>
         </StyledFilterMenu>
-        
+
         <StyledSearchContainer>
-        <StyledSearchBar
-          placeholder="Search guest"
-          onChange={handleSearchGuest}
-        />
+          <StyledSearchBar
+            placeholder="Search guest"
+            onChange={handleSearchGuest}
+          />
           <StyledSearchIcon />
         </StyledSearchContainer>
         <div>
@@ -236,6 +247,7 @@ export function BookingList() {
           <th>Special Request</th>
           <th>Room Type</th>
           <th>Status</th>
+          <th>Details</th>
         </StyledHeader>
         {myBooking.booking
           .filter((book) => {
@@ -289,17 +301,24 @@ export function BookingList() {
               <td className="data-element">
                 <Button notes>View Notes</Button>
               </td>
-              <td className="data-element">{book.roomType}</td>
+              <td className="data-element">
+                <div>{book.roomType}</div>
+                {book.room_number}
+              </td>
               <td className="data-element">
                 <Button checkIn name="Check In">
                   Check In
                 </Button>
               </td>
               <td className="data-element">
-                <AiOutlineDelete
-                  onClick={() => removeBooking(book)}
-                  style={{ cursor: "pointer" }}
-                />
+                <StyledLink to={{
+                  pathname: `./${book.id}`
+                }}>
+                  <StyledDetailIcon />
+                </StyledLink>
+              </td>
+              <td className="data-element">
+                <StyledBinIcon onClick={() => removeBooking(book)} />
               </td>
             </StyledData>
           ))}

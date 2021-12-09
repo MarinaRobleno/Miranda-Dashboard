@@ -8,6 +8,7 @@ import { Bookings } from "./components/pages/Bookings.jsx";
 import { Contact } from "./components/pages/Contact.jsx";
 import { Users } from "./components/pages/Users.jsx";
 import { NewRoom } from './components/NewRoom.jsx';
+import { BookDetail } from './components/BookDetail.jsx';
 import { PrivateRoute } from "./components/helpers/PrivateRoute.js";
 import { AuthContext } from "./components/helpers/Context";
 import styled from "styled-components";
@@ -155,14 +156,6 @@ function App() {
                   }
                 />
                 <Route
-                  path="/room/:id"
-                  element={
-                    <PrivateRoute>
-                      <Room />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
                   path="/room"
                   element={
                     <PrivateRoute>
@@ -171,18 +164,10 @@ function App() {
                   }
                 />
                 <Route
-                  path="/bookings/:id/edit"
+                  path="bookings/:id"
                   element={
                     <PrivateRoute>
-                      <Bookings />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
-                  path="/bookings/:id"
-                  element={
-                    <PrivateRoute>
-                      <Bookings />
+                      <BookDetail />
                     </PrivateRoute>
                   }
                 />
@@ -191,22 +176,6 @@ function App() {
                   element={
                     <PrivateRoute>
                       <Bookings />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
-                  path="/contact/:id/edit"
-                  element={
-                    <PrivateRoute>
-                      <Contact />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
-                  path="/contact/:id"
-                  element={
-                    <PrivateRoute>
-                      <Contact />
                     </PrivateRoute>
                   }
                 />
