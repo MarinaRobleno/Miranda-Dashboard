@@ -7,6 +7,7 @@ import { BiBed, BiLogIn, BiLogOut } from "react-icons/bi";
 import { BsCalendarCheck } from "react-icons/bs";
 import { Calendar } from "../Calendar";
 import { TiDeleteOutline } from "react-icons/ti";
+import { ReviewList } from "../ReviewList";
 
 const StyledGrid = styled.div`
   width: 100%;
@@ -203,46 +204,7 @@ export function Dashboard() {
           overflowX: "auto",
         }}
       >
-        <StyledBigPanelHeader>Latest Review by Customers</StyledBigPanelHeader>
-        <div style={{ display: "flex" }}>
-          {myContact.map((contact) => (
-            <StyledReviewPanel>
-              <div style={{ color: "#4E4E4E", lineHeight: "28px" }}>
-                {contact.comment}
-              </div>
-              <div style={{ color: "#4E4E4E", lineHeight: "28px" }}>
-                {contact.date}
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "flex-end",
-                }}
-              >
-                <img
-                  style={{
-                    backgroundColor: "grey",
-                    width: "56px",
-                    height: "56px",
-                  }}
-                />
-                <div>
-                  <div style={{ color: "#262626", fontWeight: "600" }}>
-                    {contact.customer}
-                  </div>
-                  <div style={{ color: "#799283", fontSize: "14px" }}>
-                    {contact.mail}
-                  </div>
-                  <div style={{ color: "#799283", fontSize: "14px" }}>
-                    {contact.phone}
-                  </div>
-                </div>
-                <StyledDeleteReview />
-              </div>
-            </StyledReviewPanel>
-          ))}
-        </div>
+        <ReviewList/>
       </StyledBigPanel>
     </StyledGrid>
   );
