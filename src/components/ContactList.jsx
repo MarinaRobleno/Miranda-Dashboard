@@ -19,7 +19,7 @@ export function ContactList() {
 
   const [select, setSelect] = useState("");
   const [archived, setArchived] = useState([]);
-  const [showArchived, setShowArchived] = useState(false)
+  const [showArchived, setShowArchived] = useState(false);
 
   const handleNewOldSelect = (e) => {
     e.preventDefault();
@@ -30,28 +30,30 @@ export function ContactList() {
 
   const handleArchive = (contact) => {
     setArchived((prev) => [...prev, contact]);
-  }
+  };
 
   const handleShowArchived = () => {
-    setShowArchived(!showArchived)
+    setShowArchived(true);
+  };
+
+  const handleShowAll = () => {
+    setShowArchived(false)
   }
 
   return (
     <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
       <StyledFilterHeader>
         <StyledFilterMenu>
-          <StyledMenuItem id="all" >
-            All Contacts
-          </StyledMenuItem>
-          <StyledMenuItem id="archived" onClick={handleShowArchived} >
+          <StyledMenuItem id="all" onClick={handleShowAll}>All Contacts</StyledMenuItem>
+          <StyledMenuItem id="archived" onClick={handleShowArchived}>
             Archived
           </StyledMenuItem>
         </StyledFilterMenu>
         <StyledSelect value={select} onChange={handleNewOldSelect}>
-            <option selected>Order By...</option>
-            <option value={"newest"}>Newest</option>
-            <option value={"oldest"}>Oldest</option>
-          </StyledSelect>  
+          <option selected>Order By...</option>
+          <option value={"newest"}>Newest</option>
+          <option value={"oldest"}>Oldest</option>
+        </StyledSelect>
       </StyledFilterHeader>
       <StyledTable>
         <StyledHeader>
@@ -63,20 +65,37 @@ export function ContactList() {
           <th className="header-table-sector">Comment</th>
           <th className="header-table-sector">Action</th>
         </StyledHeader>
-        {myContact     
-        .map((contact) => (
-          <StyledData>
-            <td className="data-element">{contact.id}</td>
-            <td className="data-element">{contact.date}</td>
-            <td className="data-element">{contact.customer}</td>
-            <td className="data-element">{contact.mail}</td>
-            <td className="data-element">{contact.phone}</td>
-            <td className="data-element">{contact.comment}</td>
-            <td className="data-element">
-              <Button archive onClick={() => handleArchive(contact)}>Archive</Button>
-            </td>
-          </StyledData>
-        ))}
+        {showArchived
+          ? archived.map((contact) => (
+              <StyledData>
+                <td className="data-element">{contact.id}</td>
+                <td className="data-element">{contact.date}</td>
+                <td className="data-element">{contact.customer}</td>
+                <td className="data-element">{contact.mail}</td>
+                <td className="data-element">{contact.phone}</td>
+                <td className="data-element">{contact.comment}</td>
+                <td className="data-element">
+                  <Button archive onClick={() => handleArchive(contact)}>
+                    Archive
+                  </Button>
+                </td>
+              </StyledData>
+            ))
+          : myContact.map((contact) => (
+              <StyledData>
+                <td className="data-element">{contact.id}</td>
+                <td className="data-element">{contact.date}</td>
+                <td className="data-element">{contact.customer}</td>
+                <td className="data-element">{contact.mail}</td>
+                <td className="data-element">{contact.phone}</td>
+                <td className="data-element">{contact.comment}</td>
+                <td className="data-element">
+                  <Button archive onClick={() => handleArchive(contact)}>
+                    Archive
+                  </Button>
+                </td>
+              </StyledData>
+            ))}
       </StyledTable>
     </div>
   );
