@@ -30,6 +30,14 @@ export function ContactList() {
 
   const handleArchive = (contact) => {
     setArchived((prev) => [...prev, contact]);
+
+    const archiveButton = document.getElementById(contact.id);
+    archiveButton.style.backgroundColor = "#EEF9F2"
+      ? (archiveButton.style.backgroundColor = "#E23428")
+      : (archiveButton.style.backgroundColor = "#EEF9F2");
+    archiveButton.style.color = "#EEF9F2"
+      ? (archiveButton.style.color = "#FFFFFF")
+      : (archiveButton.style.color = "#EEF9F2");
   };
 
   const handleShowArchived = () => {
@@ -37,14 +45,16 @@ export function ContactList() {
   };
 
   const handleShowAll = () => {
-    setShowArchived(false)
-  }
+    setShowArchived(false);
+  };
 
   return (
     <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
       <StyledFilterHeader>
         <StyledFilterMenu>
-          <StyledMenuItem id="all" onClick={handleShowAll}>All Contacts</StyledMenuItem>
+          <StyledMenuItem id="all" onClick={handleShowAll}>
+            All Contacts
+          </StyledMenuItem>
           <StyledMenuItem id="archived" onClick={handleShowArchived}>
             Archived
           </StyledMenuItem>
@@ -75,7 +85,10 @@ export function ContactList() {
                 <td className="data-element">{contact.phone}</td>
                 <td className="data-element">{contact.comment}</td>
                 <td className="data-element">
-                  <Button archive onClick={() => handleArchive(contact)}>
+                  <Button
+                    id={contact.id}
+                    archive
+                  >
                     Archive
                   </Button>
                 </td>
@@ -90,7 +103,11 @@ export function ContactList() {
                 <td className="data-element">{contact.phone}</td>
                 <td className="data-element">{contact.comment}</td>
                 <td className="data-element">
-                  <Button archive onClick={() => handleArchive(contact)}>
+                  <Button
+                    id={contact.id}
+                    archive
+                    onClick={() => handleArchive(contact)}
+                  >
                     Archive
                   </Button>
                 </td>
