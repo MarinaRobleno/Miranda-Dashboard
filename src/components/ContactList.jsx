@@ -12,7 +12,6 @@ import Button from "./Button";
 import { selectContact, orderBy, remove } from "../features/slices/contactSlice";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AiOutlineDelete } from 'react-icons/ai';
 
 export function ContactList() {
   const myContact = useSelector(selectContact);
