@@ -3,6 +3,8 @@ import { StyledBigPanel } from "./pages/Dashboard.jsx";
 import styled from "styled-components";
 import { selectBookings } from "../features/slices/bookingsSlice";
 import { useSelector } from "react-redux";
+import Button from "./Button.jsx";
+import { StyledLink } from "./SideBar";
 
 const StyledDetailsContainer = styled.div`
   display: flex;
@@ -40,10 +42,10 @@ export function BookDetail() {
               <StyledDivRow>
                 <StyledDivColumn>
                   <div>{book.guest}</div>
-                  <div>{book.id}</div>
+                  <div>ID: {book.id}</div>
                   <StyledDivRow>
                     <div>Icono</div>
-                    <div>Send Message</div>
+                    <Button style={{ width: "200px", backgroundColor: "#135846" }}>Send Message</Button>
                   </StyledDivRow>
                 </StyledDivColumn>
                 <div>Icono de puntos</div>
@@ -51,25 +53,29 @@ export function BookDetail() {
               <StyledDivRow>
                 <StyledDivColumn>
                   <div>Check In</div>
-                  <div>Fecha check in</div>
+                  <div>{book.checkIn}</div>
                 </StyledDivColumn>
                 <StyledDivColumn>
                   <div>Check Out</div>
-                  <div>Fecha check out</div>
+                  <div>{book.checkOut}</div>
                 </StyledDivColumn>
               </StyledDivRow>
               <StyledDivRow>
                 <StyledDivColumn>
                   <div>Room info</div>
-                  <div>Room number</div>
+                  <div>{book.room_number}</div>
                 </StyledDivColumn>
                 <StyledDivColumn>
                   <div>Price</div>
                   <div>Price in numbers</div>
                 </StyledDivColumn>
               </StyledDivRow>
-              <div>Special Request</div>
+              <div>{book.special}</div>
               <StyledDivRow>Amenities</StyledDivRow>
+              <StyledLink to ='/bookings'>
+                  <Button style={{ width: "200px", backgroundColor: "#135846" }}>Back</Button>
+              </StyledLink>
+              
             </StyledDetailsContainer>
             <StyledDetailsContainer
               style={{
@@ -78,7 +84,7 @@ export function BookDetail() {
                 justifyContent: "flex-end",
               }}
             >
-              <StyledDivRow>Room Type</StyledDivRow>
+              <StyledDivRow>{book.roomType}</StyledDivRow>
               <StyledDivRow>Description</StyledDivRow>
             </StyledDetailsContainer>
           </StyledBigPanel>
