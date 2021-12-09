@@ -5,8 +5,8 @@ export default [
     id: "64.108.173.202/4",
     room_type: "Vinyl",
     amenities: "Pork Casing",
-    price: "8993.38",
-    offer_price: "291.90",
+    price: "899338",
+    offer_price: "29190",
   },
   {
     photo: "https://robohash.org/veniaminvoluptatem.png?size=50x50&set=set1",
@@ -14,8 +14,8 @@ export default [
     id: "84.232.32.165/25",
     room_type: "Wood",
     amenities: "Wine - Penfolds Koonuga Hill",
-    price: "2006.15",
-    offer_price: "353.67",
+    price: "200615",
+    offer_price: "35367",
   },
   {
     photo:
@@ -24,8 +24,8 @@ export default [
     id: "33.209.86.27/31",
     room_type: "Wood",
     amenities: "Oil - Avocado",
-    price: "2918.57",
-    offer_price: "362.88",
+    price: "291857",
+    offer_price: "36288",
   },
   {
     photo:
@@ -34,8 +34,8 @@ export default [
     id: "57.217.54.138/22",
     room_type: "Plastic",
     amenities: "Lobster - Live",
-    price: "5967.53",
-    offer_price: "278.89",
+    price: "596753",
+    offer_price: "27889",
   },
   {
     photo:
@@ -44,8 +44,8 @@ export default [
     id: "110.180.133.156/13",
     room_type: "Vinyl",
     amenities: "Roe - White Fish",
-    price: "9097.86",
-    offer_price: "233.98",
+    price: "909786",
+    offer_price: "23398",
   },
   {
     photo: "https://robohash.org/earuminventoreeos.png?size=50x50&set=set1",
@@ -53,8 +53,8 @@ export default [
     id: "130.88.170.253/5",
     room_type: "Granite",
     amenities: "Vinegar - Red Wine",
-    price: "7414.37",
-    offer_price: "259.46",
+    price: "741437",
+    offer_price: "25946",
   },
   {
     photo:
@@ -63,8 +63,8 @@ export default [
     id: "77.153.149.207/14",
     room_type: "Steel",
     amenities: "Bagel - Plain",
-    price: "1333.75",
-    offer_price: "329.99",
+    price: "133375",
+    offer_price: "32999",
   },
   {
     photo: "https://robohash.org/etetquae.png?size=50x50&set=set1",
@@ -72,8 +72,8 @@ export default [
     id: "169.206.34.234/16",
     room_type: "Stone",
     amenities: "Compound - Rum",
-    price: "7832.78",
-    offer_price: "479.43",
+    price: "783278",
+    offer_price: "47943",
   },
   {
     photo: "https://robohash.org/doloresautcorporis.png?size=50x50&set=set1",
@@ -81,8 +81,8 @@ export default [
     id: "52.187.213.79/21",
     room_type: "Glass",
     amenities: "Coffee Cup 12oz 5342cd",
-    price: "1010.78",
-    offer_price: "160.92",
+    price: "101078",
+    offer_price: "16092",
   },
   {
     photo: "https://robohash.org/exerroret.png?size=50x50&set=set1",
@@ -90,7 +90,7 @@ export default [
     id: "184.56.148.157/7",
     room_type: "Wood",
     amenities: "Dip - Tapenade",
-    price: "580.88",
-    offer_price: "304.79",
+    price: "58088",
+    offer_price: "30479",
   },
 ];

@@ -6,17 +6,21 @@ import {
   StyledReviewPanel,
   StyledDeleteReview,
 } from "./Dashboard";
-import { selectContact } from "../../features/slices/contactSlice";
+import { selectContact, remove } from "../../features/slices/contactSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 export function Contact() {
   const myContact = useSelector(selectContact);
   const dispatch = useDispatch();
+
+  const handleDeleteReview = (contact) => {
+    dispatch(remove(contact))
+  }
   return (
     <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
       <StyledBigPanel
         style={{
-          width: '100%',
+          width: '1570px',
           minHeight: "433px",
           marginBottom: "40px",
           overflowY: "hidden",
@@ -58,7 +62,7 @@ export function Contact() {
                     {contact.phone}
                   </div>
                 </div>
-                <StyledDeleteReview />
+                <StyledDeleteReview onClick={() => handleDeleteReview(contact)}/>
               </div>
             </StyledReviewPanel>
           ))}

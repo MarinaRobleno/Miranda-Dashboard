@@ -33,7 +33,7 @@ export const StyledMenuItem = styled.div`
 const StyledSearchContainer = styled.form`
   display: flex;
   align-items: center;
-  width: 351px;
+  max-width: 351px;
   height: 57px;
   background-color: ${(props) => props.theme.colors.search_bar_white};
   border: none;
@@ -43,7 +43,7 @@ const StyledSearchContainer = styled.form`
 const StyledSearchBar = styled.input`
   width: 100%;
   height: 100%;
-  margin-left: 29px;
+  margin-left: 25px;
   font: normal normal 500 16px/21px Poppins;
   color: ${(props) => props.theme.colors.letter_grey_medium};
   background-color: ${(props) => props.theme.colors.search_bar_white};
@@ -259,11 +259,11 @@ export function BookingList() {
             if (selectedFilter === "all" || selectedFilter === "") {
               return book;
             } /*else if (selectedFilter === "in") {
-              return book.hasOwnProperty("checkIn");
+              
             } else if (selectedFilter === "out") {
-              return book.hasOwnProperty("checkOut");
+              
             } else if (selectedFilter === "progress") {
-              return book.hasOwnProperty("inProgress");
+              
             }*/
           })
           .filter((book) => {
