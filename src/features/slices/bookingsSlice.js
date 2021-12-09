@@ -3,11 +3,16 @@ import booking from "../../data/booking.js";
 
 export const bookingsSlice = createSlice({
   name: "bookings",
-  initialState: {booking: booking},
+  initialState: { booking: booking, id: "" },
   reducers: {
     remove: (state, action) => {
-      state.booking = state.booking.filter((book) => book.id !== action.payload.id);
+      state.booking = state.booking.filter(
+        (book) => book.id !== action.payload.id
+      );
       return state;
+    },
+    detailed: (state, action) => {
+      state.id = action.payload;
     },
     orderBy: (state, action) => {
       if (action.payload === "newest" || action.payload === "oldest") {
@@ -52,6 +57,6 @@ export const bookingsSlice = createSlice({
 
 export const selectBookings = (state) => state.bookings;
 
-export const { remove, orderBy } = bookingsSlice.actions;
+export const { remove, orderBy, detailed } = bookingsSlice.actions;
 
 export default bookingsSlice.reducer;

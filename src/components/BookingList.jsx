@@ -6,6 +6,7 @@ import styled from "styled-components";
 import {
   remove,
   orderBy,
+  detailed,
   selectBookings,
 } from "../features/slices/bookingsSlice";
 import { useSelector, useDispatch } from "react-redux";
@@ -177,6 +178,10 @@ export function BookingList() {
     dispatch(orderBy(newOrderBy));
   };
 
+  const handleIdDetails = (id) => {
+    dispatch(detailed(id))
+  }
+
   return (
     <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
       <StyledFilterHeader>
@@ -314,7 +319,7 @@ export function BookingList() {
                 <StyledLink to={{
                   pathname: `./${book.id}`
                 }}>
-                  <StyledDetailIcon />
+                  <StyledDetailIcon onClick={() => handleIdDetails(book.id)}/>
                 </StyledLink>
               </td>
               <td className="data-element">
