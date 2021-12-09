@@ -3,16 +3,16 @@ import booking from "../../data/booking.js";
 
 export const bookingsSlice = createSlice({
   name: "bookings",
-  initialState: booking,
+  initialState: {booking: booking},
   reducers: {
     remove: (state, action) => {
-      state = state.filter((book) => book.id !== action.payload.id);
-      return state;
+      state.booking = state.booking.filter((book) => book.id !== action.payload.id);
+      return state.booking;
     },
     orderBy: (state, action) => {
       if (action.payload === "newest" || action.payload === "oldest") {
         action.payload === "newest"
-          ? (state = state.sort((a, b) => {
+          ? (state.booking = state.booking.sort((a, b) => {
               if (a.orderDate > b.orderDate) {
                 return -1;
               }
@@ -21,7 +21,7 @@ export const bookingsSlice = createSlice({
               }
               return 0;
             }))
-          : (state = state.sort((a, b) => {
+          : (state.booking = state.booking.sort((a, b) => {
               if (a.orderDate > b.orderDate) {
                 return 1;
               }
@@ -36,7 +36,7 @@ export const bookingsSlice = createSlice({
         action.payload === "checkIn" ||
         action.payload === "checkOut"
       ) {
-        state = state.sort((a, b) => {
+        state.booking = state.booking.sort((a, b) => {
           if (a[action.payload] > b[action.payload]) {
             return 1;
           }

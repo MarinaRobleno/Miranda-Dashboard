@@ -9,6 +9,9 @@ export const contactSlice = createSlice({
       state = state.filter((contact) => contact.id !== action.payload.id);
       return state;
     },
+    archive: (state, action) => {
+
+    },
     orderBy: (state, action) => {
       if (action.payload === "newest" || action.payload === "oldest") {
         action.payload === "newest"
@@ -37,6 +40,6 @@ export const contactSlice = createSlice({
 
 export const selectContact = (state) => state.contact;
 
-export const { remove, orderBy } = contactSlice.actions;
+export const { remove, archive, orderBy } = contactSlice.actions;
 
 export default contactSlice.reducer;

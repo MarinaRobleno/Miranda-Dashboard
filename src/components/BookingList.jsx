@@ -237,7 +237,7 @@ export function BookingList() {
           <th>Room Type</th>
           <th>Status</th>
         </StyledHeader>
-        {myBooking
+        {myBooking.booking
           .filter((book) => {
             let convertedCheckIn = convertDateFormat(book.checkIn);
             let convertedCheckOut = convertDateFormat(book.checkOut);

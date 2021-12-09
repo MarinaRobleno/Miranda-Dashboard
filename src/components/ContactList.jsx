@@ -18,6 +18,8 @@ export function ContactList() {
   const dispatch = useDispatch();
 
   const [select, setSelect] = useState("");
+  const [archived, setArchived] = useState([]);
+  const [showArchived, setShowArchived] = useState(false)
 
   const handleNewOldSelect = (e) => {
     e.preventDefault();
@@ -26,6 +28,14 @@ export function ContactList() {
     dispatch(orderBy(newSelect));
   };
 
+  const handleArchive = (contact) => {
+    setArchived((prev) => [...prev, contact]);
+  }
+
+  const handleShowArchived = () => {
+    setShowArchived(!showArchived)
+  }
+
   return (
     <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
       <StyledFilterHeader>
@@ -33,7 +43,7 @@ export function ContactList() {
           <StyledMenuItem id="all" >
             All Contacts
           </StyledMenuItem>
-          <StyledMenuItem id="archived" >
+          <StyledMenuItem id="archived" onClick={handleShowArchived} >
             Archived
           </StyledMenuItem>
         </StyledFilterMenu>
@@ -53,7 +63,8 @@ export function ContactList() {
           <th className="header-table-sector">Comment</th>
           <th className="header-table-sector">Action</th>
         </StyledHeader>
-        {myContact.map((contact) => (
+        {myContact     
+        .map((contact) => (
           <StyledData>
             <td className="data-element">{contact.id}</td>
             <td className="data-element">{contact.date}</td>
@@ -62,7 +73,7 @@ export function ContactList() {
             <td className="data-element">{contact.phone}</td>
             <td className="data-element">{contact.comment}</td>
             <td className="data-element">
-              <Button archive>Archive</Button>
+              <Button archive onClick={() => handleArchive(contact)}>Archive</Button>
             </td>
           </StyledData>
         ))}
