@@ -7,7 +7,7 @@ export const bookingsSlice = createSlice({
   reducers: {
     remove: (state, action) => {
       state.booking = state.booking.filter((book) => book.id !== action.payload.id);
-      return state.booking;
+      return state;
     },
     orderBy: (state, action) => {
       if (action.payload === "newest" || action.payload === "oldest") {

@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 export default styled.button`
-    background : ${props => props.checkIn ? '#5AD07A' : props.checkOut ? '#E23428' : props.inProgress ? '#FF9C3A' : '#EEF9F2'};
+    background : ${props => props.checkIn ? '#5AD07A' : props.checkOut ? '#E23428' : props.inProgress ? '#FF9C3A' : '#F8F8F8'};
     border: none;
     border-radius: 12px;
     width: 120px;

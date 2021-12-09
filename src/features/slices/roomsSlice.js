@@ -3,15 +3,15 @@ import rooms from "../../data/rooms.js";
 
 export const roomsSlice = createSlice({
   name: "rooms",
-  initialState: rooms,
+  initialState: {rooms: rooms},
   reducers: {
     add: (state, action) => {
-      state = [...state, action.payload];
+      state.rooms = [...state.rooms, action.payload];
       return state;
     },
     orderBy: (state, action) => {
       if (action.payload === "higher") {
-        state = state.sort((a, b) => {
+        state.rooms = state.rooms.sort((a, b) => {
           if (a.price > b.price) {
             return -1;
           }
@@ -21,7 +21,7 @@ export const roomsSlice = createSlice({
           return 0;
         });
       } else if (action.payload === "lower") {
-        state = state.sort((a, b) => {
+        state.rooms = state.rooms.sort((a, b) => {
           if (a.price > b.price) {
             return 1;
           }
@@ -35,7 +35,7 @@ export const roomsSlice = createSlice({
   },
 });
 
-export const selectRooms = (state) => state.rooms;
+export const selectRooms = (state) => state.rooms.rooms;
 
 export const { add, orderBy } = roomsSlice.actions;
 

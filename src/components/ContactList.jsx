@@ -9,9 +9,10 @@ import {
   StyledTable,
 } from "./BookingList";
 import Button from "./Button";
-import { selectContact, orderBy } from "../features/slices/contactSlice";
+import { selectContact, orderBy, remove } from "../features/slices/contactSlice";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { AiOutlineDelete } from 'react-icons/ai';
 
 export function ContactList() {
   const myContact = useSelector(selectContact);
@@ -29,16 +30,14 @@ export function ContactList() {
   };
 
   const handleArchive = (contact) => {
-    setArchived((prev) => [...prev, contact]);
-
-    const archiveButton = document.getElementById(contact.id);
-    archiveButton.style.backgroundColor = "#EEF9F2"
-      ? (archiveButton.style.backgroundColor = "#E23428")
-      : (archiveButton.style.backgroundColor = "#EEF9F2");
-    archiveButton.style.color = "#EEF9F2"
-      ? (archiveButton.style.color = "#FFFFFF")
-      : (archiveButton.style.color = "#EEF9F2");
+    if (!archived.includes(contact)) {
+      setArchived((prev) => [...prev, contact]);
+    }
   };
+
+  const removeArchived = (contact) => {
+    dispatch(remove(contact))
+  }
 
   const handleShowArchived = () => {
     setShowArchived(true);
@@ -85,12 +84,12 @@ export function ContactList() {
                 <td className="data-element">{contact.phone}</td>
                 <td className="data-element">{contact.comment}</td>
                 <td className="data-element">
-                  <Button
-                    id={contact.id}
-                    archive
-                  >
-                    Archive
-                  </Button>
+                <td className="data-element">
+                <AiOutlineDelete
+                  onClick={() => removeArchived(contact)}
+                  style={{ cursor: "pointer" }}
+                />
+              </td>
                 </td>
               </StyledData>
             ))
