@@ -259,14 +259,15 @@ export function SideBar() {
         <ContactUsCard>
           <div
             style={{
-              background: "#C5C5C5 0% 0% no-repeat padding-box",
+              background: "#FFFFFF 0% 0% no-repeat padding-box",
               borderRadius: "8px",
               width: "70px",
               height: "70px",
               color: "#C5C5C5",
               marginBottom: "15px;",
             }}
-          ></div>
+          ><img src='https://avatars.dicebear.com/api/bottts/icon.svg'/>
+          </div>
           <div
             style={{
               color: "#393939",

@@ -16,6 +16,10 @@ export function Contact() {
   const handleDeleteReview = (contact) => {
     dispatch(remove(contact))
   }
+
+  const handlePopUp = (contact) => {
+    alert(contact.comment);
+  }
   return (
     <div style={{ display: "grid", width: "100%" }}>
       <StyledBigPanel
@@ -30,7 +34,7 @@ export function Contact() {
         <StyledBigPanelHeader>Latest Review by Customers</StyledBigPanelHeader>
         <div style={{ display: "flex" }}>
           {myContact.map((contact) => (
-            <StyledReviewPanel>
+            <StyledReviewPanel onClick={() => handlePopUp(contact)}>
               <div style={{ color: "#4E4E4E", lineHeight: "28px" }}>
                 {contact.comment}
               </div>

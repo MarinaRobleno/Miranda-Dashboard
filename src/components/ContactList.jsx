@@ -35,10 +35,6 @@ export function ContactList() {
     }
   };
 
-  const removeArchived = (contact) => {
-    dispatch(remove(contact))
-  }
-
   const handleShowArchived = () => {
     setShowArchived(true);
   };
@@ -83,14 +79,6 @@ export function ContactList() {
                 <td className="data-element">{contact.mail}</td>
                 <td className="data-element">{contact.phone}</td>
                 <td className="data-element">{contact.comment}</td>
-                <td className="data-element">
-                <td className="data-element">
-                <AiOutlineDelete
-                  onClick={() => removeArchived(contact)}
-                  style={{ cursor: "pointer" }}
-                />
-              </td>
-                </td>
               </StyledData>
             ))
           : myContact.map((contact) => (
