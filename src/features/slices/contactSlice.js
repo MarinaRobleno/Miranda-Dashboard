@@ -3,11 +3,11 @@ import contact from "../../data/contact.js";
 
 export const contactSlice = createSlice({
   name: "contact",
-  initialState: contact,
+  initialState: {contact: contact},
   reducers: {
     remove: (state, action) => {
-      state = state.filter((contact) => contact.id !== action.payload.id);
-      return state;
+      state.contact = state.contact.filter((contact) => contact.id !== action.payload.id);
+      return state.contact;
     },
     archive: (state, action) => {
 
@@ -15,7 +15,7 @@ export const contactSlice = createSlice({
     orderBy: (state, action) => {
       if (action.payload === "newest" || action.payload === "oldest") {
         action.payload === "newest"
-          ? (state = state.sort((a, b) => {
+          ? (state.contact = state.contact.sort((a, b) => {
               if (a.date > b.date) {
                 return -1;
               }
@@ -24,7 +24,7 @@ export const contactSlice = createSlice({
               }
               return 0;
             }))
-          : (state = state.sort((a, b) => {
+          : (state.contact = state.contact.sort((a, b) => {
               if (a.date > b.date) {
                 return 1;
               }
@@ -38,7 +38,7 @@ export const contactSlice = createSlice({
   },
 });
 
-export const selectContact = (state) => state.contact;
+export const selectContact = (state) => state.contact.contact;
 
 export const { remove, archive, orderBy } = contactSlice.actions;
 
