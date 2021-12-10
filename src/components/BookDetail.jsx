@@ -10,11 +10,12 @@ import {
   BsChatDotsFill,
   BsThreeDotsVertical,
 } from "react-icons/bs";
-import { RiArrowGoBackFill } from 'react-icons/ri';
+import { RiArrowGoBackFill } from "react-icons/ri";
 
 const StyledDetailsContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   padding: 40px;
   width: 50%;
   border-radius: 20px;
@@ -23,7 +24,7 @@ const StyledDetailsContainer = styled.div`
 const StyledDivRow = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+
 `;
 
 const StyledDivColumn = styled.div`
@@ -32,7 +33,7 @@ const StyledDivColumn = styled.div`
 `;
 
 const StyledDetailSection = styled.div`
-  font: normal normal 500 14px/21px Poppins;
+  font: normal normal 500 16px/21px Poppins;
   color: #799283;
 `;
 
@@ -57,32 +58,6 @@ export function BookDetail() {
                     {book.guest}
                   </div>
                   <StyledDetailSection>ID: {book.id}</StyledDetailSection>
-                  <StyledDivRow>
-                    <Button
-                      style={{
-                        width: "59px",
-                        height: "59px",
-                        border: "1px solid #E8F2EF",
-                        color: "#135846",
-                        backgroundColor: "#FFFFFF",
-                      }}
-                    >
-                      <BsFillTelephoneFill style={{ fontSize: "20px" }} />
-                    </Button>
-                    <Button
-                      style={{
-                        width: "209px",
-                        height: "59px",
-                        backgroundColor: "#135846",
-                        font: "normal normal 500 16px/25px Poppins",
-                      }}
-                    >
-                      <BsChatDotsFill
-                        style={{ fontSize: "20px", marginRight: "20px" }}
-                      />
-                      Send Message
-                    </Button>
-                  </StyledDivRow>
                 </StyledDivColumn>
                 <BsThreeDotsVertical
                   style={{ fontSize: "20px", cursor: "pointer" }}
@@ -91,13 +66,13 @@ export function BookDetail() {
               <StyledDivRow>
                 <StyledDivColumn>
                   <StyledDetailSection>Check In</StyledDetailSection>
-                  <div style={{ font: "normal normal 600 16px/46px Poppins" }}>
+                  <div style={{ font: "normal normal 600 18px/46px Poppins" }}>
                     {book.checkIn}
                   </div>
                 </StyledDivColumn>
                 <StyledDivColumn>
                   <StyledDetailSection>Check Out</StyledDetailSection>
-                  <div style={{ font: "normal normal 600 16px/46px Poppins" }}>
+                  <div style={{ font: "normal normal 600 18px/46px Poppins" }}>
                     {book.checkOut}
                   </div>
                 </StyledDivColumn>
@@ -107,19 +82,19 @@ export function BookDetail() {
                   backgroundColor: "#F8F8F8",
                   width: "100%",
                   height: "3px",
-                  margin: "0 auto 20px",
+                  margin: "0 auto",
                 }}
               ></div>
               <StyledDivRow>
                 <StyledDivColumn>
                   <StyledDetailSection>Room info</StyledDetailSection>
-                  <div style={{ font: "normal normal 600 20px/46px Poppins" }}>
+                  <div style={{ font: "normal normal 600 22px/46px Poppins" }}>
                     {book.room_number}
                   </div>
                 </StyledDivColumn>
                 <StyledDivColumn>
                   <StyledDetailSection>Price</StyledDetailSection>
-                  <div style={{ font: "normal normal 600 20px/46px Poppins" }}>
+                  <div style={{ font: "normal normal 600 22px/46px Poppins" }}>
                     Price in numbers
                   </div>
                 </StyledDivColumn>
@@ -131,12 +106,15 @@ export function BookDetail() {
                 <div>List of amenities</div>
               </StyledDivColumn>
               <StyledLink to="/bookings">
-                <Button style={{
-                        width: "59px",
-                        height: "59px",
-                        backgroundColor: "#135846",
-                        font: "normal normal 500 25px/25px Poppins"}}>
-                  <RiArrowGoBackFill/>
+                <Button
+                  style={{
+                    width: "59px",
+                    height: "59px",
+                    backgroundColor: "#135846",
+                    font: "normal normal 500 25px/25px Poppins",
+                  }}
+                >
+                  <RiArrowGoBackFill />
                 </Button>
               </StyledLink>
             </StyledDetailsContainer>
@@ -144,12 +122,21 @@ export function BookDetail() {
               style={{
                 backgroundColor: "grey",
                 margin: "0",
-                padding: '60px',
+                padding: "60px",
                 justifyContent: "flex-end",
               }}
             >
-              <StyledDivRow style={{font: 'normal normal 600 24px/35px Poppins', color: 'white'}}>{book.roomType}</StyledDivRow>
-              <StyledDetailSection style={{color: 'white'}}>Description</StyledDetailSection>
+              <StyledDivRow
+                style={{
+                  font: "normal normal 600 24px/35px Poppins",
+                  color: "white",
+                }}
+              >
+                {book.roomType}
+              </StyledDivRow>
+              <StyledDetailSection style={{ color: "white" }}>
+                Description
+              </StyledDetailSection>
             </StyledDetailsContainer>
           </StyledBigPanel>
         ))}
