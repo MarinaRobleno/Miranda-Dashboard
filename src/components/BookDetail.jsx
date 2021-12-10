@@ -5,11 +5,17 @@ import { selectBookings } from "../features/slices/bookingsSlice";
 import { useSelector } from "react-redux";
 import Button from "./Button.jsx";
 import { StyledLink } from "./SideBar";
+import {
+  BsFillTelephoneFill,
+  BsChatDotsFill,
+  BsThreeDotsVertical,
+} from "react-icons/bs";
+import { RiArrowGoBackFill } from 'react-icons/ri';
 
 const StyledDetailsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 20px;
+  padding: 40px;
   width: 50%;
   border-radius: 20px;
 `;
@@ -17,11 +23,17 @@ const StyledDetailsContainer = styled.div`
 const StyledDivRow = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
 `;
 
 const StyledDivColumn = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+const StyledDetailSection = styled.div`
+  font: normal normal 500 14px/21px Poppins;
+  color: #799283;
 `;
 
 export function BookDetail() {
@@ -30,9 +42,9 @@ export function BookDetail() {
     <>
       {myBooking.booking
         .filter((book) => {
-          if (book.id === myBooking.id){
-              return book;
-          };
+          if (book.id === myBooking.id) {
+            return book;
+          }
         })
         .map((book) => (
           <StyledBigPanel
@@ -41,51 +53,103 @@ export function BookDetail() {
             <StyledDetailsContainer>
               <StyledDivRow>
                 <StyledDivColumn>
-                  <div>{book.guest}</div>
-                  <div>ID: {book.id}</div>
+                  <div style={{ font: "normal normal 600 30px/46px Poppins" }}>
+                    {book.guest}
+                  </div>
+                  <StyledDetailSection>ID: {book.id}</StyledDetailSection>
                   <StyledDivRow>
-                    <div>Icono</div>
-                    <Button style={{ width: "200px", backgroundColor: "#135846" }}>Send Message</Button>
+                    <Button
+                      style={{
+                        width: "59px",
+                        height: "59px",
+                        border: "1px solid #E8F2EF",
+                        color: "#135846",
+                        backgroundColor: "#FFFFFF",
+                      }}
+                    >
+                      <BsFillTelephoneFill style={{ fontSize: "20px" }} />
+                    </Button>
+                    <Button
+                      style={{
+                        width: "209px",
+                        height: "59px",
+                        backgroundColor: "#135846",
+                        font: "normal normal 500 16px/25px Poppins",
+                      }}
+                    >
+                      <BsChatDotsFill
+                        style={{ fontSize: "20px", marginRight: "20px" }}
+                      />
+                      Send Message
+                    </Button>
                   </StyledDivRow>
                 </StyledDivColumn>
-                <div>Icono de puntos</div>
+                <BsThreeDotsVertical
+                  style={{ fontSize: "20px", cursor: "pointer" }}
+                />
               </StyledDivRow>
               <StyledDivRow>
                 <StyledDivColumn>
-                  <div>Check In</div>
-                  <div>{book.checkIn}</div>
+                  <StyledDetailSection>Check In</StyledDetailSection>
+                  <div style={{ font: "normal normal 600 16px/46px Poppins" }}>
+                    {book.checkIn}
+                  </div>
                 </StyledDivColumn>
                 <StyledDivColumn>
-                  <div>Check Out</div>
-                  <div>{book.checkOut}</div>
+                  <StyledDetailSection>Check Out</StyledDetailSection>
+                  <div style={{ font: "normal normal 600 16px/46px Poppins" }}>
+                    {book.checkOut}
+                  </div>
                 </StyledDivColumn>
               </StyledDivRow>
+              <div
+                style={{
+                  backgroundColor: "#F8F8F8",
+                  width: "100%",
+                  height: "3px",
+                  margin: "0 auto 20px",
+                }}
+              ></div>
               <StyledDivRow>
                 <StyledDivColumn>
-                  <div>Room info</div>
-                  <div>{book.room_number}</div>
+                  <StyledDetailSection>Room info</StyledDetailSection>
+                  <div style={{ font: "normal normal 600 20px/46px Poppins" }}>
+                    {book.room_number}
+                  </div>
                 </StyledDivColumn>
                 <StyledDivColumn>
-                  <div>Price</div>
-                  <div>Price in numbers</div>
+                  <StyledDetailSection>Price</StyledDetailSection>
+                  <div style={{ font: "normal normal 600 20px/46px Poppins" }}>
+                    Price in numbers
+                  </div>
                 </StyledDivColumn>
               </StyledDivRow>
               <div>{book.special}</div>
-              <StyledDivRow>Amenities</StyledDivRow>
-              <StyledLink to ='/bookings'>
-                  <Button style={{ width: "200px", backgroundColor: "#135846" }}>Back</Button>
+              <StyledDivColumn>
+                {" "}
+                <StyledDetailSection>Amenities</StyledDetailSection>
+                <div>List of amenities</div>
+              </StyledDivColumn>
+              <StyledLink to="/bookings">
+                <Button style={{
+                        width: "59px",
+                        height: "59px",
+                        backgroundColor: "#135846",
+                        font: "normal normal 500 25px/25px Poppins"}}>
+                  <RiArrowGoBackFill/>
+                </Button>
               </StyledLink>
-              
             </StyledDetailsContainer>
             <StyledDetailsContainer
               style={{
                 backgroundColor: "grey",
                 margin: "0",
+                padding: '60px',
                 justifyContent: "flex-end",
               }}
             >
-              <StyledDivRow>{book.roomType}</StyledDivRow>
-              <StyledDivRow>Description</StyledDivRow>
+              <StyledDivRow style={{font: 'normal normal 600 24px/35px Poppins', color: 'white'}}>{book.roomType}</StyledDivRow>
+              <StyledDetailSection style={{color: 'white'}}>Description</StyledDetailSection>
             </StyledDetailsContainer>
           </StyledBigPanel>
         ))}

@@ -2,6 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 
 export default styled.button`
+display: flex;
+align-items: center;
+justify-content: center;
     background : ${props => props.checkIn ? '#5AD07A' : props.checkOut ? '#E23428' : props.inProgress ? '#FF9C3A' : '#F8F8F8'};
     border: none;
     border-radius: 12px;
