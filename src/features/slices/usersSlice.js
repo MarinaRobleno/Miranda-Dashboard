@@ -5,6 +5,9 @@ export const usersSlice = createSlice({
   name: "users",
   initialState: {users: users},
   reducers: {
+    add: (state, action) => {
+
+    },
     remove: (state, action) => {
       
     },

@@ -7,8 +7,9 @@ import { Room } from "./components/pages/Room.jsx";
 import { Bookings } from "./components/pages/Bookings.jsx";
 import { Contact } from "./components/pages/Contact.jsx";
 import { Users } from "./components/pages/Users.jsx";
-import { NewRoom } from './components/NewRoom.jsx';
-import { BookDetail } from './components/BookDetail.jsx';
+import { NewRoom } from "./components/NewRoom.jsx";
+import { NewUser } from './components/NewUser.jsx';
+import { BookDetail } from "./components/BookDetail.jsx";
 import { PrivateRoute } from "./components/helpers/PrivateRoute.js";
 import { AuthContext } from "./components/helpers/Context";
 import styled from "styled-components";
@@ -127,7 +128,13 @@ function App() {
             <header>
               <StyledHeader>
                 <StyledHamburger onClick={handleCloseSidebar} />
-                <div style={isSidebar ? { paddingRight: "345px" } : {paddingRight: '0'}}>
+                <div
+                  style={
+                    isSidebar
+                      ? { paddingRight: "345px" }
+                      : { paddingRight: "0" }
+                  }
+                >
                   <StyledEnvelope />
                   <StyledBell />
                   <StyledLogout onClick={() => setLoggedIn(false)} />
@@ -184,6 +191,14 @@ function App() {
                   element={
                     <PrivateRoute>
                       <Contact />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/users/new-user"
+                  element={
+                    <PrivateRoute>
+                      <NewUser />
                     </PrivateRoute>
                   }
                 />

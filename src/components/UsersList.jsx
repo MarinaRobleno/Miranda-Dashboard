@@ -15,6 +15,14 @@ import {
 } from "./BookingList";
 import Button from "./Button";
 import { StyledLink } from './SideBar';
+import { TiDelete } from 'react-icons/ti';
+import styled from 'styled-components';
+
+export const StyledDeleteUser = styled(TiDelete)`
+    font-size: 30px;
+    color: ${(props) => props.theme.colors.red};
+    cursor: pointer;
+`
 
 export function UsersList() {
 
@@ -76,6 +84,8 @@ export function UsersList() {
             <td className="data-element">{user.id}</td>
             <td className="data-element">{user.name}</td>
             <td className="data-element">{user.mail}</td>
+            <td className='data-element'>Status</td>
+            <td className='data-element'><StyledDeleteUser/></td>
           </StyledData>
         ))}
       </StyledTable>
