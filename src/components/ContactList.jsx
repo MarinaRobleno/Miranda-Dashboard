@@ -80,7 +80,7 @@ export function ContactList() {
                 <td className="data-element">{contact.comment}</td>
               </StyledData>
             ))
-          : myContact.map((contact) => (
+          : myContact.reviewedContact.map((contact) => (
               <StyledData>
                 <td className="data-element">{contact.id}</td>
                 <td className="data-element">{contact.date}</td>

@@ -3,9 +3,10 @@ import contact from "../../data/contact.js";
 
 export const contactSlice = createSlice({
   name: "contact",
-  initialState: {contact: contact},
+  initialState: {contact: contact, reviewedContact: []},
   reducers: {
     remove: (state, action) => {
+      state.reviewedContact.push(action.payload);
       state.contact = state.contact.filter((contact) => contact.id !== action.payload.id);
       return state;
     },
@@ -35,7 +36,7 @@ export const contactSlice = createSlice({
   },
 });
 
-export const selectContact = (state) => state.contact.contact;
+export const selectContact = (state) => state.contact;
 
 export const { remove, archive, orderBy } = contactSlice.actions;
 

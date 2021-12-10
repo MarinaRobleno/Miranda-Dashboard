@@ -23,7 +23,7 @@ export function ReviewList() {
     <>
       <StyledBigPanelHeader>Latest Review by Customers</StyledBigPanelHeader>
       <div style={{ display: "flex" }}>
-        {myContact.map((contact) => (
+        {myContact.contact.map((contact) => (
           <StyledReviewPanel>
             <div
               style={{ color: "#4E4E4E", lineHeight: "28px" }}
