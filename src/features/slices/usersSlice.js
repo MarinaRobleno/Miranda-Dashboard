@@ -9,7 +9,10 @@ export const usersSlice = createSlice({
 
     },
     remove: (state, action) => {
-      
+      state.users = state.users.filter(
+        (user) => user.id !== action.payload.id
+      );
+      return state;
     },
     orderBy: (state, action) => {
       
@@ -17,8 +20,8 @@ export const usersSlice = createSlice({
   },
 });
 
-export const selectContact = (state) => state.users.users;
+export const selectUsers = (state) => state.users;
 
-export const { } = usersSlice.actions;
+export const { add, remove, orderBy } = usersSlice.actions;
 
 export default usersSlice.reducer;
