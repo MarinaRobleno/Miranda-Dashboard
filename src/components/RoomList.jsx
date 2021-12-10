@@ -67,10 +67,10 @@ export const RoomList = () => {
           <StyledMenuItem>Available Rooms</StyledMenuItem>
           <StyledMenuItem>Booked Rooms</StyledMenuItem>
         </StyledFilterMenu>
-        <div>
+        <div style={{display:'flex'}}>
           <StyledLink to="./new-room">
             <Button
-              style={{ width: "200px", backgroundColor: "#135846" }}
+              style={{ width: "200px", height:'49px', backgroundColor: "#135846" }}
             >
               + New Room
             </Button>

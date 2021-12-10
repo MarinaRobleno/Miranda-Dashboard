@@ -32,7 +32,7 @@ export const StyledMenuItem = styled.div`
   border-bottom: 1px solid ${(props) => props.theme.colors.border_grey_light_5};
   cursor: pointer;
 `;
-const StyledSearchContainer = styled.form`
+export const StyledSearchContainer = styled.form`
   display: flex;
   align-items: center;
   max-width: 351px;
@@ -42,7 +42,7 @@ const StyledSearchContainer = styled.form`
   border-radius: 12px;
 `;
 
-const StyledSearchBar = styled.input`
+export const StyledSearchBar = styled.input`
   width: 100%;
   height: 100%;
   margin-left: 25px;
@@ -55,7 +55,7 @@ const StyledSearchBar = styled.input`
   }
 `;
 
-const StyledSearchIcon = styled(BiSearchAlt2)`
+export const StyledSearchIcon = styled(BiSearchAlt2)`
   font-size: 35px;
   color: ${(props) => props.theme.colors.letter_grey_medium};
   margin-right: 29px;
