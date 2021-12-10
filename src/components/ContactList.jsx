@@ -16,6 +16,14 @@ import {
 } from "../features/slices/contactSlice";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components";
+
+const StyledArchiveButton = styled(Button)`
+  &:hover{
+    background-color:  ${(props) => props.theme.colors.red};
+    color: ${(props) => props.theme.colors.main_white};
+  }
+`
 
 export function ContactList() {
   const myContact = useSelector(selectContact);
@@ -94,13 +102,13 @@ archivedButton.style.color = "#FFFFFF";*/}
                 <td className="data-element">{contact.phone}</td>
                 <td className="data-element">{contact.comment}</td>
                 <td className="data-element">
-                  <Button
+                  <StyledArchiveButton
                     id={contact.id}
                     archive
                     onClick={() => handleArchive(contact)}
                   >
                     Archive
-                  </Button>
+                  </StyledArchiveButton>
                 </td>
               </StyledData>
             ))}

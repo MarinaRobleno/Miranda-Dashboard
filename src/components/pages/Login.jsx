@@ -53,37 +53,37 @@ const LoginSubmit = styled.input`
 `
 
 export function Login() {
-    const userKey = 'marina';
-    const passKey = 'pass';
+    const nameKey = 'admin';
+    const mailKey = 'admin';
     const {loggedIn, setLoggedIn} = useContext(AuthContext);
 
     let navigate = useNavigate();
     let location = useLocation();
     let from = location.state?.from?.pathname || '/';
 
-    const [user, setUser] = useState('');
-    const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
+    const [mail, setMail] = useState('');
 
 
-    const handleUser = (e) =>{
+    const handleName = (e) =>{
         e.preventDefault();
-        const newUser = e.target.value;
-        setUser(newUser);
+        const newName = e.target.value;
+        setName(newName);
     }
 
-    const handlePassword = (e) =>{
+    const handleMail = (e) =>{
         e.preventDefault();
-        const newPassword = e.target.value;
-        setPassword(newPassword);
+        const newMail = e.target.value;
+        setMail(newMail);
     }
 
     const handleLoginSubmit = (e) => {
         e.preventDefault();
-        if (userKey === user && passKey === password){
+        if (nameKey === name && mailKey === mail){
             setLoggedIn(true);
         }
         else{
-            alert('Wrong password or username')
+            alert('Wrong mail or username')
         }
     }
     useEffect(() => {
@@ -96,10 +96,10 @@ export function Login() {
         <LoginContainer>
             <div>Log In</div>
             <LoginForm onSubmit={handleLoginSubmit}>
-                <label className='input-label'>User</label>
-                <LoginInput type='text' className='user-input' onChange={handleUser}/>
-                <label className='input-label'>Password</label>
-                <LoginInput type='password' className='password-input' onChange={handlePassword}/>
+                <label className='input-label'>Name</label>
+                <LoginInput type='text' className='name-input' onChange={handleName}/>
+                <label className='input-label'>Mail</label>
+                <LoginInput type='text' className='mail-input' onChange={handleMail}/>
                 <LoginSubmit type='submit' value='Continue' />
             </LoginForm>
             
