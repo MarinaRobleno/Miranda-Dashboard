@@ -6,7 +6,8 @@ export const usersSlice = createSlice({
   initialState: {users: users},
   reducers: {
     add: (state, action) => {
-
+      state.users = [...state.users, action.payload];
+      return state;
     },
     remove: (state, action) => {
       state.users = state.users.filter(
