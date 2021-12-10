@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   StyledData,
   StyledFilterMenu,
@@ -9,7 +9,11 @@ import {
   StyledTable,
 } from "./BookingList";
 import Button from "./Button";
-import { selectContact, orderBy, remove } from "../features/slices/contactSlice";
+import {
+  selectContact,
+  orderBy,
+  archive,
+} from "../features/slices/contactSlice";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -18,7 +22,6 @@ export function ContactList() {
   const dispatch = useDispatch();
 
   const [select, setSelect] = useState("");
-  const [archived, setArchived] = useState([]);
   const [showArchived, setShowArchived] = useState(false);
 
   const handleNewOldSelect = (e) => {
@@ -29,9 +32,12 @@ export function ContactList() {
   };
 
   const handleArchive = (contact) => {
-    if (!archived.includes(contact)) {
-      setArchived((prev) => [...prev, contact]);
+    if (!myContact.archived.includes(contact)) {
+      dispatch(archive(contact))
     }
+{/*    const archivedButton = document.getElementById(contact.id);
+    archivedButton.style.backgroundColor = "#E23428";
+archivedButton.style.color = "#FFFFFF";*/}
   };
 
   const handleShowArchived = () => {
@@ -67,10 +73,9 @@ export function ContactList() {
           <th className="header-table-sector">Mail</th>
           <th className="header-table-sector">Phone</th>
           <th className="header-table-sector">Comment</th>
-          <th className="header-table-sector">Action</th>
         </StyledHeader>
         {showArchived
-          ? archived.map((contact) => (
+          ? myContact.archived.map((contact) => (
               <StyledData>
                 <td className="data-element">{contact.id}</td>
                 <td className="data-element">{contact.date}</td>

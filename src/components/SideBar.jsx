@@ -127,6 +127,7 @@ export function SideBar() {
               display: "flex",
               alignItems: "flex-end",
               position: "fixed",
+              top: '20px',
               textAlign: "left",
               backgroundColor: "#FFFFFF",
             }}
@@ -136,7 +137,7 @@ export function SideBar() {
               <StyledLogoHotel />
             </StyledLogoPack>
             <div>
-              <div>travl</div>
+              <div>Miranda</div>
               <div
                 style={{
                   font: "normal normal 300 12px/18px Poppins",
