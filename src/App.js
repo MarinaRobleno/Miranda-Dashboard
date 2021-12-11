@@ -8,7 +8,7 @@ import { Bookings } from "./components/pages/Bookings.jsx";
 import { Contact } from "./components/pages/Contact.jsx";
 import { Users } from "./components/pages/Users.jsx";
 import { NewRoom } from "./components/NewRoom.jsx";
-import { NewUser } from './components/NewUser.jsx';
+import { NewUser } from "./components/NewUser.jsx";
 import { BookDetail } from "./components/BookDetail.jsx";
 import { PrivateRoute } from "./components/helpers/PrivateRoute.js";
 import { AuthContext } from "./components/helpers/Context";
@@ -17,6 +17,8 @@ import { SideBar } from "./components/SideBar";
 import { FiLogOut } from "react-icons/fi";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import { BiBell, BiEnvelope } from "react-icons/bi";
+import { useSelector } from "react-redux";
+import { selectContact } from "./features/slices/contactSlice";
 
 const SAVE_STATE = "1";
 const SAVE_KEY = "auth";
@@ -83,14 +85,29 @@ const StyledLogout = styled(FiLogOut)`
 `;
 
 const StyledEnvelope = styled(BiEnvelope)`
-  font-size: 26px;
+  font-size: 30px;
   margin: 0 29px;
   cursor: pointer;
   color: ${(props) => props.theme.colors.icon_black};
 `;
 
+const StyledNotificationCounter = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 33px;
+  width: 25px;
+  height: 25px;
+  background: ${(props) => props.theme.colors.red} 0% 0% no-repeat padding-box;
+  border: 2px solid #ffffff;
+  border-radius: 8px;
+  color: white;
+  font: normal normal 600 10px/21px Poppins;
+`;
+
 const StyledBell = styled(BiBell)`
-  font-size: 26px;
+  font-size: 30px;
   margin: 0 29px;
   cursor: pointer;
   color: ${(props) => props.theme.colors.icon_black};
@@ -115,6 +132,8 @@ function App() {
     }
   }, [loggedIn]);
 
+  const myContact = useSelector(selectContact);
+
   return (
     <>
       <WholeContent>
@@ -136,7 +155,15 @@ function App() {
                   }
                 >
                   <StyledEnvelope />
+                  {myContact.contact.length > 0 ? (
+                    <StyledNotificationCounter style={{ right: "545px" }}>
+                      {myContact.contact.length}
+                    </StyledNotificationCounter>
+                  ) : null}
                   <StyledBell />
+                  <StyledNotificationCounter
+                    style={{ right: "460px" }}
+                  ></StyledNotificationCounter>
                   <StyledLogout onClick={() => setLoggedIn(false)} />
                 </div>
               </StyledHeader>

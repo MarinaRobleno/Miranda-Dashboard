@@ -82,6 +82,7 @@ export const StyledSelect = styled.select`
   padding: 13px;
   font: normal normal 600 14px/21px Poppins;
   color: ${(props) => props.theme.colors.green_dark};
+  cursor: pointer;
   &:focus {
     outline: none;
   }

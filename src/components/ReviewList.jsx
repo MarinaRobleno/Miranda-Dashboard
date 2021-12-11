@@ -41,11 +41,7 @@ export function ReviewList() {
               }}
             >
               <img
-                style={{
-                  backgroundColor: "grey",
-                  width: "56px",
-                  height: "56px",
-                }}
+                src={contact.photo}
               />
               <div>
                 <div style={{ color: "#262626", fontWeight: "600" }}>

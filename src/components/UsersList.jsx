@@ -107,6 +107,7 @@ export function UsersList() {
 
       <StyledTable>
         <StyledHeader>
+          <th class="header-table-sector">Photo</th>
           <th class="header-table-sector">Id</th>
           <th class="header-table-sector">Name</th>
           <th class="header-table-sector">Mail</th>
@@ -125,20 +126,29 @@ export function UsersList() {
             }
           })
           .filter((user) => {
-            if (selectedFilter == 'active'){
-              return user.status == 'active'
-            }else if (selectedFilter == 'inactive'){
-              return user.status == 'inactive'
-            }else{
+            if (selectedFilter == "active") {
+              return user.status == "active";
+            } else if (selectedFilter == "inactive") {
+              return user.status == "inactive";
+            } else {
               return user;
             }
           })
           .map((user) => (
             <StyledData>
+              <img src={user.photo} />
               <td className="data-element">{user.id}</td>
               <td className="data-element">{user.name}</td>
               <td className="data-element">{user.mail}</td>
-              <td className="data-element">{user.status}</td>
+              {user.status === "active" ? (
+                <td className="data-element" style={{ color: "#5AD07A" }}>
+                  {user.status.toUpperCase()}
+                </td>
+              ) : (
+                <td className="data-element" style={{ color: "#E23428" }}>
+                  {user.status.toUpperCase()}
+                </td>
+              )}
               <td className="data-element">
                 <StyledDeleteUser onClick={() => handleDeleteUser(user)} />
               </td>
