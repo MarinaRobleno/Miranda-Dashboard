@@ -3,6 +3,7 @@ import { useDrag, useDrop } from "react-dnd";
 import { ItemTypes } from "./helpers/ItemTypes";
 import { StyledData } from "./BookingList";
 import Button from "./Button";
+import { StyledIconRoom } from "./RoomList";
 
 export const RoomListCard = ({
   photo,
@@ -77,7 +78,7 @@ export const RoomListCard = ({
   return (
     <StyledData ref={ref} style={{ opacity }} data-handler-id={handlerId}>
       <td>
-        <img src={photo} />
+        <StyledIconRoom src={photo} />
         <div style={{ display: 'inline-block' }}>
           <div style={{ display: 'block' }}>
             {roomNumber}

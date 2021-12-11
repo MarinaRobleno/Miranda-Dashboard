@@ -15,6 +15,12 @@ import Button from "./Button";
 import styled from "styled-components";
 import { StyledLink } from "./SideBar";
 
+export const StyledIconRoom = styled.img`
+  width: 150px;
+  height: 77px;
+  object-fit: contain;
+`
+
 export const RoomList = () => {
   const myRooms = useSelector(selectRooms);
   const dispatch = useDispatch();
@@ -22,13 +28,13 @@ export const RoomList = () => {
   const [cards, setCards] = useState(myRooms);
   const [select, setSelect] = useState("");
   const [filter, setFilter] = useState('all')
-
+/*
   const handleSelect = (e) => {
     e.preventDefault();
     const newSelect = e.target.value;
     setSelect(newSelect);
     dispatch(orderBy(newSelect));
-  };
+  };*/
 
   const handleSwitchFilter = (e) => {
     e.preventDefault();
@@ -83,11 +89,11 @@ export const RoomList = () => {
               + New Room
             </Button>
           </StyledLink>
-          <StyledSelect value={select} onChange={handleSelect}>
+          {/*<StyledSelect value={select} onChange={handleSelect}>
             <option selected>Order By Price...</option>
             <option value={"higher"}>Higher</option>
             <option value={"lower"}>Lower</option>
-          </StyledSelect>
+  </StyledSelect>*/}
         </div>
       </StyledFilterHeader>
       <StyledTable>

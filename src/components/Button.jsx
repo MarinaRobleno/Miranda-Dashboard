@@ -15,7 +15,10 @@ justify-content: center;
     font-weight: ${props => props.weight};
     cursor: pointer;
     &:hover{
-
+        background : ${props => props.notes ? '#212121' : props.contact ? '#135846' : '#F8F8F8'};
+        color: ${props => props.notes ? '#FFFFFF' : props.contact ? '#FFFFFF' : props => props.checkIn ? '#5AD07A' : props.checkOut ? '#E23428' : props.inProgress ? '#FF9C3A': '#FFFFFF'};
+        border: 1px solid;
+        borderColor: ${props => props.checkIn ? '#5AD07A' : props.checkOut ? '#E23428' : props.inProgress ? '#FF9C3A': '#FFFFFF'};
     }
 `
 
