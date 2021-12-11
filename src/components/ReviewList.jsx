@@ -21,7 +21,6 @@ export function ReviewList() {
   };
   return (
     <>
-      <StyledBigPanelHeader>Latest Review by Customers</StyledBigPanelHeader>
       <div style={{ display: "flex" }}>
         {myContact.contact.map((contact) => (
           <StyledReviewPanel>

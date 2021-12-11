@@ -204,6 +204,7 @@ export function Dashboard() {
           overflowX: "auto",
         }}
       >
+        <StyledBigPanelHeader>Latest Review by Customers</StyledBigPanelHeader>
         <ReviewList/>
       </StyledBigPanel>
     </StyledGrid>

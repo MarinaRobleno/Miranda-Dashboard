@@ -13,10 +13,12 @@ export function Contact() {
       <StyledBigPanel
         style={{
           width: "100%",
-          minHeight: "433px",
+          minHeight: "275px",
           marginBottom: "40px",
           overflowY: "hidden",
           overflowX: "auto",
+          background: 'none',
+          padding: '0',
         }}
       >
         <ReviewList />

@@ -17,7 +17,7 @@ import { StyledLink } from "./SideBar";
 import { TiDelete } from "react-icons/ti";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { remove, orderBy, selectUsers } from '../features/slices/usersSlice';
+import { remove, orderBy, selectUsers } from "../features/slices/usersSlice";
 
 export const StyledDeleteUser = styled(TiDelete)`
   font-size: 30px;
@@ -26,26 +26,62 @@ export const StyledDeleteUser = styled(TiDelete)`
 `;
 
 export function UsersList() {
-    const myUsers = useSelector(selectUsers);
-    const dispatch = useDispatch();
+  const myUsers = useSelector(selectUsers);
+  const dispatch = useDispatch();
 
   const [filteredTerm, setFilteredTerm] = useState("");
+  const [selectedFilter, setSelectedFilter] = useState("all");
 
   const handleSearchUser = (e) => {
     setFilteredTerm(e.target.value);
   };
 
   const handleDeleteUser = (user) => {
-      dispatch(remove(user));
-  }
+    dispatch(remove(user));
+  };
+
+  const handleFilterItem = (e) => {
+    e.preventDefault();
+    setSelectedFilter(e.target.id);
+  };
 
   return (
     <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
       <StyledFilterHeader>
         <StyledFilterMenu>
-          <StyledMenuItem>All Users</StyledMenuItem>
-          <StyledMenuItem>Active Users</StyledMenuItem>
-          <StyledMenuItem>Inactive Users</StyledMenuItem>
+          <StyledMenuItem
+            id="all"
+            onClick={handleFilterItem}
+            style={
+              selectedFilter === "all"
+                ? { color: "#135846", borderBottom: "2px solid #135846" }
+                : { color: "#6E6E6E" }
+            }
+          >
+            All Users
+          </StyledMenuItem>
+          <StyledMenuItem
+            id="active"
+            onClick={handleFilterItem}
+            style={
+              selectedFilter === "active"
+                ? { color: "#135846", borderBottom: "2px solid #135846" }
+                : { color: "#6E6E6E" }
+            }
+          >
+            Active Users
+          </StyledMenuItem>
+          <StyledMenuItem
+            id="inactive"
+            onClick={handleFilterItem}
+            style={
+              selectedFilter === "inactive"
+                ? { color: "#135846", borderBottom: "2px solid #135846" }
+                : { color: "#6E6E6E" }
+            }
+          >
+            Inactive Users
+          </StyledMenuItem>
         </StyledFilterMenu>
         <StyledSearchContainer>
           <StyledSearchBar
@@ -88,14 +124,23 @@ export function UsersList() {
               return user;
             }
           })
+          .filter((user) => {
+            if (selectedFilter == 'active'){
+              return user.status == 'active'
+            }else if (selectedFilter == 'inactive'){
+              return user.status == 'inactive'
+            }else{
+              return user;
+            }
+          })
           .map((user) => (
             <StyledData>
               <td className="data-element">{user.id}</td>
               <td className="data-element">{user.name}</td>
               <td className="data-element">{user.mail}</td>
-              <td className="data-element">Status</td>
+              <td className="data-element">{user.status}</td>
               <td className="data-element">
-                <StyledDeleteUser onClick={() => handleDeleteUser(user)}/>
+                <StyledDeleteUser onClick={() => handleDeleteUser(user)} />
               </td>
             </StyledData>
           ))}

@@ -60,10 +60,10 @@ archivedButton.style.color = "#FFFFFF";*/}
     <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
       <StyledFilterHeader>
         <StyledFilterMenu>
-          <StyledMenuItem id="all" onClick={handleShowAll}>
+          <StyledMenuItem id="all" onClick={handleShowAll} style={showArchived === false ? {color: '#135846', borderBottom: '2px solid #135846'} : {color: '#6E6E6E'}}>
             All Contacts
           </StyledMenuItem>
-          <StyledMenuItem id="archived" onClick={handleShowArchived}>
+          <StyledMenuItem id="archived" onClick={handleShowArchived} style={showArchived === true ? {color: '#135846', borderBottom: '2px solid #135846'} : {color: '#6E6E6E'}}>
             Archived
           </StyledMenuItem>
         </StyledFilterMenu>
