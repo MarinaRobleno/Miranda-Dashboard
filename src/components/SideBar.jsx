@@ -297,7 +297,6 @@ export function SideBar() {
           </StyledAdminDashboard>
           <StyledCopyrightContainer>
             <StyledCopyright>© 2021 All Rights Reserved</StyledCopyright>
-            <StyledCopyright>Made with ♥ by Marina</StyledCopyright>
           </StyledCopyrightContainer>
         </StyledCopyrightContainer>
       </MenuButtonLine>
