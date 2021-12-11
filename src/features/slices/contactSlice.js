@@ -3,16 +3,20 @@ import contact from "../../data/contact.js";
 
 export const contactSlice = createSlice({
   name: "contact",
-  initialState: {contact: contact, reviewedContact: [], archived: []},
+  initialState: { contact: contact, reviewedContact: [], archived: [] },
   reducers: {
     remove: (state, action) => {
       state.reviewedContact.push(action.payload);
-      state.contact = state.contact.filter((contact) => contact.id !== action.payload.id);
+      state.contact = state.contact.filter(
+        (contact) => contact.id !== action.payload.id
+      );
       return state;
     },
     archive: (state, action) => {
       state.archived.push(action.payload);
-      state.reviewedContact = state.reviewedContact.filter((contact) => contact.id !== action.payload.id);
+      state.reviewedContact = state.reviewedContact.filter(
+        (contact) => contact.id !== action.payload.id
+      );
       return state;
     },
     orderBy: (state, action) => {
