@@ -40,7 +40,6 @@ export const RoomList = () => {
   const handleSwitchFilter = (e) => {
     e.preventDefault();
     setFilter(e.target.id)
-    console.log(e.target.id)
   }
 
   const moveCard = useCallback(
@@ -78,9 +77,9 @@ export const RoomList = () => {
     <>
       <StyledFilterHeader>
         <StyledFilterMenu>
-          <StyledMenuItem id='all' onClick={handleSwitchFilter}>All Rooms</StyledMenuItem>
-          <StyledMenuItem id='available' onClick={handleSwitchFilter}>Available Rooms</StyledMenuItem>
-          <StyledMenuItem id='booked' onClick={handleSwitchFilter}>Booked Rooms</StyledMenuItem>
+          <StyledMenuItem id='all' onClick={handleSwitchFilter} style={filter === 'all' ? {color: '#135846', borderBottom: '2px solid #135846'} : {color: '#6E6E6E'}}>All Rooms</StyledMenuItem>
+          <StyledMenuItem id='available' onClick={handleSwitchFilter} style={filter === 'available' ? {color: '#135846', borderBottom: '2px solid #135846'} : {color: '#6E6E6E'}}>Available Rooms</StyledMenuItem>
+          <StyledMenuItem id='booked' onClick={handleSwitchFilter} style={filter === 'booked' ? {color: '#135846', borderBottom: '2px solid #135846'} : {color: '#6E6E6E'}}>Booked Rooms</StyledMenuItem>
         </StyledFilterMenu>
         <div style={{ display: 'flex' }}>
           <StyledLink to="./new-room">

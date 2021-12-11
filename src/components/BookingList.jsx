@@ -128,7 +128,7 @@ export function BookingList() {
 
   const [select, setSelect] = useState("");
   const [dateRange, setDateRange] = useState({ start: "", end: "" });
-  const [selectedFilter, setSelectedFilter] = useState("");
+  const [selectedFilter, setSelectedFilter] = useState("all");
   const [filteredTerm, setFilteredTerm] = useState("");
 
   const removeBooking = (book) => {
@@ -137,8 +137,7 @@ export function BookingList() {
 
   const handleFilterItem = (e) => {
     e.preventDefault();
-    const newFilter = e.target.id;
-    setSelectedFilter(newFilter);
+    setSelectedFilter(e.target.id);
   };
 
   const handleSearchGuest = (e) => {
@@ -194,16 +193,16 @@ export function BookingList() {
     <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
       <StyledFilterHeader>
         <StyledFilterMenu>
-          <StyledMenuItem id="all" onClick={handleFilterItem}>
+          <StyledMenuItem id="all" onClick={handleFilterItem} style={selectedFilter === 'all' ? {color: '#135846', borderBottom: '2px solid #135846'} : {color: '#6E6E6E'}}>
             All Bookings
           </StyledMenuItem>
-          <StyledMenuItem id="in" onClick={handleFilterItem}>
+          <StyledMenuItem id="in" onClick={handleFilterItem} style={selectedFilter === 'in' ? {color: '#135846', borderBottom: '2px solid #135846'} : {color: '#6E6E6E'}}>
             Checking In
           </StyledMenuItem>
-          <StyledMenuItem id="out" onClick={handleFilterItem}>
+          <StyledMenuItem id="out" onClick={handleFilterItem} style={selectedFilter === 'out' ? {color: '#135846', borderBottom: '2px solid #135846'} : {color: '#6E6E6E'}}>
             Checking Out
           </StyledMenuItem>
-          <StyledMenuItem id="progress" onClick={handleFilterItem}>
+          <StyledMenuItem id="progress" onClick={handleFilterItem} style={selectedFilter === 'progress' ? {color: '#135846', borderBottom: '2px solid #135846'} : {color: '#6E6E6E'}}>
             In Progress
           </StyledMenuItem>
         </StyledFilterMenu>
@@ -283,13 +282,13 @@ export function BookingList() {
           .filter((book) => {
             if (selectedFilter === "all" || selectedFilter === "") {
               return book;
-            } /*else if (selectedFilter === "in") {
-              
+            } else if (selectedFilter === "in") {
+              return book.status === 'in';
             } else if (selectedFilter === "out") {
-              
+              return book.status === 'out'
             } else if (selectedFilter === "progress") {
-              
-            }*/
+              return book.status === 'progress'
+            }
           })
           .filter((book) => {
             if (filteredTerm == "") {
