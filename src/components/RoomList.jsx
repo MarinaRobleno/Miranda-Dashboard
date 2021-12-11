@@ -21,6 +21,7 @@ export const RoomList = () => {
 
   const [cards, setCards] = useState(myRooms);
   const [select, setSelect] = useState("");
+  const [filter, setFilter] = useState('all')
 
   const handleSelect = (e) => {
     e.preventDefault();
@@ -28,6 +29,12 @@ export const RoomList = () => {
     setSelect(newSelect);
     dispatch(orderBy(newSelect));
   };
+
+  const handleSwitchFilter = (e) => {
+    e.preventDefault();
+    setFilter(e.target.id)
+    console.log(e.target.id)
+  }
 
   const moveCard = useCallback(
     (dragIndex, hoverIndex) => {
@@ -54,6 +61,7 @@ export const RoomList = () => {
         roomNumber={card.roomNumber}
         room_type={card.room_type}
         amenities={card.amenities}
+        status={card.status}
         offer_price={card.offer_price}
         moveCard={moveCard}
       />
@@ -63,14 +71,14 @@ export const RoomList = () => {
     <>
       <StyledFilterHeader>
         <StyledFilterMenu>
-          <StyledMenuItem>All Rooms</StyledMenuItem>
-          <StyledMenuItem>Available Rooms</StyledMenuItem>
-          <StyledMenuItem>Booked Rooms</StyledMenuItem>
+          <StyledMenuItem id='all' onClick={handleSwitchFilter}>All Rooms</StyledMenuItem>
+          <StyledMenuItem id='available' onClick={handleSwitchFilter}>Available Rooms</StyledMenuItem>
+          <StyledMenuItem id='booked' onClick={handleSwitchFilter}>Booked Rooms</StyledMenuItem>
         </StyledFilterMenu>
-        <div style={{display:'flex'}}>
+        <div style={{ display: 'flex' }}>
           <StyledLink to="./new-room">
             <Button
-              style={{ width: "200px", height:'49px', backgroundColor: "#135846" }}
+              style={{ width: "200px", height: '49px', backgroundColor: "#135846" }}
             >
               + New Room
             </Button>
@@ -91,9 +99,18 @@ export const RoomList = () => {
           <th className="header-table-sector">Offer Price</th>
           <th className="header-table-sector">Status</th>
         </StyledHeader>
-        {cards.map((card, i) => renderCard(card, i))}
+        {cards
+          .filter((card) => {
+            if (filter === 'all') {
+              return card;
+            } else if (filter === 'available') {
+              return card.status === 'available';
+            } else {
+              return card.status === 'booked';
+            }
+          })
+          .map((card, i) => renderCard(card, i))}
       </StyledTable>
-
     </>
   );
 };

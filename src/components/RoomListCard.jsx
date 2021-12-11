@@ -12,6 +12,7 @@ export const RoomListCard = ({
   amenities,
   price,
   offer_price,
+  status,
   index,
   moveCard,
 }) => {
@@ -76,14 +77,14 @@ export const RoomListCard = ({
   return (
     <StyledData ref={ref} style={{ opacity }} data-handler-id={handlerId}>
       <td>
-        <img src={photo}/>
-        <div style={{display: 'inline-block'}}>
-            <div style={{display: 'block'}}>
-                {roomNumber}
-            </div>
-            <div style={{display: 'block'}}>  
-                {id}
-            </div>  
+        <img src={photo} />
+        <div style={{ display: 'inline-block' }}>
+          <div style={{ display: 'block' }}>
+            {roomNumber}
+          </div>
+          <div style={{ display: 'block' }}>
+            {id}
+          </div>
         </div>
       </td>
       <td>{room_type}</td>
@@ -91,7 +92,10 @@ export const RoomListCard = ({
       <td>${price}</td>
       <td>${offer_price}</td>
       <td>
-        <Button checkIn>Available</Button>
+        {status === 'available' ?
+          <Button checkIn>Available</Button>
+          :
+          <Button checkOut>Booked</Button>}
       </td>
     </StyledData>
   );
