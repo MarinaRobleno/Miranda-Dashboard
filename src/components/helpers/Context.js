@@ -7,7 +7,7 @@ export const AuthContext = createContext({
   mail: null,
 });
 
-export const authReducer = (state, action) => {
+export const AuthReducer = (state, action) => {
   switch (action.type) {
     case "login":
       return {
