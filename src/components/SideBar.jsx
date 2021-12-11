@@ -13,14 +13,14 @@ import { FaHotel } from "react-icons/fa";
 import { GiStarsStack } from "react-icons/gi";
 
 const StyledSideBarContent = styled.div`
-  width: 345px;
+  width: 300px;
   background-color: ${(props) => props.theme.colors.main_white};
 `;
 
 const MenuButtonLine = styled.div`
   display: flex;
   position: fixed;
-  width: 345px;
+  width: 300px;
   height: 100%;
   flex-direction: column;
   align-items: flex-start;
@@ -32,7 +32,7 @@ const MenuButtonLine = styled.div`
 const MenuButtons = styled.div`
   display: flex;
   height: 67px;
-  width: 343px;
+  width: 300px;
   justify-content: flex-start;
   align-items: center;
   text-align: center;
@@ -84,7 +84,7 @@ const ContactUsCard = styled.div`
   justify-content: center;
   width: 233px;
   height: 221px;
-  margin: 0 56px 62px;
+  margin: 0 auto 40px;
   padding: 24px 0;
   box-shadow: 0px 20px 30px #00000014;
   border-radius: 18px;
