@@ -18,7 +18,8 @@ import { StyledLink } from "./SideBar";
 export const StyledIconRoom = styled.img`
   width: 150px;
   height: 77px;
-  object-fit: contain;
+  object-fit: cover;
+  margin-right: 20px;
 `
 
 export const RoomList = () => {

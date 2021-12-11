@@ -77,7 +77,7 @@ export const RoomListCard = ({
   drag(drop(ref));
   return (
     <StyledData ref={ref} style={{ opacity }} data-handler-id={handlerId}>
-      <td>
+      <td style={{display: 'flex', alignItems: 'center'}}>
         <StyledIconRoom src={photo} />
         <div style={{ display: 'inline-block' }}>
           <div style={{ display: 'block' }}>

@@ -178,6 +178,14 @@ export function BookingList() {
     dispatch(orderBy(newOrderBy));
   };
 
+  const handleViewNotes = (request) => {
+    if (request) {
+      alert(request)
+    } else {
+      alert('No requests')
+    }
+  }
+
   const handleIdDetails = (id) => {
     dispatch(detailed(id))
   }
@@ -304,22 +312,30 @@ export function BookingList() {
               <td className="data-element">{book.checkIn}</td>
               <td className="data-element">{book.checkOut}</td>
               <td className="data-element">
-                <Button notes>View Notes</Button>
+                {book.special ?
+                  <Button notes onClick={() => handleViewNotes(book.special)}>View Notes</Button>
+                  :
+                  <Button noNotes >View Notes</Button>}
               </td>
               <td className="data-element">
                 <div>{book.roomType}</div>
                 {book.room_number}
               </td>
               <td className="data-element">
-                <Button checkIn name="Check In">
+                {book.status === 'in' ? <Button checkIn name="Check In">
                   Check In
-                </Button>
+                </Button> :
+                  book.status === 'out' ? <Button checkOut name="Check Out">
+                    Check Out
+                  </Button> : <Button inProgress name="In Progress">
+                    In Progress
+                  </Button>}
               </td>
               <td className="data-element">
                 <StyledLink to={{
                   pathname: `./${book.id}`
                 }}>
-                  <StyledDetailIcon onClick={() => handleIdDetails(book.id)}/>
+                  <StyledDetailIcon onClick={() => handleIdDetails(book.id)} />
                 </StyledLink>
               </td>
               <td className="data-element">
