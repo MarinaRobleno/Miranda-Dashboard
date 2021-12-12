@@ -156,13 +156,17 @@ function App() {
                 >
                   <StyledEnvelope />
                   {myContact.contact.length > 0 ? (
-                    <StyledNotificationCounter style={isSidebar ? { right: "418px" } : {right: '188px'}}>
+                    <StyledNotificationCounter
+                      style={
+                        isSidebar ? { right: "418px" } : { right: "188px" }
+                      }
+                    >
                       {myContact.contact.length}
                     </StyledNotificationCounter>
                   ) : null}
                   <StyledBell />
                   <StyledNotificationCounter
-                    style={isSidebar ? { right: "340px" } : {right: '110px'}}
+                    style={isSidebar ? { right: "340px" } : { right: "110px" }}
                   ></StyledNotificationCounter>
                   <StyledLogout onClick={() => setLoggedIn(false)} />
                 </div>
