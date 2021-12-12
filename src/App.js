@@ -55,20 +55,20 @@ const StyledHeader = styled.header`
   align-items: center;
   padding: 0 40px;
   width: 100%;
-  height: 120px;
+  height: 90px;
   box-shadow: 0px 3px 10px #00000005;
   background-color: ${(props) => props.theme.colors.main_white};
 `;
 
 const SideBarContainer = styled.div`
   min-height: 100%;
-  min-width: 300px;
+  min-width: 200px;
   box-shadow: 13px 3px 40px #00000005;
   background-color: ${(props) => props.theme.colors.main_white};
 `;
 
 const StyledHamburger = styled(HiOutlineMenuAlt2)`
-  font-size: 26px;
+  font-size: 20px;
   cursor: pointer;
   color: ${(props) => props.theme.colors.black};
 `;
@@ -77,7 +77,7 @@ const StyledLogout = styled(FiLogOut)`
   text-align: center;
   background: #ffffff 0% 0% no-repeat padding-box;
   border: none;
-  font: normal normal normal 26px/27px Poppins;
+  font: normal normal normal 20px/27px Poppins;
   letter-spacing: 0px;
   color: ${(props) => props.theme.colors.icon_black};
   cursor: pointer;
@@ -85,7 +85,7 @@ const StyledLogout = styled(FiLogOut)`
 `;
 
 const StyledEnvelope = styled(BiEnvelope)`
-  font-size: 30px;
+  font-size: 20px;
   margin: 0 29px;
   cursor: pointer;
   color: ${(props) => props.theme.colors.icon_black};
@@ -96,18 +96,18 @@ const StyledNotificationCounter = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 33px;
-  width: 25px;
-  height: 25px;
+  top: 25px;
+  width: 17px;
+  height: 17px;
   background: ${(props) => props.theme.colors.red} 0% 0% no-repeat padding-box;
   border: 2px solid #ffffff;
-  border-radius: 8px;
+  border-radius: 5px;
   color: white;
   font: normal normal 600 10px/21px Poppins;
 `;
 
 const StyledBell = styled(BiBell)`
-  font-size: 30px;
+  font-size: 20px;
   margin: 0 29px;
   cursor: pointer;
   color: ${(props) => props.theme.colors.icon_black};
@@ -156,7 +156,7 @@ function App() {
                 >
                   <StyledEnvelope />
                   {myContact.contact.length > 0 ? (
-                    <StyledNotificationCounter style={{ right: "545px" }}>
+                    <StyledNotificationCounter style={{ right: "535px" }}>
                       {myContact.contact.length}
                     </StyledNotificationCounter>
                   ) : null}

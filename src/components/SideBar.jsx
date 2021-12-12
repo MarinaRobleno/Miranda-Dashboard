@@ -13,7 +13,7 @@ import { FaHotel } from "react-icons/fa";
 import { GiStarsStack } from "react-icons/gi";
 
 const StyledSideBarContent = styled.div`
-  width: 300px;
+  width: 200px;
   background-color: ${(props) => props.theme.colors.main_white};
 `;
 
@@ -21,7 +21,7 @@ const MenuButtonLine = styled.div`
   display: flex;
   position: fixed;
   z-index: 2;
-  width: 300px;
+  width: 200px;
   height: 100%;
   flex-direction: column;
   align-items: flex-start;
@@ -33,14 +33,14 @@ const MenuButtonLine = styled.div`
 const MenuButtons = styled.div`
   display: flex;
   height: 67px;
-  width: 300px;
+  width: 200px;
   justify-content: flex-start;
   align-items: center;
   text-align: center;
-  padding-left: 56px;
+  padding-left: 30px;
   background-color: ${(props) => props.theme.colors.main_white};
   border: none;
-  font: normal normal normal 18px/27px Poppins;
+  font: normal normal 400 14px/27px Poppins;
   letter-spacing: 0px;
   color: ${(props) => props.theme.colors.green_light};
   cursor: pointer;
@@ -52,28 +52,28 @@ export const StyledLink = styled(Link)`
 
 const LogoContainer = styled.div`
   display: flex;
-  min-width: 345px;
+  min-width: 200px;
   align-items: center;
   text-align: center;
-  margin: 50px 40px 85px;
+  margin: 50px 20px 85px;
   color: ${(props) => props.theme.colors.icon_black};
   background-color: ${(props) => props.theme.colors.main_white};
   font-weight: 800;
-  font-size: 30px;
+  font-size: 20px;
 `;
 
 const StyledLogoPack = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: 30px;
+  margin-right: 10px;
   margin-bottom: 2px;
   color: ${(props) => props.theme.colors.red};
   background-color: ${(props) => props.theme.colors.main_white};
 `;
 
 const StyledLogoHotel = styled(FaHotel)`
-  font-size: 40px;
+  font-size: 30px;
   color: ${(props) => props.theme.colors.green_dark};
   background-color: ${(props) => props.theme.colors.main_white};
 `;
@@ -102,7 +102,7 @@ const StyledCopyrightContainer = styled.div`
 
 const StyledAdminDashboard = styled.div`
   text-align: left;
-  font: normal normal 600 16px/25px Poppins;
+  font: normal normal 600 10px/25px Poppins;
   letter-spacing: 0px;
   color: ${(props) => props.theme.colors.icon_black};
 `;
@@ -141,7 +141,7 @@ export function SideBar() {
               <div>Miranda</div>
               <div
                 style={{
-                  font: "normal normal 300 12px/18px Poppins",
+                  font: "normal normal 300 10px/18px Poppins",
                   color: "#5D5449",
                 }}
               >

@@ -35,7 +35,7 @@ export const StyledMenuItem = styled.div`
 export const StyledSearchContainer = styled.form`
   display: flex;
   align-items: center;
-  max-width: 351px;
+  max-width: 300px;
   height: 57px;
   background-color: ${(props) => props.theme.colors.search_bar_white};
   border: none;
@@ -62,7 +62,7 @@ export const StyledSearchIcon = styled(BiSearchAlt2)`
 `;
 
 export const StyledCalendarBar = styled.input`
-  width: 200px;
+  max-width: 200px;
   height: 57px;
   border: none;
   padding: 15px;
@@ -74,11 +74,10 @@ export const StyledCalendarBar = styled.input`
 `;
 
 export const StyledSelect = styled.select`
-  min-width: 129px;
+  max-width: 129px;
   height: 49px;
   border: 1px solid #135846;
   border-radius: 12px;
-  margin-left: 20px;
   padding: 13px;
   font: normal normal 600 14px/21px Poppins;
   color: ${(props) => props.theme.colors.green_dark};
