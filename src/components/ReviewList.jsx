@@ -25,12 +25,12 @@ export function ReviewList() {
         {myContact.contact.map((contact) => (
           <StyledReviewPanel>
             <div
-              style={{ color: "#4E4E4E", lineHeight: "28px" }}
+              style={{ color: "#4E4E4E", lineHeight: "20px" }}
               onClick={() => handlePopUp(contact)}
             >
               {contact.comment}
             </div>
-            <div style={{ color: "#4E4E4E", lineHeight: "28px" }}>
+            <div style={{ color: "#4E4E4E", lineHeight: "20px" }}>
               {contact.date}
             </div>
             <div
@@ -47,10 +47,10 @@ export function ReviewList() {
                 <div style={{ color: "#262626", fontWeight: "600" }}>
                   {contact.customer}
                 </div>
-                <div style={{ color: "#799283", fontSize: "14px" }}>
+                <div style={{ color: "#799283", fontSize: "12px" }}>
                   {contact.mail}
                 </div>
-                <div style={{ color: "#799283", fontSize: "14px" }}>
+                <div style={{ color: "#799283", fontSize: "12px" }}>
                   {contact.phone}
                 </div>
               </div>

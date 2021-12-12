@@ -40,7 +40,7 @@ const RightContent = styled.div`
 const Content = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 120px;
+  margin-top: 90px;
   min-height: 100%;
   padding: 50px;
   background-color: ${(props) => props.theme.colors.main_grey};
@@ -62,7 +62,7 @@ const StyledHeader = styled.header`
 
 const SideBarContainer = styled.div`
   min-height: 100%;
-  min-width: 200px;
+  min-width: 230px;
   box-shadow: 13px 3px 40px #00000005;
   background-color: ${(props) => props.theme.colors.main_white};
 `;
@@ -150,19 +150,19 @@ function App() {
                 <div
                   style={
                     isSidebar
-                      ? { paddingRight: "345px" }
+                      ? { paddingRight: "230px" }
                       : { paddingRight: "0" }
                   }
                 >
                   <StyledEnvelope />
                   {myContact.contact.length > 0 ? (
-                    <StyledNotificationCounter style={{ right: "535px" }}>
+                    <StyledNotificationCounter style={isSidebar ? { right: "418px" } : {right: '188px'}}>
                       {myContact.contact.length}
                     </StyledNotificationCounter>
                   ) : null}
                   <StyledBell />
                   <StyledNotificationCounter
-                    style={{ right: "460px" }}
+                    style={isSidebar ? { right: "340px" } : {right: '110px'}}
                   ></StyledNotificationCounter>
                   <StyledLogout onClick={() => setLoggedIn(false)} />
                 </div>

@@ -13,7 +13,7 @@ import { FaHotel } from "react-icons/fa";
 import { GiStarsStack } from "react-icons/gi";
 
 const StyledSideBarContent = styled.div`
-  width: 200px;
+  width: 230px;
   background-color: ${(props) => props.theme.colors.main_white};
 `;
 
@@ -21,7 +21,7 @@ const MenuButtonLine = styled.div`
   display: flex;
   position: fixed;
   z-index: 2;
-  width: 200px;
+  width: 230px;
   height: 100%;
   flex-direction: column;
   align-items: flex-start;
@@ -32,8 +32,8 @@ const MenuButtonLine = styled.div`
 
 const MenuButtons = styled.div`
   display: flex;
-  height: 67px;
-  width: 200px;
+  height: 50px;
+  width: 230px;
   justify-content: flex-start;
   align-items: center;
   text-align: center;
@@ -52,10 +52,10 @@ export const StyledLink = styled(Link)`
 
 const LogoContainer = styled.div`
   display: flex;
-  min-width: 200px;
+  min-width: 230px;
   align-items: center;
   text-align: center;
-  margin: 50px 20px 85px;
+  margin: 50px 25px;
   color: ${(props) => props.theme.colors.icon_black};
   background-color: ${(props) => props.theme.colors.main_white};
   font-weight: 800;
@@ -73,7 +73,7 @@ const StyledLogoPack = styled.div`
 `;
 
 const StyledLogoHotel = styled(FaHotel)`
-  font-size: 30px;
+  font-size: 28px;
   color: ${(props) => props.theme.colors.green_dark};
   background-color: ${(props) => props.theme.colors.main_white};
 `;
@@ -83,33 +83,34 @@ const ContactUsCard = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 233px;
-  height: 250px;
-  margin: 0 auto 40px;
-  padding: 24px 0;
+  width: 200px;
+  height: 180px;
+  margin: 0 auto 15px;
+  padding: 14px 0;
   box-shadow: 0px 20px 30px #00000014;
   border-radius: 18px;
 `;
 
 const StyledCopyrightContainer = styled.div`
-  height: 135px;
+  height: 100px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   text-align: left;
   margin: 0 auto;
+
 `;
 
 const StyledAdminDashboard = styled.div`
   text-align: left;
-  font: normal normal 600 10px/25px Poppins;
+  font: normal normal 600 12px/25px Poppins;
   letter-spacing: 0px;
   color: ${(props) => props.theme.colors.icon_black};
 `;
 
 const StyledCopyright = styled.div`
   color: ${(props) => props.theme.colors.green_light};
-  font: normal normal 300 14px/21px Poppins;
+  font: normal normal 300 12px/21px Poppins;
   text-align: left;
 `;
 
@@ -141,7 +142,7 @@ export function SideBar() {
               <div>Miranda</div>
               <div
                 style={{
-                  font: "normal normal 300 10px/18px Poppins",
+                  font: "normal normal 300 12px/18px Poppins",
                   color: "#5D5449",
                 }}
               >
@@ -161,14 +162,14 @@ export function SideBar() {
               }}
             >
               <RiDashboardLine
-                style={{ marginRight: "27px", fontSize: "24px" }}
+                style={{ marginRight: "27px", fontSize: "20px" }}
               />
               <div>Dashboard</div>
             </MenuButtons>
           ) : (
             <MenuButtons>
               <RiDashboardLine
-                style={{ marginRight: "27px", fontSize: "24px" }}
+                style={{ marginRight: "27px", fontSize: "20px" }}
               />
               <div>Dashboard</div>
             </MenuButtons>
@@ -184,12 +185,12 @@ export function SideBar() {
                 fontWeight: "600",
               }}
             >
-              <BiKey style={{ marginRight: "27px", fontSize: "24px" }} />
+              <BiKey style={{ marginRight: "27px", fontSize: "20px" }} />
               <div>Room</div>
             </MenuButtons>
           ) : (
             <MenuButtons>
-              <BiKey style={{ marginRight: "27px", fontSize: "24px" }} />
+              <BiKey style={{ marginRight: "27px", fontSize: "20px" }} />
               <div>Room</div>
             </MenuButtons>
           )}
@@ -205,14 +206,14 @@ export function SideBar() {
               }}
             >
               <BsCalendarCheck
-                style={{ marginRight: "27px", fontSize: "24px" }}
+                style={{ marginRight: "27px", fontSize: "20px" }}
               />
               <div>Bookings</div>
             </MenuButtons>
           ) : (
             <MenuButtons>
               <BsCalendarCheck
-                style={{ marginRight: "27px", fontSize: "24px" }}
+                style={{ marginRight: "27px", fontSize: "20px" }}
               />
               <div>Bookings</div>
             </MenuButtons>
@@ -228,12 +229,12 @@ export function SideBar() {
                 fontWeight: "600",
               }}
             >
-              <IoMdContacts style={{ marginRight: "27px", fontSize: "24px" }} />
+              <IoMdContacts style={{ marginRight: "27px", fontSize: "20px" }} />
               <div>Contact</div>
             </MenuButtons>
           ) : (
             <MenuButtons>
-              <IoMdContacts style={{ marginRight: "27px", fontSize: "24px" }} />
+              <IoMdContacts style={{ marginRight: "27px", fontSize: "20px" }} />
               <div>Contact</div>
             </MenuButtons>
           )}
@@ -248,12 +249,12 @@ export function SideBar() {
                 fontWeight: "600",
               }}
             >
-              <FiUser style={{ marginRight: "27px", fontSize: "24px" }} />
+              <FiUser style={{ marginRight: "27px", fontSize: "20px" }} />
               <div>Users</div>
             </MenuButtons>
           ) : (
             <MenuButtons>
-              <FiUser style={{ marginRight: "27px", fontSize: "24px" }} />
+              <FiUser style={{ marginRight: "27px", fontSize: "20px" }} />
               <div>Users</div>
             </MenuButtons>
           )}
@@ -263,8 +264,8 @@ export function SideBar() {
             style={{
               background: "#FFFFFF 0% 0% no-repeat padding-box",
               borderRadius: "8px",
-              width: "70px",
-              height: "70px",
+              width: "30px",
+              height: "30px",
               color: "#C5C5C5",
               marginBottom: "15px;",
             }}
@@ -273,7 +274,7 @@ export function SideBar() {
           <div
             style={{
               color: "#393939",
-              font: "normal normal medium 16px/25px Poppins",
+              font: "normal normal 600 14px/25px Poppins",
               marginBottom: "9px",
             }}
           >
@@ -283,7 +284,7 @@ export function SideBar() {
             style={{
               color: "#B2B2B2",
               font: "normal normal 300 12px/18px Poppins",
-              marginBottom: "16px",
+              marginBottom: "8px",
             }}
           >
             marinarobleno@mail.com
@@ -292,12 +293,13 @@ export function SideBar() {
             style={{
               color: "#B2B2B2",
               font: "normal normal 300 12px/18px Poppins",
-              marginBottom: "16px",
+              marginBottom: "8px",
+              whiteSpace: 'normal'
             }}
           >
-            https://github.com/MarinaRobleno
+            github.com/MarinaRobleno
           </div>          
-          <Button contact weight="600">
+          <Button contact weight="600" style={{width: '50px', height: '30px', fontSize: '12px'}}>
             Edit
           </Button>
         </ContactUsCard>

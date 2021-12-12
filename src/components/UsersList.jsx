@@ -7,7 +7,7 @@ import {
   StyledFilterMenu,
   StyledMenuItem,
   StyledFilterHeader,
-  StyledSelect,
+  StyledDataElement,
   StyledSearchContainer,
   StyledSearchBar,
   StyledSearchIcon,
@@ -137,21 +137,21 @@ export function UsersList() {
           .map((user) => (
             <StyledData>
               <img src={user.photo} />
-              <td className="data-element">{user.id}</td>
-              <td className="data-element">{user.name}</td>
-              <td className="data-element">{user.mail}</td>
+              <StyledDataElement>{user.id}</StyledDataElement>
+              <StyledDataElement>{user.name}</StyledDataElement>
+              <StyledDataElement>{user.mail}</StyledDataElement>
               {user.status === "active" ? (
-                <td className="data-element" style={{ color: "#5AD07A" }}>
+                <StyledDataElement style={{ color: "#5AD07A" }}>
                   {user.status.toUpperCase()}
-                </td>
+                </StyledDataElement>
               ) : (
-                <td className="data-element" style={{ color: "#E23428" }}>
+                <StyledDataElement style={{ color: "#E23428" }}>
                   {user.status.toUpperCase()}
-                </td>
+                </StyledDataElement>
               )}
-              <td className="data-element">
+              <StyledDataElement>
                 <StyledDeleteUser onClick={() => handleDeleteUser(user)} />
-              </td>
+              </StyledDataElement>
             </StyledData>
           ))}
       </StyledTable>

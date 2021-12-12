@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import { ItemTypes } from "./helpers/ItemTypes";
-import { StyledData } from "./BookingList";
+import { StyledData, StyledDataElement } from "./BookingList";
 import Button from "./Button";
 import { StyledIconRoom } from "./RoomList";
 
@@ -77,7 +77,7 @@ export const RoomListCard = ({
   drag(drop(ref));
   return (
     <StyledData ref={ref} style={{ opacity }} data-handler-id={handlerId}>
-      <td style={{display: 'flex', alignItems: 'center'}}>
+      <StyledDataElement style={{display: 'flex', alignItems: 'center'}}>
         <StyledIconRoom src={photo} />
         <div style={{ display: 'inline-block' }}>
           <div style={{ display: 'block' }}>
@@ -87,17 +87,17 @@ export const RoomListCard = ({
             {id}
           </div>
         </div>
-      </td>
-      <td>{room_type}</td>
-      <td>{amenities}</td>
-      <td>${price}</td>
-      <td>${offer_price}</td>
-      <td>
+      </StyledDataElement>
+      <StyledDataElement>{room_type}</StyledDataElement>
+      <StyledDataElement>{amenities}</StyledDataElement>
+      <StyledDataElement>${price}</StyledDataElement>
+      <StyledDataElement>${offer_price}</StyledDataElement>
+      <StyledDataElement>
         {status === 'available' ?
           <Button checkIn>Available</Button>
           :
           <Button checkOut>Booked</Button>}
-      </td>
+      </StyledDataElement>
     </StyledData>
   );
 };

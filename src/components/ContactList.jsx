@@ -7,6 +7,7 @@ import {
   StyledSelect,
   StyledHeader,
   StyledTable,
+  StyledDataElement,
 } from "./BookingList";
 import Button from "./Button";
 import {
@@ -85,23 +86,23 @@ archivedButton.style.color = "#FFFFFF";*/}
         {showArchived
           ? myContact.archived.map((contact) => (
               <StyledData>
-                <td className="data-element">{contact.id}</td>
-                <td className="data-element">{contact.date}</td>
-                <td className="data-element">{contact.customer}</td>
-                <td className="data-element">{contact.mail}</td>
-                <td className="data-element">{contact.phone}</td>
-                <td className="data-element">{contact.comment}</td>
+                <StyledDataElement>{contact.id}</StyledDataElement>
+                <StyledDataElement>{contact.date}</StyledDataElement>
+                <StyledDataElement>{contact.customer}</StyledDataElement>
+                <StyledDataElement>{contact.mail}</StyledDataElement>
+                <StyledDataElement>{contact.phone}</StyledDataElement>
+                <StyledDataElement>{contact.comment}</StyledDataElement>
               </StyledData>
             ))
           : myContact.reviewedContact.map((contact) => (
               <StyledData>
-                <td className="data-element">{contact.id}</td>
-                <td className="data-element">{contact.date}</td>
-                <td className="data-element">{contact.customer}</td>
-                <td className="data-element">{contact.mail}</td>
-                <td className="data-element">{contact.phone}</td>
-                <td className="data-element">{contact.comment}</td>
-                <td className="data-element">
+                <StyledDataElement>{contact.id}</StyledDataElement>
+                <StyledDataElement>{contact.date}</StyledDataElement>
+                <StyledDataElement>{contact.customer}</StyledDataElement>
+                <StyledDataElement>{contact.mail}</StyledDataElement>
+                <StyledDataElement>{contact.phone}</StyledDataElement>
+                <StyledDataElement>{contact.comment}</StyledDataElement>
+                <StyledDataElement>
                   <StyledArchiveButton
                     id={contact.id}
                     archive
@@ -109,7 +110,7 @@ archivedButton.style.color = "#FFFFFF";*/}
                   >
                     Archive
                   </StyledArchiveButton>
-                </td>
+                </StyledDataElement>
               </StyledData>
             ))}
       </StyledTable>

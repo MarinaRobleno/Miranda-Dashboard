@@ -33,7 +33,7 @@ const StyledDivColumn = styled.div`
 `;
 
 const StyledDetailSection = styled.div`
-  font: normal normal 500 16px/21px Poppins;
+  font: normal normal 500 14px/21px Poppins;
   color: #799283;
 `;
 
@@ -54,25 +54,25 @@ export function BookDetail() {
             <StyledDetailsContainer>
               <StyledDivRow>
                 <StyledDivColumn>
-                  <div style={{ font: "normal normal 600 30px/46px Poppins" }}>
+                  <div style={{ font: "normal normal 600 20px/46px Poppins" }}>
                     {book.guest}
                   </div>
                   <StyledDetailSection>ID: {book.id}</StyledDetailSection>
                 </StyledDivColumn>
                 <BsThreeDotsVertical
-                  style={{ fontSize: "20px", cursor: "pointer" }}
+                  style={{ fontSize: "15px", cursor: "pointer" }}
                 />
               </StyledDivRow>
               <StyledDivRow>
                 <StyledDivColumn>
                   <StyledDetailSection>Check In</StyledDetailSection>
-                  <div style={{ font: "normal normal 600 18px/46px Poppins" }}>
+                  <div style={{ font: "normal normal 600 14px/46px Poppins" }}>
                     {book.checkIn}
                   </div>
                 </StyledDivColumn>
                 <StyledDivColumn>
                   <StyledDetailSection>Check Out</StyledDetailSection>
-                  <div style={{ font: "normal normal 600 18px/46px Poppins" }}>
+                  <div style={{ font: "normal normal 600 14px/46px Poppins" }}>
                     {book.checkOut}
                   </div>
                 </StyledDivColumn>
@@ -88,30 +88,29 @@ export function BookDetail() {
               <StyledDivRow>
                 <StyledDivColumn>
                   <StyledDetailSection>Room info</StyledDetailSection>
-                  <div style={{ font: "normal normal 600 22px/46px Poppins" }}>
+                  <div style={{ font: "normal normal 600 16px/46px Poppins" }}>
                     {book.room_number}
                   </div>
                 </StyledDivColumn>
                 <StyledDivColumn>
                   <StyledDetailSection>Price</StyledDetailSection>
-                  <div style={{ font: "normal normal 600 22px/46px Poppins" }}>
+                  <div style={{ font: "normal normal 600 16px/46px Poppins" }}>
                     Price in numbers
                   </div>
                 </StyledDivColumn>
               </StyledDivRow>
               <div>{book.special}</div>
               <StyledDivColumn>
-                {" "}
                 <StyledDetailSection>Amenities</StyledDetailSection>
                 <div>List of amenities</div>
               </StyledDivColumn>
               <StyledLink to="/bookings">
                 <Button
                   style={{
-                    width: "59px",
-                    height: "59px",
+                    width: "40px",
+                    height: "40px",
                     backgroundColor: "#135846",
-                    font: "normal normal 500 25px/25px Poppins",
+                    font: "normal normal 500 16px/25px Poppins",
                   }}
                 >
                   <RiArrowGoBackFill />
@@ -128,7 +127,7 @@ export function BookDetail() {
             >
               <StyledDivRow
                 style={{
-                  font: "normal normal 600 24px/35px Poppins",
+                  font: "normal normal 600 16px/35px Poppins",
                   color: "white",
                 }}
               >

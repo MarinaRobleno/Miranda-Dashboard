@@ -13,7 +13,7 @@ export function Contact() {
       <StyledBigPanel
         style={{
           width: "100%",
-          minHeight: "275px",
+          minHeight: "180px",
           marginBottom: "40px",
           overflowY: "hidden",
           overflowX: "auto",

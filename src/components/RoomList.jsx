@@ -84,7 +84,7 @@ export const RoomList = () => {
         <div style={{ display: 'flex' }}>
           <StyledLink to="./new-room">
             <Button
-              style={{ width: "200px", height: '49px', backgroundColor: "#135846" }}
+              style={{ width: "150px", height: '49px', backgroundColor: "#135846" }}
             >
               + New Room
             </Button>

@@ -17,17 +17,19 @@ export const StyledFilterHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 35px;
+  margin-bottom: 20px;
 `;
 
 export const StyledFilterMenu = styled.div`
   display: flex;
   justify-content: space-around;
+  max-width: 50%;
 `;
 
 export const StyledMenuItem = styled.div`
-  padding: 13px 26px;
+padding: 0 10px 10px;
   font-weight: 500;
+  font-size: 14px;
   color: ${(props) => props.theme.colors.letter_grey_medium};
   border-bottom: 1px solid ${(props) => props.theme.colors.border_grey_light_5};
   cursor: pointer;
@@ -35,8 +37,8 @@ export const StyledMenuItem = styled.div`
 export const StyledSearchContainer = styled.form`
   display: flex;
   align-items: center;
-  max-width: 300px;
-  height: 57px;
+  max-width: 200px;
+  height: 40px;
   background-color: ${(props) => props.theme.colors.search_bar_white};
   border: none;
   border-radius: 12px;
@@ -45,8 +47,8 @@ export const StyledSearchContainer = styled.form`
 export const StyledSearchBar = styled.input`
   width: 100%;
   height: 100%;
-  margin-left: 25px;
-  font: normal normal 500 16px/21px Poppins;
+  margin-left: 15px;
+  font: normal normal 500 12px/21px Poppins;
   color: ${(props) => props.theme.colors.letter_grey_medium};
   background-color: ${(props) => props.theme.colors.search_bar_white};
   border: none;
@@ -56,17 +58,18 @@ export const StyledSearchBar = styled.input`
 `;
 
 export const StyledSearchIcon = styled(BiSearchAlt2)`
-  font-size: 35px;
+  font-size: 25px;
   color: ${(props) => props.theme.colors.letter_grey_medium};
   margin-right: 29px;
 `;
 
 export const StyledCalendarBar = styled.input`
-  max-width: 200px;
-  height: 57px;
+  max-width: 120px;
+  height: 40px;
+  padding-left: 10px;
   border: none;
-  padding: 15px;
-  font: normal normal 300 14px/21px Poppins;
+  border-radius: 12px;
+  font: normal normal 300 10px/21px Poppins;
   background-color: ${(props) => props.theme.colors.search_bar_white};
   &:focus {
     outline: none;
@@ -74,13 +77,15 @@ export const StyledCalendarBar = styled.input`
 `;
 
 export const StyledSelect = styled.select`
-  max-width: 129px;
-  height: 49px;
+  max-width: 120px;
+  height: 40px;
   border: 1px solid #135846;
   border-radius: 12px;
-  padding: 13px;
-  font: normal normal 600 14px/21px Poppins;
+  padding: 5px;
+  margin-left: 10px;
+  font: normal normal 600 12px/21px Poppins;
   color: ${(props) => props.theme.colors.green_dark};
+  background-color: ${(props) => props.theme.colors.search_bar_white};
   cursor: pointer;
   &:focus {
     outline: none;
@@ -103,22 +108,27 @@ export const StyledTable = styled.table`
 `;
 
 export const StyledHeader = styled.tr`
-  font: normal normal 600 16px/25px Poppins;
+  font: normal normal 600 14px/25px Poppins;
 `;
 
 export const StyledData = styled.tr`
+font-size: 13px;
   &:hover {
     box-shadow: 0px 4px 30px #0000001a;
   }
 `;
 
+export const StyledDataElement = styled.td`
+padding: 10px 0;
+`
+
 export const StyledDetailIcon = styled(BiSidebar)`
-  font-size: 20px;
+  font-size: 18px;
   cursor: pointer;
 `;
 
 export const StyledBinIcon = styled(AiOutlineDelete)`
-  font-size: 20px;
+  font-size: 18px;
   cursor: pointer;
 `;
 
@@ -303,24 +313,24 @@ export function BookingList() {
           })
           .map((book) => (
             <StyledData>
-              <td className="data-element">
+              <StyledDataElement>
                 <div>{book.guest}</div>
                 {book.id}
-              </td>
-              <td className="data-element">{book.orderDate}</td>
-              <td className="data-element">{book.checkIn}</td>
-              <td className="data-element">{book.checkOut}</td>
-              <td className="data-element">
+              </StyledDataElement>
+              <StyledDataElement>{book.orderDate}</StyledDataElement>
+              <StyledDataElement>{book.checkIn}</StyledDataElement>
+              <StyledDataElement>{book.checkOut}</StyledDataElement>
+              <StyledDataElement>
                 {book.special ?
                   <Button notes onClick={() => handleViewNotes(book.special)}>View Notes</Button>
                   :
                   <Button noNotes >View Notes</Button>}
-              </td>
-              <td className="data-element">
+              </StyledDataElement>
+              <StyledDataElement>
                 <div>{book.roomType}</div>
                 {book.room_number}
-              </td>
-              <td className="data-element">
+              </StyledDataElement>
+              <StyledDataElement>
                 {book.status === 'in' ? <Button checkIn name="Check In">
                   Check In
                 </Button> :
@@ -329,17 +339,17 @@ export function BookingList() {
                   </Button> : <Button inProgress name="In Progress">
                     In Progress
                   </Button>}
-              </td>
-              <td className="data-element">
+              </StyledDataElement>
+              <StyledDataElement>
                 <StyledLink to={{
                   pathname: `./${book.id}`
                 }}>
                   <StyledDetailIcon onClick={() => handleIdDetails(book.id)} />
                 </StyledLink>
-              </td>
-              <td className="data-element">
+              </StyledDataElement>
+              <StyledDataElement>
                 <StyledBinIcon onClick={() => removeBooking(book)} />
-              </td>
+              </StyledDataElement>
             </StyledData>
           ))}
       </StyledTable>

@@ -14,15 +14,15 @@ const StyledGrid = styled.div`
   display: grid;
   grid-template-columns: auto auto auto auto;
   grid-template-rows: auto auto auto auto auto auto;
-  grid-gap: 50px;
+  grid-gap: 20px;
 `;
 
 const StyledKpi = styled.div`
   display: flex;
   align-items: center;
   justify-content: left;
-  min-width: 340px;
-  min-height: 125px;
+  min-width: 200px;
+  min-height: 80px;
   background-color: ${(props) => props.theme.colors.main_white};
   box-shadow: 0px 4px 4px #00000005;
   border-radius: 12px;
@@ -34,14 +34,14 @@ const StyledIconBackground = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 65px;
-  height: 65px;
+  width: 40px;
+  height: 40px;
   padding: 8px;
-  margin: 0 22px 0 30px;
+  margin: 0 15px 0 20px;
   background-color: ${(props) => props.theme.colors.flesh};
   border-radius: 8px;
   color: ${(props) => props.theme.colors.red};
-  font-size: 30px;
+  font-size: 20px;
   &:hover {
     background-color: ${(props) => props.theme.colors.red};
     color: ${(props) => props.theme.colors.flesh};
@@ -49,14 +49,14 @@ const StyledIconBackground = styled.div`
 `;
 
 export const StyledBigPanelHeader = styled.div`
-  margin: 25px 0;
-  font-size: 20px;
+  font-size: 18px;
+  margin-bottom: 15px;
   font-weight: 600;
   color: ${(props) => props.theme.colors.letter_grey_dark};
 `;
 
 export const StyledBigPanel = styled.div`
-  min-height: 513px;
+  min-height: 280px;
   background-color: ${(props) => props.theme.colors.main_white};
   box-shadow: 0px 4px 4px #00000005;
   border-radius: 12px;
@@ -67,12 +67,11 @@ export const StyledReviewPanel = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  font-size: 16px;
-  min-width: 431px;
-  height: 275px;
-  margin: auto 0;
+  font-size: 12px;
+  min-width: 300px;
+  height: 200px;
   margin-right: 40px;
-  padding: 30px;
+  padding: 20px;
   background: #ffffff 0% 0% no-repeat padding-box;
   border: 1px solid ${(props) => props.theme.colors.border_grey_light};
   border-radius: 20px;
@@ -82,7 +81,7 @@ export const StyledReviewPanel = styled.div`
 `;
 
 export const StyledDeleteReview = styled(TiDeleteOutline)`
-  font-size: 28px;
+  font-size: 20px;
   color: ${(props) => props.theme.colors.red};
   cursor: pointer;
 `;
@@ -96,12 +95,12 @@ export function Dashboard() {
           <BiBed />
         </StyledIconBackground>
         <StyledKpiData>
-          <div style={{ font: "normal normal 600 30px/46px Poppins" }}>
+          <div style={{ font: "normal normal 600 20px/26px Poppins" }}>
             8,461
           </div>
           <div
             style={{
-              font: "normal normal 300 14px/21px Poppins",
+              font: "normal normal 300 12px/21px Poppins",
               letterSpacing: "0px",
               color: "#787878",
             }}
@@ -115,10 +114,10 @@ export function Dashboard() {
           <BsCalendarCheck />
         </StyledIconBackground>
         <StyledKpiData>
-          <div style={{ font: "normal normal 600 30px/46px Poppins" }}>963</div>
+          <div style={{ font: "normal normal 600 20px/26px Poppins" }}>963</div>
           <div
             style={{
-              font: "normal normal 300 14px/21px Poppins",
+              font: "normal normal 300 12px/21px Poppins",
               letterSpacing: "0px",
               color: "#787878",
             }}
@@ -132,10 +131,10 @@ export function Dashboard() {
           <BiLogIn />
         </StyledIconBackground>
         <StyledKpiData>
-          <div style={{ font: "normal normal 600 30px/46px Poppins" }}>753</div>
+          <div style={{ font: "normal normal 600 20px/26px Poppins" }}>753</div>
           <div
             style={{
-              font: "normal normal 300 14px/21px Poppins",
+              font: "normal normal 300 12px/21px Poppins",
               letterSpacing: "0px",
               color: "#787878",
             }}
@@ -149,10 +148,10 @@ export function Dashboard() {
           <BiLogOut />
         </StyledIconBackground>
         <StyledKpiData>
-          <div style={{ font: "normal normal 600 30px/46px Poppins" }}>516</div>
+          <div style={{ font: "normal normal 600 20px/26px Poppins" }}>516</div>
           <div
             style={{
-              font: "normal normal 300 14px/21px Poppins",
+              font: "normal normal 300 12px/21px Poppins",
               letterSpacing: "0px",
               color: "#787878",
             }}
@@ -183,7 +182,7 @@ export function Dashboard() {
       </StyledBigPanel>
       <StyledBigPanel
         style={{
-          minHeight: "433px",
+          minHeight: "200px",
           gridColumnStart: "1",
           gridColumnEnd: "5",
           gridRowStart: "4",
@@ -195,7 +194,6 @@ export function Dashboard() {
       <StyledBigPanel
         style={{
           width: "auto",
-          minHeight: "433px",
           gridColumnStart: "1",
           gridColumnEnd: "5",
           gridRowStart: "5",
