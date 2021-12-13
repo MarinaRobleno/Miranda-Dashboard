@@ -94,7 +94,7 @@ export function UsersList() {
           <StyledLink to="./new-user">
             <Button
               style={{
-                width: "200px",
+                width: "150px",
                 height: "49px",
                 backgroundColor: "#135846",
               }}
