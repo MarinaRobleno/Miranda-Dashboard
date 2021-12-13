@@ -200,7 +200,7 @@ export function Dashboard() {
         }}
       >
         <StyledBigPanelHeader>Latest Review by Customers</StyledBigPanelHeader>
-        <ReviewList/>
+        <ReviewList />
       </StyledBigPanel>
     </StyledGrid>
   );
