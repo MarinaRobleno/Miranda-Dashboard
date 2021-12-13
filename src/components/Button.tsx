@@ -1,7 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export default styled.button`
+interface ButtonProps {
+    readonly checkIn: boolean;
+    readonly checkOut: boolean;
+    readonly inProgress: boolean;
+    readonly noNotes: boolean;
+    readonly archive: boolean;
+    readonly notes: boolean;
+    readonly contact: boolean;
+    readonly weight: number;
+}
+
+export default styled.button<ButtonProps>`
 display: flex;
 align-items: center;
 justify-content: center;
