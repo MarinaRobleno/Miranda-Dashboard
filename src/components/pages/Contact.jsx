@@ -10,19 +10,17 @@ export function Contact() {
 
   return (
     <div style={{ display: "grid", width: "100%" }}>
-      <StyledBigPanel
+      {myContact.contact.length > 0 ?<StyledBigPanel
         style={{
-          width: "100%",
-          minHeight: "180px",
-          marginBottom: "40px",
-          overflowY: "hidden",
-          overflowX: "auto",
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          height: '300px',
           background: 'none',
-          padding: '0',
         }}
       >
         <ReviewList />
-      </StyledBigPanel>
+      </StyledBigPanel> : null}
       <ContactList />
     </div>
   );

@@ -7,6 +7,29 @@ import {
 } from "./pages/Dashboard";
 import { selectContact, remove } from "../features/slices/contactSlice";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  BsFillArrowLeftSquareFill,
+  BsFillArrowRightSquareFill,
+} from "react-icons/bs";
+import styled from "styled-components";
+
+export const StyledPaginationReviews = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+export const StyledGreenRightIcon = styled(BsFillArrowRightSquareFill)`
+  font-size: 30px;
+  color: ${(props) => props.theme.colors.green_dark};
+  cursor: pointer;
+`;
+
+export const StyledGreenLeftIcon = styled(BsFillArrowLeftSquareFill)`
+  font-size: 30px;
+  color: ${(props) => props.theme.colors.green_dark};
+  cursor: pointer;
+`;
 
 export function ReviewList() {
   const myContact = useSelector(selectContact);
@@ -18,12 +41,12 @@ export function ReviewList() {
   const indexOfFirstPost = indexOfLastPost - postPerPage;
 
   const handleGoRight = () => {
-    setCurrentPage(currentPage + 1)
-  }
+    setCurrentPage(currentPage + 1);
+  };
 
   const handleGoLeft = () => {
-    setCurrentPage(currentPage - 1)
-  }
+    setCurrentPage(currentPage - 1);
+  };
 
   const handleDeleteReview = (contact) => {
     dispatch(remove(contact));
@@ -74,13 +97,15 @@ export function ReviewList() {
             </StyledReviewPanel>
           ))}
       </div>
-      <div>
-        {currentPage === 1 ? null : <div onClick={handleGoLeft}>LEft</div>}
+      <StyledPaginationReviews>
+        {currentPage === 1 ? null : (
+          <StyledGreenLeftIcon onClick={handleGoLeft} />
+        )}
         {currentPage ===
         Math.ceil(myContact.contact.length / postPerPage) ? null : (
-          <div onClick={handleGoRight}>Right</div>
+          <StyledGreenRightIcon onClick={handleGoRight} />
         )}
-      </div>
+      </StyledPaginationReviews>
     </>
   );
 }
