@@ -193,13 +193,10 @@ export function Dashboard() {
       </StyledBigPanel>
       <StyledBigPanel
         style={{
-          width: "auto",
           gridColumnStart: "1",
           gridColumnEnd: "5",
           gridRowStart: "5",
           gridRowEnd: "7",
-          overflowY: "hidden",
-          overflowX: "auto",
         }}
       >
         <StyledBigPanelHeader>Latest Review by Customers</StyledBigPanelHeader>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StyledBigPanel,
   StyledBigPanelHeader,
@@ -12,6 +12,19 @@ export function ReviewList() {
   const myContact = useSelector(selectContact);
   const dispatch = useDispatch();
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const postPerPage = 3;
+  const indexOfLastPost = currentPage * postPerPage;
+  const indexOfFirstPost = indexOfLastPost - postPerPage;
+
+  const handleGoRight = () => {
+    setCurrentPage(currentPage + 1)
+  }
+
+  const handleGoLeft = () => {
+    setCurrentPage(currentPage - 1)
+  }
+
   const handleDeleteReview = (contact) => {
     dispatch(remove(contact));
   };
@@ -22,42 +35,51 @@ export function ReviewList() {
   return (
     <>
       <div style={{ display: "flex" }}>
-        {myContact.contact.map((contact) => (
-          <StyledReviewPanel>
-            <div
-              style={{ color: "#4E4E4E", lineHeight: "20px" }}
-              onClick={() => handlePopUp(contact)}
-            >
-              {contact.comment}
-            </div>
-            <div style={{ color: "#4E4E4E", lineHeight: "20px" }}>
-              {contact.date}
-            </div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "flex-end",
-              }}
-            >
-              <img
-                src={contact.photo}
-              />
-              <div>
-                <div style={{ color: "#262626", fontWeight: "600" }}>
-                  {contact.customer}
-                </div>
-                <div style={{ color: "#799283", fontSize: "12px" }}>
-                  {contact.mail}
-                </div>
-                <div style={{ color: "#799283", fontSize: "12px" }}>
-                  {contact.phone}
-                </div>
+        {myContact.contact
+          .slice(indexOfFirstPost, indexOfLastPost)
+          .map((contact) => (
+            <StyledReviewPanel>
+              <div
+                style={{ color: "#4E4E4E", lineHeight: "20px" }}
+                onClick={() => handlePopUp(contact)}
+              >
+                {contact.comment}
               </div>
-              <StyledDeleteReview onClick={() => handleDeleteReview(contact)} />
-            </div>
-          </StyledReviewPanel>
-        ))}
+              <div style={{ color: "#4E4E4E", lineHeight: "20px" }}>
+                {contact.date}
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "flex-end",
+                }}
+              >
+                <img src={contact.photo} />
+                <div>
+                  <div style={{ color: "#262626", fontWeight: "600" }}>
+                    {contact.customer}
+                  </div>
+                  <div style={{ color: "#799283", fontSize: "12px" }}>
+                    {contact.mail}
+                  </div>
+                  <div style={{ color: "#799283", fontSize: "12px" }}>
+                    {contact.phone}
+                  </div>
+                </div>
+                <StyledDeleteReview
+                  onClick={() => handleDeleteReview(contact)}
+                />
+              </div>
+            </StyledReviewPanel>
+          ))}
+      </div>
+      <div>
+        {currentPage === 1 ? null : <div onClick={handleGoLeft}>LEft</div>}
+        {currentPage ===
+        Math.ceil(myContact.contact.length / postPerPage) ? null : (
+          <div onClick={handleGoRight}>Right</div>
+        )}
       </div>
     </>
   );

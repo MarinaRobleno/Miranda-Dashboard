@@ -1,4 +1,11 @@
-const pagination_element = document.getElementById('pagination');
+import React, { useState } from 'react'
 
-let current_page= 1;
-let rows = 10;
+export function Paginate(data, postPerPage) {
+    const [currentPage, setCurrentPAge] = useState(1);
+
+    const indexOfLastPost = currentPage* postPerPage;
+    const indexOfFirstPost = indexOfLastPost - postPerPage;
+    return data.slice(indexOfFirstPost, indexOfLastPost);
+    
+
+}
