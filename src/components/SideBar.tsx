@@ -1,5 +1,5 @@
 import "../styles/App.scss";
-import { React, useContext } from "react";
+import { useContext } from "react";
 import { AuthContext } from "./helpers/Context";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";

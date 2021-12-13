@@ -2,14 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 
 interface ButtonProps {
-    readonly checkIn: boolean;
-    readonly checkOut: boolean;
-    readonly inProgress: boolean;
-    readonly noNotes: boolean;
-    readonly archive: boolean;
-    readonly notes: boolean;
-    readonly contact: boolean;
-    readonly weight: number;
+    readonly checkIn?: boolean;
+    readonly checkOut?: boolean;
+    readonly inProgress?: boolean;
+    readonly noNotes?: boolean;
+    readonly archive?: boolean;
+    readonly notes?: boolean;
+    readonly contact?: boolean;
+    readonly weight?: string;
 }
 
 export default styled.button<ButtonProps>`
