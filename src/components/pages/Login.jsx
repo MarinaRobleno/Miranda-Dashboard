@@ -100,6 +100,7 @@ export function Login() {
                 <LoginInput type='text' className='name-input' onChange={handleName}/>
                 <label className='input-label'>Mail</label>
                 <LoginInput type='text' className='mail-input' onChange={handleMail}/>
+                <div>Name: admin // Mail: admin</div>
                 <LoginSubmit type='submit' value='Continue' />
             </LoginForm>
             
