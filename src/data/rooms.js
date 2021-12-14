@@ -190,7 +190,7 @@ export default [
   {
     photo: "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
     roomNumber: 19,
-    id: "52.1886.27/31.79/21",
+    id: "53333333333",
     room_type: "Glass",
     amenities: "Coffee Cup 12oz 5342cd",
     price: "101078",
