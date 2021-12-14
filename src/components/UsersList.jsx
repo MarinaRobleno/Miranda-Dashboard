@@ -18,6 +18,8 @@ import { TiDelete } from "react-icons/ti";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { remove, orderBy, selectUsers } from "../features/slices/usersSlice";
+import { StyledTablePagination, StyledPaginationButton } from "./RoomList";
+import { PaginationNumbers } from "./helpers/PaginationNumbers";
 
 export const StyledDeleteUser = styled(TiDelete)`
   font-size: 30px;
@@ -31,6 +33,23 @@ export function UsersList() {
 
   const [filteredTerm, setFilteredTerm] = useState("");
   const [selectedFilter, setSelectedFilter] = useState("all");
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const postPerPage = 10;
+  const indexOfLastPost = currentPage * postPerPage;
+  const indexOfFirstPost = indexOfLastPost - postPerPage;
+
+  const handleGoRight = () => {
+    setCurrentPage(currentPage + 1);
+  };
+
+  const handleGoLeft = () => {
+    setCurrentPage(currentPage - 1);
+  };
+
+  const changePage = (pageNumber) => {
+    setCurrentPage(pageNumber)
+  }
 
   const handleSearchUser = (e) => {
     setFilteredTerm(e.target.value);
@@ -134,6 +153,7 @@ export function UsersList() {
               return user;
             }
           })
+          .slice(indexOfFirstPost, indexOfLastPost)
           .map((user) => (
             <StyledData>
               <img src={user.photo} />
@@ -155,6 +175,19 @@ export function UsersList() {
             </StyledData>
           ))}
       </StyledTable>
+      <StyledTablePagination>
+        {currentPage === 1 ? null : (
+          <StyledPaginationButton onClick={handleGoLeft}>
+            Previous
+          </StyledPaginationButton>
+        )}
+        <PaginationNumbers postPerPage={postPerPage} totalPosts={myUsers.users.length} currentPage={currentPage} changePage={changePage}/>
+        {currentPage === Math.ceil(myUsers.users.length / postPerPage) ? null : (
+          <StyledPaginationButton onClick={handleGoRight}>
+            Next
+          </StyledPaginationButton>
+        )}
+      </StyledTablePagination>
     </div>
   );
 }
