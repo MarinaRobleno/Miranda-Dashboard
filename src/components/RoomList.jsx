@@ -50,8 +50,8 @@ export const RoomList = () => {
   const [cards, setCards] = useState(myRooms);
   const [select, setSelect] = useState("");
   const [filter, setFilter] = useState("all");
-  const [totalPosts, setTotalPosts] = useState(cards.length)
 
+  const [totalPosts, setTotalPosts] = useState(cards.length)
   const [currentPage, setCurrentPage] = useState(1);
   const postPerPage = 10;
   const indexOfLastPost = currentPage * postPerPage;
@@ -107,7 +107,7 @@ export const RoomList = () => {
     }})
     setTotalPosts(filteredList.length)
   }, [filter]);
-  
+
   const renderCard = (card, index) => {
     return (
       <RoomListCard

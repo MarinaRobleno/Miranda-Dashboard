@@ -10,7 +10,7 @@ import {
   selectBookings,
 } from "../features/slices/bookingsSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { StyledLink } from "./SideBar";
 import { StyledTablePagination, StyledPaginationButton } from "./RoomList";
 import { PaginationNumbers } from "./helpers/PaginationNumbers";
@@ -147,6 +147,7 @@ export function BookingList() {
   const postPerPage = 10;
   const indexOfLastPost = currentPage * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
+  const [totalPosts, setTotalPosts] = useState(myBooking.booking.length)
 
   const handleGoRight = () => {
     setCurrentPage(currentPage + 1);
@@ -217,6 +218,20 @@ export function BookingList() {
   const handleIdDetails = (id) => {
     dispatch(detailed(id))
   }
+
+  useEffect(() => {
+    const filteredList = myBooking.booking.filter((book) => {if (selectedFilter === "all") {
+      return book;
+    } else if (selectedFilter === "in") {
+      return book.status === "in";
+    } else if (selectedFilter === 'out') {
+      return book.status === "out";
+    
+    }else{
+      return book.status === 'progress';
+    }})
+    setTotalPosts(filteredList.length)
+  }, [selectedFilter]);
 
   return (
     <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
@@ -379,7 +394,7 @@ export function BookingList() {
             Previous
           </StyledPaginationButton>
         )}
-        <PaginationNumbers postPerPage={postPerPage} totalPosts={myBooking.booking.length} currentPage={currentPage} changePage={changePage}/>
+        <PaginationNumbers postPerPage={postPerPage} totalPosts={totalPosts} currentPage={currentPage} changePage={changePage}/>
         {currentPage === Math.ceil(myBooking.booking.length / postPerPage) ? null : (
           <StyledPaginationButton onClick={handleGoRight}>
             Next
