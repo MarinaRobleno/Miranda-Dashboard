@@ -68,9 +68,9 @@ export const StyledReviewPanel = styled.div`
   flex-direction: column;
   justify-content: space-between;
   font-size: 12px;
-  width: 300px;
+  min-width: 300px;
   height: 200px;
-  margin: 10px;
+  margin: 10px auto;
   padding: 20px;
   background: #ffffff 0% 0% no-repeat padding-box;
   border: 1px solid ${(props) => props.theme.colors.border_grey_light};
