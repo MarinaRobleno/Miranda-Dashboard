@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   StyledData,
   StyledHeader,
@@ -38,6 +38,7 @@ export function UsersList() {
   const postPerPage = 10;
   const indexOfLastPost = currentPage * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
+  const [totalPosts, setTotalPosts] = useState(myUsers.users.length);
 
   const handleGoRight = () => {
     setCurrentPage(currentPage + 1);
@@ -48,8 +49,8 @@ export function UsersList() {
   };
 
   const changePage = (pageNumber) => {
-    setCurrentPage(pageNumber)
-  }
+    setCurrentPage(pageNumber);
+  };
 
   const handleSearchUser = (e) => {
     setFilteredTerm(e.target.value);
@@ -63,6 +64,19 @@ export function UsersList() {
     e.preventDefault();
     setSelectedFilter(e.target.id);
   };
+
+  useEffect(() => {
+    const filteredList = myUsers.users.filter((user) => {
+      if (selectedFilter == "active") {
+        return user.status == "active";
+      } else if (selectedFilter == "inactive") {
+        return user.status == "inactive";
+      } else {
+        return user;
+      }
+    });
+    setTotalPosts(filteredList.length);
+  }, [selectedFilter]);
 
   return (
     <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
@@ -181,8 +195,14 @@ export function UsersList() {
             Previous
           </StyledPaginationButton>
         )}
-        <PaginationNumbers postPerPage={postPerPage} totalPosts={myUsers.users.length} currentPage={currentPage} changePage={changePage}/>
-        {currentPage === Math.ceil(myUsers.users.length / postPerPage) ? null : (
+        <PaginationNumbers
+          postPerPage={postPerPage}
+          totalPosts={totalPosts}
+          currentPage={currentPage}
+          changePage={changePage}
+        />
+        {currentPage ===
+        Math.ceil(myUsers.users.length / postPerPage) ? null : (
           <StyledPaginationButton onClick={handleGoRight}>
             Next
           </StyledPaginationButton>
