@@ -11,7 +11,7 @@ import { Provider } from "react-redux";
 ReactDOM.render(
   <Provider store={store}>
     <ThemeProvider theme={mainTheme}>
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <App />
       </Router>
     </ThemeProvider>
