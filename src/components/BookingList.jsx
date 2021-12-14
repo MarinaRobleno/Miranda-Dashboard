@@ -10,8 +10,10 @@ import {
   selectBookings,
 } from "../features/slices/bookingsSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { StyledLink } from "./SideBar";
+import { StyledTablePagination, StyledPaginationButton } from "./RoomList";
+import { PaginationNumbers } from "./helpers/PaginationNumbers";
 
 export const StyledFilterHeader = styled.div`
   display: flex;
@@ -141,6 +143,24 @@ export function BookingList() {
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [filteredTerm, setFilteredTerm] = useState("");
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const postPerPage = 10;
+  const indexOfLastPost = currentPage * postPerPage;
+  const indexOfFirstPost = indexOfLastPost - postPerPage;
+  const [totalPosts, setTotalPosts] = useState(myBooking.booking.length)
+
+  const handleGoRight = () => {
+    setCurrentPage(currentPage + 1);
+  };
+
+  const handleGoLeft = () => {
+    setCurrentPage(currentPage - 1);
+  };
+
+  const changePage = (pageNumber) => {
+    setCurrentPage(pageNumber)
+  }
+
   const removeBooking = (book) => {
     dispatch(remove(book));
   };
@@ -198,6 +218,20 @@ export function BookingList() {
   const handleIdDetails = (id) => {
     dispatch(detailed(id))
   }
+
+  useEffect(() => {
+    const filteredList = myBooking.booking.filter((book) => {if (selectedFilter === "all") {
+      return book;
+    } else if (selectedFilter === "in") {
+      return book.status === "in";
+    } else if (selectedFilter === 'out') {
+      return book.status === "out";
+    
+    }else{
+      return book.status === 'progress';
+    }})
+    setTotalPosts(filteredList.length)
+  }, [selectedFilter]);
 
   return (
     <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
@@ -311,6 +345,7 @@ export function BookingList() {
               return book;
             }
           })
+          .slice(indexOfFirstPost, indexOfLastPost)
           .map((book) => (
             <StyledData>
               <StyledDataElement>
@@ -353,6 +388,19 @@ export function BookingList() {
             </StyledData>
           ))}
       </StyledTable>
+      <StyledTablePagination>
+        {currentPage === 1 ? null : (
+          <StyledPaginationButton onClick={handleGoLeft}>
+            Previous
+          </StyledPaginationButton>
+        )}
+        <PaginationNumbers postPerPage={postPerPage} totalPosts={totalPosts} currentPage={currentPage} changePage={changePage}/>
+        {currentPage === Math.ceil(myBooking.booking.length / postPerPage) ? null : (
+          <StyledPaginationButton onClick={handleGoRight}>
+            Next
+          </StyledPaginationButton>
+        )}
+      </StyledTablePagination>
     </div>
   );
 }

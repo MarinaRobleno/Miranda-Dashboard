@@ -15,8 +15,11 @@ export function Contact() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          height: '300px',
+          height: '230px',
+          padding: '0',
           background: 'none',
+          boxShadow: 'none',
+          marginBottom: '0px'
         }}
       >
         <ReviewList />

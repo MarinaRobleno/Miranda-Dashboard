@@ -15,7 +15,7 @@ import { AuthContext } from "./components/helpers/Context";
 import styled from "styled-components";
 import { SideBar } from "./components/SideBar";
 import { FiLogOut } from "react-icons/fi";
-import { HiOutlineMenuAlt2 } from "react-icons/hi";
+import { VscArrowSwap } from "react-icons/vsc";
 import { BiBell, BiEnvelope } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import { selectContact } from "./features/slices/contactSlice";
@@ -67,7 +67,7 @@ const SideBarContainer = styled.div`
   background-color: ${(props) => props.theme.colors.main_white};
 `;
 
-const StyledHamburger = styled(HiOutlineMenuAlt2)`
+const StyledHamburger = styled(VscArrowSwap)`
   font-size: 20px;
   cursor: pointer;
   color: ${(props) => props.theme.colors.black};

@@ -18,13 +18,15 @@ import {
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { StyledTablePagination, StyledPaginationButton } from "./RoomList";
+import { PaginationNumbers } from "./helpers/PaginationNumbers";
 
 const StyledArchiveButton = styled(Button)`
-  &:hover{
-    background-color:  ${(props) => props.theme.colors.red};
+  &:hover {
+    background-color: ${(props) => props.theme.colors.red};
     color: ${(props) => props.theme.colors.main_white};
   }
-`
+`;
 
 export function ContactList() {
   const myContact = useSelector(selectContact);
@@ -32,6 +34,23 @@ export function ContactList() {
 
   const [select, setSelect] = useState("");
   const [showArchived, setShowArchived] = useState(false);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const postPerPage = 10;
+  const indexOfLastPost = currentPage * postPerPage;
+  const indexOfFirstPost = indexOfLastPost - postPerPage;
+
+  const handleGoRight = () => {
+    setCurrentPage(currentPage + 1);
+  };
+
+  const handleGoLeft = () => {
+    setCurrentPage(currentPage - 1);
+  };
+
+  const changePage = (pageNumber) => {
+    setCurrentPage(pageNumber)
+  }
 
   const handleNewOldSelect = (e) => {
     e.preventDefault();
@@ -42,11 +61,13 @@ export function ContactList() {
 
   const handleArchive = (contact) => {
     if (!myContact.archived.includes(contact)) {
-      dispatch(archive(contact))
+      dispatch(archive(contact));
     }
-{/*    const archivedButton = document.getElementById(contact.id);
+    {
+      /*    const archivedButton = document.getElementById(contact.id);
     archivedButton.style.backgroundColor = "#E23428";
-archivedButton.style.color = "#FFFFFF";*/}
+archivedButton.style.color = "#FFFFFF";*/
+    }
   };
 
   const handleShowArchived = () => {
@@ -61,10 +82,26 @@ archivedButton.style.color = "#FFFFFF";*/}
     <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
       <StyledFilterHeader>
         <StyledFilterMenu>
-          <StyledMenuItem id="all" onClick={handleShowAll} style={showArchived === false ? {color: '#135846', borderBottom: '2px solid #135846'} : {color: '#6E6E6E'}}>
+          <StyledMenuItem
+            id="all"
+            onClick={handleShowAll}
+            style={
+              showArchived === false
+                ? { color: "#135846", borderBottom: "2px solid #135846" }
+                : { color: "#6E6E6E" }
+            }
+          >
             All Contacts
           </StyledMenuItem>
-          <StyledMenuItem id="archived" onClick={handleShowArchived} style={showArchived === true ? {color: '#135846', borderBottom: '2px solid #135846'} : {color: '#6E6E6E'}}>
+          <StyledMenuItem
+            id="archived"
+            onClick={handleShowArchived}
+            style={
+              showArchived === true
+                ? { color: "#135846", borderBottom: "2px solid #135846" }
+                : { color: "#6E6E6E" }
+            }
+          >
             Archived
           </StyledMenuItem>
         </StyledFilterMenu>
@@ -84,36 +121,77 @@ archivedButton.style.color = "#FFFFFF";*/}
           <th className="header-table-sector">Comment</th>
         </StyledHeader>
         {showArchived
-          ? myContact.archived.map((contact) => (
-              <StyledData>
-                <StyledDataElement>{contact.id}</StyledDataElement>
-                <StyledDataElement>{contact.date}</StyledDataElement>
-                <StyledDataElement>{contact.customer}</StyledDataElement>
-                <StyledDataElement>{contact.mail}</StyledDataElement>
-                <StyledDataElement>{contact.phone}</StyledDataElement>
-                <StyledDataElement>{contact.comment}</StyledDataElement>
-              </StyledData>
-            ))
-          : myContact.reviewedContact.map((contact) => (
-              <StyledData>
-                <StyledDataElement>{contact.id}</StyledDataElement>
-                <StyledDataElement>{contact.date}</StyledDataElement>
-                <StyledDataElement>{contact.customer}</StyledDataElement>
-                <StyledDataElement>{contact.mail}</StyledDataElement>
-                <StyledDataElement>{contact.phone}</StyledDataElement>
-                <StyledDataElement>{contact.comment}</StyledDataElement>
-                <StyledDataElement>
-                  <StyledArchiveButton
-                    id={contact.id}
-                    archive
-                    onClick={() => handleArchive(contact)}
-                  >
-                    Archive
-                  </StyledArchiveButton>
-                </StyledDataElement>
-              </StyledData>
-            ))}
-      </StyledTable>
+          ? myContact.archived
+              .slice(indexOfFirstPost, indexOfLastPost)
+              .map((contact) => (
+                <StyledData>
+                  <StyledDataElement>{contact.id}</StyledDataElement>
+                  <StyledDataElement>{contact.date}</StyledDataElement>
+                  <StyledDataElement>{contact.customer}</StyledDataElement>
+                  <StyledDataElement>{contact.mail}</StyledDataElement>
+                  <StyledDataElement>{contact.phone}</StyledDataElement>
+                  <StyledDataElement>{contact.comment}</StyledDataElement>
+                </StyledData>
+              ))
+          : myContact.reviewedContact
+              .slice(indexOfFirstPost, indexOfLastPost)
+              .map((contact) => (
+                <StyledData>
+                  <StyledDataElement>{contact.id}</StyledDataElement>
+                  <StyledDataElement>{contact.date}</StyledDataElement>
+                  <StyledDataElement>{contact.customer}</StyledDataElement>
+                  <StyledDataElement>{contact.mail}</StyledDataElement>
+                  <StyledDataElement>{contact.phone}</StyledDataElement>
+                  <StyledDataElement>{contact.comment}</StyledDataElement>
+                  <StyledDataElement>
+                    <StyledArchiveButton
+                      id={contact.id}
+                      archive
+                      onClick={() => handleArchive(contact)}
+                    >
+                      Archive
+                    </StyledArchiveButton>
+                  </StyledDataElement>
+                </StyledData>
+              ))}
+      </StyledTable>{myContact.reviewedContact.length >0 && showArchived === false ?
+      <StyledTablePagination>
+        {currentPage === 1 ? null : (
+          <StyledPaginationButton onClick={handleGoLeft}>
+            Previous
+          </StyledPaginationButton>
+        )}
+        <PaginationNumbers
+          postPerPage={postPerPage}
+          totalPosts={myContact.reviewedContact.length}
+          currentPage={currentPage}
+          changePage={changePage}
+        />
+        {currentPage ===
+        Math.ceil(myContact.reviewedContact.length / postPerPage) ? null : (
+          <StyledPaginationButton onClick={handleGoRight}>
+            Next
+          </StyledPaginationButton>
+        )}
+      </StyledTablePagination> : myContact.archived.length >0 && showArchived === true ?       <StyledTablePagination>
+        {currentPage === 1 ? null : (
+          <StyledPaginationButton onClick={handleGoLeft}>
+            Previous
+          </StyledPaginationButton>
+        )}
+        <PaginationNumbers
+          postPerPage={postPerPage}
+          totalPosts={myContact.archived.length}
+          currentPage={currentPage}
+          changePage={changePage}
+        />
+        {currentPage ===
+        Math.ceil(myContact.archived.length / postPerPage) ? null : (
+          <StyledPaginationButton onClick={handleGoRight}>
+            Next
+          </StyledPaginationButton>
+        )}
+      </StyledTablePagination> : null}
     </div>
   );
 }

@@ -56,7 +56,7 @@ export const StyledBigPanelHeader = styled.div`
 `;
 
 export const StyledBigPanel = styled.div`
-  min-height: 280px;
+  height: 280px;
   background-color: ${(props) => props.theme.colors.main_white};
   box-shadow: 0px 4px 4px #00000005;
   border-radius: 12px;
@@ -68,9 +68,9 @@ export const StyledReviewPanel = styled.div`
   flex-direction: column;
   justify-content: space-between;
   font-size: 12px;
-  width: 300px;
+  min-width: 300px;
   height: 200px;
-  margin: 10px;
+  margin: 10px auto;
   padding: 20px;
   background: #ffffff 0% 0% no-repeat padding-box;
   border: 1px solid ${(props) => props.theme.colors.border_grey_light};
@@ -166,6 +166,7 @@ export function Dashboard() {
           gridColumnEnd: "3",
           gridRowStart: "2",
           gridRowEnd: "4",
+          minHeight: '400px'
         }}
       >
         <Calendar />
@@ -176,6 +177,7 @@ export function Dashboard() {
           gridColumnEnd: "5",
           gridRowStart: "2",
           gridRowEnd: "4",
+          minHeight: '400px'
         }}
       >
         <StyledBigPanelHeader>Reservation Stats</StyledBigPanelHeader>
@@ -197,6 +199,7 @@ export function Dashboard() {
           gridColumnEnd: "5",
           gridRowStart: "5",
           gridRowEnd: "7",
+          minHeight: '350px'
         }}
       >
         <StyledBigPanelHeader>Latest Review by Customers</StyledBigPanelHeader>
