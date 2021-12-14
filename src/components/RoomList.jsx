@@ -26,6 +26,7 @@ export const StyledIconRoom = styled.img`
 export const StyledTablePagination = styled.div`
 display: flex;
 justify-content: right;
+margin-top: 20px;
 `;
 
 export const StyledPaginationButton = styled(Button)`

@@ -16,8 +16,7 @@ padding: 0 16px;
 export const StyledNumberButton = styled(Button)`
 width: 35px;
 height: 35px;
-background-color: white;
-border: 1px solid ${(props) => props.theme.colors.green_dark};
+background-color: ${(props) => props.theme.colors.main_grey};
 color: ${(props) => props.theme.colors.green_dark};
 text-align: center;
 font: normal normal 500 12px/25px Poppins;
