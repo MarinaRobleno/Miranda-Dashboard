@@ -63,6 +63,10 @@ export const RoomList = () => {
     setCurrentPage(currentPage - 1);
   };
 
+  const changePage = (pageNumber) => {
+    setCurrentPage(pageNumber)
+  }
+
   /*
   const handleSelect = (e) => {
     e.preventDefault();
@@ -192,7 +196,7 @@ export const RoomList = () => {
             Previous
           </StyledPaginationButton>
         )}
-        <PaginationNumbers postPerPage={postPerPage} totalPosts={cards.length} currentPage={currentPage}/>
+        <PaginationNumbers postPerPage={postPerPage} totalPosts={cards.length} currentPage={currentPage} changePage={changePage}/>
         {currentPage === Math.ceil(cards.length / postPerPage) ? null : (
           <StyledPaginationButton onClick={handleGoRight}>
             Next

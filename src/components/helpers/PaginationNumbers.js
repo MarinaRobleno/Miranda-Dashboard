@@ -26,7 +26,7 @@ font: normal normal 500 12px/25px Poppins;
   background-color: ${(props) => props.theme.colors.green_dark};
 `
 
-export function PaginationNumbers({ postPerPage, totalPosts, currentPage }) {
+export function PaginationNumbers({ postPerPage, totalPosts, currentPage, changePage }) {
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(totalPosts / postPerPage); i++) {
@@ -37,7 +37,7 @@ export function PaginationNumbers({ postPerPage, totalPosts, currentPage }) {
     <StyledNumberContainer>
       <StyledNumberRow className="pagination">
         {pageNumbers.map((number) => (
-          <StyledNumberButton style={currentPage == number ? { color: 'white', backgroundColor:'#135846' } : null} key={number} className="page-item">
+          <StyledNumberButton onClick={() => changePage(number)} style={currentPage == number ? { color: 'white', backgroundColor:'#135846' } : null} key={number} className="page-item">
             {number}
           </StyledNumberButton>
         ))}
