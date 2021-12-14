@@ -50,6 +50,7 @@ export const RoomList = () => {
   const [cards, setCards] = useState(myRooms);
   const [select, setSelect] = useState("");
   const [filter, setFilter] = useState("all");
+  const [totalPosts, setTotalPosts] = useState(cards.length)
 
   const [currentPage, setCurrentPage] = useState(1);
   const postPerPage = 10;
@@ -95,6 +96,18 @@ export const RoomList = () => {
     },
     [cards]
   );
+
+  useEffect(() => {
+    const filteredList = cards.filter((card) => {if (filter === "all") {
+      return card;
+    } else if (filter === "available") {
+      return card.status === "available";
+    } else {
+      return card.status === "booked";
+    }})
+    setTotalPosts(filteredList.length)
+  }, [filter]);
+  
   const renderCard = (card, index) => {
     return (
       <RoomListCard
@@ -197,7 +210,7 @@ export const RoomList = () => {
             Previous
           </StyledPaginationButton>
         )}
-        <PaginationNumbers postPerPage={postPerPage} totalPosts={cards.length} currentPage={currentPage} changePage={changePage}/>
+        <PaginationNumbers postPerPage={postPerPage} totalPosts={totalPosts} currentPage={currentPage} changePage={changePage}/>
         {currentPage === Math.ceil(cards.length / postPerPage) ? null : (
           <StyledPaginationButton onClick={handleGoRight}>
             Next
