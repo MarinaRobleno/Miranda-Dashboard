@@ -56,7 +56,7 @@ export const StyledBigPanelHeader = styled.div`
 `;
 
 export const StyledBigPanel = styled.div`
-  min-height: 280px;
+  height: 280px;
   background-color: ${(props) => props.theme.colors.main_white};
   box-shadow: 0px 4px 4px #00000005;
   border-radius: 12px;
@@ -166,6 +166,7 @@ export function Dashboard() {
           gridColumnEnd: "3",
           gridRowStart: "2",
           gridRowEnd: "4",
+          minHeight: '400px'
         }}
       >
         <Calendar />
@@ -176,6 +177,7 @@ export function Dashboard() {
           gridColumnEnd: "5",
           gridRowStart: "2",
           gridRowEnd: "4",
+          minHeight: '400px'
         }}
       >
         <StyledBigPanelHeader>Reservation Stats</StyledBigPanelHeader>
@@ -197,6 +199,7 @@ export function Dashboard() {
           gridColumnEnd: "5",
           gridRowStart: "5",
           gridRowEnd: "7",
+          minHeight: '350px'
         }}
       >
         <StyledBigPanelHeader>Latest Review by Customers</StyledBigPanelHeader>

@@ -71,6 +71,7 @@ export function NewRoom() {
     offer_price: "",
     cancellation: "",
     related_rooms: "",
+    status: 'available'
   });
 
   const handleNewRoomSubmit = (e) => {

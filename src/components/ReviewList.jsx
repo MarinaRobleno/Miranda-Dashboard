@@ -97,7 +97,7 @@ export function ReviewList() {
             </StyledReviewPanel>
           ))}
       </div>
-      <StyledPaginationReviews>
+      <StyledPaginationReviews style={currentPage === 1 ? {justifyContent: 'right'} : currentPage === Math.ceil(myContact.contact.length / postPerPage) ? {justifyContent: 'left'} : null}>
         {currentPage === 1 ? null : (
           <StyledGreenLeftIcon onClick={handleGoLeft} />
         )}
