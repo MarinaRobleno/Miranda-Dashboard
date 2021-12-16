@@ -11,6 +11,7 @@ import {
   BsThreeDotsVertical,
 } from "react-icons/bs";
 import { RiArrowGoBackFill } from "react-icons/ri";
+import ImageCarousel from "./ImageCarousel.jsx";
 
 const StyledDetailsContainer = styled.div`
   display: flex;
@@ -49,7 +50,7 @@ export function BookDetail() {
         })
         .map((book) => (
           <StyledBigPanel
-            style={{ width: "100%", display: "flex", padding: "0" }}
+            style={{ width: "100%", height: '600px', display: "flex", padding: "0" }}
           >
             <StyledDetailsContainer>
               <StyledDivRow>
@@ -125,6 +126,7 @@ export function BookDetail() {
                 justifyContent: "flex-end",
               }}
             >
+              <ImageCarousel bookImages={book.photo}/>
               <StyledDivRow
                 style={{
                   font: "normal normal 600 16px/35px Poppins",

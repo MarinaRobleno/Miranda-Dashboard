@@ -22,6 +22,7 @@ export const StyledPaginationReviews = styled.div`
 export const StyledGreenRightIcon = styled(BsFillArrowRightSquareFill)`
   font-size: 30px;
   color: ${(props) => props.theme.colors.green_dark};
+  backgroundColor: ${(props) => props.theme.colors.main_white};
   cursor: pointer;
 `;
 

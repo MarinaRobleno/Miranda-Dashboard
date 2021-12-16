@@ -9,6 +9,11 @@ export default [
     roomType: "Plaza",
     room_number: "15",
     status: "in",
+    photo: [
+      "http://dummyimage.com/134x100.png/cc0000/ffffff",
+      "http://dummyimage.com/135x100.png/ff4444/ffffff",
+      "http://dummyimage.com/182x100.png/cc0000/ffffff",
+    ],
   },
   {
     id: 2,
@@ -20,6 +25,10 @@ export default [
     roomType: "Terrace",
     room_number: "05",
     status: "out",
+    photo: [
+      "http://dummyimage.com/147x100.png/cc0000/ffffff",
+      "http://dummyimage.com/154x100.png/5fa2dd/ffffff",
+    ],
   },
   {
     id: 3,
@@ -218,7 +227,8 @@ export default [
     roomType: "Alley",
     room_number: "88",
     status: "out",
-  },  {
+  },
+  {
     id: 21,
     guest: "Crissy Croisdall",
     orderDate: "09-22-2021",

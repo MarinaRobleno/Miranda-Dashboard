@@ -29,7 +29,7 @@ export const StyledFilterMenu = styled.div`
 `;
 
 export const StyledMenuItem = styled.div`
-padding: 0 10px 10px;
+  padding: 0 10px 10px;
   font-weight: 500;
   font-size: 14px;
   color: ${(props) => props.theme.colors.letter_grey_medium};
@@ -114,15 +114,15 @@ export const StyledHeader = styled.tr`
 `;
 
 export const StyledData = styled.tr`
-font-size: 13px;
+  font-size: 13px;
   &:hover {
     box-shadow: 0px 4px 30px #0000001a;
   }
 `;
 
 export const StyledDataElement = styled.td`
-padding: 10px 0;
-`
+  padding: 10px 0;
+`;
 
 export const StyledDetailIcon = styled(BiSidebar)`
   font-size: 18px;
@@ -147,7 +147,7 @@ export function BookingList() {
   const postPerPage = 10;
   const indexOfLastPost = currentPage * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
-  const [totalPosts, setTotalPosts] = useState(myBooking.booking.length)
+  const [totalPosts, setTotalPosts] = useState(myBooking.booking.length);
 
   const handleGoRight = () => {
     setCurrentPage(currentPage + 1);
@@ -158,8 +158,8 @@ export function BookingList() {
   };
 
   const changePage = (pageNumber) => {
-    setCurrentPage(pageNumber)
-  }
+    setCurrentPage(pageNumber);
+  };
 
   const removeBooking = (book) => {
     dispatch(remove(book));
@@ -209,44 +209,77 @@ export function BookingList() {
 
   const handleViewNotes = (request) => {
     if (request) {
-      alert(request)
+      alert(request);
     } else {
-      alert('No requests')
+      alert("No requests");
     }
-  }
+  };
 
   const handleIdDetails = (id) => {
-    dispatch(detailed(id))
-  }
+    dispatch(detailed(id));
+  };
 
   useEffect(() => {
-    const filteredList = myBooking.booking.filter((book) => {if (selectedFilter === "all") {
-      return book;
-    } else if (selectedFilter === "in") {
-      return book.status === "in";
-    } else if (selectedFilter === 'out') {
-      return book.status === "out";
-    
-    }else{
-      return book.status === 'progress';
-    }})
-    setTotalPosts(filteredList.length)
+    const filteredList = myBooking.booking.filter((book) => {
+      if (selectedFilter === "all") {
+        return book;
+      } else if (selectedFilter === "in") {
+        return book.status === "in";
+      } else if (selectedFilter === "out") {
+        return book.status === "out";
+      } else {
+        return book.status === "progress";
+      }
+    });
+    setTotalPosts(filteredList.length);
   }, [selectedFilter]);
 
   return (
     <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
       <StyledFilterHeader>
         <StyledFilterMenu>
-          <StyledMenuItem id="all" onClick={handleFilterItem} style={selectedFilter === 'all' ? {color: '#135846', borderBottom: '2px solid #135846'} : {color: '#6E6E6E'}}>
+          <StyledMenuItem
+            id="all"
+            onClick={handleFilterItem}
+            style={
+              selectedFilter === "all"
+                ? { color: "#135846", borderBottom: "2px solid #135846" }
+                : { color: "#6E6E6E" }
+            }
+          >
             All Bookings
           </StyledMenuItem>
-          <StyledMenuItem id="in" onClick={handleFilterItem} style={selectedFilter === 'in' ? {color: '#135846', borderBottom: '2px solid #135846'} : {color: '#6E6E6E'}}>
+          <StyledMenuItem
+            id="in"
+            onClick={handleFilterItem}
+            style={
+              selectedFilter === "in"
+                ? { color: "#135846", borderBottom: "2px solid #135846" }
+                : { color: "#6E6E6E" }
+            }
+          >
             Checking In
           </StyledMenuItem>
-          <StyledMenuItem id="out" onClick={handleFilterItem} style={selectedFilter === 'out' ? {color: '#135846', borderBottom: '2px solid #135846'} : {color: '#6E6E6E'}}>
+          <StyledMenuItem
+            id="out"
+            onClick={handleFilterItem}
+            style={
+              selectedFilter === "out"
+                ? { color: "#135846", borderBottom: "2px solid #135846" }
+                : { color: "#6E6E6E" }
+            }
+          >
             Checking Out
           </StyledMenuItem>
-          <StyledMenuItem id="progress" onClick={handleFilterItem} style={selectedFilter === 'progress' ? {color: '#135846', borderBottom: '2px solid #135846'} : {color: '#6E6E6E'}}>
+          <StyledMenuItem
+            id="progress"
+            onClick={handleFilterItem}
+            style={
+              selectedFilter === "progress"
+                ? { color: "#135846", borderBottom: "2px solid #135846" }
+                : { color: "#6E6E6E" }
+            }
+          >
             In Progress
           </StyledMenuItem>
         </StyledFilterMenu>
@@ -327,11 +360,11 @@ export function BookingList() {
             if (selectedFilter === "all" || selectedFilter === "") {
               return book;
             } else if (selectedFilter === "in") {
-              return book.status === 'in';
+              return book.status === "in";
             } else if (selectedFilter === "out") {
-              return book.status === 'out'
+              return book.status === "out";
             } else if (selectedFilter === "progress") {
-              return book.status === 'progress'
+              return book.status === "progress";
             }
           })
           .filter((book) => {
@@ -356,29 +389,39 @@ export function BookingList() {
               <StyledDataElement>{book.checkIn}</StyledDataElement>
               <StyledDataElement>{book.checkOut}</StyledDataElement>
               <StyledDataElement>
-                {book.special ?
-                  <Button notes onClick={() => handleViewNotes(book.special)}>View Notes</Button>
-                  :
-                  <Button noNotes >View Notes</Button>}
+                {book.special ? (
+                  <Button notes onClick={() => handleViewNotes(book.special)}>
+                    View Notes
+                  </Button>
+                ) : (
+                  <Button noNotes>View Notes</Button>
+                )}
               </StyledDataElement>
               <StyledDataElement>
                 <div>{book.roomType}</div>
                 {book.room_number}
               </StyledDataElement>
               <StyledDataElement>
-                {book.status === 'in' ? <Button checkIn name="Check In">
-                  Check In
-                </Button> :
-                  book.status === 'out' ? <Button checkOut name="Check Out">
+                {book.status === "in" ? (
+                  <Button checkIn name="Check In">
+                    Check In
+                  </Button>
+                ) : book.status === "out" ? (
+                  <Button checkOut name="Check Out">
                     Check Out
-                  </Button> : <Button inProgress name="In Progress">
+                  </Button>
+                ) : (
+                  <Button inProgress name="In Progress">
                     In Progress
-                  </Button>}
+                  </Button>
+                )}
               </StyledDataElement>
               <StyledDataElement>
-                <StyledLink to={{
-                  pathname: `./${book.id}`
-                }}>
+                <StyledLink
+                  to={{
+                    pathname: `./${book.id}`,
+                  }}
+                >
                   <StyledDetailIcon onClick={() => handleIdDetails(book.id)} />
                 </StyledLink>
               </StyledDataElement>
@@ -394,8 +437,14 @@ export function BookingList() {
             Previous
           </StyledPaginationButton>
         )}
-        <PaginationNumbers postPerPage={postPerPage} totalPosts={totalPosts} currentPage={currentPage} changePage={changePage}/>
-        {currentPage === Math.ceil(myBooking.booking.length / postPerPage) ? null : (
+        <PaginationNumbers
+          postPerPage={postPerPage}
+          totalPosts={totalPosts}
+          currentPage={currentPage}
+          changePage={changePage}
+        />
+        {currentPage ===
+        Math.ceil(myBooking.booking.length / postPerPage) ? null : (
           <StyledPaginationButton onClick={handleGoRight}>
             Next
           </StyledPaginationButton>
