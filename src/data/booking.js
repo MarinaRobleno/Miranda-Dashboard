@@ -9,6 +9,11 @@ export default [
     roomType: "Plaza",
     room_number: "15",
     status: "in",
+    photo: [
+      "https://tecnohotelnews.com/wp-content/uploads/2020/01/Room-Mate-Olivia-Suite-1.jpg",
+      "https://static01.nyt.com/images/2019/03/24/travel/24trending-shophotels1/24trending-shophotels1-superJumbo.jpg",
+      "https://s7d2.scene7.com/is/image/ritzcarlton/pnqrz-king-50668318?$XlargeViewport100pct$",
+    ],
   },
   {
     id: 2,
@@ -20,6 +25,10 @@ export default [
     roomType: "Terrace",
     room_number: "05",
     status: "out",
+    photo: [
+      "https://st.hzcdn.com/simgs/pictures/bedrooms/cruelty-free-luxury-bedroom-dimare-design-img~7011347f07f3f5aa_9-8849-1-6e7db76.jpg",
+      "https://images.squarespace-cdn.com/content/v1/53b5ae62e4b04291a7408706/1473854326018-6O01FR1QH8SSTOIG40AU/4+budget-friendly+master+bedroom+decorating+ideas?format=1000w",
+    ],
   },
   {
     id: 3,
@@ -31,6 +40,7 @@ export default [
     roomType: "Road",
     room_number: "01",
     status: "out",
+    photo: []
   },
   {
     id: 4,
@@ -42,6 +52,7 @@ export default [
     roomType: "Place",
     room_number: "10",
     status: "in",
+    photo: []
   },
   {
     id: 5,
@@ -53,6 +64,7 @@ export default [
     roomType: "Hill",
     room_number: "45",
     status: "in",
+    photo: []
   },
   {
     id: 6,
@@ -64,6 +76,7 @@ export default [
     roomType: "Avenue",
     room_number: "36",
     status: "progress",
+    photo: []
   },
   {
     id: 7,
@@ -75,6 +88,7 @@ export default [
     roomType: "Terrace",
     room_number: "80",
     status: "out",
+    photo: []
   },
   {
     id: 8,
@@ -86,6 +100,7 @@ export default [
     roomType: "Lane",
     room_number: "23",
     status: "in",
+    photo: []
   },
   {
     id: 9,
@@ -97,6 +112,7 @@ export default [
     roomType: "Lane",
     room_number: "07",
     status: "progress",
+    photo: []
   },
   {
     id: 10,
@@ -108,6 +124,7 @@ export default [
     roomType: "Alley",
     room_number: "88",
     status: "out",
+    photo: []
   },
   {
     id: 11,
@@ -119,6 +136,7 @@ export default [
     roomType: "Plaza",
     room_number: "15",
     status: "in",
+    photo: []
   },
   {
     id: 12,
@@ -130,6 +148,7 @@ export default [
     roomType: "Terrace",
     room_number: "05",
     status: "out",
+    photo: []
   },
   {
     id: 13,
@@ -141,6 +160,7 @@ export default [
     roomType: "Road",
     room_number: "01",
     status: "out",
+    photo: []
   },
   {
     id: 14,
@@ -152,6 +172,7 @@ export default [
     roomType: "Place",
     room_number: "10",
     status: "in",
+    photo: []
   },
   {
     id: 15,
@@ -163,6 +184,7 @@ export default [
     roomType: "Hill",
     room_number: "45",
     status: "in",
+    photo: []
   },
   {
     id: 16,
@@ -174,6 +196,7 @@ export default [
     roomType: "Avenue",
     room_number: "36",
     status: "progress",
+    photo: []
   },
   {
     id: 17,
@@ -185,6 +208,7 @@ export default [
     roomType: "Terrace",
     room_number: "80",
     status: "out",
+    photo: []
   },
   {
     id: 18,
@@ -196,6 +220,7 @@ export default [
     roomType: "Lane",
     room_number: "23",
     status: "in",
+    photo: []
   },
   {
     id: 19,
@@ -207,6 +232,7 @@ export default [
     roomType: "Lane",
     room_number: "07",
     status: "progress",
+    photo: []
   },
   {
     id: 20,
@@ -218,7 +244,9 @@ export default [
     roomType: "Alley",
     room_number: "88",
     status: "out",
-  },  {
+    photo: []
+  },
+  {
     id: 21,
     guest: "Crissy Croisdall",
     orderDate: "09-22-2021",
@@ -228,6 +256,7 @@ export default [
     roomType: "Plaza",
     room_number: "15",
     status: "in",
+    photo: []
   },
   {
     id: 22,
@@ -239,6 +268,7 @@ export default [
     roomType: "Terrace",
     room_number: "05",
     status: "out",
+    photo: []
   },
   {
     id: 23,
@@ -250,6 +280,7 @@ export default [
     roomType: "Road",
     room_number: "01",
     status: "out",
+    photo: []
   },
   {
     id: 24,
@@ -261,6 +292,7 @@ export default [
     roomType: "Place",
     room_number: "10",
     status: "in",
+    photo: []
   },
   {
     id: 25,
@@ -272,6 +304,7 @@ export default [
     roomType: "Hill",
     room_number: "45",
     status: "in",
+    photo: []
   },
   {
     id: 26,
@@ -283,6 +316,7 @@ export default [
     roomType: "Avenue",
     room_number: "36",
     status: "progress",
+    photo: []
   },
   {
     id: 27,
@@ -294,6 +328,7 @@ export default [
     roomType: "Terrace",
     room_number: "80",
     status: "out",
+    photo: []
   },
   {
     id: 28,
@@ -305,6 +340,7 @@ export default [
     roomType: "Lane",
     room_number: "23",
     status: "in",
+    photo: []
   },
   {
     id: 29,
@@ -316,6 +352,7 @@ export default [
     roomType: "Lane",
     room_number: "07",
     status: "progress",
+    photo: []
   },
   {
     id: 30,
@@ -327,5 +364,6 @@ export default [
     roomType: "Alley",
     room_number: "88",
     status: "out",
+    photo: []
   },
 ];
