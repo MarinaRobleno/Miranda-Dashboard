@@ -65,7 +65,7 @@ export function Login() {
     const [mail, setMail] = useState('');
 
 
-    const handleName = (e) =>{
+    const handleName = (e: object) =>{
         e.preventDefault();
         const newName = e.target.value;
         setName(newName);

@@ -1,6 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 import booking from "../../data/booking.js";
 
+interface booking {
+  id: string;
+  guest: string;
+  orderDate: string;
+  checkIn: string;
+  checkOut: string;
+  special: string;
+  roomType: string;
+  room_number: string;
+  status: string;
+}
+
 export const bookingsSlice = createSlice({
   name: "bookings",
   initialState: { booking: booking, id: "" },
