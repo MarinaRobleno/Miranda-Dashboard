@@ -25,7 +25,6 @@ const StyledDetailsContainer = styled.div`
 const StyledDivRow = styled.div`
   display: flex;
   justify-content: space-between;
-
 `;
 
 const StyledDivColumn = styled.div`
@@ -50,7 +49,12 @@ export function BookDetail() {
         })
         .map((book) => (
           <StyledBigPanel
-            style={{ width: "100%", height: '600px', display: "flex", padding: "0" }}
+            style={{
+              width: "100%",
+              height: "600px",
+              display: "flex",
+              padding: "0",
+            }}
           >
             <StyledDetailsContainer>
               <StyledDivRow>
@@ -120,24 +124,36 @@ export function BookDetail() {
             </StyledDetailsContainer>
             <StyledDetailsContainer
               style={{
+                position: 'relative',
                 backgroundColor: "grey",
                 margin: "0",
                 padding: "0",
                 justifyContent: "flex-end",
               }}
             >
-              <ImageCarousel bookImages={book.photo}/>
-              <StyledDivRow
-                style={{
-                  font: "normal normal 600 16px/35px Poppins",
-                  color: "white",
-                }}
-              >
-                {book.roomType}
-              </StyledDivRow>
-              <StyledDetailSection style={{ color: "white" }}>
-                Description
-              </StyledDetailSection>
+              <ImageCarousel bookImages={book.photo} status={book.status}/>
+              <StyledDivColumn style={{
+                    position: 'absolute',
+                    width: '100%',
+                    minHeight: '150px',
+                    paddingLeft: '20px',
+                    paddingBottom: '20px',
+                    backgroundColor: 'black',
+                    borderRadius: '10px',
+                    opacity: '50%'
+                  }}>
+                <StyledDivRow
+                  style={{
+                    font: "normal normal 600 16px/35px Poppins",
+                    color: "white",
+                  }}
+                >
+                  {book.roomType}
+                </StyledDivRow>
+                <StyledDetailSection style={{ color: "white" }}>
+                  Description
+                </StyledDetailSection>
+              </StyledDivColumn>
             </StyledDetailsContainer>
           </StyledBigPanel>
         ))}
