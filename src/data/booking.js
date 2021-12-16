@@ -10,9 +10,9 @@ export default [
     room_number: "15",
     status: "in",
     photo: [
-      "http://dummyimage.com/134x100.png/cc0000/ffffff",
-      "http://dummyimage.com/135x100.png/ff4444/ffffff",
-      "http://dummyimage.com/182x100.png/cc0000/ffffff",
+      "https://tecnohotelnews.com/wp-content/uploads/2020/01/Room-Mate-Olivia-Suite-1.jpg",
+      "https://static01.nyt.com/images/2019/03/24/travel/24trending-shophotels1/24trending-shophotels1-superJumbo.jpg",
+      "https://s7d2.scene7.com/is/image/ritzcarlton/pnqrz-king-50668318?$XlargeViewport100pct$",
     ],
   },
   {
@@ -26,8 +26,8 @@ export default [
     room_number: "05",
     status: "out",
     photo: [
-      "http://dummyimage.com/147x100.png/cc0000/ffffff",
-      "http://dummyimage.com/154x100.png/5fa2dd/ffffff",
+      "https://st.hzcdn.com/simgs/pictures/bedrooms/cruelty-free-luxury-bedroom-dimare-design-img~7011347f07f3f5aa_9-8849-1-6e7db76.jpg",
+      "https://images.squarespace-cdn.com/content/v1/53b5ae62e4b04291a7408706/1473854326018-6O01FR1QH8SSTOIG40AU/4+budget-friendly+master+bedroom+decorating+ideas?format=1000w",
     ],
   },
   {
@@ -40,6 +40,7 @@ export default [
     roomType: "Road",
     room_number: "01",
     status: "out",
+    photo: []
   },
   {
     id: 4,

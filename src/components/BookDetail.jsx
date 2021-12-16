@@ -122,7 +122,7 @@ export function BookDetail() {
               style={{
                 backgroundColor: "grey",
                 margin: "0",
-                padding: "60px",
+                padding: "0",
                 justifyContent: "flex-end",
               }}
             >
