@@ -22,12 +22,12 @@ const StyledDetailsContainer = styled.div`
   border-radius: 20px;
 `;
 
-const StyledDivRow = styled.div`
+export const StyledDivRow = styled.div`
   display: flex;
   justify-content: space-between;
 `;
 
-const StyledDivColumn = styled.div`
+export const StyledDivColumn = styled.div`
   display: flex;
   flex-direction: column;
 `;
