@@ -1,5 +1,5 @@
 import "./styles/App.scss";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Route, Routes } from "react-router-dom";
 import { Login } from "./components/pages/Login.jsx";
 import { Dashboard } from "./components/pages/Dashboard.jsx";
@@ -11,7 +11,7 @@ import { NewRoom } from "./components/NewRoom.jsx";
 import { NewUser } from "./components/NewUser.jsx";
 import { BookDetail } from "./components/BookDetail.jsx";
 import { PrivateRoute } from "./components/helpers/PrivateRoute.js";
-import { AuthContext } from "./components/helpers/Context";
+import { AuthContext, AuthProvider } from "./components/helpers/Context";
 import styled from "styled-components";
 import { SideBar } from "./components/SideBar";
 import { FiLogOut } from "react-icons/fi";
@@ -114,15 +114,16 @@ const StyledBell = styled(BiBell)`
 `;
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(
+  /*const [loggedIn, setLoggedIn] = useState(
     localStorage.getItem(SAVE_KEY) === SAVE_STATE
-  );
-  const [isSidebar, setIsSidebar] = useState(null);
-
-  const handleCloseSidebar = () => {
-    return isSidebar ? setIsSidebar(false) : setIsSidebar(true);
+  );*/
+  const [toggleMenu, settoggleMenu] = useState(true);
+  const handleMenuToggle = (e) => {
+    e.preventDefault();
+    console.log("toggle");
+    settoggleMenu(!toggleMenu);
   };
-
+  /*
   useEffect(() => {
     if (loggedIn) {
       localStorage.setItem(SAVE_KEY, SAVE_STATE);
@@ -130,26 +131,32 @@ function App() {
     } else {
       localStorage.removeItem(SAVE_KEY);
     }
-  }, [loggedIn]);
+  }, [loggedIn]);*/
 
   const myContact = useSelector(selectContact);
 
+  const { authState, authDispatch, login, logout } = useContext(AuthContext)
+  const isAuthenticated = authState.isAuthenticated;
+
+  const handleLogOut = () => {
+    localStorage.removeItem("loggedInState");
+    logout();
+  };
+
   return (
     <>
-      <WholeContent>
-        {loggedIn && isSidebar ? (
+      <AuthProvider>
+        <WholeContent>
           <SideBarContainer>
             <SideBar />
           </SideBarContainer>
-        ) : null}
-        <RightContent>
-          {loggedIn ? (
+          <RightContent>
             <header>
               <StyledHeader>
-                <StyledHamburger onClick={handleCloseSidebar} />
+                <StyledHamburger onClick={handleMenuToggle} />
                 <div
                   style={
-                    isSidebar
+                    toggleMenu
                       ? { paddingRight: "230px" }
                       : { paddingRight: "0" }
                   }
@@ -158,7 +165,7 @@ function App() {
                   {myContact.contact.length > 0 ? (
                     <StyledNotificationCounter
                       style={
-                        isSidebar ? { right: "418px" } : { right: "188px" }
+                        toggleMenu ? { right: "418px" } : { right: "188px" }
                       }
                     >
                       {myContact.contact.length}
@@ -166,15 +173,14 @@ function App() {
                   ) : null}
                   <StyledBell />
                   <StyledNotificationCounter
-                    style={isSidebar ? { right: "340px" } : { right: "110px" }}
+                    style={toggleMenu ? { right: "340px" } : { right: "110px" }}
                   ></StyledNotificationCounter>
-                  <StyledLogout onClick={() => setLoggedIn(false)} />
+                  <StyledLogout onClick={handleLogOut} />
                 </div>
               </StyledHeader>
             </header>
-          ) : null}
-          <Content>
-            <AuthContext.Provider value={{ loggedIn, setLoggedIn }}>
+
+            <Content>
               <Routes>
                 <Route path="/login" element={<Login />} />
                 <Route
@@ -242,10 +248,10 @@ function App() {
                   }
                 />
               </Routes>
-            </AuthContext.Provider>
-          </Content>
-        </RightContent>
-      </WholeContent>
+            </Content>
+          </RightContent>
+        </WholeContent>
+      </AuthProvider>
     </>
   );
 }
