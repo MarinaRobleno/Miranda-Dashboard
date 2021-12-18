@@ -38,7 +38,7 @@ export function NewUser() {
   };
 
   return (
-    <div style={{ width: '1000px' }}>
+    <div style={{ width: "1000px" }}>
       <StyledNewRoomPanel style={{ minHeight: "400px" }}>
         <StyledBigPanelHeader style={{ textAlign: "left" }}>
           NEW USER
@@ -74,20 +74,23 @@ export function NewUser() {
                 }
               />
               <StyledDivRow>
-              <StyledNewRoomInput
-                type="text"
-                placeholder="Job"
-                style={{ width: "180px" }}
-                onChange={(e) =>
-                  setNewUser({ ...newUser, job: e.target.value })
-                }
-              />
-              <StyledNewRoomInput
-                type="text"
-                placeholder="ID"
-                style={{ width: "180px" }}
-                onChange={(e) => setNewUser({ ...newUser, id: e.target.value })}
-              /></StyledDivRow>
+                <StyledNewRoomInput
+                  type="text"
+                  placeholder="Job"
+                  style={{ width: "180px" }}
+                  onChange={(e) =>
+                    setNewUser({ ...newUser, job: e.target.value })
+                  }
+                />
+                <StyledNewRoomInput
+                  type="text"
+                  placeholder="ID"
+                  style={{ width: "180px" }}
+                  onChange={(e) =>
+                    setNewUser({ ...newUser, id: e.target.value })
+                  }
+                />
+              </StyledDivRow>
             </StyledDivColumn>
           </StyledDivRow>
           <StyledDivRow
