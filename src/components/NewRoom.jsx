@@ -10,7 +10,7 @@ import { StyledDivColumn, StyledDivRow } from "./BookDetail";
 import { RiArrowGoBackFill } from "react-icons/ri";
 import { BsPlusLg } from "react-icons/bs";
 
-const StyledNewRoomPanel = styled(StyledBigPanel)`
+export const StyledNewRoomPanel = styled(StyledBigPanel)`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -19,12 +19,12 @@ const StyledNewRoomPanel = styled(StyledBigPanel)`
   padding: 30px;
 `;
 
-const StyledForm = styled.form`
+export const StyledForm = styled.form`
   display: flex;
   justify-content: space-between;
 `;
 
-const StyledNewRoomInput = styled.input`
+export const StyledNewRoomInput = styled.input`
   width: 400px;
   height: 30px;
   font: normal normal 500 14px/25px Poppins;
@@ -37,7 +37,21 @@ const StyledNewRoomInput = styled.input`
   }
 `;
 
-const StyledNewRoomSelect = styled.select`
+export const StyledTextArea = styled.textarea`
+width: 400px;
+height: 30px;
+font: normal normal 500 14px/25px Poppins;
+border-color: ${(props) => props.theme.colors.green_dark};
+padding: 0 20px;
+margin-bottom: 25px;
+background-color: ${(props) => props.theme.colors.search_bar_white};
+&:focus {
+  outline: none;
+}
+`;
+
+
+export const StyledNewRoomSelect = styled.select`
   width: 400px;
   height: 30px;
   font: normal normal 500 14px/25px Poppins;
@@ -50,7 +64,7 @@ const StyledNewRoomSelect = styled.select`
   }
 `;
 
-const StyledNewRoomSubmit = styled(StyledNewRoomInput)`
+export const StyledNewRoomSubmit = styled(StyledNewRoomInput)`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -68,7 +82,7 @@ export function NewRoom() {
   const dispatch = useDispatch();
 
   const [newRoom, setNewRoom] = useState({
-    photo: "",
+    photo: '',
     roomNumber: "",
     id: "",
     room_type: "",
@@ -76,9 +90,18 @@ export function NewRoom() {
     price: "",
     offer_price: "",
     cancellation: "",
-    related_rooms: "",
+    related_rooms: {},
     status: "available",
   });
+
+  const [photoInputs, setPhotoInputs] = useState(3);
+
+  const handleAddLink = (e) => {
+    e.preventDefault();
+    if(photoInputs < 5) {
+      setPhotoInputs(photoInputs + 1)
+    }
+  };
 
   const handleNewRoomSubmit = (e) => {
     e.preventDefault();
@@ -129,10 +152,12 @@ export function NewRoom() {
                   }
                 />
               </StyledDivRow>
-              <StyledNewRoomInput
+              <StyledTextArea
                 type="text"
                 placeholder="Description"
                 style={{ height: "100px" }}
+                rows='20'
+                cols='50'
                 onChange={(e) =>
                   setNewRoom({ ...newRoom, amenities: e.target.value })
                 }
@@ -171,10 +196,12 @@ export function NewRoom() {
               </StyledLink>
             </StyledDivColumn>
             <StyledDivColumn>
-              <StyledNewRoomInput
+              <StyledTextArea
                 type="text"
                 placeholder="Cancellation policy"
                 style={{ height: "100px" }}
+                rows='20'
+                cols='50'
                 onChange={(e) =>
                   setNewRoom({ ...newRoom, cancellation: e.target.value })
                 }
@@ -183,14 +210,20 @@ export function NewRoom() {
                 type="text"
                 placeholder="Related Rooms"
                 onChange={(e) =>
-                  setNewRoom({ ...newRoom, related_rooms: e.target.value })
+                  setNewRoom({
+                    ...newRoom.related_rooms,
+                    related_room1: e.target.value,
+                  })
                 }
               />
               <StyledNewRoomInput
                 type="text"
                 placeholder="Related Rooms"
                 onChange={(e) =>
-                  setNewRoom({ ...newRoom, related_rooms: e.target.value })
+                  setNewRoom({
+                    ...newRoom.related_rooms,
+                    related_room2: e.target.value,
+                  })
                 }
               />
             </StyledDivColumn>
@@ -219,6 +252,7 @@ export function NewRoom() {
               <StyledNewRoomInput
                 type="text"
                 placeholder="Photo URL"
+                style={photoInputs >= 4 ? {display: 'block'} : {display: 'none'}}
                 onChange={(e) =>
                   setNewRoom({ ...newRoom, photo: e.target.value })
                 }
@@ -226,6 +260,7 @@ export function NewRoom() {
               <StyledNewRoomInput
                 type="text"
                 placeholder="Photo URL"
+                style={photoInputs === 5 ? {display: 'block'} : {display: 'none'}}
                 onChange={(e) =>
                   setNewRoom({ ...newRoom, photo: e.target.value })
                 }
@@ -237,6 +272,7 @@ export function NewRoom() {
                   backgroundColor: "#135846",
                   font: "normal normal 500 16px/25px Poppins",
                 }}
+                onClick={handleAddLink}
               >
                 <BsPlusLg />
               </Button>
