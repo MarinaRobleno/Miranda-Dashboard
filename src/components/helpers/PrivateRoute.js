@@ -4,6 +4,7 @@ import { useContext, createContext } from 'react';
 import { AuthContext } from './Context';
 
 export const PrivateRoute = ({ children }) => {
-    const isAuthenticated = useContext(AuthContext)
+    const [authState, authDispatch] = useContext(AuthContext);
+    const {isAuthenticated, user} = authState;
     return isAuthenticated ? children : <Navigate to="/login" />
 }

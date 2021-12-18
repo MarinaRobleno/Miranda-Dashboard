@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../helpers/Context';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { types } from '../helpers/AuthReducer';
 
 const LoginContainer = styled.div`
     display: flex;
@@ -55,7 +56,6 @@ const LoginSubmit = styled.input`
 export function Login() {
     const nameKey = 'admin';
     const passKey = 'admin';
-    const { authState, authDispatch, login, logout } = useContext(AuthContext)
 
     let navigate = useNavigate();
     let location = useLocation();
@@ -63,6 +63,8 @@ export function Login() {
 
     const [name, setName] = useState('');
     const [password, setPassword] = useState('')
+    const [authState, authDispatch] = useContext(AuthContext);
+    const {isAuthenticated, user} = authState;
 
     const saveState = (state) => {
         try {
@@ -87,7 +89,7 @@ export function Login() {
     const handleLoginSubmit = (e) => {
         e.preventDefault();
         if (nameKey === name && passKey === password){
-            login(name)
+            authDispatch({type: types.authLogin, payload: {name: name, mail: 'admin@prueba'}})
         }
         else{
             alert('Wrong mail or password')
@@ -96,10 +98,10 @@ export function Login() {
 
     let from = location.state?.from?.pathname || '/';
     useEffect(() => {
-        if (authState.isAuthenticated){
+        if (isAuthenticated){
             navigate('/', {replace: true})
         }
-    }, [authState.isAuthenticated])
+    }, [isAuthenticated])
 
     return (
         <LoginContainer>

@@ -7,12 +7,15 @@ import { mainTheme } from "./styles/Themes";
 import { ThemeProvider } from "styled-components";
 import store from "./features/store/store";
 import { Provider } from "react-redux";
+import { AuthProvider } from "./components/helpers/Context";
 
 ReactDOM.render(
   <Provider store={store}>
     <ThemeProvider theme={mainTheme}>
       <Router>
-        <App />
+        <AuthProvider>
+          <App />
+        </AuthProvider>
       </Router>
     </ThemeProvider>
   </Provider>,
