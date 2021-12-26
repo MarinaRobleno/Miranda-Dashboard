@@ -106,6 +106,7 @@ export const RoomList = () => {
       return card.status === "booked";
     }})
     setTotalPosts(filteredList.length)
+    setCurrentPage(1);
   }, [filter]);
 
   const renderCard = (card, index) => {

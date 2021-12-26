@@ -76,6 +76,7 @@ export function UsersList() {
       }
     });
     setTotalPosts(filteredList.length);
+    setCurrentPage(1);
   }, [selectedFilter]);
 
   return (

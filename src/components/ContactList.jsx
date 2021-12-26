@@ -63,11 +63,6 @@ export function ContactList() {
     if (!myContact.archived.includes(contact)) {
       dispatch(archive(contact));
     }
-    {
-      /*    const archivedButton = document.getElementById(contact.id);
-    archivedButton.style.backgroundColor = "#E23428";
-archivedButton.style.color = "#FFFFFF";*/
-    }
   };
 
   const handleShowArchived = () => {
@@ -77,6 +72,10 @@ archivedButton.style.color = "#FFFFFF";*/
   const handleShowAll = () => {
     setShowArchived(false);
   };
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [showArchived]);
 
   return (
     <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>

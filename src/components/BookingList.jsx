@@ -232,6 +232,7 @@ export function BookingList() {
       }
     });
     setTotalPosts(filteredList.length);
+    setCurrentPage(1);
   }, [selectedFilter]);
 
   return (
