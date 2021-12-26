@@ -63,6 +63,9 @@ export function ReviewList() {
           .slice(indexOfFirstPost, indexOfLastPost)
           .map((contact) => (
             <StyledReviewPanel>
+              <div>
+                {contact.subject}
+              </div>
               <div
                 style={{ color: "#4E4E4E", lineHeight: "20px" }}
                 onClick={() => handlePopUp(contact)}

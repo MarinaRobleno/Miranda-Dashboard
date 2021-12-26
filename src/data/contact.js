@@ -6,6 +6,7 @@ export default [
     customer: "Harmonie Bathowe",
     mail: "hbathowe0@ihg.com",
     phone: "656-294-7846",
+    subject: 'New Subject',
     comment: "Acute lacrimal canaliculitis of left lacrimal passage",
   },
   {
@@ -15,6 +16,7 @@ export default [
     customer: "Dominic Throssell",
     mail: "dthrossell1@wix.com",
     phone: "400-287-5377",
+    subject: 'New Subject',
     comment: "Heat exhaustion due to salt depletion, subsequent encounter",
   },
   {
@@ -24,6 +26,7 @@ export default [
     customer: "Catarina Sudworth",
     mail: "csudworth2@flavors.me",
     phone: "406-611-6165",
+    subject: 'New Subject',
     comment: "Occ of anml-drn veh inj by fall fr veh in nonclsn acc, subs",
   },
   {
@@ -33,6 +36,7 @@ export default [
     customer: "Christalle Byrom",
     mail: "cbyrom3@studiopress.com",
     phone: "810-946-1704",
+    subject: 'New Subject',
     comment: "Wedge comprsn fx first lum vert, subs for fx w routn heal",
   },
   {
@@ -42,6 +46,7 @@ export default [
     customer: "Constantine Dibben",
     mail: "cdibben4@abc.net.au",
     phone: "671-184-3182",
+    subject: 'New Subject',
     comment: "Poisoning by antirheumatics, NEC, self-harm, init",
   },
   {
@@ -51,6 +56,7 @@ export default [
     customer: "Joceline Lumb",
     mail: "jlumb5@nsw.gov.au",
     phone: "426-319-1022",
+    subject: 'New Subject',
     comment: "Ped on foot injured in clsn w 2-3-whl mv nontraf, sequela",
   },
   {
@@ -60,6 +66,7 @@ export default [
     customer: "Haleigh McLukie",
     mail: "hmclukie6@sogou.com",
     phone: "205-759-7294",
+    subject: 'New Subject',
     comment: "Subluxation and dislocation of C5-C6 cervical vertebrae",
   },
   {
@@ -69,6 +76,7 @@ export default [
     customer: "Killy McNellis",
     mail: "kmcnellis7@amazon.co.uk",
     phone: "697-856-8889",
+    subject: 'New Subject',
     comment: "Drown d-t thrown ovrbrd by motion of power wtrcrft, sqla",
   },
   {
@@ -78,6 +86,7 @@ export default [
     customer: "Earl Ganford",
     mail: "eganford8@irs.gov",
     phone: "865-964-6689",
+    subject: 'New Subject',
     comment: "Unsp place in oth residential institution as place",
   },
   {
@@ -87,6 +96,7 @@ export default [
     customer: "Haily Holsall",
     mail: "hholsall9@moonfruit.com",
     phone: "665-968-3135",
+    subject: 'New Subject',
     comment: "Occupant of rail trn-veh injured in unsp railway accident",
   },
   {
@@ -96,6 +106,7 @@ export default [
     customer: "Harmonie Bathowe",
     mail: "hbathowe0@ihg.com",
     phone: "656-294-7846",
+    subject: 'New Subject',
     comment: "Acute lacrimal canaliculitis of left lacrimal passage",
   },
   {
@@ -105,6 +116,7 @@ export default [
     customer: "Dominic Throssell",
     mail: "dthrossell1@wix.com",
     phone: "400-287-5377",
+    subject: 'New Subject',
     comment: "Heat exhaustion due to salt depletion, subsequent encounter",
   },
   {
@@ -114,6 +126,7 @@ export default [
     customer: "Catarina Sudworth",
     mail: "csudworth2@flavors.me",
     phone: "406-611-6165",
+    subject: 'New Subject',
     comment: "Occ of anml-drn veh inj by fall fr veh in nonclsn acc, subs",
   },
   {
@@ -123,6 +136,7 @@ export default [
     customer: "Christalle Byrom",
     mail: "cbyrom3@studiopress.com",
     phone: "810-946-1704",
+    subject: 'New Subject',
     comment: "Wedge comprsn fx first lum vert, subs for fx w routn heal",
   },
   {
@@ -132,6 +146,7 @@ export default [
     customer: "Constantine Dibben",
     mail: "cdibben4@abc.net.au",
     phone: "671-184-3182",
+    subject: 'New Subject',
     comment: "Poisoning by antirheumatics, NEC, self-harm, init",
   },
   {
@@ -141,6 +156,7 @@ export default [
     customer: "Joceline Lumb",
     mail: "jlumb5@nsw.gov.au",
     phone: "426-319-1022",
+    subject: 'New Subject',
     comment: "Ped on foot injured in clsn w 2-3-whl mv nontraf, sequela",
   },
   {
@@ -150,6 +166,7 @@ export default [
     customer: "Haleigh McLukie",
     mail: "hmclukie6@sogou.com",
     phone: "205-759-7294",
+    subject: 'New Subject',
     comment: "Subluxation and dislocation of C5-C6 cervical vertebrae",
   },
   {
@@ -159,6 +176,7 @@ export default [
     customer: "Killy McNellis",
     mail: "kmcnellis7@amazon.co.uk",
     phone: "697-856-8889",
+    subject: 'New Subject',
     comment: "Drown d-t thrown ovrbrd by motion of power wtrcrft, sqla",
   },
   {
@@ -168,6 +186,7 @@ export default [
     customer: "Earl Ganford",
     mail: "eganford8@irs.gov",
     phone: "865-964-6689",
+    subject: 'New Subject',
     comment: "Unsp place in oth residential institution as place",
   },
   {
@@ -177,6 +196,7 @@ export default [
     customer: "Haily Holsall",
     mail: "hholsall9@moonfruit.com",
     phone: "665-968-3135",
+    subject: 'New Subject',
     comment: "Occupant of rail trn-veh injured in unsp railway accident",
   },
 ];

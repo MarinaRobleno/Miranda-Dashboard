@@ -117,6 +117,7 @@ export function ContactList() {
           <th className="header-table-sector">Customer</th>
           <th className="header-table-sector">Mail</th>
           <th className="header-table-sector">Phone</th>
+          <th className="header-table-sector">Subject</th>
           <th className="header-table-sector">Comment</th>
         </StyledHeader>
         {showArchived
@@ -129,6 +130,7 @@ export function ContactList() {
                   <StyledDataElement>{contact.customer}</StyledDataElement>
                   <StyledDataElement>{contact.mail}</StyledDataElement>
                   <StyledDataElement>{contact.phone}</StyledDataElement>
+                  <StyledDataElement>{contact.subject}</StyledDataElement>
                   <StyledDataElement>{contact.comment}</StyledDataElement>
                 </StyledData>
               ))
@@ -141,6 +143,7 @@ export function ContactList() {
                   <StyledDataElement>{contact.customer}</StyledDataElement>
                   <StyledDataElement>{contact.mail}</StyledDataElement>
                   <StyledDataElement>{contact.phone}</StyledDataElement>
+                  <StyledDataElement>{contact.subject}</StyledDataElement>
                   <StyledDataElement>{contact.comment}</StyledDataElement>
                   <StyledDataElement>
                     <StyledArchiveButton

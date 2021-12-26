@@ -144,7 +144,10 @@ export function UsersList() {
           <th class="header-table-sector">Photo</th>
           <th class="header-table-sector">Id</th>
           <th class="header-table-sector">Name</th>
+          <th class="header-table-sector">Start Date</th>
+          <th class="header-table-sector">Job Desk</th>
           <th class="header-table-sector">Mail</th>
+          <th class="header-table-sector">Phone</th>
           <th class="header-table-sector">Status</th>
         </StyledHeader>
         {myUsers.users
@@ -171,10 +174,13 @@ export function UsersList() {
           .slice(indexOfFirstPost, indexOfLastPost)
           .map((user) => (
             <StyledData>
-              <img src={user.photo} />
+              <img style={{maxWidth: '50px'}} src={user.photo} />
               <StyledDataElement>{user.id}</StyledDataElement>
               <StyledDataElement>{user.name}</StyledDataElement>
+              <StyledDataElement>{user.startDate}</StyledDataElement>
+              <StyledDataElement>{user.job}</StyledDataElement>
               <StyledDataElement>{user.mail}</StyledDataElement>
+              <StyledDataElement>{user.phone}</StyledDataElement>
               {user.status === "active" ? (
                 <StyledDataElement style={{ color: "#5AD07A" }}>
                   {user.status.toUpperCase()}

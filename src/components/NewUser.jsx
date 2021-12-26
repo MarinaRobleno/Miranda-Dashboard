@@ -27,7 +27,7 @@ export function NewUser() {
     id: "",
     mail: "",
     phone: "",
-    status: "",
+    status: 'inactive',
   });
 
   const handleNewUserSubmit = (e) => {
@@ -39,10 +39,16 @@ export function NewUser() {
 
   return (
     <div style={{ width: "1000px" }}>
-      <StyledNewRoomPanel style={{ minHeight: "400px" }}>
-        <StyledBigPanelHeader style={{ textAlign: "left" }}>
-          NEW USER
+      <StyledNewRoomPanel style={{ minHeight: "500px" }}>
+        <StyledBigPanelHeader style={{display: 'flex', justifyContent: 'space-between'}}>
+          <div style={{ textAlign: "left" }}>NEW USER</div>
+          <StyledLink to="/users">
+            <Button style={{width: '50px', backgroundColor: "#135846" }}>
+              <RiArrowGoBackFill />
+            </Button>
+          </StyledLink>
         </StyledBigPanelHeader>
+
         <StyledForm
           id="newUserForm"
           style={{ display: "flex", flexDirection: "column" }}
@@ -64,8 +70,24 @@ export function NewUser() {
                   setNewUser({ ...newUser, name: e.target.value })
                 }
               />
-            </StyledDivColumn>
-            <StyledDivColumn>
+              <StyledDivRow>
+                <StyledNewRoomInput
+                  type="text"
+                  placeholder="Start Date"
+                  style={{ width: "180px" }}
+                  onChange={(e) =>
+                    setNewUser({ ...newUser, startDate: e.target.value })
+                  }
+                />
+                <StyledNewRoomInput
+                  type="text"
+                  placeholder="End Date"
+                  style={{ width: "180px" }}
+                  onChange={(e) =>
+                    setNewUser({ ...newUser, endDate: e.target.value })
+                  }
+                />
+              </StyledDivRow>
               <StyledNewRoomInput
                 type="text"
                 placeholder="Email"
@@ -76,10 +98,10 @@ export function NewUser() {
               <StyledDivRow>
                 <StyledNewRoomInput
                   type="text"
-                  placeholder="Job"
+                  placeholder="Phone"
                   style={{ width: "180px" }}
                   onChange={(e) =>
-                    setNewUser({ ...newUser, job: e.target.value })
+                    setNewUser({ ...newUser, phone: e.target.value })
                   }
                 />
                 <StyledNewRoomInput
@@ -92,6 +114,22 @@ export function NewUser() {
                 />
               </StyledDivRow>
             </StyledDivColumn>
+            <StyledDivColumn>
+              <StyledNewRoomInput
+                type="text"
+                placeholder="Job Desk"
+                onChange={(e) =>
+                  setNewUser({ ...newUser, job: e.target.value })
+                }
+              />
+              <StyledTextArea
+                placeholder="Job Description"
+                style={{ height: "100%" }}
+                onChange={(e) =>
+                  setNewUser({ ...newUser, jobDescription: e.target.value })
+                }
+              ></StyledTextArea>
+            </StyledDivColumn>
           </StyledDivRow>
           <StyledDivRow
             style={{
@@ -101,11 +139,6 @@ export function NewUser() {
             }}
           >
             <StyledNewRoomSubmit type="submit" value="Add User" />
-            <StyledLink to="/users">
-              <Button style={{ backgroundColor: "#135846" }}>
-                <RiArrowGoBackFill />
-              </Button>
-            </StyledLink>
           </StyledDivRow>
         </StyledForm>
       </StyledNewRoomPanel>
