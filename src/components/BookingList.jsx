@@ -142,6 +142,7 @@ export function BookingList() {
   const [dateRange, setDateRange] = useState({ start: "", end: "" });
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [filteredTerm, setFilteredTerm] = useState("");
+  const [orderBySth, setOrderBySth] = useState('');
 
   const [currentPage, setCurrentPage] = useState(1);
   const postPerPage = 10;
@@ -189,22 +190,20 @@ export function BookingList() {
   const handleStartDate = (e) => {
     e.preventDefault();
     const newStartDate = e.target.value;
-    console.log(newStartDate);
     setDateRange((prev) => ({ ...prev, start: newStartDate }));
   };
 
   const handleEndDate = (e) => {
     e.preventDefault();
     const newEndDate = e.target.value;
-    console.log(newEndDate);
     setDateRange((prev) => ({ ...prev, end: newEndDate }));
-    console.log(dateRange);
   };
 
   const handleOrderBySth = (e) => {
     e.preventDefault();
-    const newOrderBy = e.target.id;
-    dispatch(orderBy(newOrderBy));
+    setOrderBySth(e.target.id);
+    const newOrderBySth = e.target.id;
+    dispatch(orderBy(newOrderBySth));
   };
 
   const handleViewNotes = (request) => {
@@ -307,28 +306,28 @@ export function BookingList() {
       <StyledTable>
         <StyledHeader>
           <th
-            style={{ cursor: "pointer" }}
+            style={orderBySth === 'guest' ? { cursor: "pointer", color: "#135846"  } : { cursor: "pointer"}}
             id="guest"
             onClick={handleOrderBySth}
           >
             Guest
           </th>
           <th
-            style={{ cursor: "pointer" }}
+            style={orderBySth === 'orderDate' ? { cursor: "pointer", color: "#135846"  } : { cursor: "pointer"}}
             id="orderDate"
             onClick={handleOrderBySth}
           >
             Order date
           </th>
           <th
-            style={{ cursor: "pointer" }}
+            style={orderBySth === 'checkIn' ? { cursor: "pointer", color: "#135846"  } : { cursor: "pointer"}}
             id="checkIn"
             onClick={handleOrderBySth}
           >
             Check in
           </th>
           <th
-            style={{ cursor: "pointer" }}
+            style={orderBySth === 'checkOut' ? { cursor: "pointer", color: "#135846"  } : { cursor: "pointer"}}
             id="checkOut"
             onClick={handleOrderBySth}
           >

@@ -1,7 +1,7 @@
 export default [
   {
     photo: "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
-    roomNumber: 1,
+    roomNumber: '01',
     id: "64.108.173.202/4",
     room_type: "Vinyl",
     amenities: "Pork Casing",
@@ -11,7 +11,7 @@ export default [
   },
   {
     photo: "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
-    roomNumber: 2,
+    roomNumber: '02',
     id: "84.232.32.165/25",
     room_type: "Wood",
     amenities: "Wine - Penfolds Koonuga Hill",
@@ -22,7 +22,7 @@ export default [
   {
     photo:
       "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
-    roomNumber: 3,
+    roomNumber: '03',
     id: "33.209.86.27/31",
     room_type: "Wood",
     amenities: "Oil - Avocado",
@@ -33,7 +33,7 @@ export default [
   {
     photo:
       "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
-    roomNumber: 4,
+    roomNumber: '04',
     id: "57.217.54.138/22",
     room_type: "Plastic",
     amenities: "Lobster - Live",
@@ -44,7 +44,7 @@ export default [
   {
     photo:
       "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
-    roomNumber: 5,
+    roomNumber: '05',
     id: "110.180.133.156/13",
     room_type: "Vinyl",
     amenities: "Roe - White Fish",
@@ -54,7 +54,7 @@ export default [
   },
   {
     photo: "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
-    roomNumber: 6,
+    roomNumber: '06',
     id: "130.88.170.253/5",
     room_type: "Granite",
     amenities: "Vinegar - Red Wine",
@@ -65,7 +65,7 @@ export default [
   {
     photo:
       "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
-    roomNumber: 7,
+    roomNumber: '07',
     id: "77.153.149.207/14",
     room_type: "Steel",
     amenities: "Bagel - Plain",
@@ -75,7 +75,7 @@ export default [
   },
   {
     photo: "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
-    roomNumber: 8,
+    roomNumber: '08',
     id: "169.206.34.234/16",
     room_type: "Stone",
     amenities: "Compound - Rum",
@@ -85,7 +85,7 @@ export default [
   },
   {
     photo: "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
-    roomNumber: 9,
+    roomNumber: '09',
     id: "52.187.213.79/21",
     room_type: "Glass",
     amenities: "Coffee Cup 12oz 5342cd",
@@ -95,7 +95,7 @@ export default [
   },
   {
     photo: "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
-    roomNumber: 10,
+    roomNumber: '10',
     id: "184.56.148.157/7",
     room_type: "Wood",
     amenities: "Dip - Tapenade",
@@ -105,7 +105,7 @@ export default [
   },
   {
     photo: "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
-    roomNumber: 11,
+    roomNumber: '11',
     id: "64.108.86.27/31",
     room_type: "Vinyl",
     amenities: "Pork Casing",
@@ -115,7 +115,7 @@ export default [
   },
   {
     photo: "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
-    roomNumber: 12,
+    roomNumber: '12',
     id: "84.86.27/31165/25",
     room_type: "Wood",
     amenities: "Wine - Penfolds Koonuga Hill",
@@ -126,7 +126,7 @@ export default [
   {
     photo:
       "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
-    roomNumber: 13,
+    roomNumber: '13',
     id: "33.209.86.27/31/31",
     room_type: "Wood",
     amenities: "Oil - Avocado",
@@ -137,7 +137,7 @@ export default [
   {
     photo:
       "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
-    roomNumber: 14,
+    roomNumber: '14',
     id: "86.27/31.54.138/22",
     room_type: "Plastic",
     amenities: "Lobster - Live",
@@ -148,7 +148,7 @@ export default [
   {
     photo:
       "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
-    roomNumber: 15,
+    roomNumber: '15',
     id: "110.86.27/3133.156/13",
     room_type: "Vinyl",
     amenities: "Roe - White Fish",
@@ -158,7 +158,7 @@ export default [
   },
   {
     photo: "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
-    roomNumber: 16,
+    roomNumber: '16',
     id: "130.88.1786.27/31",
     room_type: "Granite",
     amenities: "Vinegar - Red Wine",
@@ -169,7 +169,7 @@ export default [
   {
     photo:
       "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
-    roomNumber: 17,
+    roomNumber: '17',
     id: "77.1586.27/31",
     room_type: "Steel",
     amenities: "Bagel - Plain",
@@ -179,7 +179,7 @@ export default [
   },
   {
     photo: "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
-    roomNumber: 18,
+    roomNumber: '18',
     id: "86.27/3116",
     room_type: "Stone",
     amenities: "Compound - Rum",
@@ -189,7 +189,7 @@ export default [
   },
   {
     photo: "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
-    roomNumber: 19,
+    roomNumber: '19',
     id: "53333333333",
     room_type: "Glass",
     amenities: "Coffee Cup 12oz 5342cd",
@@ -199,7 +199,7 @@ export default [
   },
   {
     photo: "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
-    roomNumber: 20,
+    roomNumber: '20',
     id: "86.27/31",
     room_type: "Wood",
     amenities: "Dip - Tapenade",
@@ -209,7 +209,7 @@ export default [
   },
   {
     photo: "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
-    roomNumber: 21,
+    roomNumber: '21',
     id: "52.188/31",
     room_type: "Vinyl",
     amenities: "Pork Casing",
@@ -219,7 +219,7 @@ export default [
   },
   {
     photo: "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
-    roomNumber: 22,
+    roomNumber: '22',
     id: "84.86.27/31165/2552.188",
     room_type: "Wood",
     amenities: "Wine - Penfolds Koonuga Hill",
@@ -230,7 +230,7 @@ export default [
   {
     photo:
       "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
-    roomNumber: 23,
+    roomNumber: '23',
     id: "33.52.188209.86.27/31/31",
     room_type: "Wood",
     amenities: "Oil - Avocado",
@@ -241,7 +241,7 @@ export default [
   {
     photo:
       "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
-    roomNumber: 24,
+    roomNumber: '24',
     id: "86.27/352.188.54.138/22",
     room_type: "Plastic",
     amenities: "Lobster - Live",
@@ -252,7 +252,7 @@ export default [
   {
     photo:
       "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
-    roomNumber: 25,
+    roomNumber: '25',
     id: "152.18886.27/3133.156/13",
     room_type: "Vinyl",
     amenities: "Roe - White Fish",
@@ -262,7 +262,7 @@ export default [
   },
   {
     photo: "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
-    roomNumber: 26,
+    roomNumber: '26',
     id: "130.88.152.188.27/31",
     room_type: "Granite",
     amenities: "Vinegar - Red Wine",
@@ -273,7 +273,7 @@ export default [
   {
     photo:
       "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
-    roomNumber: 27,
+    roomNumber: '27',
     id: "77.152.18827/31",
     room_type: "Steel",
     amenities: "Bagel - Plain",
@@ -283,7 +283,7 @@ export default [
   },
   {
     photo: "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
-    roomNumber: 28,
+    roomNumber: '28',
     id: "8652.1887/3116",
     room_type: "Stone",
     amenities: "Compound - Rum",
@@ -293,7 +293,7 @@ export default [
   },
   {
     photo: "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
-    roomNumber: 29,
+    roomNumber: '29',
     id: "52.1886.27/31.79/21",
     room_type: "Glass",
     amenities: "Coffee Cup 12oz 5342cd",
@@ -303,7 +303,7 @@ export default [
   },
   {
     photo: "https://media-cdn.tripadvisor.com/media/photo-s/13/d8/ea/1b/a-room-at-the-beach.jpg",
-    roomNumber: 30,
+    roomNumber: '30',
     id: "86.252.1881",
     room_type: "Wood",
     amenities: "Dip - Tapenade",

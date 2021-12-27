@@ -33,6 +33,7 @@ export function UsersList() {
 
   const [filteredTerm, setFilteredTerm] = useState("");
   const [selectedFilter, setSelectedFilter] = useState("all");
+  const [orderBySth, setOrderBySth] = useState('')
 
   const [currentPage, setCurrentPage] = useState(1);
   const postPerPage = 10;
@@ -63,6 +64,12 @@ export function UsersList() {
   const handleFilterItem = (e) => {
     e.preventDefault();
     setSelectedFilter(e.target.id);
+  };
+
+  const handleAlphabet = (e) => {
+    e.preventDefault();
+    setOrderBySth(e.target.id)
+    dispatch(orderBy(e.target.id));
   };
 
   useEffect(() => {
@@ -143,7 +150,18 @@ export function UsersList() {
         <StyledHeader>
           <th class="header-table-sector">Photo</th>
           <th class="header-table-sector">Id</th>
-          <th class="header-table-sector">Name</th>
+          <th
+            style={
+              orderBySth === "name"
+                ? { cursor: "pointer", color: "#135846" }
+                : { cursor: "pointer" }
+            }
+            class="header-table-sector"
+            id="name"
+            onClick={handleAlphabet}
+          >
+            Name
+          </th>
           <th class="header-table-sector">Start Date</th>
           <th class="header-table-sector">Job Desk</th>
           <th class="header-table-sector">Mail</th>
@@ -174,7 +192,7 @@ export function UsersList() {
           .slice(indexOfFirstPost, indexOfLastPost)
           .map((user) => (
             <StyledData>
-              <img style={{maxWidth: '50px'}} src={user.photo} />
+              <img style={{ maxWidth: "50px" }} src={user.photo} />
               <StyledDataElement>{user.id}</StyledDataElement>
               <StyledDataElement>{user.name}</StyledDataElement>
               <StyledDataElement>{user.startDate}</StyledDataElement>

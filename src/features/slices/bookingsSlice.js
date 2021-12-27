@@ -1,9 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 import booking from "../../data/booking.js";
 
+const sortedBooking = booking.sort(function (a, b) {
+  if (a.orderDate > b.orderDate) {
+    return -1;
+  }
+  if (a.orderDate < b.orderDate) {
+    return 1;
+  }
+  return 0;
+});
+
 export const bookingsSlice = createSlice({
   name: "bookings",
-  initialState: { booking: booking, id: "" },
+  initialState: { booking: sortedBooking, id: "" },
   reducers: {
     add: (state, action) => {
       state.booking.push(action.payload)

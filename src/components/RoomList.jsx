@@ -48,7 +48,7 @@ export const RoomList = () => {
   const dispatch = useDispatch();
 
   const [cards, setCards] = useState(myRooms);
-  const [select, setSelect] = useState("");
+  const [select, setSelect] = useState("roomNumber");
   const [filter, setFilter] = useState("all");
 
   const [totalPosts, setTotalPosts] = useState(cards.length)
