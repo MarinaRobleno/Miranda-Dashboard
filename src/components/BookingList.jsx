@@ -82,7 +82,7 @@ export const StyledCalendarBar = styled.input`
 export const StyledSelect = styled.select`
   max-width: 120px;
   height: 40px;
-  border: 1px solid #135846;
+  border: none;
   border-radius: 12px;
   padding: 5px;
   margin-left: 10px;
@@ -92,6 +92,10 @@ export const StyledSelect = styled.select`
   cursor: pointer;
   &:focus {
     outline: none;
+  }
+  &:hover {
+    background-color: ${(props) => props.theme.colors.green_dark};
+    color: ${(props) => props.theme.colors.search_bar_white};
   }
 `;
 
@@ -314,11 +318,13 @@ export function BookingList() {
             }
           >
             Guest
-            <GoTriangleDown id="guest" onClick={handleOrderBySth} style={{margin: 'auto auto'}}/>
+            <GoTriangleDown
+              id="guest"
+              onClick={handleOrderBySth}
+              style={{ margin: "auto auto" }}
+            />
           </th>
-          <th id="orderDate">
-            Order date
-          </th>
+          <th id="orderDate">Order date</th>
           <th
             style={
               orderBySth === "checkIn"

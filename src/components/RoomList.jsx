@@ -43,6 +43,16 @@ export const StyledPaginationButton = styled(Button)`
   }
 `;
 
+export const StyledNewButton = styled(Button)`
+width: 130px;
+height: 49px;
+background-color: ${(props) => props.theme.colors.green_dark};
+&:hover{
+  color: ${(props) => props.theme.colors.green_dark};
+  background-color: ${(props) => props.theme.colors.main_white};
+}
+`
+
 export const RoomList = () => {
   const myRooms = useSelector(selectRooms);
   const dispatch = useDispatch();
@@ -166,15 +176,9 @@ export const RoomList = () => {
         </StyledFilterMenu>
         <div style={{ display: "flex" }}>
           <StyledLink to="./new-room">
-            <Button
-              style={{
-                width: "150px",
-                height: "49px",
-                backgroundColor: "#135846",
-              }}
-            >
+            <StyledNewButton>
               + New Room
-            </Button>
+            </StyledNewButton>
           </StyledLink>
           {/*<StyledSelect value={select} onChange={handleSelect}>
             <option selected>Order By Price...</option>

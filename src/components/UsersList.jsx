@@ -18,7 +18,11 @@ import { TiDelete } from "react-icons/ti";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { remove, orderBy, selectUsers } from "../features/slices/usersSlice";
-import { StyledTablePagination, StyledPaginationButton } from "./RoomList";
+import {
+  StyledTablePagination,
+  StyledPaginationButton,
+  StyledNewButton,
+} from "./RoomList";
 import { PaginationNumbers } from "./helpers/PaginationNumbers";
 import { GoTriangleDown } from "react-icons/go";
 import { GrFormClose } from "react-icons/gr";
@@ -140,15 +144,7 @@ export function UsersList() {
         </StyledSearchContainer>
         <div style={{ display: "flex" }}>
           <StyledLink to="./new-user">
-            <Button
-              style={{
-                width: "150px",
-                height: "49px",
-                backgroundColor: "#135846",
-              }}
-            >
-              + New User
-            </Button>
+            <StyledNewButton>+ New User</StyledNewButton>
           </StyledLink>
         </div>
       </StyledFilterHeader>
@@ -160,14 +156,19 @@ export function UsersList() {
           <th
             style={
               orderBySth === "name"
-                ? { cursor: "pointer", color: "#135846", display: 'flex', alignItems: 'center' }
-                : { cursor: "pointer", display: 'flex', alignItems: 'center'  }
+                ? {
+                    cursor: "pointer",
+                    color: "#135846",
+                    display: "flex",
+                    alignItems: "center",
+                  }
+                : { cursor: "pointer", display: "flex", alignItems: "center" }
             }
             class="header-table-sector"
           >
             Name
             {orderBySth ? (
-              <GrFormClose id="name" onClick={handleAlphabet}/>
+              <GrFormClose id="name" onClick={handleAlphabet} />
             ) : (
               <GoTriangleDown id="name" onClick={handleAlphabet} />
             )}
