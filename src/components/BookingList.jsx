@@ -2,6 +2,7 @@ import React from "react";
 import Button from "./Button";
 import { AiOutlineDelete } from "react-icons/ai";
 import { BiSearchAlt2, BiSidebar } from "react-icons/bi";
+import { GoTriangleDown } from "react-icons/go";
 import styled from "styled-components";
 import {
   remove,
@@ -142,7 +143,7 @@ export function BookingList() {
   const [dateRange, setDateRange] = useState({ start: "", end: "" });
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [filteredTerm, setFilteredTerm] = useState("");
-  const [orderBySth, setOrderBySth] = useState('');
+  const [orderBySth, setOrderBySth] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
   const postPerPage = 10;
@@ -306,32 +307,37 @@ export function BookingList() {
       <StyledTable>
         <StyledHeader>
           <th
-            style={orderBySth === 'guest' ? { cursor: "pointer", color: "#135846"  } : { cursor: "pointer"}}
-            id="guest"
-            onClick={handleOrderBySth}
+            style={
+              orderBySth === "guest"
+                ? { cursor: "pointer", color: "#135846" }
+                : { cursor: "pointer" }
+            }
           >
             Guest
+            <GoTriangleDown id="guest" onClick={handleOrderBySth} style={{margin: 'auto auto'}}/>
           </th>
-          <th
-            style={orderBySth === 'orderDate' ? { cursor: "pointer", color: "#135846"  } : { cursor: "pointer"}}
-            id="orderDate"
-            onClick={handleOrderBySth}
-          >
+          <th id="orderDate">
             Order date
           </th>
           <th
-            style={orderBySth === 'checkIn' ? { cursor: "pointer", color: "#135846"  } : { cursor: "pointer"}}
-            id="checkIn"
-            onClick={handleOrderBySth}
+            style={
+              orderBySth === "checkIn"
+                ? { cursor: "pointer", color: "#135846" }
+                : { cursor: "pointer" }
+            }
           >
             Check in
+            <GoTriangleDown id="checkIn" onClick={handleOrderBySth} />
           </th>
           <th
-            style={orderBySth === 'checkOut' ? { cursor: "pointer", color: "#135846"  } : { cursor: "pointer"}}
-            id="checkOut"
-            onClick={handleOrderBySth}
+            style={
+              orderBySth === "checkOut"
+                ? { cursor: "pointer", color: "#135846" }
+                : { cursor: "pointer" }
+            }
           >
             Check out
+            <GoTriangleDown id="checkOut" onClick={handleOrderBySth} />
           </th>
           <th>Special Request</th>
           <th>Room Type</th>
