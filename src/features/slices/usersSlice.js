@@ -34,6 +34,16 @@ export const usersSlice = createSlice({
           }
           return 0;
         });
+      }else{
+        state.users = state.users.sort((a, b) => {
+          if (a.startDate > b.startDate) {
+            return -1;
+          }
+          if (a.startDate < b.startDate) {
+            return 1;
+          }
+          return 0;
+        });
       }
     },
   },

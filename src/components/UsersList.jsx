@@ -20,6 +20,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { remove, orderBy, selectUsers } from "../features/slices/usersSlice";
 import { StyledTablePagination, StyledPaginationButton } from "./RoomList";
 import { PaginationNumbers } from "./helpers/PaginationNumbers";
+import { GoTriangleDown } from "react-icons/go";
+import { GrFormClose } from "react-icons/gr";
 
 export const StyledDeleteUser = styled(TiDelete)`
   font-size: 30px;
@@ -33,7 +35,7 @@ export function UsersList() {
 
   const [filteredTerm, setFilteredTerm] = useState("");
   const [selectedFilter, setSelectedFilter] = useState("all");
-  const [orderBySth, setOrderBySth] = useState('')
+  const [orderBySth, setOrderBySth] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
   const postPerPage = 10;
@@ -68,8 +70,13 @@ export function UsersList() {
 
   const handleAlphabet = (e) => {
     e.preventDefault();
-    setOrderBySth(e.target.id)
-    dispatch(orderBy(e.target.id));
+    if (!orderBySth) {
+      setOrderBySth(e.target.id);
+      dispatch(orderBy(e.target.id));
+    } else {
+      setOrderBySth("");
+      dispatch(orderBy(""));
+    }
   };
 
   useEffect(() => {
@@ -153,14 +160,17 @@ export function UsersList() {
           <th
             style={
               orderBySth === "name"
-                ? { cursor: "pointer", color: "#135846" }
-                : { cursor: "pointer" }
+                ? { cursor: "pointer", color: "#135846", display: 'flex', alignItems: 'center' }
+                : { cursor: "pointer", display: 'flex', alignItems: 'center'  }
             }
             class="header-table-sector"
-            id="name"
-            onClick={handleAlphabet}
           >
             Name
+            {orderBySth ? (
+              <GrFormClose id="name" onClick={handleAlphabet}/>
+            ) : (
+              <GoTriangleDown id="name" onClick={handleAlphabet} />
+            )}
           </th>
           <th class="header-table-sector">Start Date</th>
           <th class="header-table-sector">Job Desk</th>
