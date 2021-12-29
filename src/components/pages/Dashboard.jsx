@@ -8,6 +8,7 @@ import { BsCalendarCheck } from "react-icons/bs";
 import { Calendar } from "../Calendar";
 import { TiDeleteOutline } from "react-icons/ti";
 import { ReviewList } from "../ReviewList";
+import ReservationChart from "../Chart";
 
 const StyledGrid = styled.div`
   width: 100%;
@@ -166,7 +167,7 @@ export function Dashboard() {
           gridColumnEnd: "3",
           gridRowStart: "2",
           gridRowEnd: "4",
-          minHeight: '400px'
+          minHeight: '580px'
         }}
       >
         <Calendar />
@@ -177,10 +178,15 @@ export function Dashboard() {
           gridColumnEnd: "5",
           gridRowStart: "2",
           gridRowEnd: "4",
-          minHeight: '400px'
+          minHeight: '580px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'space-between'
         }}
       >
         <StyledBigPanelHeader>Reservation Stats</StyledBigPanelHeader>
+        <ReservationChart />
       </StyledBigPanel>
       <StyledBigPanel
         style={{
