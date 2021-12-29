@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { add, selectRooms } from "../features/slices/roomsSlice";
@@ -80,9 +80,10 @@ export const StyledNewRoomSubmit = styled(StyledNewRoomInput)`
 
 export function NewRoom() {
   const dispatch = useDispatch();
+  const [photoArray, setPhotoArray] = useState([])
 
   const [newRoom, setNewRoom] = useState({
-    photo: '',
+    photo: [],
     roomNumber: "",
     id: "",
     room_type: "",
@@ -93,6 +94,10 @@ export function NewRoom() {
     related_rooms: {},
     status: "available",
   });
+
+  useEffect(() => {
+    setNewRoom({ ...newRoom, photo: photoArray})
+  }, [photoArray])
 
   const [photoInputs, setPhotoInputs] = useState(3);
 
@@ -232,21 +237,21 @@ export function NewRoom() {
                 type="text"
                 placeholder="Photo URL"
                 onChange={(e) =>
-                  setNewRoom({ ...newRoom, photo: e.target.value })
+                  setPhotoArray(prev => [...prev, e.target.value])
                 }
               />
               <StyledNewRoomInput
                 type="text"
                 placeholder="Photo URL"
                 onChange={(e) =>
-                  setNewRoom({ ...newRoom, photo: e.target.value })
+                  setPhotoArray(prev => [...prev, e.target.value])
                 }
               />
               <StyledNewRoomInput
                 type="text"
                 placeholder="Photo URL"
                 onChange={(e) =>
-                  setNewRoom({ ...newRoom, photo: e.target.value })
+                  setPhotoArray(prev => [...prev, e.target.value])
                 }
               />
               <StyledNewRoomInput
@@ -254,7 +259,7 @@ export function NewRoom() {
                 placeholder="Photo URL"
                 style={photoInputs >= 4 ? {display: 'block'} : {display: 'none'}}
                 onChange={(e) =>
-                  setNewRoom({ ...newRoom, photo: e.target.value })
+                  setPhotoArray(prev => [...prev, e.target.value])
                 }
               />
               <StyledNewRoomInput
@@ -262,7 +267,7 @@ export function NewRoom() {
                 placeholder="Photo URL"
                 style={photoInputs === 5 ? {display: 'block'} : {display: 'none'}}
                 onChange={(e) =>
-                  setNewRoom({ ...newRoom, photo: e.target.value })
+                  setPhotoArray(prev => [...prev, e.target.value])
                 }
               />
               <Button
