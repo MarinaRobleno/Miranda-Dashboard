@@ -14,14 +14,12 @@ export function Calendar() {
   let checkIns = myBooking.booking.map((book) => {
     return {
       start: convertDateFormat(book.checkIn),
-      title: 'Check In',
       id: book.id,
     };
   });
   let checkOuts = myBooking.booking.map((book) => {
     return {
       start: convertDateFormat(book.checkOut),
-      title: 'Check Out',
       id: book.id,
     };
   });
@@ -30,6 +28,7 @@ export function Calendar() {
     <FullCalendar
       plugins={[dayGridPlugin]}
       initialView="dayGridMonth"
+      selectable="true"
       headerToolbar={{
         left: "prev,next",
         center: "title",
