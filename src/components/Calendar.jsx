@@ -5,7 +5,7 @@ import FullCalendar from "@fullcalendar/react"; // must go before plugins
 import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import styled from "styled-components";
 
-export function Calendar() {
+export function Calendar({changeCheckInCount, changeCheckOutCount}) {
   function convertDateFormat(string) {
     var info = string.split("-");
     return info[2] + "-" + info[0] + "-" + info[1];
@@ -24,11 +24,23 @@ export function Calendar() {
     };
   });
 
+  changeCheckInCount(checkIns.length);
+  changeCheckOutCount(checkOuts.length);
+
+  /*let uniqueCheckIn = [
+    ...new Set(
+      myBooking.booking.map((book) => {
+        return convertDateFormat(book.checkIn);
+      })
+    ),
+  ];
+  console.log(uniqueCheckIn);*/
+
   return (
     <FullCalendar
       plugins={[dayGridPlugin]}
       initialView="dayGridMonth"
-      selectable="true"
+      selectable={true}
       headerToolbar={{
         left: "prev,next",
         center: "title",

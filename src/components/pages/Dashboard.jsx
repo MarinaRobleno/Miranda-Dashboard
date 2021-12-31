@@ -1,5 +1,5 @@
 import "../../styles/App.scss";
-import React from "react";
+import React, { useState } from "react";
 import { selectContact } from "../../features/slices/contactSlice";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
@@ -89,6 +89,17 @@ export const StyledDeleteReview = styled(TiDeleteOutline)`
 
 export function Dashboard() {
   const myContact = useSelector(selectContact);
+  const [checkInCounter, setCheckInCounter] = useState(0);
+  const [checkOutCounter, setCheckOutCounter] = useState(0);
+
+  const changeCheckInCount = (count) => {
+    setCheckInCounter(count)
+  }
+
+  const changeCheckOutCount = (count) => {
+    setCheckOutCounter(count)
+  }
+
   return (
     <StyledGrid style={{ gridColumnStart: "1", gridColumnEnd: "2" }}>
       <StyledKpi>
@@ -132,7 +143,7 @@ export function Dashboard() {
           <BiLogIn />
         </StyledIconBackground>
         <StyledKpiData>
-          <div style={{ font: "normal normal 600 20px/26px Poppins" }}>753</div>
+          <div style={{ font: "normal normal 600 20px/26px Poppins" }}>{checkInCounter}</div>
           <div
             style={{
               font: "normal normal 300 12px/21px Poppins",
@@ -149,7 +160,7 @@ export function Dashboard() {
           <BiLogOut />
         </StyledIconBackground>
         <StyledKpiData>
-          <div style={{ font: "normal normal 600 20px/26px Poppins" }}>516</div>
+          <div style={{ font: "normal normal 600 20px/26px Poppins" }}>{checkOutCounter}</div>
           <div
             style={{
               font: "normal normal 300 12px/21px Poppins",
@@ -170,7 +181,7 @@ export function Dashboard() {
           minHeight: '580px'
         }}
       >
-        <Calendar />
+        <Calendar changeCheckInCount={changeCheckInCount} changeCheckOutCount={changeCheckOutCount} />
       </StyledBigPanel>
       <StyledBigPanel
         style={{

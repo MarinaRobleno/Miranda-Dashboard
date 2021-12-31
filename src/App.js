@@ -19,6 +19,7 @@ import { VscArrowSwap } from "react-icons/vsc";
 import { BiBell, BiEnvelope } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import { selectContact } from "./features/slices/contactSlice";
+import { selectBookings } from "./features/slices/bookingsSlice";
 
 const SAVE_STATE = "1";
 const SAVE_KEY = "auth";
@@ -133,6 +134,14 @@ function App() {
   }, [loggedIn]);
 
   const myContact = useSelector(selectContact);
+  const myBookings = useSelector(selectBookings);
+
+  const currentMonth = (new Date()).getMonth();
+  const orderArray = myBookings.booking.map(book => {
+    return (new Date(book.orderDate)).getMonth();
+  });
+
+  const orderCount = (orderArray.filter(order => order === currentMonth)).length;
 
   return (
     <>
@@ -167,7 +176,7 @@ function App() {
                   <StyledBell />
                   <StyledNotificationCounter
                     style={isSidebar ? { right: "340px" } : { right: "110px" }}
-                  ></StyledNotificationCounter>
+                  >{orderCount}</StyledNotificationCounter>
                   <StyledLogout onClick={() => setLoggedIn(false)} />
                 </div>
               </StyledHeader>
