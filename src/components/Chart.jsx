@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import * as d3 from "d3";
+import * as d3 from 'd3'
 
 export default function ReservationChart() {
   const [checkIn, setCheckIn] = useState([20, 3, 20, 17, 10, 39, 12]);

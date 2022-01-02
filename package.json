@@ -9,6 +9,7 @@
     "@reduxjs/toolkit": "^1.6.2",
     "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/user-event": "^12.8.3",
+    "d3": "^7.2.1",
     "immutability-helper": "^3.1.1",
     "jw-paginate": "^1.0.4",
     "react": "^17.0.2",
