@@ -178,7 +178,8 @@ export function Dashboard() {
           gridColumnEnd: "3",
           gridRowStart: "2",
           gridRowEnd: "4",
-          minHeight: '580px'
+          minHeight: '580px',
+          minWidth: '700px'
         }}
       >
         <Calendar changeCheckInCount={changeCheckInCount} changeCheckOutCount={changeCheckOutCount} />
@@ -193,7 +194,9 @@ export function Dashboard() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          justifyContent: 'space-between'
+          justifyContent: 'space-between',
+          paddingLeft: '0',
+          paddingRight: '0'
         }}
       >
         <StyledBigPanelHeader>Reservation Stats</StyledBigPanelHeader>

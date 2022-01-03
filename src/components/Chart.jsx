@@ -38,7 +38,7 @@ export default function ReservationChart() {
       .attr("height", height);
 
     //X and Y axis
-    const xScale = d3.scaleBand().domain(days).range([28, 700]);
+    const xScale = d3.scaleBand().domain(days).range([39, 700]);
     svg
       .append("g")
       .call(d3.axisBottom(xScale))
