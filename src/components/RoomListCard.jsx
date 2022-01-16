@@ -9,7 +9,7 @@ export const RoomListCard = ({
   photo,
   roomNumber,
   id,
-  room_type,
+  roomType,
   amenities,
   price,
   offer_price,
@@ -88,7 +88,7 @@ export const RoomListCard = ({
           </div>
         </div>
       </StyledDataElement>
-      <StyledDataElement>{room_type}</StyledDataElement>
+      <StyledDataElement>{roomType}</StyledDataElement>
       <StyledDataElement>{amenities}</StyledDataElement>
       <StyledDataElement>${price}</StyledDataElement>
       <StyledDataElement>${offer_price}</StyledDataElement>

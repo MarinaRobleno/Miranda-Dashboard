@@ -128,7 +128,7 @@ export const RoomList = () => {
         price={card.price}
         photo={card.photo}
         roomNumber={card.roomNumber}
-        room_type={card.room_type}
+        roomType={card.roomType}
         amenities={card.amenities}
         status={card.status}
         offer_price={card.offer_price}

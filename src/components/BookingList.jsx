@@ -411,7 +411,7 @@ export function BookingList() {
               </StyledDataElement>
               <StyledDataElement>
                 <div>{book.roomType}</div>
-                {book.room_number}
+                {book.roomNumber}
               </StyledDataElement>
               <StyledDataElement>
                 {book.status === "in" ? (

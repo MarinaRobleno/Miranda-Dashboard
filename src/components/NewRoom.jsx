@@ -86,7 +86,7 @@ export function NewRoom() {
     photo: [],
     roomNumber: "",
     id: "",
-    room_type: "",
+    roomType: "",
     amenities: "",
     price: "",
     offer_price: "",
@@ -130,7 +130,7 @@ export function NewRoom() {
             <StyledDivColumn style={{ maxWidth: "400px" }}>
               <StyledNewRoomSelect
                 onChange={(e) =>
-                  setNewRoom({ ...newRoom, room_type: e.target.value })
+                  setNewRoom({ ...newRoom, roomType: e.target.value })
                 }
               >
                 <option selected>--Room Type--</option>

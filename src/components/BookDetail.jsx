@@ -94,7 +94,7 @@ export function BookDetail() {
                 <StyledDivColumn>
                   <StyledDetailSection>Room info</StyledDetailSection>
                   <div style={{ font: "normal normal 600 16px/46px Poppins" }}>
-                    {book.room_number}
+                    {book.roomNumber}
                   </div>
                 </StyledDivColumn>
                 <StyledDivColumn>
