@@ -11,6 +11,7 @@ import {
   StyledSearchContainer,
   StyledSearchBar,
   StyledSearchIcon,
+  StyledFooter,
 } from "./BookingList";
 import Button from "./Button";
 import { StyledLink } from "./SideBar";
@@ -225,6 +226,24 @@ export function UsersList() {
             </StyledData>
           ))}
       </StyledTable>
+      <StyledFooter>
+        {postPerPage > totalPosts ? (
+          <div style={{ fontSize: "14px" }}>
+            Showing {totalPosts} of {totalPosts} Data
+          </div>
+        ) : postPerPage * currentPage > totalPosts ? (
+          <div style={{ fontSize: "14px" }}>
+            Showing{" "}
+            {postPerPage * currentPage -
+              postPerPage -
+              (postPerPage - totalPosts)}{" "}
+            of {totalPosts} Data
+          </div>
+        ) : (
+          <div style={{ fontSize: "14px" }}>
+            Showing {postPerPage * currentPage} of {totalPosts} Data
+          </div>
+        )}
       <StyledTablePagination>
         {currentPage === 1 ? null : (
           <StyledPaginationButton onClick={handleGoLeft}>
@@ -244,6 +263,7 @@ export function UsersList() {
           </StyledPaginationButton>
         )}
       </StyledTablePagination>
+      </StyledFooter>
     </div>
   );
 }

@@ -4,6 +4,7 @@ import update from "immutability-helper";
 import {
   StyledFilterHeader,
   StyledFilterMenu,
+  StyledFooter,
   StyledHeader,
   StyledMenuItem,
   StyledSelect,
@@ -24,9 +25,9 @@ export const StyledIconRoom = styled.img`
 `;
 
 export const StyledTablePagination = styled.div`
-display: flex;
-justify-content: right;
-margin-top: 20px;
+  display: flex;
+  justify-content: right;
+  margin-top: 20px;
 `;
 
 export const StyledPaginationButton = styled(Button)`
@@ -37,21 +38,21 @@ export const StyledPaginationButton = styled(Button)`
   color: ${(props) => props.theme.colors.green_dark};
   text-align: center;
   font: normal normal 500 12px/25px Poppins;
-  &:hover{
+  &:hover {
     color: white;
     background-color: ${(props) => props.theme.colors.green_dark};
   }
 `;
 
 export const StyledNewButton = styled(Button)`
-width: 130px;
-height: 49px;
-background-color: ${(props) => props.theme.colors.green_dark};
-&:hover{
-  color: ${(props) => props.theme.colors.green_dark};
-  background-color: ${(props) => props.theme.colors.main_white};
-}
-`
+  width: 130px;
+  height: 49px;
+  background-color: ${(props) => props.theme.colors.green_dark};
+  &:hover {
+    color: ${(props) => props.theme.colors.green_dark};
+    background-color: ${(props) => props.theme.colors.main_white};
+  }
+`;
 
 export const RoomList = () => {
   const myRooms = useSelector(selectRooms);
@@ -61,7 +62,7 @@ export const RoomList = () => {
   const [select, setSelect] = useState("roomNumber");
   const [filter, setFilter] = useState("all");
 
-  const [totalPosts, setTotalPosts] = useState(cards.length)
+  const [totalPosts, setTotalPosts] = useState(cards.length);
   const [currentPage, setCurrentPage] = useState(1);
   const postPerPage = 10;
   const indexOfLastPost = currentPage * postPerPage;
@@ -76,8 +77,8 @@ export const RoomList = () => {
   };
 
   const changePage = (pageNumber) => {
-    setCurrentPage(pageNumber)
-  }
+    setCurrentPage(pageNumber);
+  };
 
   /*
   const handleSelect = (e) => {
@@ -108,14 +109,16 @@ export const RoomList = () => {
   );
 
   useEffect(() => {
-    const filteredList = cards.filter((card) => {if (filter === "all") {
-      return card;
-    } else if (filter === "available") {
-      return card.status === "available";
-    } else {
-      return card.status === "booked";
-    }})
-    setTotalPosts(filteredList.length)
+    const filteredList = cards.filter((card) => {
+      if (filter === "all") {
+        return card;
+      } else if (filter === "available") {
+        return card.status === "available";
+      } else {
+        return card.status === "booked";
+      }
+    });
+    setTotalPosts(filteredList.length);
     setCurrentPage(1);
   }, [filter]);
 
@@ -176,9 +179,7 @@ export const RoomList = () => {
         </StyledFilterMenu>
         <div style={{ display: "flex" }}>
           <StyledLink to="./new-room">
-            <StyledNewButton>
-              + New Room
-            </StyledNewButton>
+            <StyledNewButton>+ New Room</StyledNewButton>
           </StyledLink>
           {/*<StyledSelect value={select} onChange={handleSelect}>
             <option selected>Order By Price...</option>
@@ -209,19 +210,43 @@ export const RoomList = () => {
           .slice(indexOfFirstPost, indexOfLastPost)
           .map((card, i) => renderCard(card, i))}
       </StyledTable>
-      <StyledTablePagination>
-        {currentPage === 1 ? null : (
-          <StyledPaginationButton onClick={handleGoLeft}>
-            Previous
-          </StyledPaginationButton>
+      <StyledFooter>
+        {postPerPage > totalPosts ? (
+          <div style={{ fontSize: "14px" }}>
+            Showing {totalPosts} of {totalPosts} Data
+          </div>
+        ) : postPerPage * currentPage > totalPosts ? (
+          <div style={{ fontSize: "14px" }}>
+            Showing{" "}
+            {postPerPage * currentPage -
+              postPerPage -
+              (postPerPage - totalPosts)}{" "}
+            of {totalPosts} Data
+          </div>
+        ) : (
+          <div style={{ fontSize: "14px" }}>
+            Showing {postPerPage * currentPage} of {totalPosts} Data
+          </div>
         )}
-        <PaginationNumbers postPerPage={postPerPage} totalPosts={totalPosts} currentPage={currentPage} changePage={changePage}/>
-        {currentPage === Math.ceil(cards.length / postPerPage) ? null : (
-          <StyledPaginationButton onClick={handleGoRight}>
-            Next
-          </StyledPaginationButton>
-        )}
-      </StyledTablePagination>
+        <StyledTablePagination>
+          {currentPage === 1 ? null : (
+            <StyledPaginationButton onClick={handleGoLeft}>
+              Previous
+            </StyledPaginationButton>
+          )}
+          <PaginationNumbers
+            postPerPage={postPerPage}
+            totalPosts={totalPosts}
+            currentPage={currentPage}
+            changePage={changePage}
+          />
+          {currentPage === Math.ceil(cards.length / postPerPage) ? null : (
+            <StyledPaginationButton onClick={handleGoRight}>
+              Next
+            </StyledPaginationButton>
+          )}
+        </StyledTablePagination>
+      </StyledFooter>
     </>
   );
 };
