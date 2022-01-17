@@ -26,7 +26,7 @@ font: normal normal 500 12px/25px Poppins;
 `
 
 export function PaginationNumbers({ postPerPage, totalPosts, currentPage, changePage }) {
-  const pageNumbers = [];
+  let pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(totalPosts / postPerPage); i++) {
     pageNumbers.push(i);

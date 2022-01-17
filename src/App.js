@@ -88,7 +88,6 @@ const StyledLogout = styled(FiLogOut)`
 const StyledEnvelope = styled(BiEnvelope)`
   font-size: 20px;
   margin: 0 29px;
-  cursor: pointer;
   color: ${(props) => props.theme.colors.icon_black};
 `;
 
@@ -110,7 +109,6 @@ const StyledNotificationCounter = styled.div`
 const StyledBell = styled(BiBell)`
   font-size: 20px;
   margin: 0 29px;
-  cursor: pointer;
   color: ${(props) => props.theme.colors.icon_black};
 `;
 

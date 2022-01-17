@@ -114,6 +114,13 @@ export const StyledTable = styled.table`
   color: ${(props) => props.theme.colors.letter_grey_dark};
 `;
 
+export const StyledFooter = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 export const StyledHeader = styled.tr`
   font: normal normal 600 14px/25px Poppins;
 `;
@@ -206,9 +213,11 @@ export function BookingList() {
 
   const handleOrderBySth = (e) => {
     e.preventDefault();
-    setOrderBySth(e.target.id);
-    const newOrderBySth = e.target.id;
-    dispatch(orderBy(newOrderBySth));
+    if (e.target.id != orderBySth) {
+      setOrderBySth(e.target.id);
+      const newOrderBySth = e.target.id;
+      dispatch(orderBy(newOrderBySth));
+    }
   };
 
   const handleViewNotes = (request) => {
@@ -228,11 +237,11 @@ export function BookingList() {
       if (selectedFilter === "all") {
         return book;
       } else if (selectedFilter === "in") {
-        return book.status === "in";
+        return book.bookStatus === "in";
       } else if (selectedFilter === "out") {
-        return book.status === "out";
+        return book.bookStatus === "out";
       } else {
-        return book.status === "progress";
+        return book.bookStatus === "progress";
       }
     });
     setTotalPosts(filteredList.length);
@@ -310,44 +319,34 @@ export function BookingList() {
       </StyledFilterHeader>
       <StyledTable>
         <StyledHeader>
-          <th
-            style={
-              orderBySth === "guest"
-                ? { cursor: "pointer", color: "#135846" }
-                : { cursor: "pointer" }
-            }
-          >
+          <th style={orderBySth === "guest" ? { color: "#135846" } : null}>
             Guest
             <GoTriangleDown
               id="guest"
               onClick={handleOrderBySth}
-              style={{ margin: "auto auto" }}
+              style={{ margin: "auto auto", cursor: "pointer" }}
             />
           </th>
           <th id="orderDate">Order date</th>
-          <th
-            style={
-              orderBySth === "checkIn"
-                ? { cursor: "pointer", color: "#135846" }
-                : { cursor: "pointer" }
-            }
-          >
+          <th style={orderBySth === "checkIn" ? { color: "#135846" } : null}>
             Check in
-            <GoTriangleDown id="checkIn" onClick={handleOrderBySth} />
+            <GoTriangleDown
+              id="checkIn"
+              onClick={handleOrderBySth}
+              style={{ margin: "auto auto", cursor: "pointer" }}
+            />
           </th>
-          <th
-            style={
-              orderBySth === "checkOut"
-                ? { cursor: "pointer", color: "#135846" }
-                : { cursor: "pointer" }
-            }
-          >
+          <th style={orderBySth === "checkOut" ? { color: "#135846" } : null}>
             Check out
-            <GoTriangleDown id="checkOut" onClick={handleOrderBySth} />
+            <GoTriangleDown
+              id="checkOut"
+              onClick={handleOrderBySth}
+              style={{ margin: "auto auto", cursor: "pointer" }}
+            />
           </th>
           <th>Special Request</th>
           <th>Room Type</th>
-          <th>Status</th>
+          <th>bookStatus</th>
           <th>Details</th>
         </StyledHeader>
         {myBooking.booking
@@ -372,11 +371,11 @@ export function BookingList() {
             if (selectedFilter === "all" || selectedFilter === "") {
               return book;
             } else if (selectedFilter === "in") {
-              return book.status === "in";
+              return book.bookStatus === "in";
             } else if (selectedFilter === "out") {
-              return book.status === "out";
+              return book.bookStatus === "out";
             } else if (selectedFilter === "progress") {
-              return book.status === "progress";
+              return book.bookStatus === "progress";
             }
           })
           .filter((book) => {
@@ -414,11 +413,11 @@ export function BookingList() {
                 {book.roomNumber}
               </StyledDataElement>
               <StyledDataElement>
-                {book.status === "in" ? (
+                {book.bookStatus === "in" ? (
                   <Button checkIn name="Check In">
                     Check In
                   </Button>
-                ) : book.status === "out" ? (
+                ) : book.bookStatus === "out" ? (
                   <Button checkOut name="Check Out">
                     Check Out
                   </Button>
@@ -443,25 +442,41 @@ export function BookingList() {
             </StyledData>
           ))}
       </StyledTable>
-      <StyledTablePagination>
-        {currentPage === 1 ? null : (
-          <StyledPaginationButton onClick={handleGoLeft}>
-            Previous
-          </StyledPaginationButton>
+      <StyledFooter style={filteredTerm ? {visibility: 'hidden'} : {visibility: 'visible'}}>
+        {postPerPage > totalPosts ? (
+          <div style={{ fontSize: "14px" }}>
+            Showing {totalPosts} of {totalPosts} Data
+          </div>
+        ) : postPerPage * currentPage > totalPosts ? (
+          <div style={{ fontSize: "14px" }}>
+            Showing {postPerPage * currentPage - postPerPage - (postPerPage - totalPosts)} of{" "}
+            {totalPosts} Data
+          </div>
+        ) : (
+          <div style={{ fontSize: "14px" }}>
+            Showing {postPerPage * currentPage} of {totalPosts} Data
+          </div>
         )}
-        <PaginationNumbers
-          postPerPage={postPerPage}
-          totalPosts={totalPosts}
-          currentPage={currentPage}
-          changePage={changePage}
-        />
-        {currentPage ===
-        Math.ceil(myBooking.booking.length / postPerPage) ? null : (
-          <StyledPaginationButton onClick={handleGoRight}>
-            Next
-          </StyledPaginationButton>
-        )}
-      </StyledTablePagination>
+        <StyledTablePagination>
+          {currentPage === 1 ? null : (
+            <StyledPaginationButton onClick={handleGoLeft}>
+              Previous
+            </StyledPaginationButton>
+          )}
+          <PaginationNumbers
+            postPerPage={postPerPage}
+            totalPosts={totalPosts}
+            currentPage={currentPage}
+            changePage={changePage}
+          />
+          {currentPage ===
+          Math.ceil(myBooking.booking.length / postPerPage) ? null : (
+            <StyledPaginationButton onClick={handleGoRight}>
+              Next
+            </StyledPaginationButton>
+          )}
+        </StyledTablePagination>
+      </StyledFooter>
     </div>
   );
 }
