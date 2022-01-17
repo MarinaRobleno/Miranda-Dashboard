@@ -2,18 +2,21 @@ import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../helpers/Context";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { StyledDivColumn, StyledDivRow } from "../BookDetail";
+import { StyledLogoHotel, StyledLogoPack } from "../SideBar";
+import { GiStarsStack } from "react-icons/gi";
 
 const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   width: 500px;
   height: 350px;
   font-size: 30px;
   background-color: ${(props) => props.theme.colors.main_white};
   border: 3px solid ${(props) => props.theme.colors.green_dark};
-  border-radius: 18px;
+  border-radius: 10px;
   box-shadow: 0px 16px 30px #00000014;
 `;
 
@@ -36,6 +39,13 @@ const LoginInput = styled.input`
   background-color: ${(props) => props.theme.colors.green_light};
   &:focus {
     outline: none;
+  }
+  ::placeholder,
+  ::-webkit-input-placeholder {
+    color: ${(props) => props.theme.colors.border_grey_light};
+  }
+  :-ms-input-placeholder {
+    color: ${(props) => props.theme.colors.border_grey_light};
   }
 `;
 
@@ -91,20 +101,34 @@ export function Login() {
   }, [loggedIn]);
 
   return (
-    <LoginContainer>
-      <div>Log In</div>
-      <LoginForm onSubmit={handleLoginSubmit}>
-        <label className="input-label">Name</label>
-        <LoginInput type="text" className="name-input" onChange={handleName} />
-        <label className="input-label">Password</label>
-        <LoginInput
-          type="password"
-          className="mail-input"
-          onChange={handlePass}
-        />
-        <div>Name: admin // Pass: admin</div>
-        <LoginSubmit type="submit" value="Continue" />
-      </LoginForm>
-    </LoginContainer>
+    <StyledDivColumn style={{ alignItems: "center" }}>
+      <LoginContainer>
+        <StyledDivRow style={{ alignItems: "flex-end" }}>
+          <StyledLogoPack>
+            <GiStarsStack />
+            <StyledLogoHotel />
+          </StyledLogoPack>
+          <div>Log In</div>
+        </StyledDivRow>
+        <LoginForm onSubmit={handleLoginSubmit}>
+          <LoginInput
+            type="text"
+            className="name-input"
+            onChange={handleName}
+            placeholder="User"
+          />
+          <LoginInput
+            type="password"
+            className="mail-input"
+            onChange={handlePass}
+            placeholder="Password"
+          />
+          <LoginSubmit type="submit" value="Continue" />
+        </LoginForm>
+      </LoginContainer>
+      <StyledDivRow style={{ fontSize: "12px" }}>
+        User: admin // Password: admin
+      </StyledDivRow>
+    </StyledDivColumn>
   );
 }

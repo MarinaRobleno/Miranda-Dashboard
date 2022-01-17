@@ -62,7 +62,7 @@ const LogoContainer = styled.div`
   font-size: 20px;
 `;
 
-const StyledLogoPack = styled.div`
+export const StyledLogoPack = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -72,7 +72,7 @@ const StyledLogoPack = styled.div`
   background-color: ${(props) => props.theme.colors.main_white};
 `;
 
-const StyledLogoHotel = styled(FaHotel)`
+export const StyledLogoHotel = styled(FaHotel)`
   font-size: 28px;
   color: ${(props) => props.theme.colors.green_dark};
   background-color: ${(props) => props.theme.colors.main_white};
