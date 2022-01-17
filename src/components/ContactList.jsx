@@ -8,6 +8,7 @@ import {
   StyledHeader,
   StyledTable,
   StyledDataElement,
+  StyledFooter,
 } from "./BookingList";
 import Button from "./Button";
 import {
@@ -49,8 +50,8 @@ export function ContactList() {
   };
 
   const changePage = (pageNumber) => {
-    setCurrentPage(pageNumber)
-  }
+    setCurrentPage(pageNumber);
+  };
 
   const handleNewOldSelect = (e) => {
     e.preventDefault();
@@ -156,44 +157,87 @@ export function ContactList() {
                   </StyledDataElement>
                 </StyledData>
               ))}
-      </StyledTable>{myContact.reviewedContact.length >0 && showArchived === false ?
-      <StyledTablePagination>
-        {currentPage === 1 ? null : (
-          <StyledPaginationButton onClick={handleGoLeft}>
-            Previous
-          </StyledPaginationButton>
-        )}
-        <PaginationNumbers
-          postPerPage={postPerPage}
-          totalPosts={myContact.reviewedContact.length}
-          currentPage={currentPage}
-          changePage={changePage}
-        />
-        {currentPage ===
-        Math.ceil(myContact.reviewedContact.length / postPerPage) ? null : (
-          <StyledPaginationButton onClick={handleGoRight}>
-            Next
-          </StyledPaginationButton>
-        )}
-      </StyledTablePagination> : myContact.archived.length >0 && showArchived === true ?       <StyledTablePagination>
-        {currentPage === 1 ? null : (
-          <StyledPaginationButton onClick={handleGoLeft}>
-            Previous
-          </StyledPaginationButton>
-        )}
-        <PaginationNumbers
-          postPerPage={postPerPage}
-          totalPosts={myContact.archived.length}
-          currentPage={currentPage}
-          changePage={changePage}
-        />
-        {currentPage ===
-        Math.ceil(myContact.archived.length / postPerPage) ? null : (
-          <StyledPaginationButton onClick={handleGoRight}>
-            Next
-          </StyledPaginationButton>
-        )}
-      </StyledTablePagination> : null}
+      </StyledTable>
+
+      {myContact.reviewedContact.length > 0 && showArchived === false ? (
+        <StyledFooter>
+          {postPerPage > myContact.reviewedContact.length ? (
+            <div style={{ fontSize: "14px" }}>
+              Showing {myContact.reviewedContact.length} of {myContact.reviewedContact.length} Data
+            </div>
+          ) : postPerPage * currentPage > myContact.reviewedContact.length ? (
+            <div style={{ fontSize: "14px" }}>
+              Showing
+              {postPerPage * currentPage -
+                postPerPage -
+                (postPerPage - myContact.reviewedContact.length)}
+              of {myContact.reviewedContact.length} Data
+            </div>
+          ) : (
+            <div style={{ fontSize: "14px" }}>
+              Showing {postPerPage * currentPage} of {myContact.reviewedContact.length} Data
+            </div>
+          )}
+          <StyledTablePagination>
+            {currentPage === 1 ? null : (
+              <StyledPaginationButton onClick={handleGoLeft}>
+                Previous
+              </StyledPaginationButton>
+            )}
+            <PaginationNumbers
+              postPerPage={postPerPage}
+              totalPosts={myContact.reviewedContact.length}
+              currentPage={currentPage}
+              changePage={changePage}
+            />
+            {currentPage ===
+            Math.ceil(myContact.reviewedContact.length / postPerPage) ? null : (
+              <StyledPaginationButton onClick={handleGoRight}>
+                Next
+              </StyledPaginationButton>
+            )}
+          </StyledTablePagination>
+        </StyledFooter>
+      ) : myContact.archived.length > 0 && showArchived === true ? (
+        <StyledFooter>
+          {postPerPage > myContact.archived.length ? (
+            <div style={{ fontSize: "14px" }}>
+              Showing {myContact.archived.length} of {myContact.archived.length} Data
+            </div>
+          ) : postPerPage * currentPage > myContact.archived.length ? (
+            <div style={{ fontSize: "14px" }}>
+              Showing
+              {postPerPage * currentPage -
+                postPerPage -
+                (postPerPage - myContact.archived.length)}
+              of {myContact.archived.length} Data
+            </div>
+          ) : (
+            <div style={{ fontSize: "14px" }}>
+              Showing {postPerPage * currentPage} of {myContact.archived.length} Data
+            </div>
+          )}
+          <StyledTablePagination>
+            {currentPage === 1 ? null : (
+              <StyledPaginationButton onClick={handleGoLeft}>
+                Previous
+              </StyledPaginationButton>
+            )}
+            <PaginationNumbers
+              postPerPage={postPerPage}
+              totalPosts={myContact.archived.length}
+              currentPage={currentPage}
+              changePage={changePage}
+            />
+            {currentPage ===
+            Math.ceil(myContact.archived.length / postPerPage) ? null : (
+              <StyledPaginationButton onClick={handleGoRight}>
+                Next
+              </StyledPaginationButton>
+            )}
+          </StyledTablePagination>
+        </StyledFooter>
+      ) : null}
     </div>
   );
 }
