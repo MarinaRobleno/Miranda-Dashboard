@@ -158,20 +158,19 @@ export function UsersList() {
             style={
               orderBySth === "name"
                 ? {
-                    cursor: "pointer",
                     color: "#135846",
                     display: "flex",
                     alignItems: "center",
                   }
-                : { cursor: "pointer", display: "flex", alignItems: "center" }
+                : { display: "flex", alignItems: "center" }
             }
             class="header-table-sector"
           >
             Name
             {orderBySth ? (
-              <GrFormClose id="name" onClick={handleAlphabet} />
+              <GrFormClose id="name" onClick={handleAlphabet} style={{cursor: 'pointer'}}/>
             ) : (
-              <GoTriangleDown id="name" onClick={handleAlphabet} />
+              <GoTriangleDown id="name" onClick={handleAlphabet} style={{cursor: 'pointer'}} />
             )}
           </th>
           <th class="header-table-sector">Start Date</th>
