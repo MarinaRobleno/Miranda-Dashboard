@@ -9,6 +9,7 @@ import { Calendar } from "../Calendar";
 import { TiDeleteOutline } from "react-icons/ti";
 import { ReviewList } from "../ReviewList";
 import ReservationChart from "../Chart";
+import { BookingScheduleData } from "../BookingScheduleData";
 
 const StyledGrid = styled.div`
   width: 100%;
@@ -204,14 +205,15 @@ export function Dashboard() {
       </StyledBigPanel>
       <StyledBigPanel
         style={{
-          minHeight: "200px",
+          minHeight: "350px",
           gridColumnStart: "1",
           gridColumnEnd: "5",
           gridRowStart: "4",
           gridRowEnd: "5",
         }}
       >
-        <StyledBigPanelHeader>Booking data</StyledBigPanelHeader>
+        <StyledBigPanelHeader>Booking Schedule Data</StyledBigPanelHeader>
+        <BookingScheduleData />
       </StyledBigPanel>
       <StyledBigPanel
         style={{
