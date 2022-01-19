@@ -27,8 +27,8 @@ https://marinarobleno.github.io/Miranda-Dashboard/
 
 ## Download
 If you download this project, open it in your code editor, open your terminal and run:
-    - npm install
-    - npm start
+- npm install
+- npm start
 Then wait until it shows up in your browser on port http://localhost:3000/
 
 ## Author
