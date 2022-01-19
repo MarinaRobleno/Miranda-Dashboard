@@ -24,6 +24,13 @@ You need a valid registered account to access this dashboard, so only authorized
 ## You can see this app in action here:
 
 https://marinarobleno.github.io/Miranda-Dashboard/
+
+## Download
+If you download this project, open it in your code editor, open your terminal and run:
+    - npm install
+    - npm start
+Then wait until it shows up in your browser on port http://localhost:3000/
+
 ## Author
 #### Marina Robleño Vélez
 #### Email: marinarsanisidro@gmail.com
