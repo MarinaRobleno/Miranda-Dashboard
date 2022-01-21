@@ -9,6 +9,12 @@ export const roomsSlice = createSlice({
       state.rooms = [...state.rooms, action.payload];
       return state;
     },
+    remove: (state, action) => {
+      state.rooms = state.rooms.filter(
+        (room) => room.id !== action.payload.id
+      );
+      return state;
+    },
     orderBy: (state, action) => {
       if (action.payload === "higher") {
         state.rooms = state.rooms.sort((a, b) => {
@@ -47,6 +53,6 @@ export const roomsSlice = createSlice({
 
 export const selectRooms = (state) => state.rooms.rooms;
 
-export const { add, orderBy } = roomsSlice.actions;
+export const { add, orderBy, remove } = roomsSlice.actions;
 
 export default roomsSlice.reducer;

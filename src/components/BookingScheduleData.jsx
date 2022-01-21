@@ -43,7 +43,7 @@ export function BookingScheduleData() {
         <StyledBookingScheduleNumber style={{backgroundColor: '#135846'}}>3</StyledBookingScheduleNumber>
       </StyledBookingScheduleData>
       <StyledBookingScheduleData>
-        <StyledDivRow>
+        <StyledDivRow style={{ alignItems: "center" }}>
           <StyledIconRoom style={{ backgroundColor: "grey" }}></StyledIconRoom>
           <StyledDivColumn>
           <StyledBookingScheduleRoom>ROOM 012 - Double bed</StyledBookingScheduleRoom>
@@ -53,7 +53,7 @@ export function BookingScheduleData() {
         <StyledBookingScheduleNumber style={{backgroundColor: '#E23428'}}>2</StyledBookingScheduleNumber>
       </StyledBookingScheduleData>
       <StyledBookingScheduleData>
-        <StyledDivRow>
+        <StyledDivRow style={{ alignItems: "center" }}>
           <StyledIconRoom style={{ backgroundColor: "grey" }}></StyledIconRoom>
           <StyledDivColumn>
           <StyledBookingScheduleRoom>ROOM 103 - Suite</StyledBookingScheduleRoom>
