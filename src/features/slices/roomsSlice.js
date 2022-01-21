@@ -10,7 +10,7 @@ export const roomsSlice = createSlice({
       return state;
     },
     remove: (state, action) => {
-      state.rooms = state.rooms.filter((room) => room.id !== action.payload.id);
+      state.rooms = state.rooms.filter((room) => room.id !== action.payload);
       return state;
     },
     edit: (state, action) => {

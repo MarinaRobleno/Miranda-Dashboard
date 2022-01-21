@@ -1,9 +1,11 @@
 import { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import { ItemTypes } from "./helpers/ItemTypes";
-import { StyledData, StyledDataElement } from "./BookingList";
+import { StyledBinIcon, StyledData, StyledDataElement } from "./BookingList";
 import Button from "./Button";
 import { StyledIconRoom } from "./RoomList";
+import { remove, selectRooms } from "../features/slices/roomsSlice";
+import { useSelector, useDispatch } from "react-redux";
 
 export const RoomListCard = ({
   photo,
@@ -75,6 +77,13 @@ export const RoomListCard = ({
   });
   const opacity = isDragging ? 0 : 1;
   drag(drop(ref));
+
+  const myRooms = useSelector(selectRooms);
+  const dispatch = useDispatch();
+
+  const removeRoom = (id) => {
+    dispatch(remove(id));
+  };
   return (
     <StyledData ref={ref} style={{ opacity }} data-handler-id={handlerId}>
       <StyledDataElement style={{display: 'flex', alignItems: 'center'}}>
@@ -97,6 +106,9 @@ export const RoomListCard = ({
           <Button checkIn>Available</Button>
           :
           <Button checkOut>Booked</Button>}
+      </StyledDataElement>
+      <StyledDataElement>
+        {/*<StyledBinIcon onClick={() => removeRoom(id)}/>*/}
       </StyledDataElement>
     </StyledData>
   );
