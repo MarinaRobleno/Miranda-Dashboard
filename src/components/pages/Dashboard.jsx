@@ -1,6 +1,7 @@
 import "../../styles/App.scss";
 import React, { useState } from "react";
 import { selectContact } from "../../features/slices/contactSlice";
+import { selectBookings } from "../../features/slices/bookingsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { BiBed, BiLogIn, BiLogOut } from "react-icons/bi";
@@ -89,9 +90,9 @@ export const StyledDeleteReview = styled(TiDeleteOutline)`
 `;
 
 export function Dashboard() {
-  const myContact = useSelector(selectContact);
   const [checkInCounter, setCheckInCounter] = useState(0);
   const [checkOutCounter, setCheckOutCounter] = useState(0);
+  const [actualDate, setActualDate] = useState(new Date());
 
   const changeCheckInCount = (count) => {
     setCheckInCounter(count)
@@ -100,6 +101,7 @@ export function Dashboard() {
   const changeCheckOutCount = (count) => {
     setCheckOutCounter(count)
   }
+
 
   return (
     <StyledGrid style={{ gridColumnStart: "1", gridColumnEnd: "2" }}>
@@ -183,7 +185,7 @@ export function Dashboard() {
           minWidth: '700px'
         }}
       >
-        <Calendar changeCheckInCount={changeCheckInCount} changeCheckOutCount={changeCheckOutCount} />
+        <Calendar setActualDate={setActualDate} changeCheckInCount={changeCheckInCount} changeCheckOutCount={changeCheckOutCount}/>
       </StyledBigPanel>
       <StyledBigPanel
         style={{
