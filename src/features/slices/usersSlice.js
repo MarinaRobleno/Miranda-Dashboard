@@ -23,6 +23,14 @@ export const usersSlice = createSlice({
       state.users = state.users.filter((user) => user.id !== action.payload.id);
       return state;
     },
+    edit: (state, action) => {
+      state.users = state.users.map((user) =>
+        user.id === action.payload.id
+          ? { ...user, attribute: action.payload.attribute }
+          : user
+      );
+      return state;
+    },
     orderBy: (state, action) => {
       if (action.payload === "name") {
         state.users = state.users.sort((a, b) => {

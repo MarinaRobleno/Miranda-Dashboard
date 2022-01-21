@@ -10,8 +10,14 @@ export const roomsSlice = createSlice({
       return state;
     },
     remove: (state, action) => {
-      state.rooms = state.rooms.filter(
-        (room) => room.id !== action.payload.id
+      state.rooms = state.rooms.filter((room) => room.id !== action.payload.id);
+      return state;
+    },
+    edit: (state, action) => {
+      state.rooms = state.rooms.map((room) =>
+        room.id === action.payload.id
+          ? { ...room, attribute: action.payload.attribute }
+          : room
       );
       return state;
     },
@@ -53,6 +59,6 @@ export const roomsSlice = createSlice({
 
 export const selectRooms = (state) => state.rooms.rooms;
 
-export const { add, orderBy, remove } = roomsSlice.actions;
+export const { add, orderBy, remove, edit } = roomsSlice.actions;
 
 export default roomsSlice.reducer;

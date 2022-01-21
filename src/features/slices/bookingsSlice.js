@@ -25,6 +25,14 @@ export const bookingsSlice = createSlice({
       );
       return state;
     },
+    edit: (state, action) => {
+      state.booking = state.booking.map((book) =>
+        book.id === action.payload.id
+          ? { ...book, attribute: action.payload.attribute }
+          : book
+      );
+      return state;
+    },
     detailed: (state, action) => {
       state.id = action.payload;
     },
