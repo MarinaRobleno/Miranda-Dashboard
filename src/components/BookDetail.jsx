@@ -131,7 +131,7 @@ export function BookDetail() {
                 justifyContent: "flex-end",
               }}
             >
-              <ImageCarousel bookImages={book.photo} status={book.status}/>
+              <ImageCarousel bookImages={book.photo} status={book.bookStatus}/>
               <StyledDivColumn style={{
                     position: 'absolute',
                     width: '100%',

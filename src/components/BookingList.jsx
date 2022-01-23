@@ -340,7 +340,7 @@ export function BookingList() {
       </StyledFilterHeader>
       <StyledTable>
         <StyledHeader>
-          <th style={orderBySth === "guest" ? { color: "#135846" } : null}>
+          <th style={orderBySth === "guest" ? { color: "#135846", borderBottom: '1px solid #135846' } : null}>
             Guest
             <GoTriangleDown
               id="guest"
@@ -349,7 +349,7 @@ export function BookingList() {
             />
           </th>
           <th id="orderDate">Order date</th>
-          <th style={orderBySth === "checkIn" ? { color: "#135846" } : null}>
+          <th style={orderBySth === "checkIn" ? { color: "#135846", borderBottom: '1px solid #135846' } : null}>
             Check in
             <GoTriangleDown
               id="checkIn"
@@ -357,7 +357,7 @@ export function BookingList() {
               style={{ margin: "auto auto", cursor: "pointer" }}
             />
           </th>
-          <th style={orderBySth === "checkOut" ? { color: "#135846" } : null}>
+          <th style={orderBySth === "checkOut" ? { color: "#135846", borderBottom: '1px solid #135846' } : null}>
             Check out
             <GoTriangleDown
               id="checkOut"
@@ -366,7 +366,7 @@ export function BookingList() {
             />
           </th>
           <th>Special Request</th>
-          <th>Room Type</th>
+          <th>Room</th>
           <th>bookStatus</th>
           <th>Details</th>
         </StyledHeader>
@@ -428,7 +428,7 @@ export function BookingList() {
                 )}
               </StyledDataElement>
               <StyledDataElement>
-                <div>{book.roomType}</div>
+                <div style={{fontWeight:'600'}}>{book.roomType}</div>
                 {book.roomNumber}
               </StyledDataElement>
               <StyledDataElement>

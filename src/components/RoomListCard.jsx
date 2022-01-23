@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import { ItemTypes } from "./helpers/ItemTypes";
-import { StyledBinIcon, StyledData, StyledDataElement } from "./BookingList";
+import { StyledBinIcon, StyledData, StyledDataElement, StyledDataGuest } from "./BookingList";
 import Button from "./Button";
 import { StyledIconRoom } from "./RoomList";
 import { remove, selectRooms } from "../features/slices/roomsSlice";
@@ -86,21 +86,21 @@ export const RoomListCard = ({
   };
   return (
     <StyledData ref={ref} style={{ opacity }} data-handler-id={handlerId}>
-      <StyledDataElement style={{display: 'flex', alignItems: 'center'}}>
+      <StyledDataGuest style={{display: 'flex', alignItems: 'center', width: '100%'}}>
         <StyledIconRoom src={photo[0]} />
         <div style={{ display: 'inline-block' }}>
-          <div style={{ display: 'block' }}>
-            {roomNumber}
+          <div style={{ display: 'block', fontWeight:'600' }}>
+            Room {roomNumber}
           </div>
           <div style={{ display: 'block' }}>
-            {id}
+            #{id}
           </div>
         </div>
-      </StyledDataElement>
-      <StyledDataElement>{roomType}</StyledDataElement>
-      <StyledDataElement>{amenities}</StyledDataElement>
-      <StyledDataElement>${price}</StyledDataElement>
-      <StyledDataElement>${offer_price}</StyledDataElement>
+      </StyledDataGuest>
+      <StyledDataGuest>{roomType}</StyledDataGuest>
+      <StyledDataGuest>{amenities}</StyledDataGuest>
+      <StyledDataElement style={{fontWeight:'600'}}>${price/100}/night</StyledDataElement>
+      <StyledDataElement style={{fontWeight:'600'}}>${offer_price/100}/night</StyledDataElement>
       <StyledDataElement>
         {status === 'available' ?
           <Button checkIn>Available</Button>

@@ -12,6 +12,7 @@ import {
   StyledSearchBar,
   StyledSearchIcon,
   StyledFooter,
+  StyledDataGuest,
 } from "./BookingList";
 import Button from "./Button";
 import { StyledLink } from "./SideBar";
@@ -27,6 +28,7 @@ import {
 import { PaginationNumbers } from "./helpers/PaginationNumbers";
 import { GoTriangleDown } from "react-icons/go";
 import { GrFormClose } from "react-icons/gr";
+import { BiPhone } from "react-icons/bi";
 
 export const StyledDeleteUser = styled(TiDelete)`
   font-size: 30px;
@@ -161,6 +163,7 @@ export function UsersList() {
                     color: "#135846",
                     display: "flex",
                     alignItems: "center",
+                    borderBottom: '1px solid #135846'
                   }
                 : { display: "flex", alignItems: "center" }
             }
@@ -168,7 +171,7 @@ export function UsersList() {
           >
             Name
             {orderBySth ? (
-              <GrFormClose id="name" onClick={handleAlphabet} style={{cursor: 'pointer'}}/>
+              <GoTriangleDown id="name" onClick={handleAlphabet} style={{cursor: 'pointer'}}/>
             ) : (
               <GoTriangleDown id="name" onClick={handleAlphabet} style={{cursor: 'pointer'}} />
             )}
@@ -204,18 +207,18 @@ export function UsersList() {
           .map((user) => (
             <StyledData>
               <img style={{ maxWidth: "50px" }} src={user.photo} />
-              <StyledDataElement>{user.id}</StyledDataElement>
-              <StyledDataElement>{user.name}</StyledDataElement>
+              <StyledDataElement style={{width: '50px'}}>#{user.id}</StyledDataElement>
+              <StyledDataGuest style={{fontWeight: '600'}}>{user.name}</StyledDataGuest>
               <StyledDataElement>{user.startDate}</StyledDataElement>
               <StyledDataElement>{user.job}</StyledDataElement>
               <StyledDataElement>{user.mail}</StyledDataElement>
-              <StyledDataElement>{user.phone}</StyledDataElement>
+              <StyledDataElement style={{fontWeight: '600'}}><BiPhone style={{marginRight: '10px'}} />{user.phone}</StyledDataElement>
               {user.status === "active" ? (
-                <StyledDataElement style={{ color: "#5AD07A" }}>
+                <StyledDataElement style={{ color: "#5AD07A", fontWeight: '600' }}>
                   {user.status.toUpperCase()}
                 </StyledDataElement>
               ) : (
-                <StyledDataElement style={{ color: "#E23428" }}>
+                <StyledDataElement style={{ color: "#E23428", fontWeight: '600' }}>
                   {user.status.toUpperCase()}
                 </StyledDataElement>
               )}
