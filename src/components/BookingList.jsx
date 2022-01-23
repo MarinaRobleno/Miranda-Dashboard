@@ -88,7 +88,7 @@ export const StyledCalendarBar = styled(Flatpickr)`
 export const StyledSelect = styled.select`
   max-width: 120px;
   height: 40px;
-  border: none;
+  border: 1px solid ${(props) => props.theme.colors.green_dark};
   border-radius: 12px;
   padding: 5px;
   margin-left: 10px;
@@ -112,6 +112,7 @@ export const StyledSelectOption = styled.option`
 `;
 
 export const StyledTable = styled.table`
+  table-layout: fixed;
   text-align: left;
   min-width: 100%;
   border-radius: 20px;
@@ -133,6 +134,7 @@ export const StyledHeader = styled.tr`
 
 export const StyledData = styled.tr`
   font-size: 13px;
+  width: 100%;
   &:hover {
     box-shadow: 0px 4px 30px #0000001a;
   }
@@ -140,6 +142,10 @@ export const StyledData = styled.tr`
 
 export const StyledDataElement = styled.td`
   padding: 10px 0;
+`;
+
+export const StyledDataGuest = styled(StyledDataElement)`
+  width: 200px;
 `;
 
 export const StyledDetailIcon = styled(BiSidebar)`
@@ -310,14 +316,20 @@ export function BookingList() {
           />
           <StyledSearchIcon />
         </StyledSearchContainer>
-        <div style={{ display: "flex", justifyContent:'space-around' }}>
-          <div style={{ display:'flex' }}>
-            <StyledCalendarBar defaultValue="2022-01-01" onChange={(selectedDates, dateStr, instance) => {
-              handleStartDate(dateStr);
-            }} />
-            <StyledCalendarBar defaultValue="2022-12-31" onChange={(selectedDates, dateStr, instance) => {
-              handleEndDate(dateStr);
-            }} />
+        <div style={{ display: "flex", justifyContent: "space-around" }}>
+          <div style={{ display: "flex" }}>
+            <StyledCalendarBar
+              defaultValue="2022-01-01"
+              onChange={(selectedDates, dateStr, instance) => {
+                handleStartDate(dateStr);
+              }}
+            />
+            <StyledCalendarBar
+              defaultValue="2022-12-31"
+              onChange={(selectedDates, dateStr, instance) => {
+                handleEndDate(dateStr);
+              }}
+            />
           </div>
           <StyledSelect value={select} onChange={handleNewOldSelect}>
             <option selected>Order By...</option>
@@ -399,10 +411,10 @@ export function BookingList() {
           .slice(indexOfFirstPost, indexOfLastPost)
           .map((book) => (
             <StyledData>
-              <StyledDataElement>
-                <div>{book.guest}</div>
-                {book.id}
-              </StyledDataElement>
+              <StyledDataGuest>
+                <div style={{fontWeight:'600'}}>{book.guest}</div>
+                #{book.id}
+              </StyledDataGuest>
               <StyledDataElement>{book.orderDate}</StyledDataElement>
               <StyledDataElement>{book.checkIn}</StyledDataElement>
               <StyledDataElement>{book.checkOut}</StyledDataElement>
