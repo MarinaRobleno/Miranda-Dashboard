@@ -15,9 +15,12 @@ import { useState, useEffect } from "react";
 import { StyledLink } from "./SideBar";
 import { StyledTablePagination, StyledPaginationButton } from "./RoomList";
 import { PaginationNumbers } from "./helpers/PaginationNumbers";
+import "flatpickr/dist/flatpickr.min.css";
+import Flatpickr from "react-flatpickr";
 
 export const StyledFilterHeader = styled.div`
   display: flex;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
@@ -66,14 +69,17 @@ export const StyledSearchIcon = styled(BiSearchAlt2)`
   margin-right: 29px;
 `;
 
-export const StyledCalendarBar = styled.input`
+export const StyledCalendarBar = styled(Flatpickr)`
   max-width: 120px;
   height: 40px;
-  padding-left: 10px;
   border: none;
+  margin-right: 10px;
   border-radius: 12px;
-  font: normal normal 300 10px/21px Poppins;
-  background-color: ${(props) => props.theme.colors.search_bar_white};
+  font: normal normal 500 12px/21px Poppins;
+  background-color: ${(props) => props.theme.colors.green_dark};
+  color: ${(props) => props.theme.colors.main_white};
+  cursor: pointer;
+  text-align: center;
   &:focus {
     outline: none;
   }
@@ -149,6 +155,7 @@ export const StyledBinIcon = styled(AiOutlineDelete)`
 export function BookingList() {
   const myBooking = useSelector(selectBookings);
   const dispatch = useDispatch();
+  const today = new Date();
 
   const [select, setSelect] = useState("");
   const [dateRange, setDateRange] = useState({ start: "", end: "" });
@@ -199,15 +206,13 @@ export function BookingList() {
     return info[2] + "-" + info[0] + "-" + info[1];
   }
 
-  const handleStartDate = (e) => {
-    e.preventDefault();
-    const newStartDate = e.target.value;
+  const handleStartDate = (date) => {
+    const newStartDate = date;
     setDateRange((prev) => ({ ...prev, start: newStartDate }));
   };
 
-  const handleEndDate = (e) => {
-    e.preventDefault();
-    const newEndDate = e.target.value;
+  const handleEndDate = (date) => {
+    const newEndDate = date;
     setDateRange((prev) => ({ ...prev, end: newEndDate }));
   };
 
@@ -305,10 +310,14 @@ export function BookingList() {
           />
           <StyledSearchIcon />
         </StyledSearchContainer>
-        <div>
-          <div style={{ display: "inline", width: "100%" }}>
-            <StyledCalendarBar type="date" onChange={handleStartDate} />
-            <StyledCalendarBar type="date" onChange={handleEndDate} />
+        <div style={{ display: "flex", justifyContent:'space-around' }}>
+          <div style={{ display:'flex' }}>
+            <StyledCalendarBar defaultValue="2022-01-01" onChange={(selectedDates, dateStr, instance) => {
+              handleStartDate(dateStr);
+            }} />
+            <StyledCalendarBar defaultValue="2022-12-31" onChange={(selectedDates, dateStr, instance) => {
+              handleEndDate(dateStr);
+            }} />
           </div>
           <StyledSelect value={select} onChange={handleNewOldSelect}>
             <option selected>Order By...</option>
@@ -353,8 +362,6 @@ export function BookingList() {
           .filter((book) => {
             let convertedCheckIn = convertDateFormat(book.checkIn);
             let convertedCheckOut = convertDateFormat(book.checkOut);
-            console.log(convertedCheckIn);
-            console.log(convertedCheckOut);
             if (dateRange.start === "" || dateRange.end === "") {
               return book;
             }
@@ -442,15 +449,22 @@ export function BookingList() {
             </StyledData>
           ))}
       </StyledTable>
-      <StyledFooter style={filteredTerm ? {visibility: 'hidden'} : {visibility: 'visible'}}>
+      <StyledFooter
+        style={
+          filteredTerm ? { visibility: "hidden" } : { visibility: "visible" }
+        }
+      >
         {postPerPage > totalPosts ? (
           <div style={{ fontSize: "14px" }}>
             Showing {totalPosts} of {totalPosts} Data
           </div>
         ) : postPerPage * currentPage > totalPosts ? (
           <div style={{ fontSize: "14px" }}>
-            Showing {postPerPage * currentPage - postPerPage - (postPerPage - totalPosts)} of{" "}
-            {totalPosts} Data
+            Showing{" "}
+            {postPerPage * currentPage -
+              postPerPage -
+              (postPerPage - totalPosts)}{" "}
+            of {totalPosts} Data
           </div>
         ) : (
           <div style={{ fontSize: "14px" }}>
