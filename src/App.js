@@ -45,6 +45,9 @@ const Content = styled.div`
   min-height: 100%;
   padding: 50px;
   background-color: ${(props) => props.theme.colors.main_grey};
+  @media (min-width: 1920px) {
+    margin-top: 130px;
+  }
 `;
 
 const StyledHeader = styled.header`
@@ -59,6 +62,9 @@ const StyledHeader = styled.header`
   height: 90px;
   box-shadow: 0px 3px 10px #00000005;
   background-color: ${(props) => props.theme.colors.main_white};
+  @media (min-width: 1920px) {
+    height: 130px;
+  }
 `;
 
 const SideBarContainer = styled.div`
@@ -66,12 +72,18 @@ const SideBarContainer = styled.div`
   min-width: 230px;
   box-shadow: 13px 3px 40px #00000005;
   background-color: ${(props) => props.theme.colors.main_white};
+  @media (min-width: 1920px) {
+    min-width: 320px;
+  }
 `;
 
 const StyledHamburger = styled(VscArrowSwap)`
   font-size: 20px;
   cursor: pointer;
   color: ${(props) => props.theme.colors.black};
+  @media (min-width: 1920px) {
+    font-size: 30px;
+  }
 `;
 
 const StyledLogout = styled(FiLogOut)`
@@ -83,12 +95,18 @@ const StyledLogout = styled(FiLogOut)`
   color: ${(props) => props.theme.colors.icon_black};
   cursor: pointer;
   margin-left: 29px;
+  @media (min-width: 1920px) {
+    font-size: 30px;
+  }
 `;
 
 const StyledEnvelope = styled(BiEnvelope)`
   font-size: 20px;
   margin: 0 29px;
   color: ${(props) => props.theme.colors.icon_black};
+  @media (min-width: 1920px) {
+    font-size: 30px;
+  }
 `;
 
 const StyledNotificationCounter = styled.div`
@@ -104,12 +122,21 @@ const StyledNotificationCounter = styled.div`
   border-radius: 5px;
   color: white;
   font: normal normal 600 10px/21px Poppins;
+  @media (min-width: 1920px) {
+    width: 23px;
+    height: 23px;
+    font-size: 16px;
+    top: 35px;
+  }
 `;
 
 const StyledBell = styled(BiBell)`
   font-size: 20px;
   margin: 0 29px;
   color: ${(props) => props.theme.colors.icon_black};
+  @media (min-width: 1920px) {
+    font-size: 30px;
+  }
 `;
 
 function App() {
@@ -134,12 +161,14 @@ function App() {
   const myContact = useSelector(selectContact);
   const myBookings = useSelector(selectBookings);
 
-  const currentMonth = (new Date()).getMonth();
-  const orderArray = myBookings.booking.map(book => {
-    return (new Date(book.orderDate)).getMonth();
+  const currentMonth = new Date().getMonth();
+  const orderArray = myBookings.booking.map((book) => {
+    return new Date(book.orderDate).getMonth();
   });
 
-  const orderCount = (orderArray.filter(order => order === currentMonth)).length;
+  const orderCount = orderArray.filter(
+    (order) => order === currentMonth
+  ).length;
 
   return (
     <>
@@ -156,8 +185,12 @@ function App() {
                 <StyledHamburger onClick={handleCloseSidebar} />
                 <div
                   style={
-                    isSidebar
-                      ? { paddingRight: "230px" }
+                    window.innerWidth < 1920
+                      ? isSidebar
+                        ? { paddingRight: "230px" }
+                        : { paddingRight: "0" }
+                      : isSidebar
+                      ? { paddingRight: "320px" }
                       : { paddingRight: "0" }
                   }
                 >
@@ -165,7 +198,13 @@ function App() {
                   {myContact.contact.length > 0 ? (
                     <StyledNotificationCounter
                       style={
-                        isSidebar ? { right: "418px" } : { right: "188px" }
+                        window.innerWidth < 1920
+                          ? isSidebar
+                            ? { right: "418px" }
+                            : { right: "188px" }
+                          : isSidebar
+                          ? { right: "525px" }
+                          : { right: "205px" }
                       }
                     >
                       {myContact.contact.length}
@@ -173,8 +212,18 @@ function App() {
                   ) : null}
                   <StyledBell />
                   <StyledNotificationCounter
-                    style={isSidebar ? { right: "340px" } : { right: "110px" }}
-                  >{orderCount}</StyledNotificationCounter>
+                    style={
+                      window.innerWidth < 1920
+                        ? isSidebar
+                          ? { right: "340px" }
+                          : { right: "110px" }
+                        : isSidebar
+                        ? { right: "440px" }
+                        : { right: "120px" }
+                    }
+                  >
+                    {orderCount}
+                  </StyledNotificationCounter>
                   <StyledLogout onClick={() => setLoggedIn(false)} />
                 </div>
               </StyledHeader>
