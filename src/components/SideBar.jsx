@@ -15,6 +15,9 @@ import { GiStarsStack } from "react-icons/gi";
 const StyledSideBarContent = styled.div`
   width: 230px;
   background-color: ${(props) => props.theme.colors.main_white};
+  @media (min-width: 1920px) {
+    width: 320px;
+  }
 `;
 
 const MenuButtonLine = styled.div`
@@ -28,6 +31,9 @@ const MenuButtonLine = styled.div`
   justify-content: flex-start;
   text-align: center;
   background-color: ${(props) => props.theme.colors.main_white};
+  @media (min-width: 1920px) {
+    width: 320px;
+  }
 `;
 
 const MenuButtons = styled.div`
@@ -44,6 +50,12 @@ const MenuButtons = styled.div`
   letter-spacing: 0px;
   color: ${(props) => props.theme.colors.green_light};
   cursor: pointer;
+  @media (min-width: 1920px) {
+    font-size: 18px;
+    padding-left: 50px;
+    height: 70px;
+    width: 320px;
+  }
 `;
 
 export const StyledLink = styled(Link)`
@@ -60,6 +72,11 @@ const LogoContainer = styled.div`
   background-color: ${(props) => props.theme.colors.main_white};
   font-weight: 800;
   font-size: 20px;
+  @media (min-width: 1920px) {
+    min-width: 320px;
+    margin: 70px 55px;
+    font-size: 30px;
+  }
 `;
 
 export const StyledLogoPack = styled.div`
@@ -70,12 +87,20 @@ export const StyledLogoPack = styled.div`
   margin-bottom: 2px;
   color: ${(props) => props.theme.colors.red};
   background-color: ${(props) => props.theme.colors.main_white};
+  @media (min-width: 1920px) {
+    margin-right: 20px;
+    margin-bottom: 6px;
+  }
 `;
 
 export const StyledLogoHotel = styled(FaHotel)`
   font-size: 28px;
   color: ${(props) => props.theme.colors.green_dark};
   background-color: ${(props) => props.theme.colors.main_white};
+  @media (min-width: 1920px) {
+    font-size: 33px;
+  }
+  
 `;
 
 const ContactUsCard = styled.div`
@@ -89,6 +114,11 @@ const ContactUsCard = styled.div`
   padding: 14px 0;
   box-shadow: 0px 20px 30px #00000014;
   border-radius: 18px;
+  @media (min-width: 1920px) {
+    width: 260px;
+    height: 240px;
+    margin: 0 auto 35px;
+  }
 `;
 
 const StyledCopyrightContainer = styled.div`
@@ -98,7 +128,9 @@ const StyledCopyrightContainer = styled.div`
   justify-content: space-between;
   text-align: left;
   margin: 0 auto;
-
+  @media (min-width: 1920px) {
+    height: 200px;
+  }
 `;
 
 const StyledAdminDashboard = styled.div`
@@ -106,12 +138,20 @@ const StyledAdminDashboard = styled.div`
   font: normal normal 600 12px/25px Poppins;
   letter-spacing: 0px;
   color: ${(props) => props.theme.colors.icon_black};
+  @media (min-width: 1920px) {
+    text-align: center;
+    font-size: 17px;
+    padding: 0 40px 20px;
+  }
 `;
 
 const StyledCopyright = styled.div`
   color: ${(props) => props.theme.colors.green_light};
   font: normal normal 300 12px/21px Poppins;
   text-align: left;
+  @media (min-width: 1920px) {
+    font-size: 17px;
+  }
 `;
 
 export function SideBar() {
@@ -129,7 +169,7 @@ export function SideBar() {
               display: "flex",
               alignItems: "flex-end",
               position: "fixed",
-              top: '20px',
+              top: "20px",
               textAlign: "left",
               backgroundColor: "#FFFFFF",
             }}
@@ -141,10 +181,10 @@ export function SideBar() {
             <div>
               <div>Miranda</div>
               <div
-                style={{
+                style={window.innerWidth < 1920 ? {
                   font: "normal normal 300 12px/18px Poppins",
                   color: "#5D5449",
-                }}
+                } : {font: "normal normal 300 15px/18px Poppins", color: "#5D5449"}}
               >
                 Hotel Admin Dashboard
               </div>
@@ -162,14 +202,14 @@ export function SideBar() {
               }}
             >
               <RiDashboardLine
-                style={{ marginRight: "27px", fontSize: "20px" }}
+                style={window.innerWidth < 1920 ?{ marginRight: "27px", fontSize: "20px" } : { marginRight: "27px", fontSize: "25px" }}
               />
               <div>Dashboard</div>
             </MenuButtons>
           ) : (
             <MenuButtons>
               <RiDashboardLine
-                style={{ marginRight: "27px", fontSize: "20px" }}
+                style={window.innerWidth < 1920 ?{ marginRight: "27px", fontSize: "20px" } : { marginRight: "27px", fontSize: "25px" }}
               />
               <div>Dashboard</div>
             </MenuButtons>
@@ -185,12 +225,12 @@ export function SideBar() {
                 fontWeight: "600",
               }}
             >
-              <BiKey style={{ marginRight: "27px", fontSize: "20px" }} />
+              <BiKey style={window.innerWidth < 1920 ?{ marginRight: "27px", fontSize: "20px" } : { marginRight: "27px", fontSize: "25px" }} />
               <div>Room</div>
             </MenuButtons>
           ) : (
             <MenuButtons>
-              <BiKey style={{ marginRight: "27px", fontSize: "20px" }} />
+              <BiKey style={window.innerWidth < 1920 ?{ marginRight: "27px", fontSize: "20px" } : { marginRight: "27px", fontSize: "25px" }} />
               <div>Room</div>
             </MenuButtons>
           )}
@@ -206,14 +246,14 @@ export function SideBar() {
               }}
             >
               <BsCalendarCheck
-                style={{ marginRight: "27px", fontSize: "20px" }}
+                style={window.innerWidth < 1920 ?{ marginRight: "27px", fontSize: "20px" } : { marginRight: "27px", fontSize: "25px" }}
               />
               <div>Bookings</div>
             </MenuButtons>
           ) : (
             <MenuButtons>
               <BsCalendarCheck
-                style={{ marginRight: "27px", fontSize: "20px" }}
+                style={window.innerWidth < 1920 ?{ marginRight: "27px", fontSize: "20px" } : { marginRight: "27px", fontSize: "25px" }}
               />
               <div>Bookings</div>
             </MenuButtons>
@@ -229,12 +269,12 @@ export function SideBar() {
                 fontWeight: "600",
               }}
             >
-              <IoMdContacts style={{ marginRight: "27px", fontSize: "20px" }} />
+              <IoMdContacts style={window.innerWidth < 1920 ?{ marginRight: "27px", fontSize: "20px" } : { marginRight: "27px", fontSize: "25px" }} />
               <div>Contact</div>
             </MenuButtons>
           ) : (
             <MenuButtons>
-              <IoMdContacts style={{ marginRight: "27px", fontSize: "20px" }} />
+              <IoMdContacts style={window.innerWidth < 1920 ?{ marginRight: "27px", fontSize: "20px" } : { marginRight: "27px", fontSize: "25px" }} />
               <div>Contact</div>
             </MenuButtons>
           )}
@@ -249,63 +289,67 @@ export function SideBar() {
                 fontWeight: "600",
               }}
             >
-              <FiUser style={{ marginRight: "27px", fontSize: "20px" }} />
+              <FiUser style={window.innerWidth < 1920 ?{ marginRight: "27px", fontSize: "20px" } : { marginRight: "27px", fontSize: "25px" }} />
               <div>Users</div>
             </MenuButtons>
           ) : (
             <MenuButtons>
-              <FiUser style={{ marginRight: "27px", fontSize: "20px" }} />
+              <FiUser style={window.innerWidth < 1920 ?{ marginRight: "27px", fontSize: "20px" } : { marginRight: "27px", fontSize: "25px" }} />
               <div>Users</div>
             </MenuButtons>
           )}
         </StyledLink>
         <ContactUsCard>
           <div
-            style={{
+            style={window.innerWidth < 1920 ? {
               background: "#FFFFFF 0% 0% no-repeat padding-box",
               borderRadius: "8px",
               width: "30px",
               height: "30px",
               color: "#C5C5C5",
               marginBottom: "15px;",
-            }}
-          ><img src='https://avatars.dicebear.com/api/bottts/icon.svg'/>
+            } : {width: '50px', height: '50px'}}
+          >
+            <img src="https://avatars.dicebear.com/api/bottts/icon.svg" />
           </div>
           <div
-            style={{
+            style={window.innerWidth < 1920 ? {
               color: "#393939",
               font: "normal normal 600 14px/25px Poppins",
               marginBottom: "9px",
-            }}
+            } : {color: "#393939", fontSize: '18px', marginBottom: "9px"}}
           >
             Marina Robleño
           </div>
           <div
-            style={{
+            style={window.innerWidth < 1920 ? {
               color: "#B2B2B2",
               font: "normal normal 300 12px/18px Poppins",
               marginBottom: "8px",
-            }}
+            } : {color: "#B2B2B2", fontSize: '16px', marginBottom: '8px'}}
           >
             marinarobleno@mail.com
           </div>
           <div
-            style={{
+            style={window.innerWidth < 1920 ? {
               color: "#B2B2B2",
               font: "normal normal 300 12px/18px Poppins",
               marginBottom: "8px",
-              whiteSpace: 'normal'
-            }}
+            } : {color: "#B2B2B2", fontSize: '16px', marginBottom: '8px'}}
           >
             github.com/MarinaRobleno
-          </div>          
-          <Button contact weight="600" style={{width: '50px', height: '30px', fontSize: '12px'}}>
+          </div>
+          <Button
+            contact
+            weight="600"
+            style={window.innerWidth < 1920 ? { width: "50px", height: "30px", fontSize: "12px" } : {width: '80px', height: '40px', fontSize: '16px'}}
+          >
             Edit
           </Button>
         </ContactUsCard>
         <StyledCopyrightContainer>
           <StyledAdminDashboard>
-            Travl Hotel Admin Dashboard
+            Miranda Hotel Admin Dashboard
           </StyledAdminDashboard>
           <StyledCopyrightContainer>
             <StyledCopyright>© 2021 All Rights Reserved</StyledCopyright>
