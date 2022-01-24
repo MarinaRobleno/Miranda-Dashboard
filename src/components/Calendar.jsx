@@ -116,7 +116,7 @@ const FullCalendarContainer = styled.div`
         .fc-scroller{
             overflow: hidden !important; 
         }
-        @media (max-width: 1920px) {
+        @media (max-width: 1890px) {
             height: 250px;
           }
     }

@@ -29,7 +29,7 @@ const StyledKpi = styled.div`
   background-color: ${(props) => props.theme.colors.main_white};
   box-shadow: 0px 4px 4px #00000005;
   border-radius: 12px;
-  @media (max-width: 1920px) {
+  @media (max-width: 1890px) {
     min-width: 250px;
   }
 `;
@@ -84,7 +84,7 @@ export const StyledReviewPanel = styled.div`
   &:hover {
     box-shadow: 0px 16px 30px #00000014;
   }
-  @media (max-width: 1920px) {
+  @media (max-width: 1890px) {
     min-width: 200px;
   }
 `;
@@ -182,7 +182,7 @@ export function Dashboard() {
         </StyledKpiData>
       </StyledKpi>
       <StyledBigPanel
-        style={window.innerWidth > 1920 ? {
+        style={window.innerWidth > 1890 ? {
           gridColumnStart: "1",
           gridColumnEnd: "3",
           gridRowStart: "2",
@@ -201,7 +201,7 @@ export function Dashboard() {
         <Calendar setActualDate={setActualDate} changeCheckInCount={changeCheckInCount} changeCheckOutCount={changeCheckOutCount}/>
       </StyledBigPanel>
       <StyledBigPanel
-        style={window.innerWidth > 1920 ? {
+        style={window.innerWidth > 1890 ? {
           gridColumnStart: "3",
           gridColumnEnd: "5",
           gridRowStart: "2",
@@ -231,7 +231,7 @@ export function Dashboard() {
         <ReservationChart />
       </StyledBigPanel>
       <StyledBigPanel
-        style={window.innerWidth > 1920 ? {
+        style={window.innerWidth > 1890 ? {
           minHeight: "350px",
           gridColumnStart: "1",
           gridColumnEnd: "5",

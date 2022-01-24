@@ -10,7 +10,7 @@ const StyledBookingScheduleData = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 80px;
-  @media (max-width: 1920px){
+  @media (max-width: 1890px){
     height: 60px;
   }
 `;
@@ -23,7 +23,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 color: white;
-@media (max-width: 1920px){
+@media (max-width: 1890px){
   height: 40px;
   min-width: 40px;
 }
@@ -44,7 +44,7 @@ export function BookingScheduleData() {
     <StyledDivColumn>
       <StyledBookingScheduleData>
         <StyledDivRow style={{ alignItems: "center" }}>
-          <StyledIconRoom style={window.innerWidth > 1920 ? { backgroundColor: "grey" } : { height: '60px', width: '120px', backgroundColor: "grey" }}></StyledIconRoom>
+          <StyledIconRoom style={window.innerWidth > 1890 ? { backgroundColor: "grey" } : { height: '60px', width: '120px', backgroundColor: "grey" }}></StyledIconRoom>
           <StyledDivColumn>
             <StyledBookingScheduleRoom>ROOM 098 - Single bed</StyledBookingScheduleRoom>
             <div>Alicia Keys</div>
@@ -54,7 +54,7 @@ export function BookingScheduleData() {
       </StyledBookingScheduleData>
       <StyledBookingScheduleData>
         <StyledDivRow style={{ alignItems: "center" }}>
-          <StyledIconRoom style={window.innerWidth > 1920 ? { backgroundColor: "grey" } : { height: '60px', width: '120px', backgroundColor: "grey" }}></StyledIconRoom>
+          <StyledIconRoom style={window.innerWidth > 1890 ? { backgroundColor: "grey" } : { height: '60px', width: '120px', backgroundColor: "grey" }}></StyledIconRoom>
           <StyledDivColumn>
           <StyledBookingScheduleRoom>ROOM 012 - Double bed</StyledBookingScheduleRoom>
             <div>Ariana Grande</div>
@@ -64,7 +64,7 @@ export function BookingScheduleData() {
       </StyledBookingScheduleData>
       <StyledBookingScheduleData>
         <StyledDivRow style={{ alignItems: "center" }}>
-          <StyledIconRoom style={window.innerWidth > 1920 ? { backgroundColor: "grey" } : { height: '60px', width: '120px', backgroundColor: "grey" }}></StyledIconRoom>
+          <StyledIconRoom style={window.innerWidth > 1890 ? { backgroundColor: "grey" } : { height: '60px', width: '120px', backgroundColor: "grey" }}></StyledIconRoom>
           <StyledDivColumn>
           <StyledBookingScheduleRoom>ROOM 103 - Suite</StyledBookingScheduleRoom>
             <div>Elthon John</div>
