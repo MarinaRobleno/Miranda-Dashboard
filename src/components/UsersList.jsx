@@ -205,7 +205,7 @@ export function UsersList() {
           })
           .slice(indexOfFirstPost, indexOfLastPost)
           .map((user) => (
-            <StyledData>
+            <StyledData style={window.innerWidth < 1890 ? {fontSize: '11px'}: {fontSize: '13px'}}>
               <img style={{ maxWidth: "50px" }} src={user.photo} />
               <StyledDataElement style={{width: '50px'}}>#{user.id}</StyledDataElement>
               <StyledDataGuest style={{fontWeight: '600'}}>{user.name}</StyledDataGuest>

@@ -138,6 +138,7 @@ export const StyledData = styled.tr`
   &:hover {
     box-shadow: 0px 4px 30px #0000001a;
   }
+
 `;
 
 export const StyledDataElement = styled.td`
@@ -145,7 +146,10 @@ export const StyledDataElement = styled.td`
 `;
 
 export const StyledDataGuest = styled(StyledDataElement)`
+@media (minx-width: 1890px) {
   width: 200px;
+}
+
 `;
 
 export const StyledDetailIcon = styled(BiSidebar)`
@@ -410,7 +414,7 @@ export function BookingList() {
           })
           .slice(indexOfFirstPost, indexOfLastPost)
           .map((book) => (
-            <StyledData>
+            <StyledData style={window.innerWidth < 1890 ? {fontSize: '11px'}: {fontSize: '13px'}}>
               <StyledDataGuest>
                 <div style={{fontWeight:'600'}}>{book.guest}</div>
                 #{book.id}
