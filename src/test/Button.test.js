@@ -16,11 +16,6 @@ test("Button takes background color yellow because of in progress state", () => 
   expect(screen.queryByText("In progress")).toHaveStyle("background : #FF9C3A");
 });
 
-test("Button takes background color grey because of prop absence", () => {
-  render(<Button>Text</Button>);
-  expect(screen.queryByText("Text")).toHaveStyle("background : #EEF9F2");
-});
-
 test("Button takes color red because of archive text", () => {
   render(<Button archive>Archive</Button>);
   expect(screen.queryByText("Archive")).toHaveStyle("color : #E23428");
