@@ -29,6 +29,9 @@ const StyledKpi = styled.div`
   background-color: ${(props) => props.theme.colors.main_white};
   box-shadow: 0px 4px 4px #00000005;
   border-radius: 12px;
+  @media (max-width: 1920px) {
+    min-width: 250px;
+  }
 `;
 
 const StyledKpiData = styled.div``;
@@ -80,6 +83,9 @@ export const StyledReviewPanel = styled.div`
   border-radius: 20px;
   &:hover {
     box-shadow: 0px 16px 30px #00000014;
+  }
+  @media (max-width: 1920px) {
+    min-width: 200px;
   }
 `;
 
@@ -176,24 +182,43 @@ export function Dashboard() {
         </StyledKpiData>
       </StyledKpi>
       <StyledBigPanel
-        style={{
+        style={window.innerWidth > 1920 ? {
           gridColumnStart: "1",
           gridColumnEnd: "3",
           gridRowStart: "2",
           gridRowEnd: "4",
           minHeight: '580px',
           minWidth: '700px'
+        } : {
+          gridColumnStart: "1",
+          gridColumnEnd: "3",
+          gridRowStart: "2",
+          gridRowEnd: "4",
+          minHeight: '400px',
+          minWidth: '500px'
         }}
       >
         <Calendar setActualDate={setActualDate} changeCheckInCount={changeCheckInCount} changeCheckOutCount={changeCheckOutCount}/>
       </StyledBigPanel>
       <StyledBigPanel
-        style={{
+        style={window.innerWidth > 1920 ? {
           gridColumnStart: "3",
           gridColumnEnd: "5",
           gridRowStart: "2",
           gridRowEnd: "4",
           minHeight: '580px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          paddingLeft: '0',
+          paddingRight: '0'
+        } : {
+          gridColumnStart: "3",
+          gridColumnEnd: "5",
+          gridRowStart: "2",
+          gridRowEnd: "4",
+          minHeight: '400px',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -206,8 +231,14 @@ export function Dashboard() {
         <ReservationChart />
       </StyledBigPanel>
       <StyledBigPanel
-        style={{
+        style={window.innerWidth > 1920 ? {
           minHeight: "350px",
+          gridColumnStart: "1",
+          gridColumnEnd: "5",
+          gridRowStart: "4",
+          gridRowEnd: "5",
+        } : {
+          minHeight: "300px",
           gridColumnStart: "1",
           gridColumnEnd: "5",
           gridRowStart: "4",

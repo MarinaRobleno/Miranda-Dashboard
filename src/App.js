@@ -43,10 +43,11 @@ const Content = styled.div`
   justify-content: center;
   margin-top: 90px;
   min-height: 100%;
-  padding: 50px;
+  padding: 20px;
   background-color: ${(props) => props.theme.colors.main_grey};
   @media (min-width: 1920px) {
     margin-top: 130px;
+    padding: 50px;
   }
 `;
 

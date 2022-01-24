@@ -28,9 +28,9 @@ export default function ReservationChart() {
 
   useEffect(() => {
     //orderWeeks();
-    let width = 700;
-    let height = 400;
-    let axisHeight = height - 30;
+    let width = window.innerWidth > 1920 ? 700 : 500;
+    let height = window.innerWidth > 1920 ? 400 : 380;
+    let axisHeight = window.innerWidth > 1920 ? height - 30 : height - 100;
     let svg = d3
       .select(ref.current)
       .append("svg")
@@ -38,7 +38,7 @@ export default function ReservationChart() {
       .attr("height", height);
 
     //X and Y axis
-    const xScale = d3.scaleBand().domain(days).range([39, 700]);
+    const xScale = window.innerWidth > 1920 ? d3.scaleBand().domain(days).range([39, 700]) : d3.scaleBand().domain(days).range([40, 480]);
     svg
       .append("g")
       .call(d3.axisBottom(xScale))
