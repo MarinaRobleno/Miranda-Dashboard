@@ -37,4 +37,4 @@ Then wait until it shows up in your browser on port http://localhost:3000/
 #### Email: marinarsanisidro@gmail.com
 #### LinkedIn: https://www.linkedin.com/in/marina-robleno-velez-fullstack-mern/
 
-![example branch parameter](https://github.com/MarinaRobleno/Miranda-Dashboard/actions/workflows/main.yml/badge.svg?branch=MarinaRobleno-patch-1)
+![example branch parameter](https://github.com/MarinaRobleno/Miranda-Dashboard/actions/workflows/github-actions-demo.yml/badge.svg?branch=MarinaRobleno-patch-1)
