@@ -4,6 +4,12 @@ jobs:
   Build-and-Deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Set up node 
+        uses: actions/setup-node@v1
+      - name: Install dependencies
+        run: npm install
       - name: Deploy 🚀
         run: npm run deploy
   Explore-GitHub-Actions:
