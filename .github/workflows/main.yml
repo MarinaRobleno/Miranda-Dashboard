@@ -2,7 +2,7 @@ name: Test Actions
 on: [push]
 jobs:
   Build-and-Deploy:
-    runs-on: ubunti-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.2.2
