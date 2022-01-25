@@ -10,6 +10,8 @@ jobs:
         uses: actions/setup-node@v1
       - name: Install dependencies
         run: npm install
+      - name: Build
+        run: npm run build
       - name: Deploy 🚀
         run: npm run deploy
   Explore-GitHub-Actions:
