@@ -53,11 +53,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@testing-library/react": "^12.1.2",
-    "cypress": "^9.1.0",
-    "jest": "^26.6.0",
-    "jest-dom": "^4.0.0"
   }
 }
