@@ -1,7 +1,6 @@
 # MIRANDA HOTEL DASHBOARD
 
 ## Description
-
 By accessing this website, employees can find out about the latest bookings, read customer's reviews, edit and create new rooms, manage the bookings list, be aware of the activity of other users, etc.
 You need a valid registered account to access this dashboard, so only authorized employees can see this app.
 
