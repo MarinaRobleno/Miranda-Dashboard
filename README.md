@@ -39,4 +39,4 @@ Then wait until it shows up in your browser on port http://localhost:3000/
 
 ![flujo de trabajo de ejemplo](https://github.com/MarinaRobleno/Miranda-Dashboard/actions/workflows/main.yml/badge.svg?event=push)
  
-![flujo de trabajo de ejemplo](https://github.com/MarinaRobleno/Miranda-Dashboard/actions/workflows/deploy.yml/badge.svg?event=push)
+![flujo de trabajo de ejemplo](https://github.com/MarinaRobleno/Miranda-Dashboard/actions/workflows/deploy.yaml/badge.svg?event=push)
