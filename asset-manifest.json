@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/Miranda-Dashboard/static/css/main.471ec046.chunk.css",
-    "main.js": "/Miranda-Dashboard/static/js/main.19d69a13.chunk.js",
-    "main.js.map": "/Miranda-Dashboard/static/js/main.19d69a13.chunk.js.map",
+    "main.js": "/Miranda-Dashboard/static/js/main.a7050918.chunk.js",
+    "main.js.map": "/Miranda-Dashboard/static/js/main.a7050918.chunk.js.map",
     "runtime-main.js": "/Miranda-Dashboard/static/js/runtime-main.966ebb46.js",
     "runtime-main.js.map": "/Miranda-Dashboard/static/js/runtime-main.966ebb46.js.map",
     "static/css/2.903d6573.chunk.css": "/Miranda-Dashboard/static/css/2.903d6573.chunk.css",
-    "static/js/2.241a82d0.chunk.js": "/Miranda-Dashboard/static/js/2.241a82d0.chunk.js",
-    "static/js/2.241a82d0.chunk.js.map": "/Miranda-Dashboard/static/js/2.241a82d0.chunk.js.map",
+    "static/js/2.2b5830a6.chunk.js": "/Miranda-Dashboard/static/js/2.2b5830a6.chunk.js",
+    "static/js/2.2b5830a6.chunk.js.map": "/Miranda-Dashboard/static/js/2.2b5830a6.chunk.js.map",
     "index.html": "/Miranda-Dashboard/index.html",
     "static/css/2.903d6573.chunk.css.map": "/Miranda-Dashboard/static/css/2.903d6573.chunk.css.map",
     "static/css/main.471ec046.chunk.css.map": "/Miranda-Dashboard/static/css/main.471ec046.chunk.css.map",
-    "static/js/2.241a82d0.chunk.js.LICENSE.txt": "/Miranda-Dashboard/static/js/2.241a82d0.chunk.js.LICENSE.txt"
+    "static/js/2.2b5830a6.chunk.js.LICENSE.txt": "/Miranda-Dashboard/static/js/2.2b5830a6.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.966ebb46.js",
     "static/css/2.903d6573.chunk.css",
-    "static/js/2.241a82d0.chunk.js",
+    "static/js/2.2b5830a6.chunk.js",
     "static/css/main.471ec046.chunk.css",
-    "static/js/main.19d69a13.chunk.js"
+    "static/js/main.a7050918.chunk.js"
   ]
 }
