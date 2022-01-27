@@ -90,7 +90,6 @@ export const RoomListCard = ({
 
   const handleEditRoom = (id) => {
     dispatch(getId(id))
-    console.log('dispatched')
   }
 
   const removeRoom = (id) => {

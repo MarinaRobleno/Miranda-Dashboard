@@ -70,6 +70,7 @@ export const roomsSlice = createSlice({
 });
 
 export const selectRooms = (state) => state.rooms.rooms;
+export const selectRoomsId = (state) => state.rooms.id;
 
 export const { add, orderBy, remove, edit, getId } = roomsSlice.actions;
 

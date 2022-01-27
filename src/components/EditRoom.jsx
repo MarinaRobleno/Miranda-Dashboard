@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { edit, selectRooms } from "../features/slices/roomsSlice";
+import { edit, selectRooms, selectRoomsId } from "../features/slices/roomsSlice";
 import styled from "styled-components";
 import { StyledBigPanel, StyledBigPanelHeader } from "./pages/Dashboard";
 import { StyledLink } from "./SideBar";
@@ -103,11 +103,11 @@ export const StyledNewRoomSubmit = styled(StyledNewRoomInput)`
 export function EditRoom() {
   const dispatch = useDispatch();
   const myRoom = useSelector(selectRooms);
-
+  const editingRoomId = useSelector(selectRoomsId)
   const [originalData, setOriginalData] = useState(
-    myRoom.rooms
+    myRoom
       .filter((room) => {
-        if (room.id === myRoom.id) {
+        if (room.id === editingRoomId) {
           return room;
         }
       })
@@ -125,10 +125,6 @@ export function EditRoom() {
   const [photoArray, setPhotoArray] = useState([])
   const [editingRoom, setEditingRoom] = useState(originalData[0]);
 
-  useEffect(() => {
-    setEditingRoom({ ...editingRoom, photo: photoArray})
-  }, [photoArray])
-
   const [photoInputs, setPhotoInputs] = useState(3);
 
   const handleAddLink = (e) => {
@@ -140,6 +136,7 @@ export function EditRoom() {
 
   const handleNewRoomSubmit = (e) => {
     e.preventDefault();
+    setEditingRoom({ ...editingRoom, photo: photoArray})
     dispatch(edit(editingRoom));
     const form = document.getElementById("newRoomForm");
     form.reset();
@@ -149,7 +146,7 @@ export function EditRoom() {
     <div style={{ width: "100%" }}>
       <StyledNewRoomPanel style={{ minHeight: "500px" }}>
         <StyledBigPanelHeader style={{ textAlign: "left" }}>
-          EDIT ROOM (Id: )
+          EDIT ROOM (Id: {editingRoomId} )
         </StyledBigPanelHeader>
         <StyledForm
           id="newRoomForm"
@@ -311,7 +308,7 @@ export function EditRoom() {
               justifyContent: "space-around",
             }}
           >
-            <StyledNewRoomSubmit type="submit" value="Add Room" />
+            <StyledNewRoomSubmit style={{fontSize: '16px'}} type="submit" value="Submit Changes" />
           </div>
         </StyledForm>
       </StyledNewRoomPanel>
