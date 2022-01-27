@@ -17,6 +17,9 @@ export const StyledNewRoomPanel = styled(StyledBigPanel)`
   font-size: 18px;
   text-align: left;
   padding: 30px;
+  @media (max-width: 1890px) {
+    font-size: 16px;
+  }
 `;
 
 export const StyledForm = styled.form`
@@ -28,12 +31,19 @@ export const StyledNewRoomInput = styled.input`
   width: 400px;
   height: 30px;
   font: normal normal 500 14px/25px Poppins;
-  border-color: ${(props) => props.theme.colors.green_dark};
+  border: none;
+  border-radius: 5%;
   padding: 0 20px;
   margin-bottom: 25px;
   background-color: ${(props) => props.theme.colors.search_bar_white};
   &:focus {
     outline: none;
+  }
+  @media (max-width: 1890px) {
+    width: 300px;
+    margin-bottom: 18px;
+    font-size: 12px;
+    padding: 0 15px;
   }
 `;
 
@@ -41,12 +51,18 @@ export const StyledTextArea = styled.textarea`
 width: 400px;
 height: 30px;
 font: normal normal 500 14px/25px Poppins;
-border-color: ${(props) => props.theme.colors.green_dark};
+border: none;
+border-radius: 5%;
 padding: 0 20px;
 margin-bottom: 25px;
 background-color: ${(props) => props.theme.colors.search_bar_white};
 &:focus {
   outline: none;
+}
+@media (max-width: 1890px) {
+  width: 300px;
+  margin-bottom: 18px;
+  font-size: 12px;
 }
 `;
 
@@ -55,12 +71,18 @@ export const StyledNewRoomSelect = styled.select`
   width: 400px;
   height: 30px;
   font: normal normal 500 14px/25px Poppins;
-  border-color: ${(props) => props.theme.colors.green_dark};
+  border: none;
+  border-radius: 5%;
   padding: 0 20px;
   margin-bottom: 25px;
   background-color: ${(props) => props.theme.colors.search_bar_white};
   &:focus {
     outline: none;
+  }
+  @media (max-width: 1890px) {
+    width: 300px;
+    margin-bottom: 18px;
+    font-size: 12px;
   }
 `;
 
@@ -127,7 +149,7 @@ export function NewRoom() {
           onSubmit={handleNewRoomSubmit}
         >
           <StyledDivRow>
-            <StyledDivColumn style={{ maxWidth: "400px" }}>
+            <StyledDivColumn style={window.innerWidth > 1890 ? { maxWidth: "400px" } : {maxWidth: "300px"}}>
               <StyledNewRoomSelect
                 onChange={(e) =>
                   setNewRoom({ ...newRoom, roomType: e.target.value })
@@ -143,7 +165,7 @@ export function NewRoom() {
                 <StyledNewRoomInput
                   type="number"
                   placeholder="Room Number"
-                  style={{ width: "180px" }}
+                  style={window.innerWidth > 1890 ? { width: "180px" } : {width: "140px"}}
                   onChange={(e) =>
                     setNewRoom({ ...newRoom, roomNumber: e.target.value })
                   }
@@ -151,7 +173,7 @@ export function NewRoom() {
                 <StyledNewRoomInput
                   type="text"
                   placeholder="Room ID"
-                  style={{ width: "180px" }}
+                  style={window.innerWidth > 1890 ? { width: "180px" } : {width: "140px"}}
                   onChange={(e) =>
                     setNewRoom({ ...newRoom, id: e.target.value })
                   }
@@ -171,23 +193,23 @@ export function NewRoom() {
                 <StyledNewRoomInput
                   type="number"
                   placeholder="Price"
-                  style={{ width: "160px" }}
+                  style={window.innerWidth > 1890 ? { width: "160px" } : {width: "120px"}}
                   onChange={(e) =>
                     setNewRoom({ ...newRoom, price: e.target.value })
                   }
                 />
-                <label>Offer</label>
+                <label style={window.innerWidth > 1890 ? {fontSize: '16px'} : {fontSize: '14px'}}>Offer</label>
                 <input type="checkbox"></input>
                 <StyledNewRoomInput
                   type="number"
                   placeholder="Offer Price"
-                  style={{ width: "160px" }}
+                  style={window.innerWidth > 1890 ? { width: "160px" } : {width: "120px"}}
                   onChange={(e) =>
                     setNewRoom({ ...newRoom, offer_price: e.target.value })
                   }
                 />
               </StyledDivRow>
-              <StyledLink to="/room">
+              <StyledLink to="/room" style={{width: '40px'}}>
                 <Button
                   style={{
                     width: "40px",
