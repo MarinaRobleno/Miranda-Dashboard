@@ -124,6 +124,7 @@ export function EditRoom() {
   );
   const [photoArray, setPhotoArray] = useState([])
   const [editingRoom, setEditingRoom] = useState(originalData[0]);
+  const [roomTypeSelected, setRoomTypeSelected] = useState("")
 
   const [photoInputs, setPhotoInputs] = useState(3);
 
@@ -155,9 +156,10 @@ export function EditRoom() {
         >
           <StyledDivRow>
             <StyledDivColumn style={window.innerWidth > 1890 ? { maxWidth: "400px" } : {maxWidth: "300px"}}>
-              <StyledNewRoomSelect
-                onChange={(e) =>
-                  setEditingRoom({ ...editingRoom, roomType: e.target.value })
+              <StyledNewRoomSelect value={roomTypeSelected}
+                onChange={(e) =>{
+                  setRoomTypeSelected(e.target.value)
+                  setEditingRoom({ ...editingRoom, roomType: e.target.value })}
                 }
               >
                 <option selected>--Room Type--</option>
@@ -189,17 +191,15 @@ export function EditRoom() {
                 <StyledNewRoomInput
                   type="number"
                   placeholder="Price"
-                  style={window.innerWidth > 1890 ? { width: "160px" } : {width: "120px"}}
+                  style={window.innerWidth > 1890 ? { width: "180px" } : {width: "140px"}}
                   onChange={(e) =>
                     setEditingRoom({ ...editingRoom, price: e.target.value })
                   }
                 />
-                <label style={window.innerWidth > 1890 ? {fontSize: '16px'} : {fontSize: '14px'}}>Offer</label>
-                <input type="checkbox"></input>
                 <StyledNewRoomInput
                   type="number"
                   placeholder="Offer Price"
-                  style={window.innerWidth > 1890 ? { width: "160px" } : {width: "120px"}}
+                  style={window.innerWidth > 1890 ? { width: "180px" } : {width: "140px"}}
                   onChange={(e) =>
                     setEditingRoom({ ...editingRoom, offer_price: e.target.value })
                   }
@@ -232,22 +232,22 @@ export function EditRoom() {
               <StyledNewRoomInput
                 type="text"
                 placeholder="Related Rooms"
-                onChange={(e) =>
+                /*onChange={(e) =>
                   setEditingRoom({
                     ...editingRoom.related_rooms,
                     related_room1: e.target.value,
                   })
-                }
+                }*/
               />
               <StyledNewRoomInput
                 type="text"
                 placeholder="Related Rooms"
-                onChange={(e) =>
+               /* onChange={(e) =>
                   setEditingRoom({
                     ...editingRoom.related_rooms,
                     related_room2: e.target.value,
                   })
-                }
+                }*/
               />
             </StyledDivColumn>
             <StyledDivColumn>

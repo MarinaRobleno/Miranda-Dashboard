@@ -9,7 +9,7 @@ import {
 } from "./BookingList";
 import Button from "./Button";
 import { StyledIconRoom } from "./RoomList";
-import { remove, getId, selectRooms } from "../features/slices/roomsSlice";
+import { remove, getId, selectRooms, selectRoomsId } from "../features/slices/roomsSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { StyledEdit } from "./UsersList";
 import { StyledLink } from "./SideBar";
@@ -85,7 +85,6 @@ export const RoomListCard = ({
   const opacity = isDragging ? 0 : 1;
   drag(drop(ref));
 
-  const myRooms = useSelector(selectRooms);
   const dispatch = useDispatch();
 
   const handleEditRoom = (id) => {
@@ -133,7 +132,7 @@ export const RoomListCard = ({
         </StyledLink>
       </StyledDataElement>
       <StyledDataElement>
-        {/*<StyledBinIcon onClick={() => removeRoom(id)}/>*/}
+        <StyledBinIcon onClick={() => removeRoom(id)}/>
       </StyledDataElement>
     </StyledData>
   );

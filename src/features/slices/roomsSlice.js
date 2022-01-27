@@ -17,13 +17,14 @@ export const roomsSlice = createSlice({
       state.id = action.payload;
     },
     edit: (state, action) => {
+      console.log(action.payload)
       state.rooms = state.rooms.map((room) =>
         room.id === action.payload.id
           ? {
               ...room,
-              roomType: room.roomType,
               photo: action.payload.photo,
               roomNumber: action.payload.roomNumber,
+              roomType: action.payload.roomType,
               amenities: action.payload.amenities,
               price: action.payload.price,
               offer_price: action.payload.offer_price,
