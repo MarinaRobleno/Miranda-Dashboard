@@ -13,7 +13,7 @@ const sortedUsers = users.sort(function (a, b) {
 
 export const usersSlice = createSlice({
   name: "users",
-  initialState: { users: sortedUsers },
+  initialState: { users: sortedUsers, id: "" },
   reducers: {
     add: (state, action) => {
       state.users = [...state.users, action.payload];
@@ -26,10 +26,22 @@ export const usersSlice = createSlice({
     edit: (state, action) => {
       state.users = state.users.map((user) =>
         user.id === action.payload.id
-          ? { ...user, attribute: action.payload.attribute }
+          ? {
+              ...user,
+              id: action.payload.id,
+              name: action.payload.name,
+              photo: action.payload.photo,
+              job: action.payload.job,
+              mail: action.payload.mail,
+              phone: action.payload.phone,
+              status: action.payload.status,
+            }
           : user
       );
       return state;
+    },
+    getId: (state, action) => {
+      state.id = action.payload;
     },
     orderBy: (state, action) => {
       if (action.payload === "name") {
@@ -42,7 +54,7 @@ export const usersSlice = createSlice({
           }
           return 0;
         });
-      }else{
+      } else {
         state.users = state.users.sort((a, b) => {
           if (a.startDate > b.startDate) {
             return -1;
@@ -59,6 +71,6 @@ export const usersSlice = createSlice({
 
 export const selectUsers = (state) => state.users;
 
-export const { add, remove, orderBy } = usersSlice.actions;
+export const { add, remove, orderBy, getId, edit } = usersSlice.actions;
 
 export default usersSlice.reducer;

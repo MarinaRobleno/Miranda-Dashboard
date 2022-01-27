@@ -13,13 +13,14 @@ import {
   StyledSearchIcon,
   StyledFooter,
   StyledDataGuest,
+  StyledBinIcon,
 } from "./BookingList";
 import Button from "./Button";
 import { StyledLink } from "./SideBar";
 import { TiDelete } from "react-icons/ti";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { remove, orderBy, selectUsers } from "../features/slices/usersSlice";
+import { remove, orderBy, getId, selectUsers } from "../features/slices/usersSlice";
 import {
   StyledTablePagination,
   StyledPaginationButton,
@@ -29,10 +30,16 @@ import { PaginationNumbers } from "./helpers/PaginationNumbers";
 import { GoTriangleDown } from "react-icons/go";
 import { GrFormClose } from "react-icons/gr";
 import { BiPhone } from "react-icons/bi";
+import { AiOutlineEdit } from "react-icons/ai";
 
 export const StyledDeleteUser = styled(TiDelete)`
   font-size: 30px;
   color: ${(props) => props.theme.colors.red};
+  cursor: pointer;
+`;
+
+export const StyledEdit = styled(AiOutlineEdit)`
+  font-size: 20px;
   cursor: pointer;
 `;
 
@@ -65,6 +72,10 @@ export function UsersList() {
   const handleSearchUser = (e) => {
     setFilteredTerm(e.target.value);
   };
+
+  const handleEditUser = (id) => {
+    dispatch(getId(id))
+  }
 
   const handleDeleteUser = (user) => {
     dispatch(remove(user));
@@ -163,7 +174,7 @@ export function UsersList() {
                     color: "#135846",
                     display: "flex",
                     alignItems: "center",
-                    borderBottom: '1px solid #135846'
+                    borderBottom: "1px solid #135846",
                   }
                 : { display: "flex", alignItems: "center" }
             }
@@ -171,9 +182,17 @@ export function UsersList() {
           >
             Name
             {orderBySth ? (
-              <GoTriangleDown id="name" onClick={handleAlphabet} style={{cursor: 'pointer'}}/>
+              <GoTriangleDown
+                id="name"
+                onClick={handleAlphabet}
+                style={{ cursor: "pointer" }}
+              />
             ) : (
-              <GoTriangleDown id="name" onClick={handleAlphabet} style={{cursor: 'pointer'}} />
+              <GoTriangleDown
+                id="name"
+                onClick={handleAlphabet}
+                style={{ cursor: "pointer" }}
+              />
             )}
           </th>
           <th class="header-table-sector">Start Date</th>
@@ -205,25 +224,51 @@ export function UsersList() {
           })
           .slice(indexOfFirstPost, indexOfLastPost)
           .map((user) => (
-            <StyledData style={window.innerWidth < 1890 ? {fontSize: '11px'}: {fontSize: '13px'}}>
+            <StyledData
+              style={
+                window.innerWidth < 1890
+                  ? { fontSize: "11px" }
+                  : { fontSize: "13px" }
+              }
+            >
               <img style={{ maxWidth: "50px" }} src={user.photo} />
-              <StyledDataElement style={{width: '50px'}}>#{user.id}</StyledDataElement>
-              <StyledDataGuest style={{fontWeight: '600'}}>{user.name}</StyledDataGuest>
+              <StyledDataElement style={{ width: "50px" }}>
+                #{user.id}
+              </StyledDataElement>
+              <StyledDataGuest style={{ fontWeight: "600" }}>
+                {user.name}
+              </StyledDataGuest>
               <StyledDataElement>{user.startDate}</StyledDataElement>
               <StyledDataElement>{user.job}</StyledDataElement>
               <StyledDataElement>{user.mail}</StyledDataElement>
-              <StyledDataElement style={{fontWeight: '600'}}><BiPhone style={{marginRight: '10px'}} />{user.phone}</StyledDataElement>
+              <StyledDataElement style={{ fontWeight: "600" }}>
+                <BiPhone style={{ marginRight: "10px" }} />
+                {user.phone}
+              </StyledDataElement>
               {user.status === "active" ? (
-                <StyledDataElement style={{ color: "#5AD07A", fontWeight: '600' }}>
+                <StyledDataElement
+                  style={{ color: "#5AD07A", fontWeight: "600" }}
+                >
                   {user.status.toUpperCase()}
                 </StyledDataElement>
               ) : (
-                <StyledDataElement style={{ color: "#E23428", fontWeight: '600' }}>
+                <StyledDataElement
+                  style={{ color: "#E23428", fontWeight: "600" }}
+                >
                   {user.status.toUpperCase()}
                 </StyledDataElement>
               )}
               <StyledDataElement>
-                <StyledDeleteUser onClick={() => handleDeleteUser(user)} />
+                <StyledLink
+                  to={{
+                    pathname: `./${user.id}/edit`,
+                  }}
+                >
+                  <StyledEdit onClick={() => handleEditUser(user.id)}/>
+                </StyledLink>
+              </StyledDataElement>
+              <StyledDataElement>
+                <StyledBinIcon onClick={() => handleDeleteUser(user)} />
               </StyledDataElement>
             </StyledData>
           ))}
@@ -246,25 +291,25 @@ export function UsersList() {
             Showing {postPerPage * currentPage} of {totalPosts} Data
           </div>
         )}
-      <StyledTablePagination>
-        {currentPage === 1 ? null : (
-          <StyledPaginationButton onClick={handleGoLeft}>
-            Previous
-          </StyledPaginationButton>
-        )}
-        <PaginationNumbers
-          postPerPage={postPerPage}
-          totalPosts={totalPosts}
-          currentPage={currentPage}
-          changePage={changePage}
-        />
-        {currentPage ===
-        Math.ceil(myUsers.users.length / postPerPage) ? null : (
-          <StyledPaginationButton onClick={handleGoRight}>
-            Next
-          </StyledPaginationButton>
-        )}
-      </StyledTablePagination>
+        <StyledTablePagination>
+          {currentPage === 1 ? null : (
+            <StyledPaginationButton onClick={handleGoLeft}>
+              Previous
+            </StyledPaginationButton>
+          )}
+          <PaginationNumbers
+            postPerPage={postPerPage}
+            totalPosts={totalPosts}
+            currentPage={currentPage}
+            changePage={changePage}
+          />
+          {currentPage ===
+          Math.ceil(myUsers.users.length / postPerPage) ? null : (
+            <StyledPaginationButton onClick={handleGoRight}>
+              Next
+            </StyledPaginationButton>
+          )}
+        </StyledTablePagination>
       </StyledFooter>
     </div>
   );

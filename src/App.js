@@ -9,6 +9,7 @@ import { Contact } from "./components/pages/Contact.jsx";
 import { Users } from "./components/pages/Users.jsx";
 import { NewRoom } from "./components/NewRoom.jsx";
 import { NewUser } from "./components/NewUser.jsx";
+import { EditUser } from "./components/EditUser.jsx";
 import { BookDetail } from "./components/BookDetail.jsx";
 import { PrivateRoute } from "./components/helpers/PrivateRoute.js";
 import { AuthContext } from "./components/helpers/Context";
@@ -272,6 +273,14 @@ function App() {
                   element={
                     <PrivateRoute>
                       <NewUser />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/users/:id/edit"
+                  element={
+                    <PrivateRoute>
+                      <EditUser />
                     </PrivateRoute>
                   }
                 />
