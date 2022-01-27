@@ -3,7 +3,7 @@ import rooms from "../../data/rooms.js";
 
 export const roomsSlice = createSlice({
   name: "rooms",
-  initialState: { rooms: rooms },
+  initialState: { rooms: rooms, id: "" },
   reducers: {
     add: (state, action) => {
       state.rooms = [...state.rooms, action.payload];
@@ -13,10 +13,22 @@ export const roomsSlice = createSlice({
       state.rooms = state.rooms.filter((room) => room.id !== action.payload);
       return state;
     },
+    getId: (state, action) => {
+      state.id = action.payload;
+    },
     edit: (state, action) => {
       state.rooms = state.rooms.map((room) =>
         room.id === action.payload.id
-          ? { ...room, attribute: action.payload.attribute }
+          ? {
+              ...room,
+              roomType: room.roomType,
+              photo: action.payload.photo,
+              roomNumber: action.payload.roomNumber,
+              amenities: action.payload.amenities,
+              price: action.payload.price,
+              offer_price: action.payload.offer_price,
+              status: action.payload.status,
+            }
           : room
       );
       return state;
@@ -59,6 +71,6 @@ export const roomsSlice = createSlice({
 
 export const selectRooms = (state) => state.rooms.rooms;
 
-export const { add, orderBy, remove, edit } = roomsSlice.actions;
+export const { add, orderBy, remove, edit, getId } = roomsSlice.actions;
 
 export default roomsSlice.reducer;

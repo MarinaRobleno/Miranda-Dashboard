@@ -21,6 +21,7 @@ import { BiBell, BiEnvelope } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import { selectContact } from "./features/slices/contactSlice";
 import { selectBookings } from "./features/slices/bookingsSlice";
+import { EditRoom } from "./components/EditRoom";
 
 const SAVE_STATE = "1";
 const SAVE_KEY = "auth";
@@ -233,6 +234,14 @@ function App() {
                   element={
                     <PrivateRoute>
                       <NewRoom />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="room/:id/edit"
+                  element={
+                    <PrivateRoute>
+                      <EditRoom />
                     </PrivateRoute>
                   }
                 />
