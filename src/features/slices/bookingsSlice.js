@@ -1,5 +1,23 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import booking from "../../data/booking.js";
+
+export const fetchBookings = createAsyncThunk(
+  "bookings/fetchBookings",
+  async () => {
+    const response = await fetch("http://localhost:3000/api/bookings", {
+      method: "GET",
+      headers: {
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYxZjkyNTg0ZGE3MjkwMDAzNTY1ZWU2MCJ9LCJpYXQiOjE2NDM3MTgxNTd9.SDoXsi-EDdIwRmXm487Ok1whGSfilbTK2rnG73LwLD4",
+      },
+    })
+      .then((data) => {console.log(data)})
+      .catch((e) => console.log(e));
+    console.log(response.json());
+    const bookings = await response.json();
+    return bookings;
+  }
+);
 
 const sortedBooking = booking.sort(function (a, b) {
   if (a.orderDate > b.orderDate) {
@@ -13,10 +31,10 @@ const sortedBooking = booking.sort(function (a, b) {
 
 export const bookingsSlice = createSlice({
   name: "bookings",
-  initialState: { booking: sortedBooking, id: "" },
+  initialState: { booking: [], id: "", loading: false },
   reducers: {
     add: (state, action) => {
-      state.booking.push(action.payload)
+      state.booking.push(action.payload);
       return state;
     },
     remove: (state, action) => {
@@ -73,6 +91,18 @@ export const bookingsSlice = createSlice({
           return 0;
         });
       }
+    },
+  },
+  extraReducers: {
+    [fetchBookings.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [fetchBookings.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.booking = [...state.booking, ...action.payload];
+    },
+    [fetchBookings.rejected]: (state, action) => {
+      state.loading = false;
     },
   },
 });
