@@ -20,7 +20,7 @@ import { StyledLink } from "./SideBar";
 import { TiDelete } from "react-icons/ti";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { remove, orderBy, getId, selectUsers } from "../features/slices/usersSlice";
+import { remove, orderBy, getId, selectUsers, fetchUsersList } from "../features/slices/usersSlice";
 import {
   StyledTablePagination,
   StyledPaginationButton,
@@ -45,7 +45,12 @@ export const StyledEdit = styled(AiOutlineEdit)`
 
 export function UsersList() {
   const myUsers = useSelector(selectUsers);
+  const loading = myUsers.loading;
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchUsersList());
+  }, []);
 
   const [filteredTerm, setFilteredTerm] = useState("");
   const [selectedFilter, setSelectedFilter] = useState("all");
@@ -163,7 +168,7 @@ export function UsersList() {
         </div>
       </StyledFilterHeader>
 
-      <StyledTable>
+      {loading ? <div>Loading...</div> : <StyledTable>
         <StyledHeader>
           <th class="header-table-sector">Photo</th>
           <th class="header-table-sector">Id</th>
@@ -272,7 +277,7 @@ export function UsersList() {
               </StyledDataElement>
             </StyledData>
           ))}
-      </StyledTable>
+      </StyledTable>}
       <StyledFooter>
         {postPerPage > totalPosts ? (
           <div style={{ fontSize: "14px" }}>

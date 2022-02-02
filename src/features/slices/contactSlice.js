@@ -1,5 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import contact from "../../data/contact.js";
+import { getAPI } from "../../env.js";
+
+export const fetchContactList = createAsyncThunk(
+  "contact/fetchContactList",
+  async () => {
+     return await getAPI('contacts')
+        .then((data) => {return data});
+  }
+);
 
 const sortedContact = contact.sort(function (a, b) {
   if (a.date > b.date) {
@@ -13,7 +22,7 @@ const sortedContact = contact.sort(function (a, b) {
 
 export const contactSlice = createSlice({
   name: "contact",
-  initialState: { contact: sortedContact, reviewedContact: [], archived: [] },
+  initialState: { contact: [], reviewedContact: [], archived: [] },
   reducers: {
     remove: (state, action) => {
       state.reviewedContact.push(action.payload);
@@ -71,6 +80,18 @@ export const contactSlice = createSlice({
           });
         }
       }
+    },
+  },
+  extraReducers: {
+    [fetchContactList.pending]: (state) => {
+      state.loading = true;
+    },
+    [fetchContactList.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      state.contact = payload;
+    },
+    [fetchContactList.rejected]: (state) => {
+      state.loading = false;
     },
   },
 });

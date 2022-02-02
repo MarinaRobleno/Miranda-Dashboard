@@ -1,5 +1,15 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import users from "../../data/users.js";
+import { getAPI } from "../../env.js";
+
+export const fetchUsersList = createAsyncThunk(
+  "users/fetchUsersList",
+  async () => {
+    return await getAPI("users").then((data) => {
+      return data;
+    });
+  }
+);
 
 const sortedUsers = users.sort(function (a, b) {
   if (a.startDate > b.startDate) {
@@ -13,7 +23,7 @@ const sortedUsers = users.sort(function (a, b) {
 
 export const usersSlice = createSlice({
   name: "users",
-  initialState: { users: sortedUsers, id: "" },
+  initialState: { users: [], id: "", loading: false },
   reducers: {
     add: (state, action) => {
       state.users = [...state.users, action.payload];
@@ -65,6 +75,18 @@ export const usersSlice = createSlice({
           return 0;
         });
       }
+    },
+  },
+  extraReducers: {
+    [fetchUsersList.pending]: (state) => {
+      state.loading = true;
+    },
+    [fetchUsersList.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      state.users = payload;
+    },
+    [fetchUsersList.rejected]: (state) => {
+      state.loading = false;
     },
   },
 });

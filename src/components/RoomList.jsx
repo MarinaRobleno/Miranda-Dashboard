@@ -10,7 +10,7 @@ import {
   StyledSelect,
   StyledTable,
 } from "./BookingList";
-import { orderBy, selectRooms } from "../features/slices/roomsSlice";
+import { fetchRoomsList, orderBy, selectRooms, selectRoomsLoading } from "../features/slices/roomsSlice";
 import { useSelector, useDispatch } from "react-redux";
 import Button from "./Button";
 import styled from "styled-components";
@@ -56,7 +56,12 @@ export const StyledNewButton = styled(Button)`
 
 export const RoomList = () => {
   const myRooms = useSelector(selectRooms);
+  const loading = useSelector(selectRoomsLoading);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchRoomsList());
+  }, []);
 
   const [cards, setCards] = useState(myRooms);
   const [select, setSelect] = useState("roomNumber");
@@ -188,7 +193,7 @@ export const RoomList = () => {
   </StyledSelect>*/}
         </div>
       </StyledFilterHeader>
-      <StyledTable>
+      {loading ? <div>Loading...</div>: <StyledTable>
         <StyledHeader>
           <th className="header-table-sector">Room Number</th>
           <th className="header-table-sector">Room Type</th>
@@ -209,7 +214,7 @@ export const RoomList = () => {
           })
           .slice(indexOfFirstPost, indexOfLastPost)
           .map((card, i) => renderCard(card, i))}
-      </StyledTable>
+      </StyledTable>}
       <StyledFooter>
         {postPerPage > totalPosts ? (
           <div style={{ fontSize: "14px" }}>

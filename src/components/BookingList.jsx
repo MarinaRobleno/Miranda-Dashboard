@@ -9,6 +9,7 @@ import {
   orderBy,
   detailed,
   selectBookings,
+  fetchBookings,
 } from "../features/slices/bookingsSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
@@ -138,7 +139,6 @@ export const StyledData = styled.tr`
   &:hover {
     box-shadow: 0px 4px 30px #0000001a;
   }
-
 `;
 
 export const StyledDataElement = styled.td`
@@ -146,10 +146,9 @@ export const StyledDataElement = styled.td`
 `;
 
 export const StyledDataGuest = styled(StyledDataElement)`
-@media (minx-width: 1890px) {
-  width: 200px;
-}
-
+  @media (minx-width: 1890px) {
+    width: 200px;
+  }
 `;
 
 export const StyledDetailIcon = styled(BiSidebar)`
@@ -164,8 +163,13 @@ export const StyledBinIcon = styled(AiOutlineDelete)`
 
 export function BookingList() {
   const myBooking = useSelector(selectBookings);
+  const loading = myBooking.loading;
   const dispatch = useDispatch();
   const today = new Date();
+
+  useEffect(() => {
+    dispatch(fetchBookings());
+  }, []);
 
   const [select, setSelect] = useState("");
   const [dateRange, setDateRange] = useState({ start: "", end: "" });
@@ -342,129 +346,159 @@ export function BookingList() {
           </StyledSelect>
         </div>
       </StyledFilterHeader>
-      <StyledTable>
-        <StyledHeader>
-          <th style={orderBySth === "guest" ? { color: "#135846", borderBottom: '1px solid #135846' } : null}>
-            Guest
-            <GoTriangleDown
-              id="guest"
-              onClick={handleOrderBySth}
-              style={{ margin: "auto auto", cursor: "pointer" }}
-            />
-          </th>
-          <th id="orderDate">Order date</th>
-          <th style={orderBySth === "checkIn" ? { color: "#135846", borderBottom: '1px solid #135846' } : null}>
-            Check in
-            <GoTriangleDown
-              id="checkIn"
-              onClick={handleOrderBySth}
-              style={{ margin: "auto auto", cursor: "pointer" }}
-            />
-          </th>
-          <th style={orderBySth === "checkOut" ? { color: "#135846", borderBottom: '1px solid #135846' } : null}>
-            Check out
-            <GoTriangleDown
-              id="checkOut"
-              onClick={handleOrderBySth}
-              style={{ margin: "auto auto", cursor: "pointer" }}
-            />
-          </th>
-          <th>Special Request</th>
-          <th>Room</th>
-          <th>bookStatus</th>
-          <th>Details</th>
-        </StyledHeader>
-        {myBooking.booking
-          .filter((book) => {
-            let convertedCheckIn = convertDateFormat(book.checkIn);
-            let convertedCheckOut = convertDateFormat(book.checkOut);
-            if (dateRange.start === "" || dateRange.end === "") {
-              return book;
-            }
-            if (
-              (convertedCheckIn >= dateRange.start &&
-                convertedCheckIn <= dateRange.end) ||
-              (dateRange.start >= convertedCheckIn &&
-                dateRange.start <= convertedCheckOut)
-            ) {
-              return book;
-            }
-          })
-          .filter((book) => {
-            if (selectedFilter === "all" || selectedFilter === "") {
-              return book;
-            } else if (selectedFilter === "in") {
-              return book.bookStatus === "in";
-            } else if (selectedFilter === "out") {
-              return book.bookStatus === "out";
-            } else if (selectedFilter === "progress") {
-              return book.bookStatus === "progress";
-            }
-          })
-          .filter((book) => {
-            if (filteredTerm == "") {
-              return book;
-            } else if (
-              String(book.guest)
-                .toLowerCase()
-                .includes(filteredTerm.toLowerCase())
-            ) {
-              return book;
-            }
-          })
-          .slice(indexOfFirstPost, indexOfLastPost)
-          .map((book) => (
-            <StyledData style={window.innerWidth < 1890 ? {fontSize: '11px'}: {fontSize: '13px'}}>
-              <StyledDataGuest>
-                <div style={{fontWeight:'600'}}>{book.guest}</div>
-                #{book.id}
-              </StyledDataGuest>
-              <StyledDataElement>{book.orderDate}</StyledDataElement>
-              <StyledDataElement>{book.checkIn}</StyledDataElement>
-              <StyledDataElement>{book.checkOut}</StyledDataElement>
-              <StyledDataElement>
-                {book.special ? (
-                  <Button notes onClick={() => handleViewNotes(book.special)}>
-                    View Notes
-                  </Button>
-                ) : (
-                  <Button noNotes>View Notes</Button>
-                )}
-              </StyledDataElement>
-              <StyledDataElement>
-                <div style={{fontWeight:'600'}}>{book.roomType}</div>
-                {book.roomNumber}
-              </StyledDataElement>
-              <StyledDataElement>
-                {book.bookStatus === "in" ? (
-                  <Button checkIn name="Check In">
-                    Check In
-                  </Button>
-                ) : book.bookStatus === "out" ? (
-                  <Button checkOut name="Check Out">
-                    Check Out
-                  </Button>
-                ) : (
-                  <Button inProgress name="In Progress">
-                    In Progress
-                  </Button>
-                )}
-              </StyledDataElement>
-              <StyledDataElement>
-                <StyledLink
-                  to={{
-                    pathname: `./${book.id}`,
-                  }}
-                >
-                  <StyledDetailIcon onClick={() => handleIdDetails(book.id)} />
-                </StyledLink>
-              </StyledDataElement>
-              <StyledDataElement>
-                <StyledBinIcon onClick={() => removeBooking(book)} />
-              </StyledDataElement>
-            </StyledData>
-          ))}
-      </StyledTable>
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <StyledTable>
+          <StyledHeader>
+            <th
+              style={
+                orderBySth === "guest"
+                  ? { color: "#135846", borderBottom: "1px solid #135846" }
+                  : null
+              }
+            >
+              Guest
+              <GoTriangleDown
+                id="guest"
+                onClick={handleOrderBySth}
+                style={{ margin: "auto auto", cursor: "pointer" }}
+              />
+            </th>
+            <th id="orderDate">Order date</th>
+            <th
+              style={
+                orderBySth === "checkIn"
+                  ? { color: "#135846", borderBottom: "1px solid #135846" }
+                  : null
+              }
+            >
+              Check in
+              <GoTriangleDown
+                id="checkIn"
+                onClick={handleOrderBySth}
+                style={{ margin: "auto auto", cursor: "pointer" }}
+              />
+            </th>
+            <th
+              style={
+                orderBySth === "checkOut"
+                  ? { color: "#135846", borderBottom: "1px solid #135846" }
+                  : null
+              }
+            >
+              Check out
+              <GoTriangleDown
+                id="checkOut"
+                onClick={handleOrderBySth}
+                style={{ margin: "auto auto", cursor: "pointer" }}
+              />
+            </th>
+            <th>Special Request</th>
+            <th>Room</th>
+            <th>bookStatus</th>
+            <th>Details</th>
+          </StyledHeader>
+          {myBooking.booking
+            .filter((book) => {
+              let convertedCheckIn = convertDateFormat(book.checkIn);
+              let convertedCheckOut = convertDateFormat(book.checkOut);
+              if (dateRange.start === "" || dateRange.end === "") {
+                return book;
+              }
+              if (
+                (convertedCheckIn >= dateRange.start &&
+                  convertedCheckIn <= dateRange.end) ||
+                (dateRange.start >= convertedCheckIn &&
+                  dateRange.start <= convertedCheckOut)
+              ) {
+                return book;
+              }
+            })
+            .filter((book) => {
+              if (selectedFilter === "all" || selectedFilter === "") {
+                return book;
+              } else if (selectedFilter === "in") {
+                return book.bookStatus === "in";
+              } else if (selectedFilter === "out") {
+                return book.bookStatus === "out";
+              } else if (selectedFilter === "progress") {
+                return book.bookStatus === "progress";
+              }
+            })
+            .filter((book) => {
+              if (filteredTerm == "") {
+                return book;
+              } else if (
+                String(book.guest)
+                  .toLowerCase()
+                  .includes(filteredTerm.toLowerCase())
+              ) {
+                return book;
+              }
+            })
+            .slice(indexOfFirstPost, indexOfLastPost)
+            .map((book) => (
+              <StyledData
+                style={
+                  window.innerWidth < 1890
+                    ? { fontSize: "11px" }
+                    : { fontSize: "13px" }
+                }
+              >
+                <StyledDataGuest>
+                  <div style={{ fontWeight: "600" }}>{book.guest}</div>#
+                  {book.id}
+                </StyledDataGuest>
+                <StyledDataElement>{book.orderDate}</StyledDataElement>
+                <StyledDataElement>{book.checkIn}</StyledDataElement>
+                <StyledDataElement>{book.checkOut}</StyledDataElement>
+                <StyledDataElement>
+                  {book.special ? (
+                    <Button notes onClick={() => handleViewNotes(book.special)}>
+                      View Notes
+                    </Button>
+                  ) : (
+                    <Button noNotes>View Notes</Button>
+                  )}
+                </StyledDataElement>
+                <StyledDataElement>
+                  <div style={{ fontWeight: "600" }}>{book.roomType}</div>
+                  {book.roomNumber}
+                </StyledDataElement>
+                <StyledDataElement>
+                  {book.bookStatus === "in" ? (
+                    <Button checkIn name="Check In">
+                      Check In
+                    </Button>
+                  ) : book.bookStatus === "out" ? (
+                    <Button checkOut name="Check Out">
+                      Check Out
+                    </Button>
+                  ) : (
+                    <Button inProgress name="In Progress">
+                      In Progress
+                    </Button>
+                  )}
+                </StyledDataElement>
+                <StyledDataElement>
+                  <StyledLink
+                    to={{
+                      pathname: `./${book.id}`,
+                    }}
+                  >
+                    <StyledDetailIcon
+                      onClick={() => handleIdDetails(book.id)}
+                    />
+                  </StyledLink>
+                </StyledDataElement>
+                <StyledDataElement>
+                  <StyledBinIcon onClick={() => removeBooking(book)} />
+                </StyledDataElement>
+              </StyledData>
+            ))}
+        </StyledTable>
+      )}
       <StyledFooter
         style={
           filteredTerm ? { visibility: "hidden" } : { visibility: "visible" }

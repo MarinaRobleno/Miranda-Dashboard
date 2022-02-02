@@ -1,21 +1,24 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import booking from "../../data/booking.js";
+import { getAPI } from "../../env.js";
 
 export const fetchBookings = createAsyncThunk(
-  "bookings/fetchBookings",
+  "bookings/fetchBookingList",
   async () => {
-    const response = await fetch("http://localhost:3000/api/bookings", {
-      method: "GET",
-      headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYxZjkyNTg0ZGE3MjkwMDAzNTY1ZWU2MCJ9LCJpYXQiOjE2NDM3MTgxNTd9.SDoXsi-EDdIwRmXm487Ok1whGSfilbTK2rnG73LwLD4",
-      },
-    })
-      .then((data) => {console.log(data)})
-      .catch((e) => console.log(e));
-    console.log(response.json());
-    const bookings = await response.json();
-    return bookings;
+    return await getAPI("bookings").then((data) => {
+      return data;
+    });
+  }
+);
+
+export const fetchBooking = createAsyncThunk(
+  "bookings/fetchBooking",
+  async ({ element }, thunkAPI) => {
+    console.log(element);
+    return await getAPI(`bookings/${element}`).then((data) => {
+      console.log(data);
+      return data;
+    });
   }
 );
 
@@ -94,15 +97,26 @@ export const bookingsSlice = createSlice({
     },
   },
   extraReducers: {
-    [fetchBookings.pending]: (state, action) => {
+    /*[fetchBooking.pending]: (state) => {
       state.loading = true;
     },
-    [fetchBookings.fulfilled]: (state, action) => {
+    [fetchBooking.fulfilled]: (state, { payload }) => {
       state.loading = false;
-      state.booking = [...state.booking, ...action.payload];
+      state.booking = payload;
     },
-    [fetchBookings.rejected]: (state, action) => {
+    [fetchBooking.rejected]: (state) => {
+      state.loading = true;
+    },*/
+
+    [fetchBookings.pending]: (state) => {
+      state.loading = true;
+    },
+    [fetchBookings.fulfilled]: (state, { payload }) => {
       state.loading = false;
+      state.booking = payload;
+    },
+    [fetchBookings.rejected]: (state) => {
+      state.loading = true;
     },
   },
 });

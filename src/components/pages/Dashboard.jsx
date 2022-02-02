@@ -1,7 +1,7 @@
 import "../../styles/App.scss";
-import React, { useState } from "react";
-import { selectContact } from "../../features/slices/contactSlice";
-import { selectBookings } from "../../features/slices/bookingsSlice";
+import React, { useEffect, useState } from "react";
+import { fetchContactList, selectContact } from "../../features/slices/contactSlice";
+import { fetchBookings, selectBookings } from "../../features/slices/bookingsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { BiBed, BiLogIn, BiLogOut } from "react-icons/bi";
@@ -99,6 +99,11 @@ export function Dashboard() {
   const [checkInCounter, setCheckInCounter] = useState(0);
   const [checkOutCounter, setCheckOutCounter] = useState(0);
   const [actualDate, setActualDate] = useState(new Date());
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContactList());
+  }, []);
 
   const changeCheckInCount = (count) => {
     setCheckInCounter(count)

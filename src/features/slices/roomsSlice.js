@@ -1,9 +1,18 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import rooms from "../../data/rooms.js";
+import { getAPI } from "../../env.js";
+
+export const fetchRoomsList = createAsyncThunk(
+  "rooms/fetchRoomsList",
+  async () => {
+     return await getAPI('rooms')
+        .then((data) => {return data});
+  }
+);
 
 export const roomsSlice = createSlice({
   name: "rooms",
-  initialState: { rooms: rooms, id: "" },
+  initialState: { rooms: [], id: "", loading: false },
   reducers: {
     add: (state, action) => {
       state.rooms = [...state.rooms, action.payload];
@@ -68,10 +77,23 @@ export const roomsSlice = createSlice({
       }
     },
   },
+  extraReducers: {
+    [fetchRoomsList.pending]: (state) => {
+      state.loading = true;
+    },
+    [fetchRoomsList.fulfilled]: (state, { payload }) => {
+      state.rooms = payload;
+      state.loading = false;
+    },
+    [fetchRoomsList.rejected]: (state) => {
+      state.loading = false;
+    },
+  },
 });
 
 export const selectRooms = (state) => state.rooms.rooms;
 export const selectRoomsId = (state) => state.rooms.id;
+export const selectRoomsLoading = (state) => state.rooms.loading;
 
 export const { add, orderBy, remove, edit, getId } = roomsSlice.actions;
 

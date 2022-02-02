@@ -15,6 +15,7 @@ import {
   selectContact,
   orderBy,
   archive,
+  fetchContactList,
 } from "../features/slices/contactSlice";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -32,6 +33,10 @@ const StyledArchiveButton = styled(Button)`
 export function ContactList() {
   const myContact = useSelector(selectContact);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContactList());
+  }, []);
 
   const [select, setSelect] = useState("");
   const [showArchived, setShowArchived] = useState(false);
