@@ -43,7 +43,7 @@ export function BookDetail() {
     <>
       {myBooking.booking
         .filter((book) => {
-          if (book.id === myBooking.id) {
+          if (book._id === myBooking.id) {
             return book;
           }
         })
@@ -62,7 +62,7 @@ export function BookDetail() {
                   <div style={{ font: "normal normal 600 20px/46px Poppins" }}>
                     {book.guest}
                   </div>
-                  <StyledDetailSection>ID: {book.id}</StyledDetailSection>
+                  <StyledDetailSection>ID: {book._id}</StyledDetailSection>
                 </StyledDivColumn>
                 <BsThreeDotsVertical
                   style={{ fontSize: "15px", cursor: "pointer" }}

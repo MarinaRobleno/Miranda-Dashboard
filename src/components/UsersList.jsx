@@ -238,7 +238,7 @@ export function UsersList() {
             >
               <img style={{ maxWidth: "50px" }} src={user.photo} />
               <StyledDataElement style={{ width: "50px" }}>
-                #{user.id}
+                #{user._id}
               </StyledDataElement>
               <StyledDataGuest style={{ fontWeight: "600" }}>
                 {user.name}

@@ -27,14 +27,14 @@ export const contactSlice = createSlice({
     remove: (state, action) => {
       state.reviewedContact.push(action.payload);
       state.contact = state.contact.filter(
-        (contact) => contact.id !== action.payload.id
+        (contact) => contact._id !== action.payload._id
       );
       return state;
     },
     archive: (state, action) => {
       state.archived.push(action.payload);
       state.reviewedContact = state.reviewedContact.filter(
-        (contact) => contact.id !== action.payload.id
+        (contact) => contact._id !== action.payload._id
       );
       return state;
     },

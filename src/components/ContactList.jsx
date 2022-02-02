@@ -131,7 +131,7 @@ export function ContactList() {
               .slice(indexOfFirstPost, indexOfLastPost)
               .map((contact) => (
                 <StyledData style={window.innerWidth < 1890 ? {fontSize: '12px'}: {fontSize: '13px'}}>
-                  <StyledDataElement>#{contact.id}</StyledDataElement>
+                  <StyledDataElement>#{contact._id}</StyledDataElement>
                   <StyledDataElement>{contact.date}</StyledDataElement>
                   <StyledDataElement>{contact.customer}</StyledDataElement>
                   <StyledDataElement>{contact.mail}</StyledDataElement>
@@ -144,7 +144,7 @@ export function ContactList() {
               .slice(indexOfFirstPost, indexOfLastPost)
               .map((contact) => (
                 <StyledData style={window.innerWidth < 1890 ? {fontSize: '12px'}: {fontSize: '13px'}}>
-                  <StyledDataElement>#{contact.id}</StyledDataElement>
+                  <StyledDataElement>#{contact._id}</StyledDataElement>
                   <StyledDataElement>{contact.date}</StyledDataElement>
                   <StyledDataElement>{contact.customer}</StyledDataElement>
                   <StyledDataElement>{contact.mail}</StyledDataElement>

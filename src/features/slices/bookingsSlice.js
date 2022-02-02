@@ -42,13 +42,13 @@ export const bookingsSlice = createSlice({
     },
     remove: (state, action) => {
       state.booking = state.booking.filter(
-        (book) => book.id !== action.payload.id
+        (book) => book._id !== action.payload._id
       );
       return state;
     },
     edit: (state, action) => {
       state.booking = state.booking.map((book) =>
-        book.id === action.payload.id
+        book._id === action.payload._id
           ? { ...book, attribute: action.payload.attribute }
           : book
       );

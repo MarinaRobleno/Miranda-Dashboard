@@ -448,7 +448,7 @@ export function BookingList() {
               >
                 <StyledDataGuest>
                   <div style={{ fontWeight: "600" }}>{book.guest}</div>#
-                  {book.id}
+                  {book._id}
                 </StyledDataGuest>
                 <StyledDataElement>{book.orderDate}</StyledDataElement>
                 <StyledDataElement>{book.checkIn}</StyledDataElement>
@@ -484,11 +484,11 @@ export function BookingList() {
                 <StyledDataElement>
                   <StyledLink
                     to={{
-                      pathname: `./${book.id}`,
+                      pathname: `./${book._id}`,
                     }}
                   >
                     <StyledDetailIcon
-                      onClick={() => handleIdDetails(book.id)}
+                      onClick={() => handleIdDetails(book._id)}
                     />
                   </StyledLink>
                 </StyledDataElement>

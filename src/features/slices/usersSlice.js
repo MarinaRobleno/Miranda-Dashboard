@@ -30,15 +30,15 @@ export const usersSlice = createSlice({
       return state;
     },
     remove: (state, action) => {
-      state.users = state.users.filter((user) => user.id !== action.payload.id);
+      state.users = state.users.filter((user) => user._id !== action.payload._id);
       return state;
     },
     edit: (state, action) => {
       state.users = state.users.map((user) =>
-        user.id === action.payload.id
+        user._id === action.payload._id
           ? {
               ...user,
-              id: action.payload.id,
+              _id: action.payload._id,
               name: action.payload.name,
               photo: action.payload.photo,
               job: action.payload.job,

@@ -132,7 +132,7 @@ export const RoomList = () => {
       <RoomListCard
         key={card.id}
         index={index}
-        id={card.id}
+        id={card._id}
         price={card.price}
         photo={card.photo}
         roomNumber={card.roomNumber}

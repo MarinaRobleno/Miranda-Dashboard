@@ -19,7 +19,7 @@ export const roomsSlice = createSlice({
       return state;
     },
     remove: (state, action) => {
-      state.rooms = state.rooms.filter((room) => room.id !== action.payload);
+      state.rooms = state.rooms.filter((room) => room._id !== action.payload);
       return state;
     },
     getId: (state, action) => {
@@ -28,7 +28,7 @@ export const roomsSlice = createSlice({
     edit: (state, action) => {
       console.log(action.payload)
       state.rooms = state.rooms.map((room) =>
-        room.id === action.payload.id
+        room._id === action.payload._id
           ? {
               ...room,
               photo: action.payload.photo,
