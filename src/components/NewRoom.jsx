@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { add, selectRooms } from "../features/slices/roomsSlice";
+import { add, addRooms, selectRooms } from "../features/slices/roomsSlice";
 import styled from "styled-components";
 import { StyledBigPanel, StyledBigPanelHeader } from "./pages/Dashboard";
 import { StyledLink } from "./SideBar";
@@ -132,7 +132,7 @@ export function NewRoom() {
 
   const handleNewRoomSubmit = (e) => {
     e.preventDefault();
-    dispatch(add(newRoom));
+    dispatch(addRooms(newRoom));
     const form = document.getElementById("newRoomForm");
     form.reset();
   };

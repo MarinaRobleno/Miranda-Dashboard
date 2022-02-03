@@ -130,7 +130,7 @@ export const RoomList = () => {
   const renderCard = (card, index) => {
     return (
       <RoomListCard
-        key={card.id}
+        key={card._id}
         index={index}
         id={card._id}
         price={card.price}

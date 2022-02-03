@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { edit, selectRooms, selectRoomsId } from "../features/slices/roomsSlice";
+import { edit, editRooms, selectRooms, selectRoomsId } from "../features/slices/roomsSlice";
 import styled from "styled-components";
 import { StyledBigPanel, StyledBigPanelHeader } from "./pages/Dashboard";
 import { StyledLink } from "./SideBar";
@@ -107,12 +107,12 @@ export function EditRoom() {
   const [originalData, setOriginalData] = useState(
     myRoom
       .filter((room) => {
-        if (room.id === editingRoomId) {
+        if (room._id === editingRoomId) {
           return room;
         }
       })
       .map((room) => ({
-        id: room.id,
+        _id: room._id,
         roomType: room.roomType,
         photo: room.photo,
         roomNumber: room.roomNumber,
@@ -138,7 +138,7 @@ export function EditRoom() {
   const handleNewRoomSubmit = (e) => {
     e.preventDefault();
     setEditingRoom({ ...editingRoom, photo: photoArray})
-    dispatch(edit(editingRoom));
+    dispatch(editRooms(editingRoom));
     const form = document.getElementById("newRoomForm");
     form.reset();
   };

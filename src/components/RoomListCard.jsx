@@ -9,7 +9,7 @@ import {
 } from "./BookingList";
 import Button from "./Button";
 import { StyledIconRoom } from "./RoomList";
-import { remove, getId, selectRooms, selectRoomsId } from "../features/slices/roomsSlice";
+import { remove, getId, selectRooms, selectRoomsId, deleteRooms } from "../features/slices/roomsSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { StyledEdit } from "./UsersList";
 import { StyledLink } from "./SideBar";
@@ -92,7 +92,7 @@ export const RoomListCard = ({
   }
 
   const removeRoom = (id) => {
-    dispatch(remove(id));
+    dispatch(deleteRooms(id));
   };
   return (
     <StyledData ref={ref} style={{ opacity }} data-handler-id={handlerId}>
