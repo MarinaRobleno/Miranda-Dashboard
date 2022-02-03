@@ -5,11 +5,11 @@ import { BiSearchAlt2, BiSidebar } from "react-icons/bi";
 import { GoTriangleDown } from "react-icons/go";
 import styled from "styled-components";
 import {
-  remove,
   orderBy,
   detailed,
   selectBookings,
   fetchBookings,
+  deleteBookings,
 } from "../features/slices/bookingsSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
@@ -195,8 +195,8 @@ export function BookingList() {
     setCurrentPage(pageNumber);
   };
 
-  const removeBooking = (book) => {
-    dispatch(remove(book));
+  const removeBooking = (id) => {
+    dispatch(deleteBookings(id));
   };
 
   const handleFilterItem = (e) => {
@@ -493,7 +493,7 @@ export function BookingList() {
                   </StyledLink>
                 </StyledDataElement>
                 <StyledDataElement>
-                  <StyledBinIcon onClick={() => removeBooking(book)} />
+                  <StyledBinIcon onClick={() => removeBooking(book._id)} />
                 </StyledDataElement>
               </StyledData>
             ))}

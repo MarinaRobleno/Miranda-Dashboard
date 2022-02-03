@@ -46,11 +46,6 @@ export const usersSlice = createSlice({
   name: "users",
   initialState: { users: [], id: "", loading: false },
   reducers: {
-    /*add: (state, action) => {
-      state.users = [...state.users, action.payload];
-      addUsers(action.payload)
-      return state;
-    },*/
     getId: (state, action) => {
       state.id = action.payload;
     },

@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import booking from "../../data/booking.js";
-import { getAPI } from "../../env.js";
+import { deleteAPI, getAPI, patchAPI, postAPI } from "../../env.js";
 
 export const fetchBookings = createAsyncThunk(
   "bookings/fetchBookings",
@@ -11,12 +11,25 @@ export const fetchBookings = createAsyncThunk(
   }
 );
 
-export const fetchBooking = createAsyncThunk(
-  "bookings/fetchBooking",
-  async ({ element }, thunkAPI) => {
-    console.log(element);
-    return await getAPI(`bookings/${element}`).then((data) => {
-      console.log(data);
+export const addBookings = createAsyncThunk("bookings/addBookings", async (bookData) => {
+  return await postAPI("bookings", bookData).then((data) => {
+    return data;
+  });
+});
+
+export const deleteBookings = createAsyncThunk(
+  "bookings/deleteBookings",
+  async (bookId) => {
+    return await deleteAPI("bookings", bookId).then((data) => {
+      return data;
+    });
+  }
+);
+
+export const editBookings = createAsyncThunk(
+  "bookings/editBookings",
+  async (bookData) => {
+    return await patchAPI("bookings", bookData._id, bookData).then((data) => {
       return data;
     });
   }
@@ -36,24 +49,6 @@ export const bookingsSlice = createSlice({
   name: "bookings",
   initialState: { booking: [], id: "", loading: false },
   reducers: {
-    add: (state, action) => {
-      state.booking.push(action.payload);
-      return state;
-    },
-    remove: (state, action) => {
-      state.booking = state.booking.filter(
-        (book) => book._id !== action.payload._id
-      );
-      return state;
-    },
-    edit: (state, action) => {
-      state.booking = state.booking.map((book) =>
-        book._id === action.payload._id
-          ? { ...book, attribute: action.payload.attribute }
-          : book
-      );
-      return state;
-    },
     detailed: (state, action) => {
       state.id = action.payload;
     },
@@ -97,17 +92,6 @@ export const bookingsSlice = createSlice({
     },
   },
   extraReducers: {
-    /*[fetchBooking.pending]: (state) => {
-      state.loading = true;
-    },
-    [fetchBooking.fulfilled]: (state, { payload }) => {
-      state.loading = false;
-      state.booking = payload;
-    },
-    [fetchBooking.rejected]: (state) => {
-      state.loading = true;
-    },*/
-
     [fetchBookings.pending]: (state) => {
       state.loading = true;
     },
@@ -118,11 +102,47 @@ export const bookingsSlice = createSlice({
     [fetchBookings.rejected]: (state) => {
       state.loading = true;
     },
+    [addBookings.pending]: (state) => {
+      state.loading = true;
+    },
+    [addBookings.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      state.booking = [...state.booking, payload];
+    },
+    [addBookings.rejected]: (state) => {
+      state.loading = true;
+    },
+    [editBookings.pending]: (state) => {
+      state.loading = true;
+    },
+    [editBookings.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      state.booking = state.booking.map((book) =>
+        book._id === payload._id
+          ? { ...book, attribute: payload.attribute }
+          : book
+      );
+    },
+    [editBookings.rejected]: (state) => {
+      state.loading = true;
+    },
+    [deleteBookings.pending]: (state) => {
+      state.loading = true;
+    },
+    [deleteBookings.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      state.booking = state.booking.filter(
+        (book) => book._id !== payload
+      );
+    },
+    [deleteBookings.rejected]: (state) => {
+      state.loading = true;
+    },
   },
 });
 
 export const selectBookings = (state) => state.bookings;
 
-export const { add, remove, orderBy, detailed } = bookingsSlice.actions;
+export const { orderBy, detailed } = bookingsSlice.actions;
 
 export default bookingsSlice.reducer;
