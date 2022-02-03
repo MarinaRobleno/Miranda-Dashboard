@@ -167,10 +167,6 @@ export function BookingList() {
   const dispatch = useDispatch();
   const today = new Date();
 
-  useEffect(() => {
-    dispatch(fetchBookings());
-  }, []);
-
   const [select, setSelect] = useState("");
   const [dateRange, setDateRange] = useState({ start: "", end: "" });
   const [selectedFilter, setSelectedFilter] = useState("all");
@@ -181,7 +177,15 @@ export function BookingList() {
   const postPerPage = 10;
   const indexOfLastPost = currentPage * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
-  const [totalPosts, setTotalPosts] = useState(myBooking.booking.length);
+  const [totalPosts, setTotalPosts] = useState(null);
+
+  useEffect(() => {
+    dispatch(fetchBookings());
+  }, []);
+
+  useEffect(() => {
+    setTotalPosts(myBooking.booking.length);
+  }, [myBooking])
 
   const handleGoRight = () => {
     setCurrentPage(currentPage + 1);

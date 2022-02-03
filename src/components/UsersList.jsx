@@ -48,10 +48,6 @@ export function UsersList() {
   const loading = myUsers.loading;
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchUsers());
-  }, []);
-
   const [filteredTerm, setFilteredTerm] = useState("");
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [orderBySth, setOrderBySth] = useState("");
@@ -60,7 +56,14 @@ export function UsersList() {
   const postPerPage = 10;
   const indexOfLastPost = currentPage * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
-  const [totalPosts, setTotalPosts] = useState(myUsers.users.length);
+  const [totalPosts, setTotalPosts] = useState(null);
+  
+  useEffect(() => {
+    dispatch(fetchUsers());
+  }, []);
+  useEffect(() => {
+    setTotalPosts(myUsers.users.length);
+  }, [myUsers]);
 
   const handleGoRight = () => {
     setCurrentPage(currentPage + 1);

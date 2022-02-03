@@ -10,7 +10,12 @@ import {
   StyledSelect,
   StyledTable,
 } from "./BookingList";
-import { fetchRooms, orderBy, selectRooms, selectRoomsLoading } from "../features/slices/roomsSlice";
+import {
+  fetchRooms,
+  orderBy,
+  selectRooms,
+  selectRoomsLoading,
+} from "../features/slices/roomsSlice";
 import { useSelector, useDispatch } from "react-redux";
 import Button from "./Button";
 import styled from "styled-components";
@@ -59,19 +64,24 @@ export const RoomList = () => {
   const loading = useSelector(selectRoomsLoading);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchRooms());
-  }, []);
-
-  const [cards, setCards] = useState(myRooms);
+  const [cards, setCards] = useState([]);
   const [select, setSelect] = useState("roomNumber");
   const [filter, setFilter] = useState("all");
 
-  const [totalPosts, setTotalPosts] = useState(cards.length);
+  const [totalPosts, setTotalPosts] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const postPerPage = 10;
   const indexOfLastPost = currentPage * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
+
+  useEffect(() => {
+    dispatch(fetchRooms());
+  }, []);
+
+  useEffect(() => {
+    setCards(myRooms);
+    setTotalPosts(myRooms.length)
+  }, [myRooms]);
 
   const handleGoRight = () => {
     setCurrentPage(currentPage + 1);
@@ -193,28 +203,32 @@ export const RoomList = () => {
   </StyledSelect>*/}
         </div>
       </StyledFilterHeader>
-      {loading ? <div>Loading...</div>: <StyledTable>
-        <StyledHeader>
-          <th className="header-table-sector">Room Number</th>
-          <th className="header-table-sector">Room Type</th>
-          <th className="header-table-sector">Amenities</th>
-          <th className="header-table-sector">Price</th>
-          <th className="header-table-sector">Offer Price</th>
-          <th className="header-table-sector">Status</th>
-        </StyledHeader>
-        {cards
-          .filter((card) => {
-            if (filter === "all") {
-              return card;
-            } else if (filter === "available") {
-              return card.status === "available";
-            } else {
-              return card.status === "booked";
-            }
-          })
-          .slice(indexOfFirstPost, indexOfLastPost)
-          .map((card, i) => renderCard(card, i))}
-      </StyledTable>}
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <StyledTable>
+          <StyledHeader>
+            <th className="header-table-sector">Room Number</th>
+            <th className="header-table-sector">Room Type</th>
+            <th className="header-table-sector">Amenities</th>
+            <th className="header-table-sector">Price</th>
+            <th className="header-table-sector">Offer Price</th>
+            <th className="header-table-sector">Status</th>
+          </StyledHeader>
+          {cards
+            .filter((card) => {
+              if (filter === "all") {
+                return card;
+              } else if (filter === "available") {
+                return card.status === "available";
+              } else {
+                return card.status === "booked";
+              }
+            })
+            .slice(indexOfFirstPost, indexOfLastPost)
+            .map((card, i) => renderCard(card, i))}
+        </StyledTable>
+      )}
       <StyledFooter>
         {postPerPage > totalPosts ? (
           <div style={{ fontSize: "14px" }}>
