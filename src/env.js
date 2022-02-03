@@ -7,9 +7,9 @@ const DATABASE_DB = "miranda_db"*/
 
 import axios from "axios";
 
-/*let token = localStorage.getItem("currentUser")
-  ? JSON.parse(localStorage.getItem("currentUser")).token
-  : "";*/
+let token = localStorage.getItem("token")
+  ? JSON.parse(localStorage.getItem("token")).token
+  : "";
 
 //const apiUrl = 'https://miranda-express.azurewebsites.net/api/';
 const apiUrl = "http://localhost:3000/api/";
@@ -17,33 +17,10 @@ const apiUrl = "http://localhost:3000/api/";
 let headers = {
   headers: {
     authorization:
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYxZjkyNTg0ZGE3MjkwMDAzNTY1ZWU2MCJ9LCJpYXQiOjE2NDM3MTgxNTd9.SDoXsi-EDdIwRmXm487Ok1whGSfilbTK2rnG73LwLD4",
+      `Bearer ${token}`,
     "Content-Type": "application/json",
   },
 };
-
-export async function loginAPI(email, password) {
-  return await axios
-    .post(
-      `${apiUrl}login/login`,
-      {
-        email: email,
-        password: password,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
-    .then((res) => {
-      if (res.data.token) headers.headers.authorization = res.data.token;
-      return res.data;
-    })
-    .catch((error) => {
-      return error;
-    });
-}
 
 export async function postAPI(url, body) {
   return await axios

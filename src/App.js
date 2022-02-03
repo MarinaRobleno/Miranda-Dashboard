@@ -18,13 +18,11 @@ import { SideBar } from "./components/SideBar";
 import { FiLogOut } from "react-icons/fi";
 import { VscArrowSwap } from "react-icons/vsc";
 import { BiBell, BiEnvelope } from "react-icons/bi";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectContact } from "./features/slices/contactSlice";
 import { selectBookings } from "./features/slices/bookingsSlice";
 import { EditRoom } from "./components/EditRoom";
-
-const SAVE_STATE = "1";
-const SAVE_KEY = "auth";
+import { authenticationHanlder } from "./features/slices/authSlice";
 
 const WholeContent = styled.div`
   display: flex;
@@ -128,9 +126,8 @@ const StyledBell = styled(BiBell)`
 `;
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(
-    localStorage.getItem(SAVE_KEY) === SAVE_STATE
-  );
+  const dispatch = useDispatch();
+  const authenticated = useSelector((state) => state.auth.auth);
   const [isSidebar, setIsSidebar] = useState(null);
 
   const handleCloseSidebar = () => {
@@ -138,13 +135,16 @@ function App() {
   };
 
   useEffect(() => {
-    if (loggedIn) {
-      localStorage.setItem(SAVE_KEY, SAVE_STATE);
+    if (localStorage.getItem("authenticated")) {
       setIsSidebar(true);
-    } else {
-      localStorage.removeItem(SAVE_KEY);
+      dispatch(
+        authenticationHanlder({
+          status: true,
+          token: localStorage.getItem("token"),
+        })
+      );      
     }
-  }, [loggedIn]);
+  }, []);
 
   const myContact = useSelector(selectContact);
   const myBookings = useSelector(selectBookings);
@@ -161,13 +161,13 @@ function App() {
   return (
     <>
       <WholeContent>
-        {loggedIn && isSidebar ? (
+        {authenticated && isSidebar ? (
           <SideBarContainer>
             <SideBar />
           </SideBarContainer>
         ) : null}
         <RightContent>
-          {loggedIn ? (
+          {authenticated ? (
             <header>
               <StyledHeader>
                 <StyledHamburger onClick={handleCloseSidebar} />
@@ -212,97 +212,95 @@ function App() {
                   >
                     {orderCount}
                   </StyledNotificationCounter>
-                  <StyledLogout onClick={() => setLoggedIn(false)} />
+                  <StyledLogout onClick={() => 'lul'} />
                 </div>
               </StyledHeader>
             </header>
           ) : null}
           <Content>
-            <AuthContext.Provider value={{ loggedIn, setLoggedIn }}>
-              <Routes>
-                <Route path="/login" element={<Login />} />
-                <Route
-                  path="/"
-                  element={
-                    <PrivateRoute>
-                      <Dashboard />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
-                  path="room/new-room"
-                  element={
-                    <PrivateRoute>
-                      <NewRoom />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
-                  path="room/:id/edit"
-                  element={
-                    <PrivateRoute>
-                      <EditRoom />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
-                  path="/room"
-                  element={
-                    <PrivateRoute>
-                      <Room />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
-                  path="bookings/:id"
-                  element={
-                    <PrivateRoute>
-                      <BookDetail />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
-                  path="/bookings"
-                  element={
-                    <PrivateRoute>
-                      <Bookings />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
-                  path="/contact"
-                  element={
-                    <PrivateRoute>
-                      <Contact />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
-                  path="/users/new-user"
-                  element={
-                    <PrivateRoute>
-                      <NewUser />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
-                  path="/users/:id/edit"
-                  element={
-                    <PrivateRoute>
-                      <EditUser />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
-                  path="/users"
-                  element={
-                    <PrivateRoute>
-                      <Users />
-                    </PrivateRoute>
-                  }
-                />
-              </Routes>
-            </AuthContext.Provider>
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route
+                path="/"
+                element={
+                  <PrivateRoute>
+                    <Dashboard />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="room/new-room"
+                element={
+                  <PrivateRoute>
+                    <NewRoom />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="room/:id/edit"
+                element={
+                  <PrivateRoute>
+                    <EditRoom />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/room"
+                element={
+                  <PrivateRoute>
+                    <Room />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="bookings/:id"
+                element={
+                  <PrivateRoute>
+                    <BookDetail />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/bookings"
+                element={
+                  <PrivateRoute>
+                    <Bookings />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/contact"
+                element={
+                  <PrivateRoute>
+                    <Contact />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/users/new-user"
+                element={
+                  <PrivateRoute>
+                    <NewUser />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/users/:id/edit"
+                element={
+                  <PrivateRoute>
+                    <EditUser />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/users"
+                element={
+                  <PrivateRoute>
+                    <Users />
+                  </PrivateRoute>
+                }
+              />
+            </Routes>
           </Content>
         </RightContent>
       </WholeContent>

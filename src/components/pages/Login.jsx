@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import { AuthContext } from "../helpers/Context";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { StyledDivColumn, StyledDivRow } from "../BookDetail";
 import { StyledLogoHotel, StyledLogoPack } from "../SideBar";
 import { GiStarsStack } from "react-icons/gi";
+import { authenticationHanlder } from "../../features/slices/authSlice";
+import { useDispatch } from "react-redux";
 
 const LoginContainer = styled.div`
   display: flex;
@@ -67,6 +70,7 @@ export function Login() {
   const passKey = "admin";
   const { loggedIn, setLoggedIn } = useContext(AuthContext);
 
+  const dispatch = useDispatch();
   let navigate = useNavigate();
   let location = useLocation();
   let from = location.state?.from?.pathname || "/";
@@ -86,17 +90,33 @@ export function Login() {
     setPassword(newPass);
   };
 
-  const handleLoginSubmit = (e) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    if (nameKey === name && passKey === password) {
-      setLoggedIn(true);
-    } else {
-      alert("Wrong mail or username");
-    }
+      
+      try{
+        const response = await fetch('http://localhost:3000/login/login', {
+          method: 'POST',
+					headers : { 'Content-Type' : 'application/json' },
+          body: JSON.stringify({email: name, password: password} )
+        })
+        if (response.ok){
+				
+					const json =  await response.json();
+					dispatch(authenticationHanlder({status: true, token: json.token}));
+					navigate("/", { replace: true });
+				} else{
+					console.log('Network response was not ok')
+					 //bad combination
+				}
+				
+      }catch (err) {
+        console.log('There has been a problem with your fetch operation:', err);
+				 //bad combination
+      }
   };
   useEffect(() => {
     if (loggedIn) {
-      navigate("/", { replace: true });
+      
     }
   }, [loggedIn]);
 
