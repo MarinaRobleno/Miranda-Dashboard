@@ -2,8 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import rooms from "../../data/rooms.js";
 import { getAPI } from "../../env.js";
 
-export const fetchRoomsList = createAsyncThunk(
-  "rooms/fetchRoomsList",
+export const fetchRooms = createAsyncThunk(
+  "rooms/fetchRooms",
   async () => {
      return await getAPI('rooms')
         .then((data) => {return data});
@@ -78,14 +78,14 @@ export const roomsSlice = createSlice({
     },
   },
   extraReducers: {
-    [fetchRoomsList.pending]: (state) => {
+    [fetchRooms.pending]: (state) => {
       state.loading = true;
     },
-    [fetchRoomsList.fulfilled]: (state, { payload }) => {
+    [fetchRooms.fulfilled]: (state, { payload }) => {
       state.rooms = payload;
       state.loading = false;
     },
-    [fetchRoomsList.rejected]: (state) => {
+    [fetchRooms.rejected]: (state) => {
       state.loading = false;
     },
   },

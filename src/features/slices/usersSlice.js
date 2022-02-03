@@ -1,11 +1,32 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import users from "../../data/users.js";
-import { getAPI } from "../../env.js";
+import { deleteAPI, getAPI, postAPI, patchAPI } from "../../env.js";
 
-export const fetchUsersList = createAsyncThunk(
-  "users/fetchUsersList",
-  async () => {
-    return await getAPI("users").then((data) => {
+export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
+  return await getAPI("users").then((data) => {
+    return data;
+  });
+});
+
+export const addUsers = createAsyncThunk("users/addUsers", async (userData) => {
+  return await postAPI("users", userData).then((data) => {
+    return data;
+  });
+});
+
+export const deleteUsers = createAsyncThunk(
+  "users/deleteUsers",
+  async (userId) => {
+    return await deleteAPI("users", userId).then((data) => {
+      return data;
+    });
+  }
+);
+
+export const editUsers = createAsyncThunk(
+  "users/editUsers",
+  async (userData) => {
+    return await patchAPI("users", userData._id, userData).then((data) => {
       return data;
     });
   }
@@ -25,31 +46,11 @@ export const usersSlice = createSlice({
   name: "users",
   initialState: { users: [], id: "", loading: false },
   reducers: {
-    add: (state, action) => {
+    /*add: (state, action) => {
       state.users = [...state.users, action.payload];
+      addUsers(action.payload)
       return state;
-    },
-    remove: (state, action) => {
-      state.users = state.users.filter((user) => user._id !== action.payload._id);
-      return state;
-    },
-    edit: (state, action) => {
-      state.users = state.users.map((user) =>
-        user._id === action.payload._id
-          ? {
-              ...user,
-              _id: action.payload._id,
-              name: action.payload.name,
-              photo: action.payload.photo,
-              job: action.payload.job,
-              mail: action.payload.mail,
-              phone: action.payload.phone,
-              status: action.payload.status,
-            }
-          : user
-      );
-      return state;
-    },
+    },*/
     getId: (state, action) => {
       state.id = action.payload;
     },
@@ -78,14 +79,56 @@ export const usersSlice = createSlice({
     },
   },
   extraReducers: {
-    [fetchUsersList.pending]: (state) => {
+    [fetchUsers.pending]: (state) => {
       state.loading = true;
     },
-    [fetchUsersList.fulfilled]: (state, { payload }) => {
+    [fetchUsers.fulfilled]: (state, { payload }) => {
       state.loading = false;
       state.users = payload;
     },
-    [fetchUsersList.rejected]: (state) => {
+    [fetchUsers.rejected]: (state) => {
+      state.loading = false;
+    },
+    [addUsers.pending]: (state) => {
+      state.loading = true;
+    },
+    [addUsers.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      state.users.push(payload);
+    },
+    [addUsers.rejected]: (state) => {
+      state.loading = false;
+    },
+    [deleteUsers.pending]: (state) => {
+      state.loading = true;
+    },
+    [deleteUsers.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      state.users = state.users.filter((user) => user._id !== payload);
+    },
+    [deleteUsers.rejected]: (state) => {
+      state.loading = false;
+    },
+    [editUsers.pending]: (state) => {
+      state.loading = true;
+    },
+    [editUsers.fulfilled]: (state, { payload }) => {
+      state.users = state.users.map((user) =>
+        user._id === payload._id
+          ? {
+              ...user,
+              _id: payload._id,
+              name: payload.name,
+              photo: payload.photo,
+              job: payload.job,
+              mail: payload.mail,
+              phone: payload.phone,
+              status: payload.status,
+            }
+          : user
+      );
+    },
+    [editUsers.rejected]: (state) => {
       state.loading = false;
     },
   },
@@ -93,6 +136,6 @@ export const usersSlice = createSlice({
 
 export const selectUsers = (state) => state.users;
 
-export const { add, remove, orderBy, getId, edit } = usersSlice.actions;
+export const { orderBy, getId } = usersSlice.actions;
 
 export default usersSlice.reducer;

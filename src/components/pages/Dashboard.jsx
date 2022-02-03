@@ -1,6 +1,6 @@
 import "../../styles/App.scss";
 import React, { useEffect, useState } from "react";
-import { fetchContactList, selectContact } from "../../features/slices/contactSlice";
+import { fetchContacts, selectContact } from "../../features/slices/contactSlice";
 import { fetchBookings, selectBookings } from "../../features/slices/bookingsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
@@ -102,7 +102,7 @@ export function Dashboard() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchContactList());
+    dispatch(fetchContacts());
   }, []);
 
   const changeCheckInCount = (count) => {

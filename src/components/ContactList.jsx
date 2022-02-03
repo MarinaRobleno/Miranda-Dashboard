@@ -15,7 +15,7 @@ import {
   selectContact,
   orderBy,
   archive,
-  fetchContactList,
+  fetchContacts,
 } from "../features/slices/contactSlice";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -35,7 +35,7 @@ export function ContactList() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchContactList());
+    dispatch(fetchContacts());
   }, []);
 
   const [select, setSelect] = useState("");

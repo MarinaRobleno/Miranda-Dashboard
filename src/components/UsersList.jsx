@@ -20,7 +20,7 @@ import { StyledLink } from "./SideBar";
 import { TiDelete } from "react-icons/ti";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { remove, orderBy, getId, selectUsers, fetchUsersList } from "../features/slices/usersSlice";
+import { orderBy, getId, selectUsers, fetchUsers, deleteUsers } from "../features/slices/usersSlice";
 import {
   StyledTablePagination,
   StyledPaginationButton,
@@ -49,7 +49,7 @@ export function UsersList() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchUsersList());
+    dispatch(fetchUsers());
   }, []);
 
   const [filteredTerm, setFilteredTerm] = useState("");
@@ -83,7 +83,7 @@ export function UsersList() {
   }
 
   const handleDeleteUser = (user) => {
-    dispatch(remove(user));
+    dispatch(deleteUsers(user._id));
   };
 
   const handleFilterItem = (e) => {
@@ -269,7 +269,7 @@ export function UsersList() {
                     pathname: `./${user.id}/edit`,
                   }}
                 >
-                  <StyledEdit onClick={() => handleEditUser(user.id)}/>
+                  <StyledEdit onClick={() => handleEditUser(user._id)}/>
                 </StyledLink>
               </StyledDataElement>
               <StyledDataElement>

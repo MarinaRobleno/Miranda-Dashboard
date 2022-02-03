@@ -2,8 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import contact from "../../data/contact.js";
 import { getAPI } from "../../env.js";
 
-export const fetchContactList = createAsyncThunk(
-  "contact/fetchContactList",
+export const fetchContacts = createAsyncThunk(
+  "contact/fetchContacts",
   async () => {
      return await getAPI('contacts')
         .then((data) => {return data});
@@ -83,14 +83,14 @@ export const contactSlice = createSlice({
     },
   },
   extraReducers: {
-    [fetchContactList.pending]: (state) => {
+    [fetchContacts.pending]: (state) => {
       state.loading = true;
     },
-    [fetchContactList.fulfilled]: (state, { payload }) => {
+    [fetchContacts.fulfilled]: (state, { payload }) => {
       state.loading = false;
       state.contact = payload;
     },
-    [fetchContactList.rejected]: (state) => {
+    [fetchContacts.rejected]: (state) => {
       state.loading = false;
     },
   },

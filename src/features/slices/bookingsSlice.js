@@ -3,7 +3,7 @@ import booking from "../../data/booking.js";
 import { getAPI } from "../../env.js";
 
 export const fetchBookings = createAsyncThunk(
-  "bookings/fetchBookingList",
+  "bookings/fetchBookings",
   async () => {
     return await getAPI("bookings").then((data) => {
       return data;

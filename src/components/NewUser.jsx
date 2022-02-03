@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { add } from "../features/slices/usersSlice";
+import { addUsers } from "../features/slices/usersSlice";
 import styled from "styled-components";
 import { StyledBigPanel, StyledBigPanelHeader } from "./pages/Dashboard";
 import { StyledLink } from "./SideBar";
@@ -32,9 +32,10 @@ export function NewUser() {
 
   const handleNewUserSubmit = (e) => {
     e.preventDefault();
-    dispatch(add(newUser));
-    const form = document.getElementById("newUserForm");
-    form.reset();
+    dispatch(addUsers(newUser));
+    /*const form = document.getElementById("newUserForm");
+    form.reset();*/
+        
   };
 
   return (

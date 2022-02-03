@@ -10,7 +10,7 @@ import {
   StyledSelect,
   StyledTable,
 } from "./BookingList";
-import { fetchRoomsList, orderBy, selectRooms, selectRoomsLoading } from "../features/slices/roomsSlice";
+import { fetchRooms, orderBy, selectRooms, selectRoomsLoading } from "../features/slices/roomsSlice";
 import { useSelector, useDispatch } from "react-redux";
 import Button from "./Button";
 import styled from "styled-components";
@@ -60,7 +60,7 @@ export const RoomList = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchRoomsList());
+    dispatch(fetchRooms());
   }, []);
 
   const [cards, setCards] = useState(myRooms);

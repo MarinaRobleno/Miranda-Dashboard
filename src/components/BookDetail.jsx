@@ -92,7 +92,7 @@ export function BookDetail() {
               ></div>
               <StyledDivRow>
                 <StyledDivColumn>
-                  <StyledDetailSection>Room info</StyledDetailSection>
+                  <StyledDetailSection>Room number</StyledDetailSection>
                   <div style={{ font: "normal normal 600 16px/46px Poppins" }}>
                     {book.roomNumber}
                   </div>
@@ -100,14 +100,14 @@ export function BookDetail() {
                 <StyledDivColumn>
                   <StyledDetailSection>Price</StyledDetailSection>
                   <div style={{ font: "normal normal 600 16px/46px Poppins" }}>
-                    Price in numbers
+                    ${book.price/100}
                   </div>
                 </StyledDivColumn>
               </StyledDivRow>
               <div>{book.special}</div>
               <StyledDivColumn>
                 <StyledDetailSection>Amenities</StyledDetailSection>
-                <div>List of amenities</div>
+                <div>{book.amenities}</div>
               </StyledDivColumn>
               <StyledLink to="/bookings">
                 <Button
@@ -136,8 +136,7 @@ export function BookDetail() {
                     position: 'absolute',
                     width: '100%',
                     minHeight: '150px',
-                    paddingLeft: '20px',
-                    paddingBottom: '20px',
+                    padding: '20px',
                     backgroundColor: 'black',
                     borderRadius: '10px',
                     opacity: '50%'
@@ -151,7 +150,7 @@ export function BookDetail() {
                   {book.roomType}
                 </StyledDivRow>
                 <StyledDetailSection style={{ color: "white" }}>
-                  Description
+                  {book.description}
                 </StyledDetailSection>
               </StyledDivColumn>
             </StyledDetailsContainer>

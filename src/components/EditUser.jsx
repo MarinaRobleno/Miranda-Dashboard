@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { edit, selectUsers } from "../features/slices/usersSlice";
+import { editUsers, selectUsers } from "../features/slices/usersSlice";
 import styled from "styled-components";
 import { StyledBigPanel, StyledBigPanelHeader } from "./pages/Dashboard";
 import { StyledLink } from "./SideBar";
@@ -24,12 +24,12 @@ export function EditUser() {
   const [originalData, setOriginalData] = useState(
     myUser.users
       .filter((user) => {
-        if (user.id === myUser.id) {
+        if (user._id === myUser.id) {
           return user;
         }
       })
       .map((user) => ({
-        id: user.id,
+        _id: user._id,
         name: user.name,
         photo: user.photo,
         job: user.job,
@@ -46,7 +46,7 @@ export function EditUser() {
 
   const handleNewUserSubmit = (e) => {
     e.preventDefault();
-    dispatch(edit(editingUser));
+    dispatch(editUsers(editingUser));
     const form = document.getElementById("editUserForm");
     form.reset();
   };
