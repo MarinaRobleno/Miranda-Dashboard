@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import users from "../../data/users.js";
 import { deleteAPI, getAPI, postAPI, patchAPI } from "../../env.js";
 
 export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
@@ -32,7 +31,7 @@ export const editUsers = createAsyncThunk(
   }
 );
 
-const sortedUsers = users.sort(function (a, b) {
+/*const sortedUsers = users.sort(function (a, b) {
   if (a.startDate > b.startDate) {
     return -1;
   }
@@ -40,7 +39,7 @@ const sortedUsers = users.sort(function (a, b) {
     return 1;
   }
   return 0;
-});
+});*/
 
 export const usersSlice = createSlice({
   name: "users",

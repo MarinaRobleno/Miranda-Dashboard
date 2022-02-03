@@ -9,8 +9,8 @@ import {
 } from "./BookingList";
 import Button from "./Button";
 import { StyledIconRoom } from "./RoomList";
-import { remove, getId, selectRooms, selectRoomsId, deleteRooms } from "../features/slices/roomsSlice";
-import { useSelector, useDispatch } from "react-redux";
+import { getId, deleteRooms } from "../features/slices/roomsSlice";
+import { useDispatch } from "react-redux";
 import { StyledEdit } from "./UsersList";
 import { StyledLink } from "./SideBar";
 

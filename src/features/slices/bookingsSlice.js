@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import booking from "../../data/booking.js";
 import { deleteAPI, getAPI, patchAPI, postAPI } from "../../env.js";
 
 export const fetchBookings = createAsyncThunk(
@@ -35,7 +34,7 @@ export const editBookings = createAsyncThunk(
   }
 );
 
-const sortedBooking = booking.sort(function (a, b) {
+/*const sortedBooking = booking.sort(function (a, b) {
   if (a.orderDate > b.orderDate) {
     return -1;
   }
@@ -43,7 +42,7 @@ const sortedBooking = booking.sort(function (a, b) {
     return 1;
   }
   return 0;
-});
+});*/
 
 export const bookingsSlice = createSlice({
   name: "bookings",

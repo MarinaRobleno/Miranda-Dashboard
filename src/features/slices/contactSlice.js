@@ -1,12 +1,21 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import contact from "../../data/contact.js";
-import { getAPI } from "../../env.js";
+import { getAPI, deleteAPI } from "../../env.js";
 
 export const fetchContacts = createAsyncThunk(
-  "contact/fetchContacts",
+  "contacts/fetchContacts",
   async () => {
      return await getAPI('contacts')
         .then((data) => {return data});
+  }
+);
+
+export const deleteContacts = createAsyncThunk(
+  "contacts/deleteContacts",
+  async (contactId) => {
+    return await deleteAPI("contacts", contactId).then((data) => {
+      return data;
+    });
   }
 );
 
@@ -92,6 +101,18 @@ export const contactSlice = createSlice({
     },
     [fetchContacts.rejected]: (state) => {
       state.loading = false;
+    },
+    [deleteContacts.pending]: (state) => {
+      state.loading = true;
+    },
+    [deleteContacts.fulfilled]: (state, { payload }) => {
+      state.loading = false;
+      state.contact = state.contact.filter(
+        (contact) => contact._id !== payload
+      );
+    },
+    [deleteContacts.rejected]: (state) => {
+      state.loading = true;
     },
   },
 });
