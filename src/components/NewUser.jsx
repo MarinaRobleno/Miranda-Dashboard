@@ -21,30 +21,29 @@ export function NewUser() {
   const dispatch = useDispatch();
 
   const [newUser, setNewUser] = useState({
-    photo: "",
-    name: "",
-    job: "",
-    id: "",
-    mail: "",
-    phone: "",
-    status: 'inactive',
+    status: "inactive",
   });
 
   const handleNewUserSubmit = (e) => {
     e.preventDefault();
     dispatch(addUsers(newUser));
-    /*const form = document.getElementById("newUserForm");
-    form.reset();*/
-        
+    const form = document.getElementById("newUserForm");
+    form.reset();
   };
 
   return (
-    <div style={window.innerWidth > 1890 ? { width: "1000px" } : {width: '800px'}}>
+    <div
+      style={
+        window.innerWidth > 1890 ? { width: "1000px" } : { width: "800px" }
+      }
+    >
       <StyledNewRoomPanel style={{ minHeight: "500px" }}>
-        <StyledBigPanelHeader style={{display: 'flex', justifyContent: 'space-between'}}>
+        <StyledBigPanelHeader
+          style={{ display: "flex", justifyContent: "space-between" }}
+        >
           <div style={{ textAlign: "left" }}>NEW USER</div>
           <StyledLink to="/users">
-            <Button style={{width: '50px', backgroundColor: "#135846" }}>
+            <Button style={{ width: "50px", backgroundColor: "#135846" }}>
               <RiArrowGoBackFill />
             </Button>
           </StyledLink>
@@ -52,7 +51,7 @@ export function NewUser() {
 
         <StyledForm
           id="newUserForm"
-          style={{ display: "flex", flexDirection: "column"  }}
+          style={{ display: "flex", flexDirection: "column" }}
           onSubmit={handleNewUserSubmit}
         >
           <StyledDivRow>
@@ -75,7 +74,11 @@ export function NewUser() {
                 <StyledNewRoomInput
                   type="text"
                   placeholder="Start Date"
-                  style={window.innerWidth > 1890 ? { width: "180px" } : {width: "140px"}}
+                  style={
+                    window.innerWidth > 1890
+                      ? { width: "180px" }
+                      : { width: "140px" }
+                  }
                   onChange={(e) =>
                     setNewUser({ ...newUser, startDate: e.target.value })
                   }
@@ -83,7 +86,11 @@ export function NewUser() {
                 <StyledNewRoomInput
                   type="text"
                   placeholder="End Date"
-                  style={window.innerWidth > 1890 ? { width: "180px" } : {width: "140px"}}
+                  style={
+                    window.innerWidth > 1890
+                      ? { width: "180px" }
+                      : { width: "140px" }
+                  }
                   onChange={(e) =>
                     setNewUser({ ...newUser, endDate: e.target.value })
                   }
@@ -100,20 +107,18 @@ export function NewUser() {
                 <StyledNewRoomInput
                   type="text"
                   placeholder="Phone"
-                  style={window.innerWidth > 1890 ? { width: "180px" } : {width: "140px"}}
                   onChange={(e) =>
                     setNewUser({ ...newUser, phone: e.target.value })
                   }
                 />
-                <StyledNewRoomInput
-                  type="text"
-                  placeholder="ID"
-                  style={window.innerWidth > 1890 ? { width: "180px" } : {width: "140px"}}
-                  onChange={(e) =>
-                    setNewUser({ ...newUser, id: e.target.value })
-                  }
-                />
-              </StyledDivRow>
+              </StyledDivRow>{" "}
+              <StyledNewRoomInput
+                type="text"
+                placeholder="Password"
+                onChange={(e) =>
+                  setNewUser({ ...newUser, password: e.target.value })
+                }
+              />
             </StyledDivColumn>
             <StyledDivColumn>
               <StyledNewRoomInput
@@ -125,7 +130,7 @@ export function NewUser() {
               />
               <StyledTextArea
                 placeholder="Job Description"
-                style={{height: '200px' }}
+                style={{ height: "200px" }}
                 onChange={(e) =>
                   setNewUser({ ...newUser, jobDescription: e.target.value })
                 }
