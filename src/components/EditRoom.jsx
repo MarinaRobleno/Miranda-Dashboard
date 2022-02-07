@@ -147,7 +147,7 @@ export function EditRoom() {
     <div style={{ width: "100%" }}>
       <StyledNewRoomPanel style={{ minHeight: "500px" }}>
         <StyledBigPanelHeader style={{ textAlign: "left" }}>
-          EDIT ROOM (Id: {editingRoomId} )
+          EDIT ROOM {originalData[0].roomNumber}
         </StyledBigPanelHeader>
         <StyledForm
           id="newRoomForm"

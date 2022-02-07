@@ -62,7 +62,7 @@ export function EditUser() {
           style={{ display: "flex", justifyContent: "space-between" }}
         >
           <div style={{ textAlign: "left" }}>
-            EDIT USER (ID: {editingUserId} )
+            EDIT USER {originalData[0].name}
           </div>
           <StyledLink to="/users">
             <Button style={{ width: "50px", backgroundColor: "#135846" }}>

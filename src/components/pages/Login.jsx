@@ -18,7 +18,6 @@ const LoginContainer = styled.div`
   height: 350px;
   font-size: 30px;
   background-color: ${(props) => props.theme.colors.main_white};
-  border: 3px solid ${(props) => props.theme.colors.green_dark};
   border-radius: 10px;
   box-shadow: 0px 16px 30px #00000014;
 `;

@@ -97,7 +97,7 @@ export const RoomListCard = ({
   return (
     <StyledData ref={ref} style={{ opacity }} data-handler-id={handlerId}>
       <StyledDataGuest
-        style={{ display: "flex", alignItems: "center", width: "100%" }}
+        style={{ display: "flex", alignItems: "center", width: "100%", paddingLeft: '10px' }}
       >
         <StyledIconRoom src={photo[0]} />
         <div style={{ display: "inline-block" }}>

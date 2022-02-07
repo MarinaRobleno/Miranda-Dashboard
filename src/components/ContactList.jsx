@@ -118,7 +118,7 @@ export function ContactList() {
       </StyledFilterHeader>
       <StyledTable>
         <StyledHeader>
-          <th className="header-table-sector">Id</th>
+          <th className="header-table-sector" style={{ paddingLeft: '10px' }}>Id</th>
           <th className="header-table-sector">Date</th>
           <th className="header-table-sector">Customer</th>
           <th className="header-table-sector">Mail</th>
@@ -131,7 +131,7 @@ export function ContactList() {
               .slice(indexOfFirstPost, indexOfLastPost)
               .map((contact) => (
                 <StyledData style={window.innerWidth < 1890 ? {fontSize: '12px'}: {fontSize: '13px'}}>
-                  <StyledDataElement>#{contact._id}</StyledDataElement>
+                  <StyledDataElement style={{ paddingLeft: '10px' }}>#{contact._id}</StyledDataElement>
                   <StyledDataElement>{contact.date}</StyledDataElement>
                   <StyledDataElement>{contact.customer}</StyledDataElement>
                   <StyledDataElement>{contact.mail}</StyledDataElement>
@@ -144,7 +144,7 @@ export function ContactList() {
               .slice(indexOfFirstPost, indexOfLastPost)
               .map((contact) => (
                 <StyledData style={window.innerWidth < 1890 ? {fontSize: '12px'}: {fontSize: '13px'}}>
-                  <StyledDataElement>#{contact._id}</StyledDataElement>
+                  <StyledDataElement style={{ paddingLeft: '10px' }}>#{contact._id}</StyledDataElement>
                   <StyledDataElement>{contact.date}</StyledDataElement>
                   <StyledDataElement>{contact.customer}</StyledDataElement>
                   <StyledDataElement>{contact.mail}</StyledDataElement>

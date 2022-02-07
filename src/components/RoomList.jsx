@@ -70,7 +70,7 @@ export const RoomList = () => {
 
   const [totalPosts, setTotalPosts] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const postPerPage = 10;
+  const [postPerPage, setPostPerPage] = useState(10);
   const indexOfLastPost = currentPage * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
 
@@ -196,11 +196,6 @@ export const RoomList = () => {
           <StyledLink to="./new-room">
             <StyledNewButton>+ New Room</StyledNewButton>
           </StyledLink>
-          {/*<StyledSelect value={select} onChange={handleSelect}>
-            <option selected>Order By Price...</option>
-            <option value={"higher"}>Higher</option>
-            <option value={"lower"}>Lower</option>
-  </StyledSelect>*/}
         </div>
       </StyledFilterHeader>
       {loading ? (
@@ -208,7 +203,7 @@ export const RoomList = () => {
       ) : (
         <StyledTable>
           <StyledHeader>
-            <th className="header-table-sector">Room Number</th>
+            <th className="header-table-sector" style={{paddingLeft: '10px'}}>Room Number</th>
             <th className="header-table-sector">Room Type</th>
             <th className="header-table-sector">Amenities</th>
             <th className="header-table-sector">Price</th>
@@ -247,6 +242,7 @@ export const RoomList = () => {
             Showing {postPerPage * currentPage} of {totalPosts} Data
           </div>
         )}
+        <StyledPaginationButton style={{width: '80px'}} onClick={() => setPostPerPage(totalPosts)}>Show all</StyledPaginationButton>
         <StyledTablePagination>
           {currentPage === 1 ? null : (
             <StyledPaginationButton onClick={handleGoLeft}>

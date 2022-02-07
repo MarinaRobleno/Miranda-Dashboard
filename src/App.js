@@ -128,7 +128,7 @@ const StyledBell = styled(BiBell)`
 function App() {
   const dispatch = useDispatch();
   const authenticated = useSelector((state) => state.auth.auth);
-  const [isSidebar, setIsSidebar] = useState(null);
+  const [isSidebar, setIsSidebar] = useState(true);
 
   const handleCloseSidebar = () => {
     return isSidebar ? setIsSidebar(false) : setIsSidebar(true);
@@ -212,7 +212,7 @@ function App() {
                   >
                     {orderCount}
                   </StyledNotificationCounter>
-                  <StyledLogout onClick={() => 'lul'} />
+                  <StyledLogout onClick={() => dispatch(authenticationHanlder({status: false}))} />
                 </div>
               </StyledHeader>
             </header>

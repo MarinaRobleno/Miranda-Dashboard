@@ -358,8 +358,8 @@ export function BookingList() {
             <th
               style={
                 orderBySth === "guest"
-                  ? { color: "#135846", borderBottom: "1px solid #135846" }
-                  : null
+                  ? { paddingLeft: '10px', color: "#135846", borderBottom: "1px solid #135846" }
+                  : { paddingLeft: '10px' }
               }
             >
               Guest
@@ -400,7 +400,7 @@ export function BookingList() {
             </th>
             <th>Special Request</th>
             <th>Room</th>
-            <th>bookStatus</th>
+            <th>Status</th>
             <th>Details</th>
           </StyledHeader>
           {myBooking.booking
@@ -451,8 +451,8 @@ export function BookingList() {
                 }
               >
                 <StyledDataGuest>
-                  <div style={{ fontWeight: "600" }}>{book.guest}</div>#
-                  {book._id}
+                  <div style={{ fontWeight: "600", paddingLeft: '10px' }}>{book.guest}</div>
+                  <div style={{ paddingLeft: '10px' }}>#{book._id}</div>
                 </StyledDataGuest>
                 <StyledDataElement>{book.orderDate}</StyledDataElement>
                 <StyledDataElement>{book.checkIn}</StyledDataElement>
