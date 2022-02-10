@@ -64,9 +64,6 @@ export function BookDetail() {
                   </div>
                   <StyledDetailSection>ID: {book._id}</StyledDetailSection>
                 </StyledDivColumn>
-                <BsThreeDotsVertical
-                  style={{ fontSize: "15px", cursor: "pointer" }}
-                />
               </StyledDivRow>
               <StyledDivRow>
                 <StyledDivColumn>

@@ -180,7 +180,7 @@ export function EditRoom() {
               </StyledDivRow>
               <StyledTextArea
                 type="text"
-                placeholder="Description"
+                placeholder="Amenities"
                 style={{ height: "100px" }}
                 rows='20'
                 cols='50'
