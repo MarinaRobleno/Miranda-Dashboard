@@ -87,6 +87,7 @@ export function UsersList() {
 
   const handleDeleteUser = (user) => {
     dispatch(deleteUsers(user._id));
+    dispatch(fetchUsers());
   };
 
   const handleFilterItem = (e) => {

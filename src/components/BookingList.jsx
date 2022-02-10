@@ -201,6 +201,7 @@ export function BookingList() {
 
   const removeBooking = (id) => {
     dispatch(deleteBookings(id));
+    dispatch(fetchBookings());
   };
 
   const handleFilterItem = (e) => {
