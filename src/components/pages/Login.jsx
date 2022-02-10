@@ -1,6 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
-import { useHistory } from "react-router-dom";
-import { AuthContext } from "../helpers/Context";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { StyledDivColumn, StyledDivRow } from "../BookDetail";
@@ -65,10 +63,6 @@ const LoginSubmit = styled.input`
 `;
 
 export function Login() {
-  const nameKey = "admin";
-  const passKey = "admin";
-  const { loggedIn, setLoggedIn } = useContext(AuthContext);
-
   const dispatch = useDispatch();
   let navigate = useNavigate();
   let location = useLocation();
@@ -99,10 +93,9 @@ export function Login() {
           body: JSON.stringify({email: name, password: password} )
         })
         if (response.ok){
-				
 					const json =  await response.json();
 					dispatch(authenticationHandler({status: true, token: json.token}));
-					navigate("/", { replace: true });
+					navigate(from, { replace: true });
 				} else{
 					console.log('Network response was not ok')
 					 //bad combination
@@ -113,11 +106,6 @@ export function Login() {
 				 //bad combination
       }
   };
-  useEffect(() => {
-    if (loggedIn) {
-      
-    }
-  }, [loggedIn]);
 
   return (
     <StyledDivColumn style={{ alignItems: "center" }}>

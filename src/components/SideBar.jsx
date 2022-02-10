@@ -1,6 +1,5 @@
 import "../styles/App.scss";
 import { React, useContext } from "react";
-import { AuthContext } from "./helpers/Context";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { RiDashboardLine } from "react-icons/ri";
@@ -154,7 +153,6 @@ const StyledCopyright = styled.div`
 `;
 
 export function SideBar() {
-  const auth = useContext(AuthContext);
 
   let location = useLocation();
   let path = location.pathname;

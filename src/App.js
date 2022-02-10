@@ -12,7 +12,6 @@ import { NewUser } from "./components/NewUser.jsx";
 import { EditUser } from "./components/EditUser.jsx";
 import { BookDetail } from "./components/BookDetail.jsx";
 import { PrivateRoute } from "./components/helpers/PrivateRoute.js";
-import { AuthContext } from "./components/helpers/Context";
 import styled from "styled-components";
 import { SideBar } from "./components/SideBar";
 import { FiLogOut } from "react-icons/fi";
