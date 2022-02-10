@@ -8,7 +8,7 @@ const DATABASE_DB = "miranda_db"*/
 import axios from "axios";
 
 let token = localStorage.getItem("token")
-  ? JSON.parse(localStorage.getItem("token")).token
+  ? localStorage.getItem("token").token
   : "";
 
 //const apiUrl = 'https://miranda-express.azurewebsites.net/api/';

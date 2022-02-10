@@ -22,7 +22,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectContact } from "./features/slices/contactSlice";
 import { selectBookings } from "./features/slices/bookingsSlice";
 import { EditRoom } from "./components/EditRoom";
-import { authenticationHanlder } from "./features/slices/authSlice";
+import { authenticationHandler } from "./features/slices/authSlice";
 
 const WholeContent = styled.div`
   display: flex;
@@ -138,7 +138,7 @@ function App() {
     if (localStorage.getItem("authenticated")) {
       setIsSidebar(true);
       dispatch(
-        authenticationHanlder({
+        authenticationHandler({
           status: true,
           token: localStorage.getItem("token"),
         })
@@ -212,7 +212,7 @@ function App() {
                   >
                     {orderCount}
                   </StyledNotificationCounter>
-                  <StyledLogout onClick={() => dispatch(authenticationHanlder({status: false}))} />
+                  <StyledLogout onClick={() => dispatch(authenticationHandler({status: false}))} />
                 </div>
               </StyledHeader>
             </header>

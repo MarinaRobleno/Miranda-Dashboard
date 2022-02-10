@@ -7,7 +7,7 @@ export const authSlice = createSlice ({
   },
   
   reducers: {   
-    authenticationHanlder: (state, action) => { 
+    authenticationHandler: (state, action) => { 
 			if (action.payload.status){
 				state.auth = true 
 				localStorage.setItem('authenticated', '1');
@@ -23,6 +23,6 @@ export const authSlice = createSlice ({
 })
 
  
-export const {  authenticationHanlder }  = authSlice.actions
+export const {  authenticationHandler }  = authSlice.actions
  
 export default authSlice.reducer

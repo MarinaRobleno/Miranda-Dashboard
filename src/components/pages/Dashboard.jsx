@@ -103,6 +103,7 @@ export function Dashboard() {
 
   useEffect(() => {
     dispatch(fetchContacts());
+    dispatch(fetchBookings())
   }, []);
 
   const changeCheckInCount = (count) => {

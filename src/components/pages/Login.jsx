@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { StyledDivColumn, StyledDivRow } from "../BookDetail";
 import { StyledLogoHotel, StyledLogoPack } from "../SideBar";
 import { GiStarsStack } from "react-icons/gi";
-import { authenticationHanlder } from "../../features/slices/authSlice";
+import { authenticationHandler } from "../../features/slices/authSlice";
 import { useDispatch } from "react-redux";
 
 const LoginContainer = styled.div`
@@ -101,7 +101,7 @@ export function Login() {
         if (response.ok){
 				
 					const json =  await response.json();
-					dispatch(authenticationHanlder({status: true, token: json.token}));
+					dispatch(authenticationHandler({status: true, token: json.token}));
 					navigate("/", { replace: true });
 				} else{
 					console.log('Network response was not ok')
