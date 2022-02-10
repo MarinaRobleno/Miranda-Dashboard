@@ -172,6 +172,7 @@ export function EditRoom() {
                 <StyledNewRoomInput
                   type="number"
                   placeholder="Room Number"
+                  defaultValue={editingRoom.roomNumber}
                   onChange={(e) =>
                     setEditingRoom({ ...editingRoom, roomNumber: e.target.value })
                   }
@@ -183,6 +184,7 @@ export function EditRoom() {
                 style={{ height: "100px" }}
                 rows='20'
                 cols='50'
+                defaultValue={editingRoom.amenities}
                 onChange={(e) =>
                   setEditingRoom({ ...editingRoom, amenities: e.target.value })
                 }
@@ -191,6 +193,7 @@ export function EditRoom() {
                 <StyledNewRoomInput
                   type="number"
                   placeholder="Price"
+                  defaultValue={editingRoom.price}
                   style={window.innerWidth > 1890 ? { width: "180px" } : {width: "140px"}}
                   onChange={(e) =>
                     setEditingRoom({ ...editingRoom, price: e.target.value })
@@ -199,6 +202,7 @@ export function EditRoom() {
                 <StyledNewRoomInput
                   type="number"
                   placeholder="Offer Price"
+                  defaultValue={editingRoom.offer_price}
                   style={window.innerWidth > 1890 ? { width: "180px" } : {width: "140px"}}
                   onChange={(e) =>
                     setEditingRoom({ ...editingRoom, offer_price: e.target.value })
@@ -225,6 +229,7 @@ export function EditRoom() {
                 style={{ height: "100px" }}
                 rows='20'
                 cols='50'
+                defaultValue={editingRoom.cancellation}
                 onChange={(e) =>
                   setEditingRoom({ ...editingRoom, cancellation: e.target.value })
                 }
@@ -254,6 +259,7 @@ export function EditRoom() {
               <StyledNewRoomInput
                 type="text"
                 placeholder="Photo URL"
+                defaultValue={editingRoom.photo[0]}
                 onChange={(e) =>
                   setPhotoArray(prev => [...prev, e.target.value])
                 }
@@ -261,6 +267,7 @@ export function EditRoom() {
               <StyledNewRoomInput
                 type="text"
                 placeholder="Photo URL"
+                defaultValue={editingRoom.photo[1]}
                 onChange={(e) =>
                   setPhotoArray(prev => [...prev, e.target.value])
                 }
@@ -268,6 +275,7 @@ export function EditRoom() {
               <StyledNewRoomInput
                 type="text"
                 placeholder="Photo URL"
+                defaultValue={editingRoom.photo[3]}
                 onChange={(e) =>
                   setPhotoArray(prev => [...prev, e.target.value])
                 }

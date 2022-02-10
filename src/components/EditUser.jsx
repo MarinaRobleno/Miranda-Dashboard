@@ -81,6 +81,7 @@ export function EditUser() {
               <StyledNewRoomInput
                 type="text"
                 placeholder="Photo URL"
+                defaultValue={editingUser.photo}
                 onChange={(e) =>
                   setEditingUser({ ...editingUser, photo: e.target.value })
                 }
@@ -88,6 +89,7 @@ export function EditUser() {
               <StyledNewRoomInput
                 type="text"
                 placeholder="Full Name"
+                defaultValue={editingUser.name}
                 onChange={(e) =>
                   setEditingUser({ ...editingUser, name: e.target.value })
                 }
@@ -96,6 +98,7 @@ export function EditUser() {
                 <StyledNewRoomInput
                   type="text"
                   placeholder="Start Date"
+                  defaultValue={editingUser.startDate}
                   style={
                     window.innerWidth > 1890
                       ? { width: "180px" }
@@ -111,6 +114,7 @@ export function EditUser() {
                 <StyledNewRoomInput
                   type="text"
                   placeholder="End Date"
+                  defaultValue={editingUser.endDate}
                   style={
                     window.innerWidth > 1890
                       ? { width: "180px" }
@@ -124,6 +128,7 @@ export function EditUser() {
               <StyledNewRoomInput
                 type="text"
                 placeholder="Email"
+                defaultValue={editingUser.mail}
                 onChange={(e) =>
                   setEditingUser({ ...editingUser, mail: e.target.value })
                 }
@@ -132,6 +137,7 @@ export function EditUser() {
                 <StyledNewRoomInput
                   type="text"
                   placeholder="Phone"
+                  defaultValue={editingUser.phone}
                   onChange={(e) =>
                     setEditingUser({ ...editingUser, phone: e.target.value })
                   }
@@ -142,6 +148,7 @@ export function EditUser() {
               <StyledNewRoomInput
                 type="text"
                 placeholder="Job Desk"
+                defaultValue={editingUser.job}
                 onChange={(e) =>
                   setEditingUser({ ...editingUser, job: e.target.value })
                 }
@@ -149,6 +156,7 @@ export function EditUser() {
               <StyledTextArea
                 placeholder="Job Description"
                 style={{ height: "200px" }}
+                defaultValue={editingUser.jobDescription}
                 onChange={(e) =>
                   setEditingUser({
                     ...editingUser,
