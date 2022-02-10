@@ -80,7 +80,7 @@ export const RoomList = () => {
 
   useEffect(() => {
     setCards(myRooms);
-    setTotalPosts(myRooms.length)
+    setTotalPosts(myRooms.length);
   }, [myRooms]);
 
   const handleGoRight = () => {
@@ -203,7 +203,9 @@ export const RoomList = () => {
       ) : (
         <StyledTable>
           <StyledHeader>
-            <th className="header-table-sector" style={{paddingLeft: '10px'}}>Room Number</th>
+            <th className="header-table-sector" style={{ paddingLeft: "10px" }}>
+              Room Number
+            </th>
             <th className="header-table-sector">Room Type</th>
             <th className="header-table-sector">Amenities</th>
             <th className="header-table-sector">Price</th>
@@ -233,8 +235,7 @@ export const RoomList = () => {
           <div style={{ fontSize: "14px" }}>
             Showing{" "}
             {postPerPage * currentPage -
-              postPerPage -
-              (postPerPage - totalPosts)}{" "}
+              (postPerPage * currentPage - totalPosts)}{" "}
             of {totalPosts} Data
           </div>
         ) : (
@@ -242,7 +243,12 @@ export const RoomList = () => {
             Showing {postPerPage * currentPage} of {totalPosts} Data
           </div>
         )}
-        <StyledPaginationButton style={{width: '80px'}} onClick={() => setPostPerPage(totalPosts)}>Show all</StyledPaginationButton>
+        <StyledPaginationButton
+          style={{ width: "80px" }}
+          onClick={() => setPostPerPage(totalPosts)}
+        >
+          Show all
+        </StyledPaginationButton>
         <StyledTablePagination>
           {currentPage === 1 ? null : (
             <StyledPaginationButton onClick={handleGoLeft}>

@@ -291,8 +291,7 @@ export function UsersList() {
           <div style={{ fontSize: "14px" }}>
             Showing{" "}
             {postPerPage * currentPage -
-              postPerPage -
-              (postPerPage - totalPosts)}{" "}
+              (postPerPage * currentPage - totalPosts)}{" "}
             of {totalPosts} Data
           </div>
         ) : (

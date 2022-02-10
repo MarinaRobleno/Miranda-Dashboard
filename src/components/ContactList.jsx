@@ -172,10 +172,9 @@ export function ContactList() {
             </div>
           ) : postPerPage * currentPage > myContact.reviewedContact.length ? (
             <div style={{ fontSize: "14px" }}>
-              Showing
+              Showing{" "}
               {postPerPage * currentPage -
-                postPerPage -
-                (postPerPage - myContact.reviewedContact.length)}
+                (postPerPage * currentPage - myContact.reviewedContact.length)}{" "}
               of {myContact.reviewedContact.length} Data
             </div>
           ) : (
@@ -211,10 +210,9 @@ export function ContactList() {
             </div>
           ) : postPerPage * currentPage > myContact.archived.length ? (
             <div style={{ fontSize: "14px" }}>
-              Showing
+              Showing{" "}
               {postPerPage * currentPage -
-                postPerPage -
-                (postPerPage - myContact.archived.length)}
+                (postPerPage * currentPage - myContact.archived.length)}{" "}
               of {myContact.archived.length} Data
             </div>
           ) : (

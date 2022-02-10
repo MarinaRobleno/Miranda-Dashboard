@@ -185,7 +185,7 @@ export function BookingList() {
 
   useEffect(() => {
     setTotalPosts(myBooking.booking.length);
-  }, [myBooking])
+  }, [myBooking]);
 
   const handleGoRight = () => {
     setCurrentPage(currentPage + 1);
@@ -359,8 +359,12 @@ export function BookingList() {
             <th
               style={
                 orderBySth === "guest"
-                  ? { paddingLeft: '10px', color: "#135846", borderBottom: "1px solid #135846" }
-                  : { paddingLeft: '10px' }
+                  ? {
+                      paddingLeft: "10px",
+                      color: "#135846",
+                      borderBottom: "1px solid #135846",
+                    }
+                  : { paddingLeft: "10px" }
               }
             >
               Guest
@@ -452,8 +456,10 @@ export function BookingList() {
                 }
               >
                 <StyledDataGuest>
-                  <div style={{ fontWeight: "600", paddingLeft: '10px' }}>{book.guest}</div>
-                  <div style={{ paddingLeft: '10px' }}>#{book._id}</div>
+                  <div style={{ fontWeight: "600", paddingLeft: "10px" }}>
+                    {book.guest}
+                  </div>
+                  <div style={{ paddingLeft: "10px" }}>#{book._id}</div>
                 </StyledDataGuest>
                 <StyledDataElement>{book.orderDate}</StyledDataElement>
                 <StyledDataElement>{book.checkIn}</StyledDataElement>
@@ -515,10 +521,9 @@ export function BookingList() {
           </div>
         ) : postPerPage * currentPage > totalPosts ? (
           <div style={{ fontSize: "14px" }}>
-            Showing{" "}
+            Showing
             {postPerPage * currentPage -
-              postPerPage -
-              (postPerPage - totalPosts)}{" "}
+              (postPerPage * currentPage - totalPosts)}
             of {totalPosts} Data
           </div>
         ) : (
