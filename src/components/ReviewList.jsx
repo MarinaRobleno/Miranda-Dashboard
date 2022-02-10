@@ -58,7 +58,7 @@ export function ReviewList() {
   };
   return (
     <>
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex", width: '100%' }}>
         {myContact.contact
           .slice(indexOfFirstPost, indexOfLastPost)
           .map((contact) => (

@@ -74,7 +74,7 @@ export const StyledReviewPanel = styled.div`
   flex-direction: column;
   justify-content: space-between;
   font-size: 12px;
-  min-width: 300px;
+  width: 350px;
   height: 200px;
   margin: 10px auto;
   padding: 20px;
