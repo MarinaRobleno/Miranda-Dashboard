@@ -37,6 +37,25 @@ const StyledDetailSection = styled.div`
   color: #799283;
 `;
 
+export const AmenitieChip = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  margin-right: 5px;
+  background-color: ${(props) => props.theme.colors.green_turquoise};
+  border-radius: 10px;
+  color: ${(props) => props.theme.colors.green_dark};
+  font-size: 12px;
+  font-weight: 600;
+  max-width: 120px;
+  height: 60px;
+  &:hover {
+    color: ${(props) => props.theme.colors.green_turquoise};
+    background-color: ${(props) => props.theme.colors.green_dark};
+  }
+`;
+
 export function BookDetail() {
   const myBooking = useSelector(selectBookings);
   return (
@@ -97,14 +116,18 @@ export function BookDetail() {
                 <StyledDivColumn>
                   <StyledDetailSection>Price</StyledDetailSection>
                   <div style={{ font: "normal normal 600 16px/46px Poppins" }}>
-                    ${book.price/100}
+                    ${book.price / 100}
                   </div>
                 </StyledDivColumn>
               </StyledDivRow>
               <div>{book.special}</div>
               <StyledDivColumn>
                 <StyledDetailSection>Amenities</StyledDetailSection>
-                <div>{book.amenities}</div>
+                <StyledDivRow style={{ justifyContent: "left" }}>
+                  {book.amenities.map((amenitie) => (
+                    <AmenitieChip>{amenitie}</AmenitieChip>
+                  ))}
+                </StyledDivRow>
               </StyledDivColumn>
               <StyledLink to="/bookings">
                 <Button
@@ -121,23 +144,25 @@ export function BookDetail() {
             </StyledDetailsContainer>
             <StyledDetailsContainer
               style={{
-                position: 'relative',
+                position: "relative",
                 backgroundColor: "grey",
                 margin: "0",
                 padding: "0",
                 justifyContent: "flex-end",
               }}
             >
-              <ImageCarousel bookImages={book.photo} status={book.bookStatus}/>
-              <StyledDivColumn style={{
-                    position: 'absolute',
-                    width: '100%',
-                    minHeight: '150px',
-                    padding: '20px',
-                    backgroundColor: 'black',
-                    borderRadius: '10px',
-                    opacity: '50%'
-                  }}>
+              <ImageCarousel bookImages={book.photo} status={book.bookStatus} />
+              <StyledDivColumn
+                style={{
+                  position: "absolute",
+                  width: "100%",
+                  minHeight: "150px",
+                  padding: "20px",
+                  backgroundColor: "black",
+                  borderRadius: "10px",
+                  opacity: "50%",
+                }}
+              >
                 <StyledDivRow
                   style={{
                     font: "normal normal 600 16px/35px Poppins",

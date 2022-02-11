@@ -15,6 +15,7 @@ export const mainTheme = {
         border_grey_medium_2: '#A1A1A1',
         letter_black: '#262626',
         icon_black: '#212121',
+        green_turquoise: '#EEF9F2',
         green_light: '#799283',
         green_medium: '#5AD07A',
         green_dark: '#135846',
