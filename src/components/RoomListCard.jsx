@@ -13,6 +13,7 @@ import { getId, deleteRooms, fetchRooms } from "../features/slices/roomsSlice";
 import { useDispatch } from "react-redux";
 import { StyledEdit } from "./UsersList";
 import { StyledLink } from "./SideBar";
+import { notifyDelete } from "./helpers/Toasts";
 
 export const RoomListCard = ({
   photo,
@@ -94,6 +95,7 @@ export const RoomListCard = ({
   const removeRoom = (id) => {
     dispatch(deleteRooms(id));
     dispatch(fetchRooms())
+    notifyDelete();
   };
   return (
     <StyledData ref={ref} style={{ opacity }} data-handler-id={handlerId}>

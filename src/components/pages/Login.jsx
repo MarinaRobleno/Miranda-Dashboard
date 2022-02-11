@@ -6,6 +6,9 @@ import { StyledLogoHotel, StyledLogoPack } from "../SideBar";
 import { GiStarsStack } from "react-icons/gi";
 import { authenticationHandler } from "../../features/slices/authSlice";
 import { useDispatch } from "react-redux";
+import {toast} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import { notifyErrorLogin, notifySuccessLogin } from "../helpers/Toasts";
 
 const LoginContainer = styled.div`
   display: flex;
@@ -96,7 +99,9 @@ export function Login() {
 					const json =  await response.json();
 					dispatch(authenticationHandler({status: true, token: json.token}));
 					navigate(from, { replace: true });
+          notifySuccessLogin();
 				} else{
+          notifyErrorLogin();
 					console.log('Network response was not ok')
 					 //bad combination
 				}

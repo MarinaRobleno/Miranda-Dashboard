@@ -16,6 +16,7 @@ import {
   StyledNewRoomSubmit,
 } from "./NewRoom";
 import { StyledDivColumn, StyledDivRow } from "./BookDetail";
+import { notifyEdit, notifyError } from "./helpers/Toasts";
 
 export function EditUser() {
   const dispatch = useDispatch();
@@ -46,7 +47,12 @@ export function EditUser() {
 
   const handleNewUserSubmit = (e) => {
     e.preventDefault();
-    dispatch(editUsers(editingUser));
+    try {
+      dispatch(editUsers(editingUser));
+      notifyEdit();
+    } catch (err) {
+      notifyError();
+    }
     const form = document.getElementById("editUserForm");
     form.reset();
   };

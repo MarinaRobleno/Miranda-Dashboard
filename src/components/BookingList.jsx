@@ -18,6 +18,7 @@ import { StyledTablePagination, StyledPaginationButton } from "./RoomList";
 import { PaginationNumbers } from "./helpers/PaginationNumbers";
 import "flatpickr/dist/flatpickr.min.css";
 import Flatpickr from "react-flatpickr";
+import { notifyDelete } from "./helpers/Toasts";
 
 export const StyledFilterHeader = styled.div`
   display: flex;
@@ -202,6 +203,7 @@ export function BookingList() {
   const removeBooking = (id) => {
     dispatch(deleteBookings(id));
     dispatch(fetchBookings());
+    notifyDelete();
   };
 
   const handleFilterItem = (e) => {

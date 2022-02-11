@@ -1,7 +1,12 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { edit, editRooms, selectRooms, selectRoomsId } from "../features/slices/roomsSlice";
+import {
+  edit,
+  editRooms,
+  selectRooms,
+  selectRoomsId,
+} from "../features/slices/roomsSlice";
 import styled from "styled-components";
 import { StyledBigPanel, StyledBigPanelHeader } from "./pages/Dashboard";
 import { StyledLink } from "./SideBar";
@@ -9,6 +14,7 @@ import Button from "./Button";
 import { StyledDivColumn, StyledDivRow } from "./BookDetail";
 import { RiArrowGoBackFill } from "react-icons/ri";
 import { BsPlusLg } from "react-icons/bs";
+import { notifyEdit, notifyError } from "./helpers/Toasts";
 
 export const StyledNewRoomPanel = styled(StyledBigPanel)`
   display: flex;
@@ -48,24 +54,23 @@ export const StyledNewRoomInput = styled.input`
 `;
 
 export const StyledTextArea = styled.textarea`
-width: 400px;
-height: 30px;
-font: normal normal 500 14px/25px Poppins;
-border: none;
-border-radius: 5%;
-padding: 0 20px;
-margin-bottom: 25px;
-background-color: ${(props) => props.theme.colors.search_bar_white};
-&:focus {
-  outline: none;
-}
-@media (max-width: 1890px) {
-  width: 300px;
-  margin-bottom: 18px;
-  font-size: 12px;
-}
+  width: 400px;
+  height: 30px;
+  font: normal normal 500 14px/25px Poppins;
+  border: none;
+  border-radius: 5%;
+  padding: 0 20px;
+  margin-bottom: 25px;
+  background-color: ${(props) => props.theme.colors.search_bar_white};
+  &:focus {
+    outline: none;
+  }
+  @media (max-width: 1890px) {
+    width: 300px;
+    margin-bottom: 18px;
+    font-size: 12px;
+  }
 `;
-
 
 export const StyledNewRoomSelect = styled.select`
   width: 400px;
@@ -103,7 +108,7 @@ export const StyledNewRoomSubmit = styled(StyledNewRoomInput)`
 export function EditRoom() {
   const dispatch = useDispatch();
   const myRoom = useSelector(selectRooms);
-  const editingRoomId = useSelector(selectRoomsId)
+  const editingRoomId = useSelector(selectRoomsId);
   const [originalData, setOriginalData] = useState(
     myRoom
       .filter((room) => {
@@ -119,26 +124,31 @@ export function EditRoom() {
         amenities: room.amenities,
         price: room.price,
         offer_price: room.offer_price,
-        status: room.status
+        status: room.status,
       }))
   );
-  const [photoArray, setPhotoArray] = useState([])
+  const [photoArray, setPhotoArray] = useState([]);
   const [editingRoom, setEditingRoom] = useState(originalData[0]);
-  const [roomTypeSelected, setRoomTypeSelected] = useState("")
+  const [roomTypeSelected, setRoomTypeSelected] = useState("");
 
   const [photoInputs, setPhotoInputs] = useState(3);
 
   const handleAddLink = (e) => {
     e.preventDefault();
-    if(photoInputs < 5) {
-      setPhotoInputs(photoInputs + 1)
+    if (photoInputs < 5) {
+      setPhotoInputs(photoInputs + 1);
     }
   };
 
   const handleNewRoomSubmit = (e) => {
     e.preventDefault();
-    setEditingRoom({ ...editingRoom, photo: photoArray})
-    dispatch(editRooms(editingRoom));
+    try {
+      setEditingRoom({ ...editingRoom, photo: photoArray });
+      dispatch(editRooms(editingRoom));
+      notifyEdit();
+    } catch (err) {
+      notifyError();
+    }
     const form = document.getElementById("newRoomForm");
     form.reset();
   };
@@ -155,12 +165,19 @@ export function EditRoom() {
           onSubmit={handleNewRoomSubmit}
         >
           <StyledDivRow>
-            <StyledDivColumn style={window.innerWidth > 1890 ? { maxWidth: "400px" } : {maxWidth: "300px"}}>
-              <StyledNewRoomSelect value={roomTypeSelected}
-                onChange={(e) =>{
-                  setRoomTypeSelected(e.target.value)
-                  setEditingRoom({ ...editingRoom, roomType: e.target.value })}
-                }
+            <StyledDivColumn
+              style={
+                window.innerWidth > 1890
+                  ? { maxWidth: "400px" }
+                  : { maxWidth: "300px" }
+              }
+            >
+              <StyledNewRoomSelect
+                value={roomTypeSelected}
+                onChange={(e) => {
+                  setRoomTypeSelected(e.target.value);
+                  setEditingRoom({ ...editingRoom, roomType: e.target.value });
+                }}
               >
                 <option selected>--Room Type--</option>
                 <option>Single Bed</option>
@@ -174,7 +191,10 @@ export function EditRoom() {
                   placeholder="Room Number"
                   defaultValue={editingRoom.roomNumber}
                   onChange={(e) =>
-                    setEditingRoom({ ...editingRoom, roomNumber: e.target.value })
+                    setEditingRoom({
+                      ...editingRoom,
+                      roomNumber: e.target.value,
+                    })
                   }
                 />
               </StyledDivRow>
@@ -182,8 +202,8 @@ export function EditRoom() {
                 type="text"
                 placeholder="Amenities"
                 style={{ height: "100px" }}
-                rows='20'
-                cols='50'
+                rows="20"
+                cols="50"
                 defaultValue={editingRoom.amenities}
                 onChange={(e) =>
                   setEditingRoom({ ...editingRoom, amenities: e.target.value })
@@ -194,7 +214,11 @@ export function EditRoom() {
                   type="number"
                   placeholder="Price"
                   defaultValue={editingRoom.price}
-                  style={window.innerWidth > 1890 ? { width: "180px" } : {width: "140px"}}
+                  style={
+                    window.innerWidth > 1890
+                      ? { width: "180px" }
+                      : { width: "140px" }
+                  }
                   onChange={(e) =>
                     setEditingRoom({ ...editingRoom, price: e.target.value })
                   }
@@ -203,13 +227,20 @@ export function EditRoom() {
                   type="number"
                   placeholder="Offer Price"
                   defaultValue={editingRoom.offer_price}
-                  style={window.innerWidth > 1890 ? { width: "180px" } : {width: "140px"}}
+                  style={
+                    window.innerWidth > 1890
+                      ? { width: "180px" }
+                      : { width: "140px" }
+                  }
                   onChange={(e) =>
-                    setEditingRoom({ ...editingRoom, offer_price: e.target.value })
+                    setEditingRoom({
+                      ...editingRoom,
+                      offer_price: e.target.value,
+                    })
                   }
                 />
               </StyledDivRow>
-              <StyledLink to="/room" style={{width: '40px'}}>
+              <StyledLink to="/room" style={{ width: "40px" }}>
                 <Button
                   style={{
                     width: "40px",
@@ -227,11 +258,14 @@ export function EditRoom() {
                 type="text"
                 placeholder="Cancellation policy"
                 style={{ height: "100px" }}
-                rows='20'
-                cols='50'
+                rows="20"
+                cols="50"
                 defaultValue={editingRoom.cancellation}
                 onChange={(e) =>
-                  setEditingRoom({ ...editingRoom, cancellation: e.target.value })
+                  setEditingRoom({
+                    ...editingRoom,
+                    cancellation: e.target.value,
+                  })
                 }
               />
               <StyledNewRoomInput
@@ -247,7 +281,7 @@ export function EditRoom() {
               <StyledNewRoomInput
                 type="text"
                 placeholder="Related Rooms"
-               /* onChange={(e) =>
+                /* onChange={(e) =>
                   setEditingRoom({
                     ...editingRoom.related_rooms,
                     related_room2: e.target.value,
@@ -261,7 +295,7 @@ export function EditRoom() {
                 placeholder="Photo URL"
                 defaultValue={editingRoom.photo[0]}
                 onChange={(e) =>
-                  setPhotoArray(prev => [...prev, e.target.value])
+                  setPhotoArray((prev) => [...prev, e.target.value])
                 }
               />
               <StyledNewRoomInput
@@ -269,7 +303,7 @@ export function EditRoom() {
                 placeholder="Photo URL"
                 defaultValue={editingRoom.photo[1]}
                 onChange={(e) =>
-                  setPhotoArray(prev => [...prev, e.target.value])
+                  setPhotoArray((prev) => [...prev, e.target.value])
                 }
               />
               <StyledNewRoomInput
@@ -277,23 +311,27 @@ export function EditRoom() {
                 placeholder="Photo URL"
                 defaultValue={editingRoom.photo[3]}
                 onChange={(e) =>
-                  setPhotoArray(prev => [...prev, e.target.value])
+                  setPhotoArray((prev) => [...prev, e.target.value])
                 }
               />
               <StyledNewRoomInput
                 type="text"
                 placeholder="Photo URL"
-                style={photoInputs >= 4 ? {display: 'block'} : {display: 'none'}}
+                style={
+                  photoInputs >= 4 ? { display: "block" } : { display: "none" }
+                }
                 onChange={(e) =>
-                  setPhotoArray(prev => [...prev, e.target.value])
+                  setPhotoArray((prev) => [...prev, e.target.value])
                 }
               />
               <StyledNewRoomInput
                 type="text"
                 placeholder="Photo URL"
-                style={photoInputs === 5 ? {display: 'block'} : {display: 'none'}}
+                style={
+                  photoInputs === 5 ? { display: "block" } : { display: "none" }
+                }
                 onChange={(e) =>
-                  setPhotoArray(prev => [...prev, e.target.value])
+                  setPhotoArray((prev) => [...prev, e.target.value])
                 }
               />
               <Button
@@ -316,7 +354,11 @@ export function EditRoom() {
               justifyContent: "space-around",
             }}
           >
-            <StyledNewRoomSubmit style={{fontSize: '16px'}} type="submit" value="Submit Changes" />
+            <StyledNewRoomSubmit
+              style={{ fontSize: "16px" }}
+              type="submit"
+              value="Submit Changes"
+            />
           </div>
         </StyledForm>
       </StyledNewRoomPanel>
