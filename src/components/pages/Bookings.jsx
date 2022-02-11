@@ -4,10 +4,10 @@ import { BookingList } from "../BookingList";
 import { selectBookings } from "../../features/slices/bookingsSlice";
 import { useSelector } from "react-redux";
 
-export function Bookings() {
+export function Bookings({actualDate}) {
   return (
     <>
-      <BookingList />
+      <BookingList actualDate={actualDate}/>
     </>
   );
 }

@@ -95,10 +95,10 @@ export const StyledDeleteReview = styled(TiDeleteOutline)`
   cursor: pointer;
 `;
 
-export function Dashboard() {
+export function Dashboard({actualDate, setActualDate}) {
   const [checkInCounter, setCheckInCounter] = useState(0);
   const [checkOutCounter, setCheckOutCounter] = useState(0);
-  const [actualDate, setActualDate] = useState(new Date());
+  
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -243,16 +243,18 @@ export function Dashboard() {
           gridColumnEnd: "5",
           gridRowStart: "4",
           gridRowEnd: "5",
+          overflow: 'auto'
         } : {
           minHeight: "300px",
           gridColumnStart: "1",
           gridColumnEnd: "5",
           gridRowStart: "4",
           gridRowEnd: "5",
+          overflow: 'auto'
         }}
       >
         <StyledBigPanelHeader>Booking Schedule Data</StyledBigPanelHeader>
-        <BookingScheduleData />
+        <BookingScheduleData actualDate={actualDate}/>
       </StyledBigPanel>
       <StyledBigPanel
         style={{

@@ -162,14 +162,16 @@ export const StyledBinIcon = styled(AiOutlineDelete)`
   cursor: pointer;
 `;
 
-export function BookingList() {
+export function BookingList({ actualDate }) {
   const myBooking = useSelector(selectBookings);
   const loading = myBooking.loading;
   const dispatch = useDispatch();
-  const today = new Date();
 
   const [select, setSelect] = useState("");
-  const [dateRange, setDateRange] = useState({ start: "", end: "" });
+  const [dateRange, setDateRange] = useState({
+    start: "",
+    end: "",
+  });
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [filteredTerm, setFilteredTerm] = useState("");
   const [orderBySth, setOrderBySth] = useState("");
@@ -334,13 +336,19 @@ export function BookingList() {
         <div style={{ display: "flex", justifyContent: "space-around" }}>
           <div style={{ display: "flex" }}>
             <StyledCalendarBar
-              defaultValue="2022-01-01"
+              options={{
+                dateFormat: "m-d-Y",
+              }}
+              defaultValue={`${actualDate.getMonth()}-01-${actualDate.getFullYear()}`}
               onChange={(selectedDates, dateStr, instance) => {
                 handleStartDate(dateStr);
               }}
             />
             <StyledCalendarBar
-              defaultValue="2022-12-31"
+              options={{
+                dateFormat: "m-d-Y",
+              }}
+              defaultValue={`${actualDate.getMonth() + 1}-01-${actualDate.getFullYear()}`}
               onChange={(selectedDates, dateStr, instance) => {
                 handleEndDate(dateStr);
               }}
@@ -412,16 +420,14 @@ export function BookingList() {
           </StyledHeader>
           {myBooking.booking
             .filter((book) => {
-              let convertedCheckIn = convertDateFormat(book.checkIn);
-              let convertedCheckOut = convertDateFormat(book.checkOut);
               if (dateRange.start === "" || dateRange.end === "") {
                 return book;
               }
               if (
-                (convertedCheckIn >= dateRange.start &&
-                  convertedCheckIn <= dateRange.end) ||
-                (dateRange.start >= convertedCheckIn &&
-                  dateRange.start <= convertedCheckOut)
+                (book.checkIn >= dateRange.start &&
+                  book.checkIn <= dateRange.end) ||
+                (dateRange.start >= book.checkIn &&
+                  dateRange.start <= book.checkOut)
               ) {
                 return book;
               }
@@ -523,9 +529,9 @@ export function BookingList() {
           </div>
         ) : postPerPage * currentPage > totalPosts ? (
           <div style={{ fontSize: "14px" }}>
-            Showing
+            Showing{" "}
             {postPerPage * currentPage -
-              (postPerPage * currentPage - totalPosts)}
+              (postPerPage * currentPage - totalPosts)}{" "}
             of {totalPosts} Data
           </div>
         ) : (

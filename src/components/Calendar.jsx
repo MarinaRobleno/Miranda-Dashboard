@@ -140,17 +140,14 @@ export function Calendar({ setActualDate, changeCheckInCount, changeCheckOutCoun
   
 
     const clickEventHandler = () => {
-        console.log("====clickEventHandler====");
-    
+
     }
 
     const setEventsHanlder = () => {
-        console.log("====setEventsHanlder====");
     
     }
     
     const dateSelectHandler = (e) => {
-        console.log("====dateSelectHandler====");
         for (let el in e) {
             console.log(`${ el }: ${ e[el] }`);
         }
@@ -158,25 +155,22 @@ export function Calendar({ setActualDate, changeCheckInCount, changeCheckOutCoun
     }
 
     const addEventHandler = (e) => {
-        console.log("====addEventHandle====");
     
     }
 
     const changeEventHandler = (e) => {
-        console.log("====changeEventHandler====");
     
     }
 
     const removeEventHandler = (e) => {
-        console.log("====removeEventHandler====");
     
     }
 
     const datesSetHandler = (e) => {
-        console.log("====datesSetHandler====");
         let month = e.end.getMonth();
         if (month === 0) month = 12;
         setActualDate(e.end);
+        console.log(e.end)
     }
 
     const renderEventContent = (eventContent) => {

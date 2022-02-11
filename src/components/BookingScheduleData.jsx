@@ -10,68 +10,91 @@ const StyledBookingScheduleData = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 80px;
-  @media (max-width: 1890px){
+  @media (max-width: 1890px) {
     height: 60px;
   }
 `;
 
 const StyledBookingScheduleNumber = styled.div`
-border-radius: 12px;
-min-width: 50px;
-height: 50px;
-display: flex;
-justify-content: center;
-align-items: center;
-color: white;
-@media (max-width: 1890px){
-  height: 40px;
-  min-width: 40px;
-}
-`
+  border-radius: 12px;
+  min-width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  @media (max-width: 1890px) {
+    height: 40px;
+    min-width: 40px;
+  }
+`;
 
 const StyledBookingScheduleRoom = styled.div`
-font-weight: 700;
-font-size: 20px;
-@media (max-width: 1920px){
-  font-size: 16px;
-}
-`
+  font-weight: 700;
+  font-size: 20px;
+  @media (max-width: 1920px) {
+    font-size: 16px;
+  }
+`;
 
-export function BookingScheduleData() {
+export function BookingScheduleData({ actualDate }) {
   const myBooking = useSelector(selectBookings);
+  const bookings = myBooking.booking;
+  let checkIn = false;
+  let checkOut = false;
 
   return (
     <StyledDivColumn>
-      <StyledBookingScheduleData>
-        <StyledDivRow style={{ alignItems: "center" }}>
-          <StyledIconRoom style={window.innerWidth > 1890 ? { backgroundColor: "grey" } : { height: '60px', width: '120px', backgroundColor: "grey" }}></StyledIconRoom>
-          <StyledDivColumn>
-            <StyledBookingScheduleRoom>ROOM 098 - Single bed</StyledBookingScheduleRoom>
-            <div>Alicia Keys</div>
-          </StyledDivColumn>
-        </StyledDivRow>
-        <StyledBookingScheduleNumber style={{backgroundColor: '#135846'}}>3</StyledBookingScheduleNumber>
-      </StyledBookingScheduleData>
-      <StyledBookingScheduleData>
-        <StyledDivRow style={{ alignItems: "center" }}>
-          <StyledIconRoom style={window.innerWidth > 1890 ? { backgroundColor: "grey" } : { height: '60px', width: '120px', backgroundColor: "grey" }}></StyledIconRoom>
-          <StyledDivColumn>
-          <StyledBookingScheduleRoom>ROOM 012 - Double bed</StyledBookingScheduleRoom>
-            <div>Ariana Grande</div>
-          </StyledDivColumn>
-        </StyledDivRow>
-        <StyledBookingScheduleNumber style={{backgroundColor: '#E23428'}}>2</StyledBookingScheduleNumber>
-      </StyledBookingScheduleData>
-      <StyledBookingScheduleData>
-        <StyledDivRow style={{ alignItems: "center" }}>
-          <StyledIconRoom style={window.innerWidth > 1890 ? { backgroundColor: "grey" } : { height: '60px', width: '120px', backgroundColor: "grey" }}></StyledIconRoom>
-          <StyledDivColumn>
-          <StyledBookingScheduleRoom>ROOM 103 - Suite</StyledBookingScheduleRoom>
-            <div>Elthon John</div>
-          </StyledDivColumn>
-        </StyledDivRow>
-        <StyledBookingScheduleNumber style={{backgroundColor: '#FF9C3A'}}>5</StyledBookingScheduleNumber>
-      </StyledBookingScheduleData>
+      {bookings.map((book) => {
+        checkIn =
+          new Date(book.checkIn).getMonth() + 1 === actualDate.getMonth() &&
+          new Date(book.checkIn).getFullYear() === actualDate.getFullYear();
+        checkOut =
+          new Date(book.checkOut).getMonth() + 1 === actualDate.getMonth() &&
+          new Date(book.checkOut).getFullYear() === actualDate.getFullYear();
+        if (checkIn || checkOut) {
+          return (
+            <StyledBookingScheduleData key={book._id}>
+              <StyledDivRow style={{ alignItems: "center" }}>
+                <StyledIconRoom
+                  style={
+                    window.innerWidth > 1890
+                      ? { backgroundImage: "grey" }
+                      : {
+                          height: "60px",
+                          width: "120px",
+                          backgroundColor: "grey",
+                        }
+                  }
+                  src={book.photo[0]}
+                ></StyledIconRoom>
+                <StyledDivColumn>
+                  <StyledBookingScheduleRoom>
+                    ROOM {book.roomNumber} - {book.roomType}
+                  </StyledBookingScheduleRoom>
+                  <div>{book.guest}</div>
+                </StyledDivColumn>
+              </StyledDivRow>
+              <StyledDivRow>
+                {checkIn ? (
+                  <StyledBookingScheduleNumber
+                    style={{ backgroundColor: "#135846" }}
+                  >
+                    {new Date(book.checkIn).getDate()}
+                  </StyledBookingScheduleNumber>
+                ) : null}
+                {checkOut ? (
+                  <StyledBookingScheduleNumber
+                    style={{ backgroundColor: "#E23428" }}
+                  >
+                    {new Date(book.checkOut).getDate()}
+                  </StyledBookingScheduleNumber>
+                ) : null}
+              </StyledDivRow>
+            </StyledBookingScheduleData>
+          );
+        }
+      })}
     </StyledDivColumn>
   );
 }

@@ -128,6 +128,7 @@ function App() {
   const dispatch = useDispatch();
   const authenticated = useSelector((state) => state.auth.auth);
   const [isSidebar, setIsSidebar] = useState(true);
+  const [actualDate, setActualDate] = useState(new Date());
 
   const handleCloseSidebar = () => {
     return isSidebar ? setIsSidebar(false) : setIsSidebar(true);
@@ -223,7 +224,7 @@ function App() {
                 path="/"
                 element={
                   <PrivateRoute>
-                    <Dashboard />
+                    <Dashboard actualDate={actualDate} setActualDate={setActualDate}/>
                   </PrivateRoute>
                 }
               />
@@ -263,7 +264,7 @@ function App() {
                 path="/bookings"
                 element={
                   <PrivateRoute>
-                    <Bookings />
+                    <Bookings actualDate={actualDate} />
                   </PrivateRoute>
                 }
               />
