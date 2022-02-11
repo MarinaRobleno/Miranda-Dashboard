@@ -11,6 +11,7 @@ import { TiDeleteOutline } from "react-icons/ti";
 import { ReviewList } from "../ReviewList";
 import ReservationChart from "../Chart";
 import { BookingScheduleData } from "../BookingScheduleData";
+import { fetchRooms, selectRooms } from "../../features/slices/roomsSlice";
 
 const StyledGrid = styled.div`
   width: 100%;
@@ -97,13 +98,20 @@ export const StyledDeleteReview = styled(TiDeleteOutline)`
 
 export function Dashboard({actualDate, setActualDate}) {
   const [checkInCounter, setCheckInCounter] = useState(0);
-  const [checkOutCounter, setCheckOutCounter] = useState(0);
-  
+  const [checkOutCounter, setCheckOutCounter] = useState(0);  
   const dispatch = useDispatch();
+  const myBookings = useSelector(selectBookings);
+  const myRooms = useSelector(selectRooms);
+
+  let occupancyPercentage = () => {
+    let occupied = myRooms.filter((room) => room.status === 'booked');
+    return (occupied.length/myRooms.length)*100
+  } 
 
   useEffect(() => {
     dispatch(fetchContacts());
-    dispatch(fetchBookings())
+    dispatch(fetchBookings());
+    dispatch(fetchRooms());
   }, []);
 
   const changeCheckInCount = (count) => {
@@ -123,7 +131,7 @@ export function Dashboard({actualDate, setActualDate}) {
         </StyledIconBackground>
         <StyledKpiData>
           <div style={{ font: "normal normal 600 20px/26px Poppins" }}>
-            8,461
+            {myBookings.booking.length}
           </div>
           <div
             style={{
@@ -141,7 +149,7 @@ export function Dashboard({actualDate, setActualDate}) {
           <BsCalendarCheck />
         </StyledIconBackground>
         <StyledKpiData>
-          <div style={{ font: "normal normal 600 20px/26px Poppins" }}>963</div>
+          <div style={{ font: "normal normal 600 20px/26px Poppins" }}>{occupancyPercentage()}%</div>
           <div
             style={{
               font: "normal normal 300 12px/21px Poppins",
@@ -204,7 +212,7 @@ export function Dashboard({actualDate, setActualDate}) {
           minWidth: '500px'
         }}
       >
-        <Calendar setActualDate={setActualDate} changeCheckInCount={changeCheckInCount} changeCheckOutCount={changeCheckOutCount}/>
+        <Calendar actualDate={actualDate} setActualDate={setActualDate} changeCheckInCount={changeCheckInCount} changeCheckOutCount={changeCheckOutCount}/>
       </StyledBigPanel>
       <StyledBigPanel
         style={window.innerWidth > 1890 ? {
