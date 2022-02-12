@@ -90,7 +90,7 @@ export function Login() {
     e.preventDefault();
       
       try{
-        const response = await fetch('http://localhost:3000/login/login', {
+        const response = await fetch('https://miranda-express.azurewebsites.net/login/login', {
           method: 'POST',
 					headers : { 'Content-Type' : 'application/json' },
           body: JSON.stringify({email: name, password: password} )
