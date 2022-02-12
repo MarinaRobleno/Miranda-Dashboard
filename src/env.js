@@ -4,8 +4,8 @@ let token = localStorage.getItem("token")
   ? localStorage.getItem("token").token
   : "";
 
-//const apiUrl = 'https://miranda-express.azurewebsites.net/api/';
-const apiUrl = "http://localhost:3000/api/";
+const apiUrl = 'https://miranda-express.azurewebsites.net/api/';
+//const apiUrl = "http://localhost:3000/api/";
 
 let headers = {
   headers: {
