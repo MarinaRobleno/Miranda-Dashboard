@@ -7,9 +7,6 @@ import { mainTheme } from "./styles/Themes";
 import { ThemeProvider } from "styled-components";
 import store from "./features/store/store";
 import { Provider } from "react-redux";
-import {fetchBookings} from "./features/slices/bookingsSlice"
-
-store.dispatch(fetchBookings());
 
 ReactDOM.render(
   <Provider store={store}>

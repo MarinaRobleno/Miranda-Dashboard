@@ -9,7 +9,7 @@ const apiUrl = "http://localhost:3000/api/";
 
 let headers = {
   headers: {
-    authorization:
+    'Authorization':
       `Bearer ${token}`,
     "Content-Type": "application/json",
   },

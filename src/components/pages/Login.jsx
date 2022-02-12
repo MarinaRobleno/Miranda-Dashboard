@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { StyledDivColumn, StyledDivRow } from "../BookDetail";
 import { StyledLogoHotel, StyledLogoPack } from "../SideBar";
 import { GiStarsStack } from "react-icons/gi";
 import { authenticationHandler } from "../../features/slices/authSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { notifyErrorLogin, notifySuccessLogin } from "../helpers/Toasts";
@@ -70,7 +70,7 @@ export function Login() {
   let navigate = useNavigate();
   let location = useLocation();
   let from = location.state?.from?.pathname || "/";
-
+  const authenticated = useSelector((state) => state.auth.auth);
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
@@ -111,6 +111,11 @@ export function Login() {
 				 //bad combination
       }
   };
+  useEffect(() => {
+    if (authenticated) {
+      navigate("/", { replace: true });
+    }
+  }, [authenticated]);
 
   return (
     <StyledDivColumn style={{ alignItems: "center" }}>
