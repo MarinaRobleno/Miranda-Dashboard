@@ -116,6 +116,7 @@ export const roomsSlice = createSlice({
               price: payload.price,
               offer_price: payload.offer_price,
               status: payload.status,
+              related_rooms: payload.related_rooms
             }
           : room
       );

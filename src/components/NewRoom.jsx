@@ -106,14 +106,6 @@ export function NewRoom() {
 
   const [newRoom, setNewRoom] = useState({
     photo: [],
-    roomNumber: "",
-    id: "",
-    roomType: "",
-    amenities: "",
-    price: "",
-    offer_price: "",
-    cancellation: "",
-    related_rooms: {},
     status: "available",
   });
 
@@ -185,18 +177,6 @@ export function NewRoom() {
                     setNewRoom({ ...newRoom, roomNumber: e.target.value })
                   }
                 />
-                <StyledNewRoomInput
-                  type="text"
-                  placeholder="Room ID"
-                  style={
-                    window.innerWidth > 1890
-                      ? { width: "180px" }
-                      : { width: "140px" }
-                  }
-                  onChange={(e) =>
-                    setNewRoom({ ...newRoom, id: e.target.value })
-                  }
-                />
               </StyledDivRow>
               <StyledTextArea
                 type="text"
@@ -205,7 +185,7 @@ export function NewRoom() {
                 rows="20"
                 cols="50"
                 onChange={(e) =>
-                  setNewRoom({ ...newRoom, amenities: e.target.value })
+                  setNewRoom({ ...newRoom, description: e.target.value })
                 }
               />
               <StyledDivRow>
@@ -221,16 +201,6 @@ export function NewRoom() {
                     setNewRoom({ ...newRoom, price: e.target.value })
                   }
                 />
-                <label
-                  style={
-                    window.innerWidth > 1890
-                      ? { fontSize: "16px" }
-                      : { fontSize: "14px" }
-                  }
-                >
-                  Offer
-                </label>
-                <input type="checkbox"></input>
                 <StyledNewRoomInput
                   type="number"
                   placeholder="Offer Price"
@@ -266,26 +236,6 @@ export function NewRoom() {
                 cols="50"
                 onChange={(e) =>
                   setNewRoom({ ...newRoom, cancellation: e.target.value })
-                }
-              />
-              <StyledNewRoomInput
-                type="text"
-                placeholder="Related Rooms"
-                onChange={(e) =>
-                  setNewRoom({
-                    ...newRoom.related_rooms,
-                    related_room1: e.target.value,
-                  })
-                }
-              />
-              <StyledNewRoomInput
-                type="text"
-                placeholder="Related Rooms"
-                onChange={(e) =>
-                  setNewRoom({
-                    ...newRoom.related_rooms,
-                    related_room2: e.target.value,
-                  })
                 }
               />
             </StyledDivColumn>

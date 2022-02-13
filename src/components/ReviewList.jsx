@@ -60,7 +60,7 @@ export function ReviewList() {
     <>
       <div style={{ display: "flex", width: '100%' }}>
         {myContact.contact
-          .slice(indexOfFirstPost, indexOfLastPost)
+          
           .map((contact) => (
             <StyledReviewPanel>
               <div>
@@ -99,7 +99,7 @@ export function ReviewList() {
                 />
               </div>
             </StyledReviewPanel>
-          ))}
+          )).reverse().slice(indexOfFirstPost, indexOfLastPost)}
       </div>
       <StyledPaginationReviews style={currentPage === 1 ? {justifyContent: 'right'} : currentPage === Math.ceil(myContact.contact.length / postPerPage) ? {justifyContent: 'left'} : null}>
         {currentPage === 1 ? null : (

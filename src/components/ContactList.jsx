@@ -195,7 +195,7 @@ export function ContactList() {
               changePage={changePage}
             />
             {currentPage ===
-            Math.ceil(myContact.reviewedContact.length / postPerPage) ? null : (
+            Math.ceil(myContact.reviewedContact.length / postPerPage) || myContact.reviewedContact.length <= 10 ? null : (
               <StyledPaginationButton onClick={handleGoRight}>
                 Next
               </StyledPaginationButton>
@@ -233,7 +233,7 @@ export function ContactList() {
               changePage={changePage}
             />
             {currentPage ===
-            Math.ceil(myContact.archived.length / postPerPage) ? null : (
+            Math.ceil(myContact.archived.length / postPerPage) || myContact.archived.length <= 10 ? null : (
               <StyledPaginationButton onClick={handleGoRight}>
                 Next
               </StyledPaginationButton>

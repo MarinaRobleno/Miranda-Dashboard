@@ -33,6 +33,10 @@ export const StyledForm = styled.form`
   justify-content: space-between;
 `;
 
+export const StyledLabel = styled.label`
+  font-size: 12px;
+`
+
 export const StyledNewRoomInput = styled.input`
   width: 400px;
   height: 30px;
@@ -121,6 +125,7 @@ export function EditRoom() {
         roomType: room.roomType,
         photo: room.photo,
         roomNumber: room.roomNumber,
+        description: room.description,
         amenities: room.amenities,
         price: room.price,
         offer_price: room.offer_price,
@@ -200,16 +205,17 @@ export function EditRoom() {
               </StyledDivRow>
               <StyledTextArea
                 type="text"
-                placeholder="Amenities"
+                placeholder="Description"
                 style={{ height: "100px" }}
                 rows="20"
                 cols="50"
-                defaultValue={editingRoom.amenities}
+                defaultValue={editingRoom.description}
                 onChange={(e) =>
-                  setEditingRoom({ ...editingRoom, amenities: e.target.value })
+                  setEditingRoom({ ...editingRoom, description: e.target.value })
                 }
               />
               <StyledDivRow>
+                <div>$</div>
                 <StyledNewRoomInput
                   type="number"
                   placeholder="Price"
@@ -223,6 +229,7 @@ export function EditRoom() {
                     setEditingRoom({ ...editingRoom, price: e.target.value })
                   }
                 />
+                <div>offer:</div>
                 <StyledNewRoomInput
                   type="number"
                   placeholder="Offer Price"
@@ -267,26 +274,6 @@ export function EditRoom() {
                     cancellation: e.target.value,
                   })
                 }
-              />
-              <StyledNewRoomInput
-                type="text"
-                placeholder="Related Rooms"
-                /*onChange={(e) =>
-                  setEditingRoom({
-                    ...editingRoom.related_rooms,
-                    related_room1: e.target.value,
-                  })
-                }*/
-              />
-              <StyledNewRoomInput
-                type="text"
-                placeholder="Related Rooms"
-                /* onChange={(e) =>
-                  setEditingRoom({
-                    ...editingRoom.related_rooms,
-                    related_room2: e.target.value,
-                  })
-                }*/
               />
             </StyledDivColumn>
             <StyledDivColumn>

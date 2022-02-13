@@ -454,7 +454,7 @@ export function BookingList({ actualDate }) {
                 return book;
               }
             })
-            .slice(indexOfFirstPost, indexOfLastPost)
+            
             .map((book) => (
               <StyledData
                 style={
@@ -515,7 +515,7 @@ export function BookingList({ actualDate }) {
                   <StyledBinIcon onClick={() => removeBooking(book._id)} />
                 </StyledDataElement>
               </StyledData>
-            ))}
+            )).slice(indexOfFirstPost, indexOfLastPost)}
         </StyledTable>
       )}
       <StyledFooter
@@ -552,7 +552,7 @@ export function BookingList({ actualDate }) {
             changePage={changePage}
           />
           {currentPage ===
-          Math.ceil(myBooking.booking.length / postPerPage) ? null : (
+          Math.ceil(myBooking.booking.length / postPerPage) || totalPosts <= 10 ? null : (
             <StyledPaginationButton onClick={handleGoRight}>
               Next
             </StyledPaginationButton>

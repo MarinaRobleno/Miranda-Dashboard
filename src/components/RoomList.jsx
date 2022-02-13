@@ -245,7 +245,7 @@ export const RoomList = () => {
         )}
         <StyledPaginationButton
           style={{ width: "80px" }}
-          onClick={() => setPostPerPage(totalPosts)}
+          onClick={() => {setPostPerPage(totalPosts); setCurrentPage(1)}}
         >
           Show all
         </StyledPaginationButton>
@@ -261,7 +261,7 @@ export const RoomList = () => {
             currentPage={currentPage}
             changePage={changePage}
           />
-          {currentPage === Math.ceil(cards.length / postPerPage) ? null : (
+          {currentPage === Math.ceil(cards.length / postPerPage) || totalPosts <= 10 ? null : (
             <StyledPaginationButton onClick={handleGoRight}>
               Next
             </StyledPaginationButton>

@@ -312,7 +312,7 @@ export function UsersList() {
             changePage={changePage}
           />
           {currentPage ===
-          Math.ceil(myUsers.users.length / postPerPage) ? null : (
+          Math.ceil(myUsers.users.length / postPerPage) || totalPosts <= 10 ? null : (
             <StyledPaginationButton onClick={handleGoRight}>
               Next
             </StyledPaginationButton>
