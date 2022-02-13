@@ -23,7 +23,7 @@ You need a valid registered account to access this dashboard, so only authorized
 
 ## You can see this app in action here:
 
-https://marinarobleno.github.io/Miranda-Dashboard/
+https://red-grass-099b1f410.1.azurestaticapps.net
 
 ## Download
 If you download this project, open it in your code editor, open your terminal and run:
