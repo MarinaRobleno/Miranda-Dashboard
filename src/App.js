@@ -22,6 +22,7 @@ import { selectContact } from "./features/slices/contactSlice";
 import { selectBookings } from "./features/slices/bookingsSlice";
 import { EditRoom } from "./components/EditRoom";
 import { authenticationHandler } from "./features/slices/authSlice";
+import { EditLoggedUser } from "./components/EditLoggedUser";
 
 const WholeContent = styled.div`
   display: flex;
@@ -281,6 +282,14 @@ function App() {
                 element={
                   <PrivateRoute>
                     <NewUser />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/users/:id/edit-logged"
+                element={
+                  <PrivateRoute>
+                    <EditLoggedUser />
                   </PrivateRoute>
                 }
               />

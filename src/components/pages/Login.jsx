@@ -98,6 +98,7 @@ export function Login() {
         if (response.ok){
 					const json =  await response.json();
 					dispatch(authenticationHandler({status: true, token: json.token}));
+          localStorage.setItem("mail", name)
 					navigate(from, { replace: true });
           notifySuccessLogin();
 				} else{

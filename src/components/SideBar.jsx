@@ -1,5 +1,5 @@
 import "../styles/App.scss";
-import { React, useContext } from "react";
+import { React, useContext, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { RiDashboardLine } from "react-icons/ri";
@@ -10,6 +10,10 @@ import { IoMdContacts } from "react-icons/io";
 import Button from "./Button";
 import { FaHotel } from "react-icons/fa";
 import { GiStarsStack } from "react-icons/gi";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import { fetchUsers, selectUsers, getId } from "../features/slices/usersSlice";
+import { useDispatch } from "react-redux";
 
 const StyledSideBarContent = styled.div`
   width: 230px;
@@ -153,9 +157,21 @@ const StyledCopyright = styled.div`
 `;
 
 export function SideBar() {
+  const dispatch = useDispatch();
+  const myUsers = useSelector(selectUsers);
+  const [loggedUser, setLoggedUser] = useState("");
 
   let location = useLocation();
   let path = location.pathname;
+
+  const handleEditUser = (id) => {
+    dispatch(getId(id))
+  }
+
+  useEffect(() => {
+    dispatch(fetchUsers());
+    setLoggedUser(localStorage.getItem("mail"));
+  }, []);
 
   return (
     <StyledSideBarContent>
@@ -354,75 +370,100 @@ export function SideBar() {
               <div>Users</div>
             </MenuButtons>
           )}
-        </StyledLink>
-        <ContactUsCard>
-          <div
-            style={
-              window.innerWidth < 1920
-                ? {
-                    background: "#FFFFFF 0% 0% no-repeat padding-box",
-                    borderRadius: "8px",
-                    width: "30px",
-                    height: "30px",
-                    color: "#C5C5C5",
-                    marginBottom: "15px;",
-                  }
-                : { width: "50px", height: "50px" }
-            }
-          >
-            <img src="https://avatars.dicebear.com/api/bottts/icon.svg" />
-          </div>
-          <div
-            style={
-              window.innerWidth < 1920
-                ? {
-                    color: "#393939",
-                    font: "normal normal 600 14px/25px Poppins",
-                    marginBottom: "9px",
-                  }
-                : { color: "#393939", fontSize: "18px", marginBottom: "9px" }
-            }
-          >
-            Marina Robleño
-          </div>
-          <div
-            style={
-              window.innerWidth < 1920
-                ? {
-                    color: "#B2B2B2",
-                    font: "normal normal 300 12px/18px Poppins",
-                    marginBottom: "8px",
-                  }
-                : { color: "#B2B2B2", fontSize: "14px", marginBottom: "8px" }
-            }
-          >
-            marinarobleno@mail.com
-          </div>
-          <div
-            style={
-              window.innerWidth < 1920
-                ? {
-                    color: "#B2B2B2",
-                    font: "normal normal 300 12px/18px Poppins",
-                    marginBottom: "8px",
-                  }
-                : { color: "#B2B2B2", fontSize: "14px", marginBottom: "8px" }
-            }
-          >
-            github.com/MarinaRobleno
-          </div>
-          <Button
-            contact
-            weight="600"
-            style={
-              window.innerWidth < 1920
-                ? { width: "50px", height: "30px", fontSize: "12px" }
-                : { width: "80px", height: "40px", fontSize: "14px" }
-            }
-          >
-            Edit
-          </Button>
-        </ContactUsCard>
+        </StyledLink>{" "}
+        {myUsers.users
+          .filter((user) => {
+            return user.mail === loggedUser;
+          })
+          .map((user) => (
+            <ContactUsCard>
+              <div
+                style={
+                  window.innerWidth < 1920
+                    ? {
+                        background: "#FFFFFF 0% 0% no-repeat padding-box",
+                        borderRadius: "8px",
+                        width: "30px",
+                        height: "30px",
+                        color: "#C5C5C5",
+                        marginBottom: "15px;",
+                      }
+                    : { width: "50px", height: "50px" }
+                }
+              >
+                <img src="https://avatars.dicebear.com/api/bottts/icon.svg" />
+              </div>
+              <div
+                style={
+                  window.innerWidth < 1920
+                    ? {
+                        color: "#393939",
+                        font: "normal normal 600 14px/25px Poppins",
+                        marginBottom: "9px",
+                      }
+                    : {
+                        color: "#393939",
+                        fontSize: "18px",
+                        marginBottom: "9px",
+                      }
+                }
+              >
+                {user.name}
+              </div>
+              <div
+                style={
+                  window.innerWidth < 1920
+                    ? {
+                        color: "#B2B2B2",
+                        font: "normal normal 300 12px/18px Poppins",
+                        marginBottom: "8px",
+                      }
+                    : {
+                        color: "#B2B2B2",
+                        fontSize: "14px",
+                        marginBottom: "8px",
+                      }
+                }
+              >
+                {user.mail}
+              </div>
+              <div
+                style={
+                  window.innerWidth < 1920
+                    ? {
+                        color: "#B2B2B2",
+                        font: "normal normal 300 12px/18px Poppins",
+                        marginBottom: "8px",
+                      }
+                    : {
+                        color: "#B2B2B2",
+                        fontSize: "14px",
+                        marginBottom: "8px",
+                      }
+                }
+              >
+                github.com/MarinaRobleno
+              </div>
+              <StyledLink
+                  to={{
+                    pathname: `./users/${user.id}/edit-logged`,
+                  }}
+                >
+              <Button
+                contact
+                weight="600"
+                style={
+                  window.innerWidth < 1920
+                    ? { width: "50px", height: "30px", fontSize: "12px" }
+                    : { width: "80px", height: "40px", fontSize: "14px" }
+                }
+                onClick={() => handleEditUser(user._id)}
+              >
+                Edit
+              </Button>
+              </StyledLink>
+            </ContactUsCard>
+          ))}
         <StyledCopyrightContainer>
           <StyledAdminDashboard>
             Miranda Hotel Admin Dashboard
