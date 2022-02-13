@@ -1,19 +1,60 @@
 import React, { useState, useEffect, useRef } from "react";
 import * as d3 from "d3";
+import { useSelector } from "react-redux";
+import { selectBookings } from "../features/slices/bookingsSlice";
 
-export default function ReservationChart() {
+export default function ReservationChart({actualDate}) {
+  const myBookings = useSelector(selectBookings);
+  const bookings = myBookings.booking;
+
+  function endFirstWeek(firstDate, firstDay) {
+    if (! firstDay) {
+        return 7 - firstDate.getDay();
+    }
+    if (firstDate.getDay() < firstDay) {
+        return firstDay - firstDate.getDay();
+    } else {
+        return 7 - firstDate.getDay() + firstDay;
+    }
+}
+
+function getWeeksStartAndEndInMonth(month, year) {
+    let weeks = [],
+        firstDate = new Date(year, month, 1),
+        lastDate = new Date(year, month + 1, 0),
+        numDays = lastDate.getDate();
+
+    let init = 1;
+    let end = endFirstWeek(firstDate, 2);
+    while (init <= numDays) {
+        weeks.push({init: init, end: end});
+        init = end + 1;
+        end = end + 7;
+        end = init === 1 && end === 8 ? 1 : end;
+        if (end > numDays) {
+            end = numDays;
+        }
+    }
+    return weeks;
+}
+  
+  let checkIns = bookings.filter((book) => 
+      new Date(book.checkIn).getMonth() + 1 === actualDate.getMonth() &&
+      new Date(book.checkIn).getFullYear() === actualDate.getFullYear()
+  );
+  let checkOuts = bookings.filter((book) =>
+    new Date(book.checkOut).getMonth() + 1 === actualDate.getMonth() &&
+    new Date(book.checkOut).getFullYear() === actualDate.getFullYear()
+  );
+
   const [checkIn, setCheckIn] = useState([20, 3, 20, 17, 10, 39]);
   const [inProgress, setinProgress] = useState([2, 5, 4, 8, 17, 2]);
   const [checkOut, setCheckOut] = useState([32, 12, 16, 13, 25, 18]);
-  const [days, setDays] = useState([
-    "27-2",
-    "3-9",
-    "10-16",
-    "17-23",
-    "24-30",
-    "31-6",
-  ]);
+  const [days, setDays] = useState((getWeeksStartAndEndInMonth((actualDate.getMonth() - 1), actualDate.getFullYear())).map((week) => `${week.init}-${week.end}`));
   const ref = useRef();
+
+  console.log(getWeeksStartAndEndInMonth(actualDate.getMonth() - 1, actualDate.getFullYear()))
+  console.log(actualDate)
 
   /*Get day
   let date = new Date();

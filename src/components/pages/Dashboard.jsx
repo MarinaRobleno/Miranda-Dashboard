@@ -242,7 +242,7 @@ export function Dashboard({actualDate, setActualDate}) {
         }}
       >
         <StyledBigPanelHeader>Reservation Stats</StyledBigPanelHeader>
-        <ReservationChart />
+        <ReservationChart actualDate={actualDate} />
       </StyledBigPanel>
       <StyledBigPanel
         style={window.innerWidth > 1890 ? {
