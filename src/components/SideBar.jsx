@@ -391,7 +391,14 @@ export function SideBar() {
                     : { width: "50px", height: "50px" }
                 }
               >
-                <img src="https://avatars.dicebear.com/api/bottts/icon.svg" />
+                <img style={
+                  window.innerWidth < 1920
+                    ? {
+                        width: "30px",
+                        height: "30px",
+                      }
+                    : { width: "50px", height: "50px" }
+                } src={user.photo} />
               </div>
               <div
                 style={
@@ -469,7 +476,10 @@ export function SideBar() {
             Miranda Hotel Admin Dashboard
           </StyledAdminDashboard>
           <StyledCopyrightContainer>
-            <StyledCopyright>© 2021 All Rights Reserved</StyledCopyright>
+            <StyledCopyright>© 2022 All Rights Reserved</StyledCopyright>
+          </StyledCopyrightContainer>
+          <StyledCopyrightContainer>
+            <StyledCopyright>marinarsanisidro@gmail.com</StyledCopyright>
           </StyledCopyrightContainer>
         </StyledCopyrightContainer>
       </MenuButtonLine>

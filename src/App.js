@@ -143,7 +143,7 @@ function App() {
           status: true,
           token: localStorage.getItem("token"),
         })
-      );      
+      );
     }
   }, []);
 
@@ -213,7 +213,12 @@ function App() {
                   >
                     {orderCount}
                   </StyledNotificationCounter>
-                  <StyledLogout onClick={() => dispatch(authenticationHandler({status: false}))} />
+                  <StyledLogout
+                    onClick={() => {
+                      dispatch(authenticationHandler({ status: false }));
+                      localStorage.removeItem("mail")
+                    }}
+                  />
                 </div>
               </StyledHeader>
             </header>
@@ -225,7 +230,10 @@ function App() {
                 path="/"
                 element={
                   <PrivateRoute>
-                    <Dashboard actualDate={actualDate} setActualDate={setActualDate}/>
+                    <Dashboard
+                      actualDate={actualDate}
+                      setActualDate={setActualDate}
+                    />
                   </PrivateRoute>
                 }
               />
