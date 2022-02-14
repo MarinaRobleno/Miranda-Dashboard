@@ -35,7 +35,7 @@ export const StyledForm = styled.form`
 
 export const StyledLabel = styled.label`
   font-size: 12px;
-`
+`;
 
 export const StyledNewRoomInput = styled.input`
   width: 400px;
@@ -132,7 +132,7 @@ export function EditRoom() {
         status: room.status,
       }))
   );
-  const [photoArray, setPhotoArray] = useState([]);
+  const [photoArray, setPhotoArray] = useState(originalData[0].photo.map((url)=>url));
   const [editingRoom, setEditingRoom] = useState(originalData[0]);
   const [roomTypeSelected, setRoomTypeSelected] = useState("");
 
@@ -147,16 +147,22 @@ export function EditRoom() {
 
   const handleNewRoomSubmit = (e) => {
     e.preventDefault();
+    console.log(photoArray);
+    console.log(editingRoom);
     try {
-      setEditingRoom({ ...editingRoom, photo: photoArray });
+      console.log(editingRoom);
       dispatch(editRooms(editingRoom));
       notifyEdit();
     } catch (err) {
       notifyError();
     }
-    const form = document.getElementById("newRoomForm");
-    form.reset();
   };
+
+  useEffect(() => {
+    if (photoArray != []) {
+      setEditingRoom({ ...editingRoom, photo: photoArray });
+    }
+  }, [photoArray]);
 
   return (
     <div style={{ width: "100%" }}>
@@ -211,7 +217,10 @@ export function EditRoom() {
                 cols="50"
                 defaultValue={editingRoom.description}
                 onChange={(e) =>
-                  setEditingRoom({ ...editingRoom, description: e.target.value })
+                  setEditingRoom({
+                    ...editingRoom,
+                    description: e.target.value,
+                  })
                 }
               />
               <StyledDivRow>
@@ -280,45 +289,47 @@ export function EditRoom() {
               <StyledNewRoomInput
                 type="text"
                 placeholder="Photo URL"
-                defaultValue={editingRoom.photo[0]}
+                defaultValue={originalData[0].photo[0]}
                 onChange={(e) =>
-                  setPhotoArray((prev) => [...prev, e.target.value])
+                  photoArray[0] = e.target.value
                 }
               />
               <StyledNewRoomInput
                 type="text"
                 placeholder="Photo URL"
-                defaultValue={editingRoom.photo[1]}
+                defaultValue={originalData[0].photo[1]}
                 onChange={(e) =>
-                  setPhotoArray((prev) => [...prev, e.target.value])
+                  photoArray[1] = e.target.value
                 }
               />
               <StyledNewRoomInput
                 type="text"
                 placeholder="Photo URL"
-                defaultValue={editingRoom.photo[3]}
+                defaultValue={originalData[0].photo[2]}
                 onChange={(e) =>
-                  setPhotoArray((prev) => [...prev, e.target.value])
+                  photoArray[2] = e.target.value
                 }
               />
               <StyledNewRoomInput
                 type="text"
                 placeholder="Photo URL"
+                defaultValue={originalData[0].photo[3]}
                 style={
                   photoInputs >= 4 ? { display: "block" } : { display: "none" }
                 }
                 onChange={(e) =>
-                  setPhotoArray((prev) => [...prev, e.target.value])
+                  photoArray[3] = e.target.value
                 }
               />
               <StyledNewRoomInput
                 type="text"
                 placeholder="Photo URL"
+                defaultValue={originalData[0].photo[4]}
                 style={
                   photoInputs === 5 ? { display: "block" } : { display: "none" }
                 }
                 onChange={(e) =>
-                  setPhotoArray((prev) => [...prev, e.target.value])
+                  photoArray[4] = e.target.value
                 }
               />
               <Button
