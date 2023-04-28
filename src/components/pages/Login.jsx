@@ -6,9 +6,10 @@ import { StyledLogoHotel, StyledLogoPack } from "../SideBar";
 import { GiStarsStack } from "react-icons/gi";
 import { authenticationHandler } from "../../features/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
-import {toast} from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { notifyErrorLogin, notifySuccessLogin } from "../helpers/Toasts";
+import { apiLogin } from "../../env";
 
 const LoginContainer = styled.div`
   display: flex;
@@ -88,29 +89,28 @@ export function Login() {
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
-      
-      try{
-        const response = await fetch('https://miranda-express.azurewebsites.net/login/login', {
-          method: 'POST',
-					headers : { 'Content-Type' : 'application/json' },
-          body: JSON.stringify({email: name, password: password} )
-        })
-        if (response.ok){
-					const json =  await response.json();
-					dispatch(authenticationHandler({status: true, token: json.token}));
-          localStorage.setItem("mail", name)
-					navigate(from, { replace: true });
-          notifySuccessLogin();
-				} else{
-          notifyErrorLogin();
-					console.log('Network response was not ok')
-					 //bad combination
-				}
-				
-      }catch (err) {
-        console.log('There has been a problem with your fetch operation:', err);
-				 //bad combination
+
+    try {
+      const response = await fetch(`${apiLogin}login/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: name, password: password }),
+      });
+      if (response.ok) {
+        const json = await response.json();
+        dispatch(authenticationHandler({ status: true, token: json.token }));
+        localStorage.setItem("mail", name);
+        navigate(from, { replace: true });
+        notifySuccessLogin();
+      } else {
+        notifyErrorLogin();
+        console.log("Network response was not ok");
+        //bad combination
       }
+    } catch (err) {
+      console.log("There has been a problem with your fetch operation:", err);
+      //bad combination
+    }
   };
   useEffect(() => {
     if (authenticated) {

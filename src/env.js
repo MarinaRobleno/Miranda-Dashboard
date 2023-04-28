@@ -4,13 +4,15 @@ let token = localStorage.getItem("token")
   ? localStorage.getItem("token").token
   : "";
 
-const apiUrl = 'https://miranda-express.azurewebsites.net/api/';
+const apiUrl = "https://miranda-back.vercel.app/api/";
 //const apiUrl = "http://localhost:3000/api/";
+
+export const apiLogin = "https://miranda-back.vercel.app/";
+// export const apiLogin = "http://localhost:3000/";
 
 let headers = {
   headers: {
-    'Authorization':
-      `Bearer ${token}`,
+    Authorization: `Bearer ${token}`,
     "Content-Type": "application/json",
   },
 };
